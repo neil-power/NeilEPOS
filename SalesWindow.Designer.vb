@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class MainWindow
+Partial Class SalesWindow
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -47,6 +47,7 @@ Partial Class MainWindow
         Me.QuantityTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.WebCrawler = New System.Windows.Forms.WebBrowser()
         Me.PriceLookupButton = New System.Windows.Forms.Button()
+        Me.CloseButton = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'ISBNLabel
@@ -303,7 +304,17 @@ Partial Class MainWindow
         Me.PriceLookupButton.Text = "Price Lookup"
         Me.PriceLookupButton.UseVisualStyleBackColor = True
         '
-        'MainWindow
+        'CloseButton
+        '
+        Me.CloseButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CloseButton.Location = New System.Drawing.Point(480, 421)
+        Me.CloseButton.Name = "CloseButton"
+        Me.CloseButton.Size = New System.Drawing.Size(100, 75)
+        Me.CloseButton.TabIndex = 4
+        Me.CloseButton.Text = "Close"
+        Me.CloseButton.UseVisualStyleBackColor = True
+        '
+        'SalesWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -316,6 +327,7 @@ Partial Class MainWindow
         Me.Controls.Add(Me.PriceLookupButton)
         Me.Controls.Add(Me.AddItemButton)
         Me.Controls.Add(Me.AbandonSale)
+        Me.Controls.Add(Me.CloseButton)
         Me.Controls.Add(Me.TakePaymentButton)
         Me.Controls.Add(Me.ItemsSoldListBox)
         Me.Controls.Add(Me.DelButton)
@@ -333,7 +345,7 @@ Partial Class MainWindow
         Me.Controls.Add(Me.QuantityLabel)
         Me.Controls.Add(Me.PriceLabel)
         Me.Controls.Add(Me.ISBNLabel)
-        Me.Name = "MainWindow"
+        Me.Name = "SalesWindow"
         Me.Text = "NeilEPOS"
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -365,4 +377,5 @@ Partial Class MainWindow
     Friend WithEvents QuantityTextBox As MaskedTextBox
     Friend WithEvents WebCrawler As WebBrowser
     Friend WithEvents PriceLookupButton As Button
+    Friend WithEvents CloseButton As Button
 End Class

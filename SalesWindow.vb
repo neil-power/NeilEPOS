@@ -1,5 +1,5 @@
 ﻿Imports System.IO 'Imports libraries needed for reading and writing files
-Public Class MainWindow
+Public Class SalesWindow
 
     ' **************************************************ON LOAD**************************************************
     'GLOBAL VARIABLES
@@ -18,7 +18,7 @@ Public Class MainWindow
 
     Private Sub MainWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load 'Runs when form opens
 
-        Payment.Hide() 'Hides payment window
+        PaymentWindow.Hide() 'Hides payment window
         Me.BringToFront() 'Brings main window to the front
 
         If Not File.Exists(FilePath) Then ' Checks to see if a sales file has already been created
@@ -197,9 +197,24 @@ Public Class MainWindow
             SaleTotal += ItemBought.Price * ItemBought.Quantity ' Calculates sale total
         Next
 
-        Payment.Show() ' Opens payment window
+        PaymentWindow.Show() ' Opens payment window
 
     End Sub
+
+    Private Sub CloseButton_Click(sender As Object, e As EventArgs) Handles CloseButton.Click
+        Select Case LoginWindow.UserAccessRights
+            Case "M"
+                Me.Hide()
+                ManagerWindow.Show()
+            Case "U"
+                Me.Hide()
+                UserWindow.Show()
+            Case "X"
+                Me.Hide()
+                LoginWindow.Show()
+        End Select
+    End Sub
+
 
     ' **************************************************PRICE LOOKUP**************************************************
 

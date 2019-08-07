@@ -91,11 +91,23 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainWindow.vb">
+    <Compile Include="LoginWindow.Designer.vb">
+      <DependentUpon>LoginWindow.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LoginWindow.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainWindow.Designer.vb">
-      <DependentUpon>MainWindow.vb</DependentUpon>
+    <Compile Include="ManagerWindow.Designer.vb">
+      <DependentUpon>ManagerWindow.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerWindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SalesWindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SalesWindow.Designer.vb">
+      <DependentUpon>SalesWindow.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -113,16 +125,28 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Payment.Designer.vb">
-      <DependentUpon>Payment.vb</DependentUpon>
+    <Compile Include="PaymentWindow.Designer.vb">
+      <DependentUpon>PaymentWindow.vb</DependentUpon>
     </Compile>
-    <Compile Include="Payment.vb">
+    <Compile Include="PaymentWindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserWindow.Designer.vb">
+      <DependentUpon>UserWindow.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserWindow.vb">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MainWindow.resx">
-      <DependentUpon>MainWindow.vb</DependentUpon>
+    <EmbeddedResource Include="LoginWindow.resx">
+      <DependentUpon>LoginWindow.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagerWindow.resx">
+      <DependentUpon>ManagerWindow.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalesWindow.resx">
+      <DependentUpon>SalesWindow.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -130,8 +154,11 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Payment.resx">
-      <DependentUpon>Payment.vb</DependentUpon>
+    <EmbeddedResource Include="PaymentWindow.resx">
+      <DependentUpon>PaymentWindow.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserWindow.resx">
+      <DependentUpon>UserWindow.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

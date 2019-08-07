@@ -1,11 +1,11 @@
 ﻿Imports System.IO 'Imports libraries needed for reading and writing files
-Public Class Payment
+Public Class PaymentWindow
 
     ' **************************************************ON LOAD**************************************************
 
     Private Sub Payment_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated 'Runs when payment form opened
 
-        TotalLabel.Text = MainWindow.SaleTotal 'Sets total to the sale total
+        TotalLabel.Text = SalesWindow.SaleTotal 'Sets total to the sale total
 
         ChangeLabel.Text = "" 'Resets label to default value
         AmountPaidTextBox.Text = "0000" ''Resets textbox to default value
@@ -71,7 +71,7 @@ Public Class Payment
     Private Sub AmountPaidTextBox_TextChanged(sender As Object, e As EventArgs) Handles AmountPaidTextBox.TextChanged ' Updates the change to give box
 
         If Double.TryParse(AmountPaidTextBox.Text, New Double) Then ' Checks if the amount paid text box text can be converted to a decimal
-            Dim Change As Double = (CDbl(AmountPaidTextBox.Text) / 100) - MainWindow.SaleTotal ' Converts the amount paid to a decimal
+            Dim Change As Double = (CDbl(AmountPaidTextBox.Text) / 100) - SalesWindow.SaleTotal ' Converts the amount paid to a decimal
             ChangeLabel.Text = Change.ToString("0.00") 'Updates the change label to show the change to be given
 
             If Change <= 0 Then 'If the change is less than 0, then not enough has been paid
@@ -85,17 +85,17 @@ Public Class Payment
     End Sub
 
     Private Sub FinishSale_Click(sender As Object, e As EventArgs) Handles FinishSale.Click ' Writes the information to the sales file
-        MainWindow.SaleNumber += 1 'Increments sale number by 1
-        Dim sw As New StreamWriter(MainWindow.FilePath, True) 'Creates a file writer
-        For Each ItemBought In MainWindow.CurrentSale 'Interates through every item in the current sale
-            sw.WriteLine(LSet(DateTime.Now, 19) & "," & LSet(MainWindow.SaleNumber, 5) & "," & LSet(ItemBought.ISBN, 13) & "," & LSet(ItemBought.Price, 5) & "," & LSet(ItemBought.Quantity, 2) & "," & MainWindow.SaleTotal & ",") 'Adds item properties to the text file
+        SalesWindow.SaleNumber += 1 'Increments sale number by 1
+        Dim sw As New StreamWriter(SalesWindow.FilePath, True) 'Creates a file writer
+        For Each ItemBought In SalesWindow.CurrentSale 'Interates through every item in the current sale
+            sw.WriteLine(LSet(DateTime.Now, 19) & "," & LSet(SalesWindow.SaleNumber, 5) & "," & LSet(ItemBought.ISBN, 13) & "," & LSet(ItemBought.Price, 5) & "," & LSet(ItemBought.Quantity, 2) & "," & SalesWindow.SaleTotal & ",") 'Adds item properties to the text file
         Next
         sw.Close() 'Closes opened file
 
         TotalLabel.Text = "" 'Resets label to default
         ChangeLabel.Text = "" 'Resets label to default
         AmountPaidTextBox.Text = "0000" 'Resets textbox to default
-        MainWindow.MainWindowClearAll() 'Clears all mainwindow variables
+        SalesWindow.MainWindowClearAll() 'Clears all mainwindow variables
 
         Me.Hide() 'Closes payment window
     End Sub
