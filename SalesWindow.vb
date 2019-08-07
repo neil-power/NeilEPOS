@@ -18,7 +18,6 @@ Public Class SalesWindow
 
     Private Sub MainWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load 'Runs when form opens
 
-        PaymentWindow.Hide() 'Hides payment window
         Me.BringToFront() 'Brings main window to the front
 
         If Not File.Exists(FilePath) Then ' Checks to see if a sales file has already been created
@@ -201,15 +200,15 @@ Public Class SalesWindow
 
     End Sub
 
-    Private Sub CloseButton_Click(sender As Object, e As EventArgs) Handles CloseButton.Click
-        Select Case LoginWindow.UserAccessRights
-            Case "M"
+    Private Sub CloseButton_Click(sender As Object, e As EventArgs) Handles CloseButton.Click 'Closes and returns to correct screen
+        Select Case LoginWindow.CurrentUser.AccessLevel ' Selects access level of current user
+            Case LoginWindow.UserAccessLevel.Manager ' If manager, return to manager window
                 Me.Hide()
                 ManagerWindow.Show()
-            Case "U"
+            Case LoginWindow.UserAccessLevel.User 'If user, return to user window
                 Me.Hide()
                 UserWindow.Show()
-            Case "X"
+            Case Else 'Else, return to login window
                 Me.Hide()
                 LoginWindow.Show()
         End Select

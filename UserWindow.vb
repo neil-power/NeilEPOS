@@ -7,7 +7,7 @@
             Case ProductLookupButton.Name
                 'Opens the window
             Case LogoutButton.Name 'If it is the log out button, logout
-                LoginWindow.UserAccessRights = "X" 'Set user access rights to none as logging out
+                LoginWindow.CurrentUser = Nothing 'Set user access rights to none as logging out
                 LoginWindow.Show() ' Return to login screen
         End Select
     End Sub
