@@ -5,9 +5,12 @@
 ''' Create transaction file - auto update
 ''' Modify daily sales file - meet table requirements
 ''' Create weekly summary file
+''' Validation/Verification
+''' Try catch loops for everything that can go wrong
 ''' Stock in?
 ''' Payment types?
 ''' Numpad for login?
+''' FORMS INSIDE FORMS - SIDE MENU BAR AND MDI forms
 ''' </summary>
 
 
@@ -20,6 +23,7 @@ Public Class LoginWindow
         If Dir$(UserFilePath) = "" Then ' Checks to see if the NeilEPOSUsers.csv file exists
             Dim sw As New StreamWriter(UserFilePath, True) 'This makes sure there is actually a database to enter/read data. If not, it creates a new blank one.
             sw.WriteLine("00001,Default,123,0") 'Writes a default manager account to the file to create a file for storing data.
+            'sw.WriteLine("00002,Default,123,1") 'USER ACCOUNT FOR TESTING - REMOVE LATER
             sw.Close() 'Closes file after writing to it
             MsgBox("A new users file has been created. A default manager account with ID 00001 and password 123 has been created.", vbExclamation, "Warning!")
         End If
@@ -43,6 +47,8 @@ Public Class LoginWindow
 
     Private Sub LoginButton_Click(sender As Object, e As EventArgs) Handles LoginButton.Click 'Logs in user
         CurrentUser = VerifyUserLogin(EmployeeIDTextBox.Text, PasswordTextBox.Text) 'Verifies ID and Password
+        MsgBox(CurrentUser.UserID & CurrentUser.AccessLevel) 'TESTING ####################################################################
+
         If CurrentUser.AccessLevel <> UserAccessLevel.None Then 'If returned user access level is not none, open correct window
             Select Case CurrentUser.AccessLevel 'Select access level
                 Case UserAccessLevel.Manager 'If manager, open manager window
@@ -69,7 +75,7 @@ Public Class LoginWindow
                 End If
             Next
         End If
-        Return New User With {.UserID = "", .UserName = "", .Password = "", .AccessLevel = UserAccessLevel.None} 'Returns blank user if false
+        Return New User With {.UserID = 0, .UserName = "", .Password = "", .AccessLevel = UserAccessLevel.None} 'Returns blank user if false
     End Function
 
     ' **************************************************UTILITY BUTTONS**************************************************
@@ -77,10 +83,10 @@ Public Class LoginWindow
     Private Sub ClearFields() 'Clears all entered login details
         EmployeeIDTextBox.Text = "" 'Resets contents of employee ID text box
         PasswordTextBox.Text = "" 'Resets contents of employee password text box
-        CurrentUser = Nothing 'Removes all user access rights on logged in windows
     End Sub
 
     Private Sub ClearButton_Click(sender As Object, e As EventArgs) Handles ClearButton.Click 'When clear button pressed, all fields are cleared.
+        CurrentUser = Nothing 'Removes all user access rights on logged in windows
         ClearFields() 'Run clear fields subroutine
     End Sub
 

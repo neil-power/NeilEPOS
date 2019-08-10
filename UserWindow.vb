@@ -4,6 +4,8 @@
         Select Case sender.Name 'Selects the button pressed
             Case SalesButton.Name 'If it is the make sales button, open window
                 SalesWindow.Show() 'Opens the sales window
+                MsgBox(LoginWindow.CurrentUser.UserID & LoginWindow.CurrentUser.AccessLevel) 'TESTING ####################################################################
+
             Case ProductLookupButton.Name
                 'Opens the window
             Case LogoutButton.Name 'If it is the log out button, logout

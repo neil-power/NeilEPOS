@@ -24,15 +24,17 @@ NeilEPOS
 </member>
 <member name="T:NeilEPOS.LoginWindow">
  <summary>
- Read and write users to csv file, create user data type
  Create products file, read from products file, search and sort products file, edit product in file, scrape details off internet, change stock number
  Create product lookup page
  Create transaction file - auto update
  Modify daily sales file - meet table requirements
  Create weekly summary file
+ Validation/Verification
+ Try catch loops for everything that can go wrong
  Stock in?
  Payment types?
  Numpad for login?
+ FORMS INSIDE FORMS - SIDE MENU BAR AND MDI forms
  </summary>
 </member>
 </members>

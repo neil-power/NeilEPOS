@@ -11,7 +11,7 @@
     <AssemblyName>NeilEPOS</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <PublishUrl>publish\</PublishUrl>
@@ -29,6 +29,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -131,6 +132,12 @@
     <Compile Include="PaymentWindow.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ManageUsersWindow.Designer.vb">
+      <DependentUpon>ManageUsersWindow.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ManageUsersWindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UserWindow.Designer.vb">
       <DependentUpon>UserWindow.vb</DependentUpon>
     </Compile>
@@ -144,6 +151,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ManagerWindow.resx">
       <DependentUpon>ManagerWindow.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageUsersWindow.resx">
+      <DependentUpon>ManageUsersWindow.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SalesWindow.resx">
       <DependentUpon>SalesWindow.vb</DependentUpon>
