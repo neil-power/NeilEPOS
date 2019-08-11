@@ -23,10 +23,10 @@ Partial Class LoginWindow
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.LogoLabel = New System.Windows.Forms.Label()
-        Me.EmployeeIDLabel = New System.Windows.Forms.Label()
+        Me.UserIDLabel = New System.Windows.Forms.Label()
         Me.PasswordLabel = New System.Windows.Forms.Label()
         Me.TaglineLabel = New System.Windows.Forms.Label()
-        Me.EmployeeIDTextBox = New System.Windows.Forms.MaskedTextBox()
+        Me.UserIDTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.PasswordTextBox = New System.Windows.Forms.TextBox()
         Me.LoginPromptLabel = New System.Windows.Forms.Label()
         Me.LoginButton = New System.Windows.Forms.Button()
@@ -44,15 +44,15 @@ Partial Class LoginWindow
         Me.LogoLabel.TabIndex = 0
         Me.LogoLabel.Text = "NeilEPOS"
         '
-        'EmployeeIDLabel
+        'UserIDLabel
         '
-        Me.EmployeeIDLabel.AutoSize = True
-        Me.EmployeeIDLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.EmployeeIDLabel.Location = New System.Drawing.Point(344, 274)
-        Me.EmployeeIDLabel.Name = "EmployeeIDLabel"
-        Me.EmployeeIDLabel.Size = New System.Drawing.Size(128, 24)
-        Me.EmployeeIDLabel.TabIndex = 1
-        Me.EmployeeIDLabel.Text = "Employee ID: "
+        Me.UserIDLabel.AutoSize = True
+        Me.UserIDLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.UserIDLabel.Location = New System.Drawing.Point(344, 274)
+        Me.UserIDLabel.Name = "UserIDLabel"
+        Me.UserIDLabel.Size = New System.Drawing.Size(128, 24)
+        Me.UserIDLabel.TabIndex = 1
+        Me.UserIDLabel.Text = "Employee ID: "
         '
         'PasswordLabel
         '
@@ -74,15 +74,15 @@ Partial Class LoginWindow
         Me.TaglineLabel.TabIndex = 0
         Me.TaglineLabel.Text = "Welcome to Neil's Electronic Point-Of-Sale System"
         '
-        'EmployeeIDTextBox
+        'UserIDTextBox
         '
-        Me.EmployeeIDTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.EmployeeIDTextBox.Location = New System.Drawing.Point(496, 269)
-        Me.EmployeeIDTextBox.Mask = "00000"
-        Me.EmployeeIDTextBox.Name = "EmployeeIDTextBox"
-        Me.EmployeeIDTextBox.Size = New System.Drawing.Size(191, 29)
-        Me.EmployeeIDTextBox.TabIndex = 3
-        Me.EmployeeIDTextBox.ValidatingType = GetType(Integer)
+        Me.UserIDTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.UserIDTextBox.Location = New System.Drawing.Point(496, 269)
+        Me.UserIDTextBox.Mask = "00000"
+        Me.UserIDTextBox.Name = "UserIDTextBox"
+        Me.UserIDTextBox.Size = New System.Drawing.Size(191, 29)
+        Me.UserIDTextBox.TabIndex = 3
+        Me.UserIDTextBox.ValidatingType = GetType(Integer)
         '
         'PasswordTextBox
         '
@@ -142,9 +142,9 @@ Partial Class LoginWindow
         Me.Controls.Add(Me.CloseButton)
         Me.Controls.Add(Me.LoginButton)
         Me.Controls.Add(Me.PasswordTextBox)
-        Me.Controls.Add(Me.EmployeeIDTextBox)
+        Me.Controls.Add(Me.UserIDTextBox)
         Me.Controls.Add(Me.PasswordLabel)
-        Me.Controls.Add(Me.EmployeeIDLabel)
+        Me.Controls.Add(Me.UserIDLabel)
         Me.Controls.Add(Me.LoginPromptLabel)
         Me.Controls.Add(Me.TaglineLabel)
         Me.Controls.Add(Me.LogoLabel)
@@ -158,10 +158,10 @@ Partial Class LoginWindow
     End Sub
 
     Friend WithEvents LogoLabel As Label
-    Friend WithEvents EmployeeIDLabel As Label
+    Friend WithEvents UserIDLabel As Label
     Friend WithEvents PasswordLabel As Label
     Friend WithEvents TaglineLabel As Label
-    Friend WithEvents EmployeeIDTextBox As MaskedTextBox
+    Friend WithEvents UserIDTextBox As MaskedTextBox
     Friend WithEvents PasswordTextBox As TextBox
     Friend WithEvents LoginPromptLabel As Label
     Friend WithEvents LoginButton As Button

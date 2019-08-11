@@ -1,4 +1,16 @@
 ﻿Public Class ManagerWindow
+
+    Private Sub ManagerWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.IsMdiContainer = True
+
+        For Each ctl As Control In Me.Controls ' Changes colour - grey is MDI container
+            If TypeOf ctl Is MdiClient Then
+                ctl.BackColor = Me.BackColor
+            End If
+        Next ctl
+    End Sub
+
+
     Private Sub ActionButton_Click(sender As Object, e As EventArgs) Handles SalesButton.Click, ProductLookupButton.Click, EditProductButton.Click, DailySummaryButton.Click, ManageUsersButton.Click, LogoutButton.Click 'When a button is clicked, opens the correct window
         CloseAllMDIWindows()
         Select Case sender.Name 'Gets and selects the name of the button pressed
@@ -27,13 +39,5 @@
         ManageUsersWindow.Close()
     End Sub
 
-    Private Sub ManagerWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.IsMdiContainer = True
 
-        For Each ctl As Control In Me.Controls ' Changes colour - grey is MDI container
-            If TypeOf ctl Is MdiClient Then
-                ctl.BackColor = Me.BackColor
-            End If
-        Next ctl
-    End Sub
 End Class

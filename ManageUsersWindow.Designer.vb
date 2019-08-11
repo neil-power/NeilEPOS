@@ -23,9 +23,9 @@ Partial Class ManageUsersWindow
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.PasswordTextBox = New System.Windows.Forms.TextBox()
-        Me.EmployeeIDTextBox = New System.Windows.Forms.MaskedTextBox()
+        Me.UserIDTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.PasswordLabel = New System.Windows.Forms.Label()
-        Me.EmployeeIDLabel = New System.Windows.Forms.Label()
+        Me.UserIDLabel = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.UsernameTextBox = New System.Windows.Forms.TextBox()
         Me.NewUserButton = New System.Windows.Forms.Button()
@@ -35,6 +35,9 @@ Partial Class ManageUsersWindow
         Me.AccessLevelComboBox = New System.Windows.Forms.ComboBox()
         Me.SaveUserButton = New System.Windows.Forms.Button()
         Me.CloseButton = New System.Windows.Forms.Button()
+        Me.SearchButton = New System.Windows.Forms.Button()
+        Me.InstructionLabel = New System.Windows.Forms.Label()
+        Me.FoundUsersListBox = New System.Windows.Forms.ListBox()
         Me.SuspendLayout()
         '
         'PasswordTextBox
@@ -44,17 +47,16 @@ Partial Class ManageUsersWindow
         Me.PasswordTextBox.Name = "PasswordTextBox"
         Me.PasswordTextBox.Size = New System.Drawing.Size(191, 29)
         Me.PasswordTextBox.TabIndex = 8
-        Me.PasswordTextBox.UseSystemPasswordChar = True
         '
-        'EmployeeIDTextBox
+        'UserIDTextBox
         '
-        Me.EmployeeIDTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.EmployeeIDTextBox.Location = New System.Drawing.Point(195, 137)
-        Me.EmployeeIDTextBox.Mask = "00000"
-        Me.EmployeeIDTextBox.Name = "EmployeeIDTextBox"
-        Me.EmployeeIDTextBox.Size = New System.Drawing.Size(191, 29)
-        Me.EmployeeIDTextBox.TabIndex = 7
-        Me.EmployeeIDTextBox.ValidatingType = GetType(Integer)
+        Me.UserIDTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.UserIDTextBox.Location = New System.Drawing.Point(195, 137)
+        Me.UserIDTextBox.Mask = "00000"
+        Me.UserIDTextBox.Name = "UserIDTextBox"
+        Me.UserIDTextBox.Size = New System.Drawing.Size(191, 29)
+        Me.UserIDTextBox.TabIndex = 7
+        Me.UserIDTextBox.ValidatingType = GetType(Integer)
         '
         'PasswordLabel
         '
@@ -66,15 +68,15 @@ Partial Class ManageUsersWindow
         Me.PasswordLabel.TabIndex = 6
         Me.PasswordLabel.Text = "Password: "
         '
-        'EmployeeIDLabel
+        'UserIDLabel
         '
-        Me.EmployeeIDLabel.AutoSize = True
-        Me.EmployeeIDLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.EmployeeIDLabel.Location = New System.Drawing.Point(43, 142)
-        Me.EmployeeIDLabel.Name = "EmployeeIDLabel"
-        Me.EmployeeIDLabel.Size = New System.Drawing.Size(128, 24)
-        Me.EmployeeIDLabel.TabIndex = 5
-        Me.EmployeeIDLabel.Text = "Employee ID: "
+        Me.UserIDLabel.AutoSize = True
+        Me.UserIDLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.UserIDLabel.Location = New System.Drawing.Point(43, 142)
+        Me.UserIDLabel.Name = "UserIDLabel"
+        Me.UserIDLabel.Size = New System.Drawing.Size(81, 24)
+        Me.UserIDLabel.TabIndex = 5
+        Me.UserIDLabel.Text = "User ID: "
         '
         'Label1
         '
@@ -148,7 +150,7 @@ Partial Class ManageUsersWindow
         'SaveUserButton
         '
         Me.SaveUserButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SaveUserButton.Location = New System.Drawing.Point(34, 314)
+        Me.SaveUserButton.Location = New System.Drawing.Point(34, 374)
         Me.SaveUserButton.Name = "SaveUserButton"
         Me.SaveUserButton.Size = New System.Drawing.Size(100, 75)
         Me.SaveUserButton.TabIndex = 21
@@ -158,20 +160,53 @@ Partial Class ManageUsersWindow
         'CloseButton
         '
         Me.CloseButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CloseButton.Location = New System.Drawing.Point(329, 314)
+        Me.CloseButton.Location = New System.Drawing.Point(273, 374)
         Me.CloseButton.Name = "CloseButton"
         Me.CloseButton.Size = New System.Drawing.Size(100, 75)
         Me.CloseButton.TabIndex = 21
         Me.CloseButton.Text = "Close"
         Me.CloseButton.UseVisualStyleBackColor = True
         '
+        'SearchButton
+        '
+        Me.SearchButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SearchButton.Location = New System.Drawing.Point(152, 374)
+        Me.SearchButton.Name = "SearchButton"
+        Me.SearchButton.Size = New System.Drawing.Size(100, 75)
+        Me.SearchButton.TabIndex = 21
+        Me.SearchButton.Text = "Search"
+        Me.SearchButton.UseVisualStyleBackColor = True
+        '
+        'InstructionLabel
+        '
+        Me.InstructionLabel.AutoSize = True
+        Me.InstructionLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!)
+        Me.InstructionLabel.Location = New System.Drawing.Point(30, 107)
+        Me.InstructionLabel.Name = "InstructionLabel"
+        Me.InstructionLabel.Size = New System.Drawing.Size(105, 24)
+        Me.InstructionLabel.TabIndex = 23
+        Me.InstructionLabel.Text = "[Instruction]"
+        '
+        'FoundUsersListBox
+        '
+        Me.FoundUsersListBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
+        Me.FoundUsersListBox.FormattingEnabled = True
+        Me.FoundUsersListBox.ItemHeight = 16
+        Me.FoundUsersListBox.Location = New System.Drawing.Point(34, 302)
+        Me.FoundUsersListBox.Name = "FoundUsersListBox"
+        Me.FoundUsersListBox.Size = New System.Drawing.Size(339, 68)
+        Me.FoundUsersListBox.TabIndex = 24
+        '
         'ManageUsersWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 600)
+        Me.Controls.Add(Me.FoundUsersListBox)
+        Me.Controls.Add(Me.InstructionLabel)
         Me.Controls.Add(Me.AccessLevelComboBox)
         Me.Controls.Add(Me.CloseButton)
+        Me.Controls.Add(Me.SearchButton)
         Me.Controls.Add(Me.SaveUserButton)
         Me.Controls.Add(Me.DeleteUserButton)
         Me.Controls.Add(Me.EditUserButton)
@@ -180,9 +215,9 @@ Partial Class ManageUsersWindow
         Me.Controls.Add(Me.PasswordTextBox)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.EmployeeIDTextBox)
+        Me.Controls.Add(Me.UserIDTextBox)
         Me.Controls.Add(Me.PasswordLabel)
-        Me.Controls.Add(Me.EmployeeIDLabel)
+        Me.Controls.Add(Me.UserIDLabel)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Location = New System.Drawing.Point(1024, 768)
         Me.Name = "ManageUsersWindow"
@@ -194,9 +229,9 @@ Partial Class ManageUsersWindow
     End Sub
 
     Friend WithEvents PasswordTextBox As TextBox
-    Friend WithEvents EmployeeIDTextBox As MaskedTextBox
+    Friend WithEvents UserIDTextBox As MaskedTextBox
     Friend WithEvents PasswordLabel As Label
-    Friend WithEvents EmployeeIDLabel As Label
+    Friend WithEvents UserIDLabel As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents UsernameTextBox As TextBox
     Friend WithEvents NewUserButton As Button
@@ -206,4 +241,7 @@ Partial Class ManageUsersWindow
     Friend WithEvents AccessLevelComboBox As ComboBox
     Friend WithEvents SaveUserButton As Button
     Friend WithEvents CloseButton As Button
+    Friend WithEvents SearchButton As Button
+    Friend WithEvents InstructionLabel As Label
+    Friend WithEvents FoundUsersListBox As ListBox
 End Class

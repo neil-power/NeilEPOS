@@ -1,0 +1,24 @@
+To keep track of how the program works
+
+On load, LoginWindow opens at a set 1024x768. If a users file exists, no action is taken. If a user file does not exist, a new one is created on the desktop with a default manager account. A data structure for a user is created, with enumerated permission levels.
+
+The user can then enter a username and password to login. When the login button is pressed, the login is verified, which searches through each line in the users file until the end is reached, or a username and password match are found. If the end is reached, a message box appears telling the user that the username or password is correct. The function returns a blank user with no permissions.
+
+When the user logs in, their details are set in a global variable. If the clear button is clicked, the username and password fields are set to blank. The global user is also cleared. If the close button is clicked, the program will exit.
+
+If the login is correct, the appropriate window is opened depending on the user's access level (Manager or User).
+
+If the user is a Manager, the manager window is opened, which allows full permissions. On load, the form is set to 1024x768 and a MDI parent. The colours of the MDI frame are set to the same as the form, using a loop. Buttons are displayed in a sidebar.
+
+[other buttons]
+
+If the user selects the manage users button, the manage users window opens inside the manager window using MDI at 100, 50 at a size of 800x600. The user has the option to create a new user, edit user details or delete a user. The textboxes are disabled on load.
+
+If they create a new user, the textboxes are enabled (except User ID, which is filled automatically using the most recent ID in the text file). The save button appears. On click, the data in the text boxes is written to a new line of the users file (if no items are in the listbox, it is assumed that a new user is being added). All fields are then cleared and disabled.
+
+If they edit user details, they are prompted to enter either a user id, username, or both. A search button is shown. When clicked, the users file is searched and any matches displayed in a listbox. When the correct item is double-clicked, its index in the file is saved and its data appears in the text boxes for editing. When the save button is clicked, as there is an item in the listbox it is assumed that a user is being edited. The file is searched for the user ID, and then that line is replaced with the data in the textboxes.
+
+If they select delete user, 
+
+
+If the user/manager selects sales, the 

@@ -1,16 +1,30 @@
 ﻿Imports System.IO
 ''' <summary>
+''' TO DO
+''' Finish description of sales and payment
+''' Add ability to use enter key to login
+''' 
+''' FEATURES TO ADD
+''' Modify daily sales file - meet table requirements
+''' Create transaction file - auto update 
 ''' Create products file, read from products file, search and sort products file, edit product in file, scrape details off internet, change stock number
 ''' Create product lookup page
-''' Create transaction file - auto update
-''' Modify daily sales file - meet table requirements
 ''' Create weekly summary file
-''' Validation - use validation event
+''' 
+''' FINAL STAGES OF DEVELOPMENT
+''' Validation - use built-in validation event
 ''' Try catch loops for everything that can go wrong
+''' Lots of testing
+''' 
+''' POTENTIAL NEW THINGS TO ADD
 ''' Stock in?
 ''' Payment types?
 ''' Numpad for login?
-''' FORMS INSIDE FORMS - SIDE MENU BAR AND MDI forms
+''' 
+''' BUGS
+''' When editing a user, the user access level is not translated from file to text box
+''' 
+''' INFO
 ''' Standard window size - 1024 x 768
 ''' Standard MDI form size - 800 x 600, starting position 100, 50
 ''' </summary>
@@ -45,10 +59,10 @@ Public Class LoginWindow
         Public AccessLevel As UserAccessLevel 'Access level
     End Structure
 
-    Public CurrentUser As New User 'Creates a variable to store the currently logged in user
+    Public Shared CurrentUser As New User 'Creates a variable to store the currently logged in user
 
     Private Sub LoginButton_Click(sender As Object, e As EventArgs) Handles LoginButton.Click 'Logs in user
-        CurrentUser = VerifyUserLogin(EmployeeIDTextBox.Text, PasswordTextBox.Text) 'Verifies ID and Password
+        CurrentUser = VerifyUserLogin(UserIDTextBox.Text, PasswordTextBox.Text) 'Verifies ID and Password
 
         If CurrentUser.AccessLevel <> UserAccessLevel.None Then 'If returned user access level is not none, open correct window
             Select Case CurrentUser.AccessLevel 'Select access level
@@ -82,7 +96,7 @@ Public Class LoginWindow
     ' **************************************************UTILITY BUTTONS**************************************************
 
     Private Sub ClearFields() 'Clears all entered login details
-        EmployeeIDTextBox.Text = "" 'Resets contents of employee ID text box
+        UserIDTextBox.Text = "" 'Resets contents of employee ID text box
         PasswordTextBox.Text = "" 'Resets contents of employee password text box
     End Sub
 

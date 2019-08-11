@@ -24,17 +24,23 @@ NeilEPOS
 </member>
 <member name="T:NeilEPOS.LoginWindow">
  <summary>
+ TO ADD
+ Description of sales and payment
+ Modify daily sales file - meet table requirements
+ Create transaction file - auto update 
  Create products file, read from products file, search and sort products file, edit product in file, scrape details off internet, change stock number
  Create product lookup page
- Create transaction file - auto update
- Modify daily sales file - meet table requirements
  Create weekly summary file
  Validation - use validation event
  Try catch loops for everything that can go wrong
  Stock in?
  Payment types?
  Numpad for login?
- FORMS INSIDE FORMS - SIDE MENU BAR AND MDI forms
+ 
+ BUGS
+ When editing a user, the user access level is not translated from file to text box
+ 
+ INFO
  Standard window size - 1024 x 768
  Standard MDI form size - 800 x 600, starting position 100, 50
  </summary>
