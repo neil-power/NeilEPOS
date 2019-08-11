@@ -4,6 +4,10 @@ Public Class ManageUsersWindow
     ' **************************************************ON LOAD**************************************************
 
     Private Sub ManageUsersWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'The startup location is set in the form properties to 1024, 768 to prevent glitching
+        Me.FormBorderStyle = Windows.Forms.FormBorderStyle.None
+        Me.StartPosition = FormStartPosition.Manual
+        Me.Location = New Point(100, 50)
         DisableTextEntry()
     End Sub
 
@@ -32,9 +36,7 @@ Public Class ManageUsersWindow
             Case SaveUserButton.Name
                 SaveUser()
             Case CloseButton.Name 'If close, return to manager window
-                Me.Hide()
-                ManagerWindow.Show()
-                ManagerWindow.BringToFront()
+                Me.Close()
         End Select
     End Sub
 

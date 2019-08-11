@@ -318,7 +318,7 @@ Partial Class SalesWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 584)
+        Me.ClientSize = New System.Drawing.Size(784, 561)
         Me.Controls.Add(Me.WebCrawler)
         Me.Controls.Add(Me.QuantityTextBox)
         Me.Controls.Add(Me.ISBNTextBox)
@@ -345,7 +345,9 @@ Partial Class SalesWindow
         Me.Controls.Add(Me.QuantityLabel)
         Me.Controls.Add(Me.PriceLabel)
         Me.Controls.Add(Me.ISBNLabel)
+        Me.Location = New System.Drawing.Point(1024, 768)
         Me.Name = "SalesWindow"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "NeilEPOS"
         Me.ResumeLayout(False)
         Me.PerformLayout()

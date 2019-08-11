@@ -18,7 +18,10 @@ Public Class SalesWindow
 
     Private Sub MainWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load 'Runs when form opens
 
-        Me.BringToFront() 'Brings main window to the front
+        'The startup location is set in the form properties to 1024, 768 to prevent glitching
+        Me.FormBorderStyle = Windows.Forms.FormBorderStyle.None 'No border
+        Me.StartPosition = FormStartPosition.Manual 'Manual start position
+        Me.Location = New Point(100, 50) 'Set location to inside manager/user form
 
         If Not File.Exists(FilePath) Then ' Checks to see if a sales file has already been created
 
@@ -201,16 +204,15 @@ Public Class SalesWindow
     End Sub
 
     Private Sub CloseButton_Click(sender As Object, e As EventArgs) Handles CloseButton.Click 'Closes and returns to correct screen
-        MsgBox(LoginWindow.CurrentUser.UserID & LoginWindow.CurrentUser.AccessLevel) 'TESTING ####################################################################
         Select Case LoginWindow.CurrentUser.AccessLevel ' Selects access level of current user
             Case LoginWindow.UserAccessLevel.Manager ' If manager, return to manager window
-                Me.Hide()
+                Me.Close()
                 ManagerWindow.Show()
             Case LoginWindow.UserAccessLevel.User 'If user, return to user window
-                Me.Hide()
+                Me.Close()
                 UserWindow.Show()
             Case Else 'Else, return to login window
-                Me.Hide()
+                Me.Close()
                 LoginWindow.Show()
         End Select
     End Sub

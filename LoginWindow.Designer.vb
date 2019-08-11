@@ -38,7 +38,7 @@ Partial Class LoginWindow
         '
         Me.LogoLabel.AutoSize = True
         Me.LogoLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 50.0!)
-        Me.LogoLabel.Location = New System.Drawing.Point(32, 20)
+        Me.LogoLabel.Location = New System.Drawing.Point(75, 49)
         Me.LogoLabel.Name = "LogoLabel"
         Me.LogoLabel.Size = New System.Drawing.Size(333, 76)
         Me.LogoLabel.TabIndex = 0
@@ -48,7 +48,7 @@ Partial Class LoginWindow
         '
         Me.EmployeeIDLabel.AutoSize = True
         Me.EmployeeIDLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.EmployeeIDLabel.Location = New System.Drawing.Point(42, 176)
+        Me.EmployeeIDLabel.Location = New System.Drawing.Point(344, 274)
         Me.EmployeeIDLabel.Name = "EmployeeIDLabel"
         Me.EmployeeIDLabel.Size = New System.Drawing.Size(128, 24)
         Me.EmployeeIDLabel.TabIndex = 1
@@ -58,7 +58,7 @@ Partial Class LoginWindow
         '
         Me.PasswordLabel.AutoSize = True
         Me.PasswordLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.PasswordLabel.Location = New System.Drawing.Point(42, 218)
+        Me.PasswordLabel.Location = New System.Drawing.Point(344, 316)
         Me.PasswordLabel.Name = "PasswordLabel"
         Me.PasswordLabel.Size = New System.Drawing.Size(102, 24)
         Me.PasswordLabel.TabIndex = 2
@@ -68,7 +68,7 @@ Partial Class LoginWindow
         '
         Me.TaglineLabel.AutoSize = True
         Me.TaglineLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
-        Me.TaglineLabel.Location = New System.Drawing.Point(42, 96)
+        Me.TaglineLabel.Location = New System.Drawing.Point(84, 125)
         Me.TaglineLabel.Name = "TaglineLabel"
         Me.TaglineLabel.Size = New System.Drawing.Size(432, 24)
         Me.TaglineLabel.TabIndex = 0
@@ -77,7 +77,7 @@ Partial Class LoginWindow
         'EmployeeIDTextBox
         '
         Me.EmployeeIDTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.EmployeeIDTextBox.Location = New System.Drawing.Point(194, 171)
+        Me.EmployeeIDTextBox.Location = New System.Drawing.Point(496, 269)
         Me.EmployeeIDTextBox.Mask = "00000"
         Me.EmployeeIDTextBox.Name = "EmployeeIDTextBox"
         Me.EmployeeIDTextBox.Size = New System.Drawing.Size(191, 29)
@@ -87,7 +87,7 @@ Partial Class LoginWindow
         'PasswordTextBox
         '
         Me.PasswordTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.PasswordTextBox.Location = New System.Drawing.Point(194, 218)
+        Me.PasswordTextBox.Location = New System.Drawing.Point(496, 316)
         Me.PasswordTextBox.Name = "PasswordTextBox"
         Me.PasswordTextBox.Size = New System.Drawing.Size(191, 29)
         Me.PasswordTextBox.TabIndex = 4
@@ -97,7 +97,7 @@ Partial Class LoginWindow
         '
         Me.LoginPromptLabel.AutoSize = True
         Me.LoginPromptLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
-        Me.LoginPromptLabel.Location = New System.Drawing.Point(42, 125)
+        Me.LoginPromptLabel.Location = New System.Drawing.Point(304, 207)
         Me.LoginPromptLabel.Name = "LoginPromptLabel"
         Me.LoginPromptLabel.Size = New System.Drawing.Size(427, 24)
         Me.LoginPromptLabel.TabIndex = 0
@@ -106,7 +106,7 @@ Partial Class LoginWindow
         'LoginButton
         '
         Me.LoginButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LoginButton.Location = New System.Drawing.Point(44, 279)
+        Me.LoginButton.Location = New System.Drawing.Point(346, 377)
         Me.LoginButton.Name = "LoginButton"
         Me.LoginButton.Size = New System.Drawing.Size(100, 75)
         Me.LoginButton.TabIndex = 19
@@ -116,7 +116,7 @@ Partial Class LoginWindow
         'CloseButton
         '
         Me.CloseButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CloseButton.Location = New System.Drawing.Point(285, 279)
+        Me.CloseButton.Location = New System.Drawing.Point(587, 377)
         Me.CloseButton.Name = "CloseButton"
         Me.CloseButton.Size = New System.Drawing.Size(100, 75)
         Me.CloseButton.TabIndex = 19
@@ -126,7 +126,7 @@ Partial Class LoginWindow
         'ClearButton
         '
         Me.ClearButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ClearButton.Location = New System.Drawing.Point(164, 279)
+        Me.ClearButton.Location = New System.Drawing.Point(466, 377)
         Me.ClearButton.Name = "ClearButton"
         Me.ClearButton.Size = New System.Drawing.Size(100, 75)
         Me.ClearButton.TabIndex = 19
@@ -137,7 +137,7 @@ Partial Class LoginWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(564, 376)
+        Me.ClientSize = New System.Drawing.Size(1008, 687)
         Me.Controls.Add(Me.ClearButton)
         Me.Controls.Add(Me.CloseButton)
         Me.Controls.Add(Me.LoginButton)
@@ -148,6 +148,8 @@ Partial Class LoginWindow
         Me.Controls.Add(Me.LoginPromptLabel)
         Me.Controls.Add(Me.TaglineLabel)
         Me.Controls.Add(Me.LogoLabel)
+        Me.MaximumSize = New System.Drawing.Size(1024, 768)
+        Me.MinimumSize = New System.Drawing.Size(1024, 726)
         Me.Name = "LoginWindow"
         Me.Text = "LoginWindow"
         Me.ResumeLayout(False)

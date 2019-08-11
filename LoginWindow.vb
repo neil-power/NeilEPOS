@@ -5,12 +5,14 @@
 ''' Create transaction file - auto update
 ''' Modify daily sales file - meet table requirements
 ''' Create weekly summary file
-''' Validation/Verification
+''' Validation - use validation event
 ''' Try catch loops for everything that can go wrong
 ''' Stock in?
 ''' Payment types?
 ''' Numpad for login?
 ''' FORMS INSIDE FORMS - SIDE MENU BAR AND MDI forms
+''' Standard window size - 1024 x 768
+''' Standard MDI form size - 800 x 600, starting position 100, 50
 ''' </summary>
 
 
@@ -47,17 +49,16 @@ Public Class LoginWindow
 
     Private Sub LoginButton_Click(sender As Object, e As EventArgs) Handles LoginButton.Click 'Logs in user
         CurrentUser = VerifyUserLogin(EmployeeIDTextBox.Text, PasswordTextBox.Text) 'Verifies ID and Password
-        MsgBox(CurrentUser.UserID & CurrentUser.AccessLevel) 'TESTING ####################################################################
 
         If CurrentUser.AccessLevel <> UserAccessLevel.None Then 'If returned user access level is not none, open correct window
             Select Case CurrentUser.AccessLevel 'Select access level
                 Case UserAccessLevel.Manager 'If manager, open manager window
                     ClearFields() 'Clear ID and password fields
-                    Me.Hide() 'Close login window
+                    Me.Hide() 'Hides login window as variables still in use
                     ManagerWindow.Show() 'Open manager window
                 Case UserAccessLevel.User
                     ClearFields() 'Clear ID and password fields
-                    Me.Hide() 'Close login window
+                    Me.Hide() 'Hides login window as variables still in use
                     UserWindow.Show() 'Open user window
             End Select
         Else 'If user does not exist or have login rights

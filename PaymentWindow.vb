@@ -97,11 +97,11 @@ Public Class PaymentWindow
         AmountPaidTextBox.Text = "0000" 'Resets textbox to default
         SalesWindow.MainWindowClearAll() 'Clears all mainwindow variables
 
-        Me.Hide() 'Closes payment window
+        Me.Close() 'Closes payment window
     End Sub
 
     Private Sub ContinueSale_Click(sender As Object, e As EventArgs) Handles ContinueSaleButton.Click ' Continues the sale
-        Me.Hide() 'Closes payment window without saving data to text file
+        Me.Close() 'Closes payment window without saving data to text file
     End Sub
 
 End Class

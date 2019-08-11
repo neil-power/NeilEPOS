@@ -97,7 +97,7 @@ Partial Class ManageUsersWindow
         'NewUserButton
         '
         Me.NewUserButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NewUserButton.Location = New System.Drawing.Point(34, 32)
+        Me.NewUserButton.Location = New System.Drawing.Point(34, 19)
         Me.NewUserButton.Name = "NewUserButton"
         Me.NewUserButton.Size = New System.Drawing.Size(100, 75)
         Me.NewUserButton.TabIndex = 21
@@ -107,7 +107,7 @@ Partial Class ManageUsersWindow
         'EditUserButton
         '
         Me.EditUserButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.EditUserButton.Location = New System.Drawing.Point(152, 32)
+        Me.EditUserButton.Location = New System.Drawing.Point(152, 19)
         Me.EditUserButton.Name = "EditUserButton"
         Me.EditUserButton.Size = New System.Drawing.Size(100, 75)
         Me.EditUserButton.TabIndex = 21
@@ -117,7 +117,7 @@ Partial Class ManageUsersWindow
         'DeleteUserButton
         '
         Me.DeleteUserButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DeleteUserButton.Location = New System.Drawing.Point(276, 32)
+        Me.DeleteUserButton.Location = New System.Drawing.Point(273, 19)
         Me.DeleteUserButton.Name = "DeleteUserButton"
         Me.DeleteUserButton.Size = New System.Drawing.Size(100, 75)
         Me.DeleteUserButton.TabIndex = 21
@@ -169,7 +169,7 @@ Partial Class ManageUsersWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(800, 600)
         Me.Controls.Add(Me.AccessLevelComboBox)
         Me.Controls.Add(Me.CloseButton)
         Me.Controls.Add(Me.SaveUserButton)
@@ -183,7 +183,10 @@ Partial Class ManageUsersWindow
         Me.Controls.Add(Me.EmployeeIDTextBox)
         Me.Controls.Add(Me.PasswordLabel)
         Me.Controls.Add(Me.EmployeeIDLabel)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Location = New System.Drawing.Point(1024, 768)
         Me.Name = "ManageUsersWindow"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "UserManageWindow"
         Me.ResumeLayout(False)
         Me.PerformLayout()
