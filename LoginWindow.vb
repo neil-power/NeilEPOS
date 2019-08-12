@@ -1,8 +1,8 @@
 ﻿Imports System.IO
 ''' <summary>
-''' TO DO
+''' TO DO NEXT
 ''' Finish description of sales and payment
-''' Add ability to use enter key to login
+''' Add ability to delete user
 ''' 
 ''' FEATURES TO ADD
 ''' Modify daily sales file - meet table requirements
@@ -19,10 +19,13 @@
 ''' POTENTIAL NEW THINGS TO ADD
 ''' Stock in?
 ''' Payment types?
-''' Numpad for login?
+''' Single numpad for all screens?
+''' Make payment window mdi
+''' Custom msgbox form for notifications
+''' Error logging?
 ''' 
-''' BUGS
-''' When editing a user, the user access level is not translated from file to text box
+''' KNOWN BUGS/ISSUES
+''' Can't enter a price higher than 99.99.
 ''' 
 ''' INFO
 ''' Standard window size - 1024 x 768
@@ -45,6 +48,25 @@ Public Class LoginWindow
         End If
     End Sub
 
+    ' **************************************************UTILITY BUTTONS**************************************************
+    Private Sub UtilityButton_Click(sender As Object, e As EventArgs) Handles ClearButton.Click, CloseButton.Click, LoginButton.Click
+        Select Case sender.name
+            Case ClearButton.Name
+                CurrentUser = Nothing 'Removes all user access rights on logged in windows
+                ClearFields() 'Run clear fields subroutine
+            Case CloseButton.Name
+                Environment.Exit(0)' Closes all windows and exits
+            Case LoginButton.Name
+                LoginUser()
+        End Select
+    End Sub
+
+
+    Private Sub ClearFields() 'Clears all entered login details
+        UserIDTextBox.Text = "" 'Resets contents of employee ID text box
+        PasswordTextBox.Text = "" 'Resets contents of employee password text box
+    End Sub
+
     ' **************************************************LOGIN MECHANISM**************************************************
     Public Enum UserAccessLevel 'Data structure containg possible access levels
         Manager 'Can add/remove users, edit product details, view summaries and all user actions
@@ -61,7 +83,18 @@ Public Class LoginWindow
 
     Public Shared CurrentUser As New User 'Creates a variable to store the currently logged in user
 
-    Private Sub LoginButton_Click(sender As Object, e As EventArgs) Handles LoginButton.Click 'Logs in user
+    Private Sub TextBox_KeyDown(sender As Object, e As KeyEventArgs) Handles UserIDTextBox.KeyDown, PasswordTextBox.KeyDown 'To handle enter key presses
+        If e.KeyCode = Keys.Enter Then
+            Select Case sender.name
+                Case UserIDTextBox.Name
+                    PasswordTextBox.Focus() 'Switch to password box
+                Case PasswordTextBox.Name
+                    LoginUser() 'Login user
+            End Select
+        End If
+    End Sub
+
+    Private Sub LoginUser() 'Logs in user
         CurrentUser = VerifyUserLogin(UserIDTextBox.Text, PasswordTextBox.Text) 'Verifies ID and Password
 
         If CurrentUser.AccessLevel <> UserAccessLevel.None Then 'If returned user access level is not none, open correct window
@@ -92,22 +125,5 @@ Public Class LoginWindow
         End If
         Return New User With {.UserID = 0, .UserName = "", .Password = "", .AccessLevel = UserAccessLevel.None} 'Returns blank user if false
     End Function
-
-    ' **************************************************UTILITY BUTTONS**************************************************
-
-    Private Sub ClearFields() 'Clears all entered login details
-        UserIDTextBox.Text = "" 'Resets contents of employee ID text box
-        PasswordTextBox.Text = "" 'Resets contents of employee password text box
-    End Sub
-
-    Private Sub ClearButton_Click(sender As Object, e As EventArgs) Handles ClearButton.Click 'When clear button pressed, all fields are cleared.
-        CurrentUser = Nothing 'Removes all user access rights on logged in windows
-        ClearFields() 'Run clear fields subroutine
-    End Sub
-
-    Private Sub CloseButton_Click(sender As Object, e As EventArgs) Handles CloseButton.Click ' When close button clicked, close all programs
-        Environment.Exit(0) ' Closes all windows and exits
-    End Sub
-
 
 End Class

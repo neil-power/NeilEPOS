@@ -2,7 +2,7 @@ To keep track of how the program works
 
 On load, LoginWindow opens at a set 1024x768. If a users file exists, no action is taken. If a user file does not exist, a new one is created on the desktop with a default manager account. A data structure for a user is created, with enumerated permission levels.
 
-The user can then enter a username and password to login. When the login button is pressed, the login is verified, which searches through each line in the users file until the end is reached, or a username and password match are found. If the end is reached, a message box appears telling the user that the username or password is correct. The function returns a blank user with no permissions.
+The user can then enter a username and password to login. When the login button or enter key is pressed, the login is verified, which searches through each line in the users file until the end is reached, or a username and password match are found. If the end is reached, a message box appears telling the user that the username or password is correct. The function returns a blank user with no permissions.
 
 When the user logs in, their details are set in a global variable. If the clear button is clicked, the username and password fields are set to blank. The global user is also cleared. If the close button is clicked, the program will exit.
 
@@ -21,4 +21,19 @@ If they edit user details, they are prompted to enter either a user id, username
 If they select delete user, 
 
 
-If the user/manager selects sales, the 
+If the user/manager selects sales, the sales window is opened as an MDI form in the user or manager window. On load, global variables are created for items in the current sale, the total of the current sale, the path of the daily sales file and the sale number of the day. A variable to keep track of which textbox to enter text using the numpad is also created, as well as a structure for an item.
+
+If a sales file for the current day does not exist, one is created, with a header row. A notification is sent to the user explaining this.
+
+The user can then type an ISBN, Price and Quantity into the relevant text boxes, either using the text boxes or keyboard. The ISBN and quantity are subject to verification length and presence checks
+
+For the price, a right-to-left, right-aligned £00.00 masked textbox is used. When the numpad is used, if the price is not 4 digits, the clicked number is added onto the right. If the price digits are full, it is not. When the delete button is pressed, if the price is not 0000, the left digit is removed and all digits shifted to the left. A leading 0 is added.
+
+When the keyboard is used, on the keyup event a check is made to see if there are still 4 digits in the price. If not, leading digits are added. On the keydown event, if the first digit is an 0, it is removed and the pressed key added.
+
+If the price lookup is used,
+
+
+When the add item button is pressed, if all textboxes are not empty, the item is added to the current sale list and items list box. Textboxes are reset.
+
+When the take payment button is pressed, sale total is recalculated and then the payment window is shown.

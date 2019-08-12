@@ -31,7 +31,6 @@ C:\Users\Neil Power\Documents\GitHub Repositories\NeilEPOS\bin\Debug\NeilEPOS.ex
 C:\Users\Neil Power\Documents\GitHub Repositories\NeilEPOS\bin\Debug\NeilEPOS.exe
 C:\Users\Neil Power\Documents\GitHub Repositories\NeilEPOS\bin\Debug\NeilEPOS.pdb
 C:\Users\Neil Power\Documents\GitHub Repositories\NeilEPOS\bin\Debug\NeilEPOS.xml
-C:\Users\Neil Power\Documents\GitHub Repositories\NeilEPOS\obj\Debug\NeilEPOS.vbprojAssemblyReference.cache
 C:\Users\Neil Power\Documents\GitHub Repositories\NeilEPOS\obj\Debug\NeilEPOS.LoginWindow.resources
 C:\Users\Neil Power\Documents\GitHub Repositories\NeilEPOS\obj\Debug\NeilEPOS.ManagerWindow.resources
 C:\Users\Neil Power\Documents\GitHub Repositories\NeilEPOS\obj\Debug\NeilEPOS.SalesWindow.resources
@@ -44,3 +43,4 @@ C:\Users\Neil Power\Documents\GitHub Repositories\NeilEPOS\obj\Debug\NeilEPOS.ex
 C:\Users\Neil Power\Documents\GitHub Repositories\NeilEPOS\obj\Debug\NeilEPOS.xml
 C:\Users\Neil Power\Documents\GitHub Repositories\NeilEPOS\obj\Debug\NeilEPOS.pdb
 C:\Users\Neil Power\Documents\GitHub Repositories\NeilEPOS\obj\Debug\NeilEPOS.ManageUsersWindow.resources
+C:\Users\Neil Power\Documents\GitHub Repositories\NeilEPOS\obj\Debug\NeilEPOS.vbprojAssemblyReference.cache

@@ -234,7 +234,7 @@ Public Class SalesWindow
             Dim FoundPrice As String = "" 'Creates a blank string for the price
 
             For Each element As HtmlElement In ListOfDivs 'Runs through all the divs to find the price div
-                If element.GetAttribute("classname").ToString = "col-md-7 priceInfo" Then 'Checks if the class of the div is the price info
+                If element.GetAttribute("classname").ToString = "col-7 priceInfo" Then 'Checks if the class of the div is the price info
                     FoundPrice = element.InnerText 'Gets the inner text of the price div
                     Exit For 'Ends loop when found
                 End If

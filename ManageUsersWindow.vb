@@ -45,7 +45,6 @@ Public Class ManageUsersWindow
                 AccessLevelComboBox.Enabled = True
                 SearchButton.Show()
             Case DeleteUserButton.Name
-                SearchForUser()
                 DeleteUser() 'If delete user, search for then delete user
             Case SaveUserButton.Name
                 SaveUser()
@@ -76,14 +75,14 @@ Public Class ManageUsersWindow
             For i = 0 To UBound(UserFileContents) 'Runs through each line
                 Dim user As String() = UserFileContents(i).Split(",") 'Splits line on commas
                 If user(0) = UserIDTextBox.Text Then 'If ID matches with edited user
-                    UserFileContents(i) = (UserIDTextBox.Text & "," & UsernameTextBox.Text & "," & PasswordTextBox.Text & "," & GetUserAccess()) 'Replace line with edit
+                    UserFileContents(i) = (UserIDTextBox.Text & "," & UsernameTextBox.Text & "," & PasswordTextBox.Text & "," & GetUserAccessFromTextBox()) 'Replace line with edit
                     File.WriteAllLines(LoginWindow.UserFilePath, UserFileContents)
                 End If
             Next
 
         ElseIf FoundUsersListBox.Items.Count = 0 Then 'If the found users is blank, a user is being added
             Dim sw As New System.IO.StreamWriter(LoginWindow.UserFilePath, True) 'Creates new streamwriter to add user to file
-            sw.WriteLine(UserIDTextBox.Text & "," & UsernameTextBox.Text & "," & PasswordTextBox.Text & "," & GetUserAccess()) 'Verification needed
+            sw.WriteLine(UserIDTextBox.Text & "," & UsernameTextBox.Text & "," & PasswordTextBox.Text & "," & GetUserAccessFromTextBox()) 'Verification needed
             sw.Close() 'Closes file
         End If
 
@@ -110,7 +109,7 @@ Public Class ManageUsersWindow
         End If
     End Sub
 
-    Private Function GetUserAccess() 'Converts from dropdown to enum
+    Private Function GetUserAccessFromTextBox() 'Converts from dropdown to enum
         Select Case AccessLevelComboBox.Text
             Case "Manager"
                 Return LoginWindow.UserAccessLevel.Manager
@@ -118,6 +117,17 @@ Public Class ManageUsersWindow
                 Return LoginWindow.UserAccessLevel.User
             Case Else
                 Return LoginWindow.UserAccessLevel.None
+        End Select
+    End Function
+
+    Private Function GetUserAccessFromFile(UserAccess As String) 'Converts from file to dropdown
+        Select Case UserAccess
+            Case LoginWindow.UserAccessLevel.Manager
+                Return "Manager"
+            Case LoginWindow.UserAccessLevel.User
+                Return "User"
+            Case Else
+                Return "None"
         End Select
     End Function
 
@@ -138,7 +148,7 @@ Public Class ManageUsersWindow
         UserIDTextBox.ReadOnly = True
         UsernameTextBox.Text = UserToEdit(1)
         PasswordTextBox.Text = UserToEdit(2)
-        AccessLevelComboBox.Text = UserToEdit(3) 'Will cause errors
+        AccessLevelComboBox.Text = GetUserAccessFromFile(UserToEdit(3)) 'Converts from file to dropdown
         SaveUserButton.Show()
     End Sub
 
@@ -147,6 +157,7 @@ Public Class ManageUsersWindow
     End Sub
 
     Private Sub FoundUsersListBox_DoubleClick(sender As Object, e As EventArgs) Handles FoundUsersListBox.DoubleClick
+        'Needs differentiation between edit and delete
         EditUser(FoundUsersListBox.SelectedItem.Split(",")) 'Sends user to edit to the edit subroutine
     End Sub
 End Class
