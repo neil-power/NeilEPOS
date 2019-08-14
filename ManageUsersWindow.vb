@@ -3,6 +3,7 @@ Public Class ManageUsersWindow
 
     ' **************************************************ON LOAD**************************************************
 
+    Private Mode As UserMode = UserMode.None
     Private Sub ManageUsersWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'The startup location is set in the form properties to 1024, 768 to prevent glitching
         Me.FormBorderStyle = Windows.Forms.FormBorderStyle.None
@@ -10,6 +11,13 @@ Public Class ManageUsersWindow
         Me.Location = New Point(100, 50)
         ResetUsersWindow()
     End Sub
+
+    Private Enum UserMode
+        NewUser
+        EditUser
+        DeleteUser
+        None
+    End Enum
 
     Private Sub ResetUsersWindow() 'Resets all values to default
         UserIDTextBox.Text = ""
@@ -26,6 +34,7 @@ Public Class ManageUsersWindow
         SearchButton.Hide()
         FoundUsersListBox.Hide()
         FoundUsersListBox.Items.Clear()
+        Mode = UserMode.None
     End Sub
 
     ' **************************************************UTILITY BUTTONS**************************************************
@@ -33,19 +42,15 @@ Public Class ManageUsersWindow
         Select Case sender.Name 'Selects button pressed
             Case NewUserButton.Name 'If new user, create a new user
                 ResetUsersWindow()
+                Mode = UserMode.NewUser
                 InstructionLabel.Text = "Please fill in the details for the new user and click save."
                 CreateNewUser()
             Case EditUserButton.Name 'If edit user, search for then edit user
-                ResetUsersWindow()
-                InstructionLabel.Text = "Please fill in the ID or username for the user and click search."
-                UsernameTextBox.Enabled = True 'Allows user to type in all text boxes for searching. Needs moving 
-                UserIDTextBox.Enabled = True
-                UserIDTextBox.ReadOnly = False
-                PasswordTextBox.Enabled = True
-                AccessLevelComboBox.Enabled = True
-                SearchButton.Show()
+                PrepareForSearch() 'Sets fields and shows search button
+                Mode = UserMode.EditUser
             Case DeleteUserButton.Name
-                DeleteUser() 'If delete user, search for then delete user
+                PrepareForSearch() 'Sets fields and shows search button
+                Mode = UserMode.DeleteUser
             Case SaveUserButton.Name
                 SaveUser()
             Case SearchButton.Name
@@ -70,7 +75,7 @@ Public Class ManageUsersWindow
 
     Private Sub SaveUser()
 
-        If FoundUsersListBox.Items.Count >= 1 Then 'If there are items in the listbox, a user is being editied
+        If Mode = UserMode.EditUser Then 'If a user is being edited, the new details need to be inserted
             Dim UserFileContents() As String = File.ReadAllLines(LoginWindow.UserFilePath) 'Gets entire contents of user file
             For i = 0 To UBound(UserFileContents) 'Runs through each line
                 Dim user As String() = UserFileContents(i).Split(",") 'Splits line on commas
@@ -80,7 +85,7 @@ Public Class ManageUsersWindow
                 End If
             Next
 
-        ElseIf FoundUsersListBox.Items.Count = 0 Then 'If the found users is blank, a user is being added
+        ElseIf Mode = UserMode.NewUser Then 'If a new user is being made, they can be added at the end of the file
             Dim sw As New System.IO.StreamWriter(LoginWindow.UserFilePath, True) 'Creates new streamwriter to add user to file
             sw.WriteLine(UserIDTextBox.Text & "," & UsernameTextBox.Text & "," & PasswordTextBox.Text & "," & GetUserAccessFromTextBox()) 'Verification needed
             sw.Close() 'Closes file
@@ -90,13 +95,24 @@ Public Class ManageUsersWindow
     End Sub
 
     ' **************************************************VIEW USERS**************************************************
+    Private Sub PrepareForSearch() 'Sets fields and shows search button
+        ResetUsersWindow()
+        InstructionLabel.Text = "Please fill in the ID or username for the user and click search."
+        UsernameTextBox.Enabled = True 'Allows user to type in all text boxes except password for searching
+        UserIDTextBox.Enabled = True
+        UserIDTextBox.ReadOnly = False
+        PasswordTextBox.Enabled = False
+        AccessLevelComboBox.Enabled = True
+        SearchButton.Show()
+    End Sub
+
 
     Private Sub SearchForUser()
         Dim UserFileContents() As String = File.ReadAllLines(LoginWindow.UserFilePath) 'Read entire users file
 
         For i = 0 To UBound(UserFileContents) 'Runs through each line
             Dim user As String() = UserFileContents(i).Split(",") 'Splits line on commas
-            If user(0) = UserIDTextBox.Text Or user(1) = UsernameTextBox.Text Then 'If ID or username match
+            If user(0) = UserIDTextBox.Text Or user(1) = UsernameTextBox.Text Or GetUserAccessFromFile(user(2)) = AccessLevelComboBox.Text Then 'If ID or username or access level match
                 FoundUsersListBox.Items.Add(UserFileContents(i)) 'Add to displayed listbox
             End If
         Next
@@ -152,12 +168,33 @@ Public Class ManageUsersWindow
         SaveUserButton.Show()
     End Sub
 
-    Private Sub DeleteUser()
-
+    Private Sub DeleteUser(UserToEdit As String())
+        Dim UserFileContents() As String = File.ReadAllLines(LoginWindow.UserFilePath) 'Gets entire contents of user file
+        For i = 0 To UBound(UserFileContents) 'Runs through each line
+            Dim user As String() = UserFileContents(i).Split(",") 'Splits line on commas
+            If user(0) = UserToEdit(0) Then 'If ID matches with edited user
+                If InputBox("Please type 'YES' to confirm deletion of user " & user(0) & " " & user(1)) = "YES" Then 'Confirms user deletion
+                    File.WriteAllLines(LoginWindow.UserFilePath, ArrayRemove(UserFileContents, i)) 'Overwrites file with new list of users
+                End If
+            End If
+        Next
+        ResetUsersWindow()
     End Sub
 
+    Private Function ArrayRemove(array As String(), index As Integer) 'Removes an item from a string array
+        Dim tempList As New List(Of String)
+        tempList.AddRange(array) 'Converts into list
+        tempList.RemoveAt(index) 'Removes item from list
+        Return tempList.ToArray 'Converts back into array
+    End Function
+
     Private Sub FoundUsersListBox_DoubleClick(sender As Object, e As EventArgs) Handles FoundUsersListBox.DoubleClick
-        'Needs differentiation between edit and delete
-        EditUser(FoundUsersListBox.SelectedItem.Split(",")) 'Sends user to edit to the edit subroutine
+        If Mode = UserMode.EditUser Then 'If a user is being edited, the new details need to be inserted
+            EditUser(FoundUsersListBox.SelectedItem.Split(",")) 'Sends user to edit to the edit subroutine
+
+        ElseIf Mode = UserMode.DeleteUser Then 'If a user is being deleted, they need to be removed
+            DeleteUser(FoundUsersListBox.SelectedItem.Split(",")) 'Sends user to delete to the edit subroutine
+        End If
+
     End Sub
 End Class

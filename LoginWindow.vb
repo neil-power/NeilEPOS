@@ -1,11 +1,10 @@
 ﻿Imports System.IO
 ''' <summary>
 ''' TO DO NEXT
-''' Finish description of sales and payment
-''' Add ability to delete user
+''' Modify daily sales file - meet table requirements
 ''' 
 ''' FEATURES TO ADD
-''' Modify daily sales file - meet table requirements
+''' 
 ''' Create transaction file - auto update 
 ''' Create products file, read from products file, search and sort products file, edit product in file, scrape details off internet, change stock number
 ''' Create product lookup page
@@ -14,6 +13,7 @@
 ''' FINAL STAGES OF DEVELOPMENT
 ''' Validation - use built-in validation event
 ''' Try catch loops for everything that can go wrong
+''' Make code shorter and more efficient
 ''' Lots of testing
 ''' 
 ''' POTENTIAL NEW THINGS TO ADD
@@ -23,9 +23,12 @@
 ''' Make payment window mdi
 ''' Custom msgbox form for notifications
 ''' Error logging?
+''' Random/direct file access
+''' Search that doesn't require a direct match
 ''' 
 ''' KNOWN BUGS/ISSUES
 ''' Can't enter a price higher than 99.99.
+''' Password and access level are still editable when searching for user
 ''' 
 ''' INFO
 ''' Standard window size - 1024 x 768
