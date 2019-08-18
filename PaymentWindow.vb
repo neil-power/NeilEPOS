@@ -2,6 +2,8 @@
 Public Class PaymentWindow
 
     ' **************************************************ON LOAD**************************************************
+    Public Shared DailySalesFilePath As String = My.Computer.FileSystem.SpecialDirectories.Desktop & "\" & CStr(DateTime.Today).Replace("/", "-") + " DAILY SALES.csv" ' Desktop and current date for file to save to
+    Public Shared TransactionID As Integer ' Creates a variable for a running total of sales
 
     Private Sub Payment_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated 'Runs when payment form opened
 
@@ -10,6 +12,17 @@ Public Class PaymentWindow
         ChangeLabel.Text = "" 'Resets label to default value
         AmountPaidTextBox.Text = "0000" ''Resets textbox to default value
         ChangeToGiveLabel.Text = "Amount to pay:" 'Resets label to default value
+
+        If Not File.Exists(DailySalesFilePath) Then ' Checks to see if a sales file has already been created
+
+            Dim sw As New StreamWriter(DailySalesFilePath, True) 'Creates a file writer
+            sw.WriteLine("TransactionID" & "," & "Date" & "," & "Time" & "," & "Sale Total" & "," & "No of Items" & "," & "Items Bought" & "," & "Change Given") 'Writes headings row
+            sw.Close() 'Closes opened file
+            MsgBox("A new sales file has been created at " & DailySalesFilePath, vbInformation, "New file created!") 'Gives notification that a new sales file has been created
+
+        End If
+
+        TransactionID = ReadTransactionIDFromFile()
 
         Me.BringToFront() 'Brings window to front
         AmountPaidTextBox.Select(AmountPaidTextBox.Text.Length + 1, 0) 'Selects amount paid textbox
@@ -84,19 +97,43 @@ Public Class PaymentWindow
 
     End Sub
 
+    ' **************************************************DAILY SALES FILE**************************************************
+
+    Private Function ReadTransactionIDFromFile() ' Gets most recent sales number from the sales file
+        Dim SaleData() As String = File.ReadAllLines(DailySalesFilePath) ' This reads all data from the sales file
+        Dim CurrentSaleNumber As Integer = 0 ' Sets current sale number to 0
+
+        If SaleData.Length > 1 Then ' Tests to see if there is more than one line in the sales file (there will be a header row)
+
+            Dim LastSaleNumber As String = Trim(Mid(SaleData(SaleData.Length - 1), 21, 5)) 'Takes the sale number from the last line (most recent sale) of the file and removes spaces
+
+            If Integer.TryParse(LastSaleNumber, New Integer) Then 'Tests to see if the sales number is an integer to prevent errors
+                CurrentSaleNumber = LastSaleNumber 'Returns the last sale number (1 will be added to it when finish sale is clicked)
+            End If
+
+        End If
+
+        Return CurrentSaleNumber 'Returns sale number, which will be 0 unless the sales file has a more recent sale number
+
+    End Function
+
     Private Sub FinishSale_Click(sender As Object, e As EventArgs) Handles FinishSale.Click ' Writes the information to the sales file
-        SalesWindow.SaleNumber += 1 'Increments sale number by 1
-        Dim sw As New StreamWriter(SalesWindow.FilePath, True) 'Creates a file writer
+        TransactionID += 1 'Increments transaction ID by 1
+        Dim sw As New StreamWriter(DailySalesFilePath, True) 'Creates a file writer
+        Dim ItemsBought As String = ""
+        Dim NoOfItems As Integer = 0
         For Each ItemBought In SalesWindow.CurrentSale 'Interates through every item in the current sale
-            sw.WriteLine(LSet(DateTime.Now, 19) & "," & LSet(SalesWindow.SaleNumber, 5) & "," & LSet(ItemBought.ISBN, 13) & "," & LSet(ItemBought.Price, 5) & "," & LSet(ItemBought.Quantity, 2) & "," & SalesWindow.SaleTotal & ",") 'Adds item properties to the text file
+            ItemsBought += ItemBought.ISBN & " "
+            NoOfItems += 1
         Next
+
+        sw.WriteLine(TransactionID & "," & DateTime.Today & "," & DateTime.Now.ToShortTimeString() & "," & SalesWindow.SaleTotal & "," & NoOfItems & "," & ItemsBought & "," & ChangeLabel.Text)
         sw.Close() 'Closes opened file
 
         TotalLabel.Text = "" 'Resets label to default
         ChangeLabel.Text = "" 'Resets label to default
         AmountPaidTextBox.Text = "0000" 'Resets textbox to default
         SalesWindow.MainWindowClearAll() 'Clears all mainwindow variables
-
         Me.Close() 'Closes payment window
     End Sub
 

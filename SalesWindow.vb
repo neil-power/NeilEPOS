@@ -7,8 +7,7 @@ Public Class SalesWindow
     Private InputMode As String 'Sets which box for the keypad to write to
     Public Shared CurrentSale As List(Of Item) 'Creates a list of items in the current sale
     Public Shared SaleTotal As Double ' Creates a variable for the total for the current sale
-    Public Shared FilePath As String = My.Computer.FileSystem.SpecialDirectories.Desktop & "\" & CStr(DateTime.Today).Replace("/", "-") + " SALES.csv" ' Desktop and current date for file to save to
-    Public Shared SaleNumber As Integer ' Creates a variable for a running total of sales
+
 
     Public Structure Item 'Creates an item structure
         Dim ISBN As String
@@ -23,36 +22,11 @@ Public Class SalesWindow
         Me.StartPosition = FormStartPosition.Manual 'Manual start position
         Me.Location = New Point(100, 50) 'Set location to inside manager/user form
 
-        If Not File.Exists(FilePath) Then ' Checks to see if a sales file has already been created
 
-            Dim sw As New StreamWriter(FilePath, True) 'Creates a file writer
-            sw.WriteLine("Date + Time" & "," & "Sale Number" & "," & "ISBN" & "," & "Price" & "," & "Quantity" & "," & "Sale Total") 'Writes headings row
-            sw.Close() 'Closes opened file
-            MsgBox("A new sales file has been created at " & FilePath, vbInformation, "New file created!") 'Gives notification that a new sales file has been created
-
-        End If
 
         MainWindowClearAll() 'Resets all variables and textboxes
 
     End Sub
-
-    Private Function ReadSaleNumberFromFile() ' Gets most recent sales number from the sales file
-        Dim SaleData() As String = File.ReadAllLines(FilePath) ' This reads all data from the sales file
-        Dim CurrentSaleNumber As Integer = 0 ' Sets current sale number to 0
-
-        If SaleData.Length > 1 Then ' Tests to see if there is more than one line in the sales file (there will be a header row)
-
-            Dim LastSaleNumber As String = Trim(Mid(SaleData(SaleData.Length - 1), 21, 5)) 'Takes the sale number from the last line (most recent sale) of the file and removes spaces
-
-            If Integer.TryParse(LastSaleNumber, New Integer) Then 'Tests to see if the sales number is an integer to prevent errors
-                CurrentSaleNumber = LastSaleNumber 'Returns the last sale number (1 will be added to it when finish sale is clicked)
-            End If
-
-        End If
-
-        Return CurrentSaleNumber 'Returns sale number, which will be 0 unless the sales file has a more recent sale number
-
-    End Function
 
     ' **************************************************INPUTS**************************************************
 
@@ -161,7 +135,7 @@ Public Class SalesWindow
         ItemsSoldListBox.Items.Clear()
 
         SaleTotal = 0.00 'Sets global variables to their default values
-        SaleNumber = ReadSaleNumberFromFile()
+
         CurrentSale = New List(Of Item)
 
         InputMode = "ISBN" 'Selects ISBN text box

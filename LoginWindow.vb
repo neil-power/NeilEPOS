@@ -1,14 +1,12 @@
 ﻿Imports System.IO
 ''' <summary>
 ''' TO DO NEXT
-''' Modify daily sales file - meet table requirements
+''' Create weekly summary file
+''' Create transaction file - auto update 
 ''' 
 ''' FEATURES TO ADD
-''' 
-''' Create transaction file - auto update 
 ''' Create products file, read from products file, search and sort products file, edit product in file, scrape details off internet, change stock number
 ''' Create product lookup page
-''' Create weekly summary file
 ''' 
 ''' FINAL STAGES OF DEVELOPMENT
 ''' Validation - use built-in validation event
@@ -28,7 +26,6 @@
 ''' 
 ''' KNOWN BUGS/ISSUES
 ''' Can't enter a price higher than 99.99.
-''' Password and access level are still editable when searching for user
 ''' 
 ''' INFO
 ''' Standard window size - 1024 x 768
