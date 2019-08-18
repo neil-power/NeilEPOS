@@ -112,7 +112,7 @@ Public Class ManageUsersWindow
 
         For i = 0 To UBound(UserFileContents) 'Runs through each line
             Dim user As String() = UserFileContents(i).Split(",") 'Splits line on commas
-            If user(0) = UserIDTextBox.Text Or user(1) = UsernameTextBox.Text Or GetUserAccessFromFile(user(2)) = AccessLevelComboBox.Text Then 'If ID or username or access level match
+            If user(0) = UserIDTextBox.Text Or user(1) = UsernameTextBox.Text Or GetUserAccessFromFile(user(3)) = AccessLevelComboBox.Text Then 'If ID or username or access level match
                 FoundUsersListBox.Items.Add(UserFileContents(i)) 'Add to displayed listbox
             End If
         Next

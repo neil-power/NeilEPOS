@@ -26,6 +26,7 @@
 ''' 
 ''' KNOWN BUGS/ISSUES
 ''' Can't enter a price higher than 99.99.
+''' Space added to end of ISBN list in daily sales
 ''' 
 ''' INFO
 ''' Standard window size - 1024 x 768

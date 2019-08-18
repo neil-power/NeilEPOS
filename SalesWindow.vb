@@ -178,17 +178,7 @@ Public Class SalesWindow
     End Sub
 
     Private Sub CloseButton_Click(sender As Object, e As EventArgs) Handles CloseButton.Click 'Closes and returns to correct screen
-        Select Case LoginWindow.CurrentUser.AccessLevel ' Selects access level of current user
-            Case LoginWindow.UserAccessLevel.Manager ' If manager, return to manager window
-                Me.Close()
-                ManagerWindow.Show()
-            Case LoginWindow.UserAccessLevel.User 'If user, return to user window
-                Me.Close()
-                UserWindow.Show()
-            Case Else 'Else, return to login window
-                Me.Close()
-                LoginWindow.Show()
-        End Select
+        Me.Close()
     End Sub
 
 
