@@ -25,17 +25,20 @@ NeilEPOS
 <member name="T:NeilEPOS.LoginWindow">
  <summary>
  TO DO NEXT
- Create weekly summary file
- Create transaction file - auto update 
- 
+ Replace streamwriter with File
+ Replace ="" with .clear()
+  
  FEATURES TO ADD
  Create products file, read from products file, search and sort products file, edit product in file, scrape details off internet, change stock number
  Create product lookup page
+ Create transaction file - auto update 
  
  FINAL STAGES OF DEVELOPMENT
  Validation - use built-in validation event
  Try catch loops for everything that can go wrong
  Make code shorter and more efficient
+ Functional UI design - prevent selection of some objects, set up tabbing, etc
+ Visual UI design - colours, logos, branding
  Lots of testing
  
  POTENTIAL NEW THINGS TO ADD
@@ -45,12 +48,12 @@ NeilEPOS
  Make payment window mdi
  Custom msgbox form for notifications
  Error logging?
- Random/direct file access
+ Random/direct file access - for products minimum
  Search that doesn't require a direct match
  
  KNOWN BUGS/ISSUES
  Can't enter a price higher than 99.99.
- Space added to end of ISBN list in daily sales
+ Date should be in YYYY-MM-DD format
  
  INFO
  Standard window size - 1024 x 768

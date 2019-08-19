@@ -44,3 +44,4 @@ C:\Users\Neil Power\Documents\GitHub Repositories\NeilEPOS\obj\Debug\NeilEPOS.xm
 C:\Users\Neil Power\Documents\GitHub Repositories\NeilEPOS\obj\Debug\NeilEPOS.pdb
 C:\Users\Neil Power\Documents\GitHub Repositories\NeilEPOS\obj\Debug\NeilEPOS.ManageUsersWindow.resources
 C:\Users\Neil Power\Documents\GitHub Repositories\NeilEPOS\obj\Debug\NeilEPOS.vbprojAssemblyReference.cache
+C:\Users\Neil Power\Documents\GitHub Repositories\NeilEPOS\obj\Debug\NeilEPOS.SalesSummaryWindow.resources

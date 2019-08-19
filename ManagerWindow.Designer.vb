@@ -25,7 +25,7 @@ Partial Class ManagerWindow
         Me.LogoLabel = New System.Windows.Forms.Label()
         Me.SalesButton = New System.Windows.Forms.Button()
         Me.ProductLookupButton = New System.Windows.Forms.Button()
-        Me.DailySummaryButton = New System.Windows.Forms.Button()
+        Me.SalesSummaryButton = New System.Windows.Forms.Button()
         Me.EditProductButton = New System.Windows.Forms.Button()
         Me.ManageUsersButton = New System.Windows.Forms.Button()
         Me.LogoutButton = New System.Windows.Forms.Button()
@@ -61,15 +61,15 @@ Partial Class ManagerWindow
         Me.ProductLookupButton.Text = "Product Lookup"
         Me.ProductLookupButton.UseVisualStyleBackColor = True
         '
-        'DailySummaryButton
+        'SalesSummaryButton
         '
-        Me.DailySummaryButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DailySummaryButton.Location = New System.Drawing.Point(19, 447)
-        Me.DailySummaryButton.Name = "DailySummaryButton"
-        Me.DailySummaryButton.Size = New System.Drawing.Size(100, 75)
-        Me.DailySummaryButton.TabIndex = 20
-        Me.DailySummaryButton.Text = "Daily Summary"
-        Me.DailySummaryButton.UseVisualStyleBackColor = True
+        Me.SalesSummaryButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SalesSummaryButton.Location = New System.Drawing.Point(19, 447)
+        Me.SalesSummaryButton.Name = "SalesSummaryButton"
+        Me.SalesSummaryButton.Size = New System.Drawing.Size(100, 75)
+        Me.SalesSummaryButton.TabIndex = 20
+        Me.SalesSummaryButton.Text = "Sales Summary"
+        Me.SalesSummaryButton.UseVisualStyleBackColor = True
         '
         'EditProductButton
         '
@@ -107,7 +107,7 @@ Partial Class ManagerWindow
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1008, 687)
         Me.Controls.Add(Me.ManageUsersButton)
-        Me.Controls.Add(Me.DailySummaryButton)
+        Me.Controls.Add(Me.SalesSummaryButton)
         Me.Controls.Add(Me.LogoutButton)
         Me.Controls.Add(Me.EditProductButton)
         Me.Controls.Add(Me.ProductLookupButton)
@@ -125,7 +125,7 @@ Partial Class ManagerWindow
     Friend WithEvents LogoLabel As Label
     Friend WithEvents SalesButton As Button
     Friend WithEvents ProductLookupButton As Button
-    Friend WithEvents DailySummaryButton As Button
+    Friend WithEvents SalesSummaryButton As Button
     Friend WithEvents EditProductButton As Button
     Friend WithEvents ManageUsersButton As Button
     Friend WithEvents LogoutButton As Button

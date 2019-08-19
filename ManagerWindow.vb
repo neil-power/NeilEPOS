@@ -11,7 +11,7 @@
     End Sub
 
 
-    Private Sub ActionButton_Click(sender As Object, e As EventArgs) Handles SalesButton.Click, ProductLookupButton.Click, EditProductButton.Click, DailySummaryButton.Click, ManageUsersButton.Click, LogoutButton.Click 'When a button is clicked, opens the correct window
+    Private Sub ActionButton_Click(sender As Object, e As EventArgs) Handles SalesButton.Click, ProductLookupButton.Click, EditProductButton.Click, SalesSummaryButton.Click, ManageUsersButton.Click, LogoutButton.Click 'When a button is clicked, opens the correct window
         CloseAllMDIWindows()
         Select Case sender.Name 'Gets and selects the name of the button pressed
             Case SalesButton.Name 'If it is the make sales button, open window
@@ -21,8 +21,9 @@
                 'Opens the window
             Case EditProductButton.Name
                 'Opens the window
-            Case DailySummaryButton.Name
-                'Opens the window
+            Case SalesSummaryButton.Name
+                SalesSummaryWindow.MdiParent = Me 'Sets manager form as MDI parent of summary form
+                SalesSummaryWindow.Show()  'Opens the summary window
             Case ManageUsersButton.Name
                 ManageUsersWindow.MdiParent = Me 'Sets manager form as MDI parent of users form
                 ManageUsersWindow.Show() 'Opens the manage users window
@@ -36,6 +37,7 @@
 
     Private Sub CloseAllMDIWindows() 'Closes all currently open MDI windows
         SalesWindow.Close() 'Add more
+        SalesSummaryWindow.Close()
         ManageUsersWindow.Close()
     End Sub
 

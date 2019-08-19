@@ -99,7 +99,7 @@ Partial Class ManageUsersWindow
         'NewUserButton
         '
         Me.NewUserButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NewUserButton.Location = New System.Drawing.Point(34, 19)
+        Me.NewUserButton.Location = New System.Drawing.Point(34, 26)
         Me.NewUserButton.Name = "NewUserButton"
         Me.NewUserButton.Size = New System.Drawing.Size(100, 75)
         Me.NewUserButton.TabIndex = 21
@@ -109,7 +109,7 @@ Partial Class ManageUsersWindow
         'EditUserButton
         '
         Me.EditUserButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.EditUserButton.Location = New System.Drawing.Point(152, 19)
+        Me.EditUserButton.Location = New System.Drawing.Point(152, 26)
         Me.EditUserButton.Name = "EditUserButton"
         Me.EditUserButton.Size = New System.Drawing.Size(100, 75)
         Me.EditUserButton.TabIndex = 21
@@ -119,7 +119,7 @@ Partial Class ManageUsersWindow
         'DeleteUserButton
         '
         Me.DeleteUserButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DeleteUserButton.Location = New System.Drawing.Point(273, 19)
+        Me.DeleteUserButton.Location = New System.Drawing.Point(273, 26)
         Me.DeleteUserButton.Name = "DeleteUserButton"
         Me.DeleteUserButton.Size = New System.Drawing.Size(100, 75)
         Me.DeleteUserButton.TabIndex = 21

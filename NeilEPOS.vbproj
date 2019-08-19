@@ -104,6 +104,12 @@
     <Compile Include="ManagerWindow.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="SalesSummaryWindow.Designer.vb">
+      <DependentUpon>SalesSummaryWindow.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SalesSummaryWindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="SalesWindow.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ManageUsersWindow.resx">
       <DependentUpon>ManageUsersWindow.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalesSummaryWindow.resx">
+      <DependentUpon>SalesSummaryWindow.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SalesWindow.resx">
       <DependentUpon>SalesWindow.vb</DependentUpon>

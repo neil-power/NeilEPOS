@@ -38,5 +38,5 @@ When the add item button is pressed, if all textboxes are not empty, the item is
 
 When the take payment button is pressed, sale total is recalculated and then the payment window is shown. On load, the total label is set to the sales total and all textboxes are reset.
 
-The same numpad process as the sales window is used for amount paid entry. When the finish sale button is clicked, each item, its price and quantity are written to the sales file. The date/timestamp and unique sales number are also added. The payment window then closes.
+The same numpad process as the sales window is used for amount paid entry. When the finish sale button is clicked, each item, its price and quantity are written to the daily sales file. The date/timestamp and unique sales number are also added. The weekly sales file is also updated, with a new line being created for a new day if necessary. The payment window then closes. 
 

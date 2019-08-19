@@ -1,17 +1,20 @@
 ﻿Imports System.IO
 ''' <summary>
 ''' TO DO NEXT
-''' Create weekly summary file
-''' Create transaction file - auto update 
-''' 
+''' Replace streamwriter with File
+''' Replace ="" with .clear()
+'''  
 ''' FEATURES TO ADD
 ''' Create products file, read from products file, search and sort products file, edit product in file, scrape details off internet, change stock number
 ''' Create product lookup page
+''' Create transaction file - auto update 
 ''' 
 ''' FINAL STAGES OF DEVELOPMENT
 ''' Validation - use built-in validation event
 ''' Try catch loops for everything that can go wrong
 ''' Make code shorter and more efficient
+''' Functional UI design - prevent selection of some objects, set up tabbing, etc
+''' Visual UI design - colours, logos, branding
 ''' Lots of testing
 ''' 
 ''' POTENTIAL NEW THINGS TO ADD
@@ -21,12 +24,12 @@
 ''' Make payment window mdi
 ''' Custom msgbox form for notifications
 ''' Error logging?
-''' Random/direct file access
+''' Random/direct file access - for products minimum
 ''' Search that doesn't require a direct match
 ''' 
 ''' KNOWN BUGS/ISSUES
 ''' Can't enter a price higher than 99.99.
-''' Space added to end of ISBN list in daily sales
+''' Date should be in YYYY-MM-DD format
 ''' 
 ''' INFO
 ''' Standard window size - 1024 x 768
@@ -36,11 +39,18 @@
 
 Public Class LoginWindow
 
-    ' **************************************************FILE INPUT**************************************************
+    ' **************************************************FILE PATHS**************************************************
+
     Public Shared UserFilePath As String = My.Computer.FileSystem.SpecialDirectories.Desktop & "\" & "NeilEPOSUsers.csv" ' Desktop and location of users file
+    Public Shared DailySalesFilePath As String = My.Computer.FileSystem.SpecialDirectories.Desktop & "\" & CStr(DateTime.Today).Replace("/", "-") & " DAILY SALES.csv" ' Desktop and current date for file to save to
+    Public Shared WeekNumber As Integer = DatePart(DateInterval.WeekOfYear, Date.Today) 'Gets week number
+    Public Shared WeeklySalesFilePath As String = My.Computer.FileSystem.SpecialDirectories.Desktop + "\" & DateTime.Now.Year & " " & WeekNumber & " WEEKLY SALES.csv" ' Sets week number and year for file to save to on desktop
+
+
+    ' **************************************************FILE INPUT**************************************************
 
     Private Sub LoginWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        If Dir$(UserFilePath) = "" Then ' Checks to see if the NeilEPOSUsers.csv file exists
+        If Not File.Exists(UserFilePath) Then ' Checks to see if the NeilEPOSUsers.csv file exists
             Dim sw As New StreamWriter(UserFilePath, True) 'This makes sure there is actually a database to enter/read data. If not, it creates a new blank one.
             sw.WriteLine("00001,Default,123,0") 'Writes a default manager account to the file to create a file for storing data.
             'sw.WriteLine("00002,Default,123,1") 'USER ACCOUNT FOR TESTING - REMOVE LATER
