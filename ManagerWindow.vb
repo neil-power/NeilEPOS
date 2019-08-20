@@ -1,11 +1,11 @@
 ﻿Public Class ManagerWindow
 
     Private Sub ManagerWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.IsMdiContainer = True
+        IsMdiContainer = True 'Sets current form as MDI container
 
-        For Each ctl As Control In Me.Controls ' Changes colour - grey is MDI container
-            If TypeOf ctl Is MdiClient Then
-                ctl.BackColor = Me.BackColor
+        For Each ctl As Control In Controls ' Changes colour - runs through every control in form
+            If TypeOf ctl Is MdiClient Then 'If control is part of MDI
+                ctl.BackColor = BackColor 'Set control colour to the form colour
             End If
         Next ctl
     End Sub
@@ -30,7 +30,9 @@
             Case LogoutButton.Name 'If it is the log out button, logout
                 LoginWindow.CurrentUser = Nothing 'Set user access rights to none as logging out
                 LoginWindow.Show() ' Return to login screen
-                Me.Close()
+                Close() 'Closes the manager window
+            Case Else
+                Exit Select
         End Select
 
     End Sub
@@ -40,6 +42,5 @@
         SalesSummaryWindow.Close()
         ManageUsersWindow.Close()
     End Sub
-
 
 End Class

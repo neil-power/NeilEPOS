@@ -25,14 +25,14 @@ NeilEPOS
 <member name="T:NeilEPOS.LoginWindow">
  <summary>
  TO DO NEXT
- Replace streamwriter with File
- Replace ="" with .clear()
-  
+ Refactor sales window
+ Add more detail to sales summary window
+
  FEATURES TO ADD
- Create products file, read from products file, search and sort products file, edit product in file, scrape details off internet, change stock number
+ Create products file and class, read from products file, search and sort products file, edit product in file, scrape details off internet, change stock number
  Create product lookup page
- Create transaction file - auto update 
- 
+ Create transaction file - auto update
+
  FINAL STAGES OF DEVELOPMENT
  Validation - use built-in validation event
  Try catch loops for everything that can go wrong
@@ -40,7 +40,7 @@ NeilEPOS
  Functional UI design - prevent selection of some objects, set up tabbing, etc
  Visual UI design - colours, logos, branding
  Lots of testing
- 
+
  POTENTIAL NEW THINGS TO ADD
  Stock in?
  Payment types?
@@ -50,11 +50,12 @@ NeilEPOS
  Error logging?
  Random/direct file access - for products minimum
  Search that doesn't require a direct match
- 
+ CSV file writing class
+
  KNOWN BUGS/ISSUES
  Can't enter a price higher than 99.99.
  Date should be in YYYY-MM-DD format
- 
+
  INFO
  Standard window size - 1024 x 768
  Standard MDI form size - 800 x 600, starting position 100, 50

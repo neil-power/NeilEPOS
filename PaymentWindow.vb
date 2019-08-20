@@ -1,5 +1,4 @@
-﻿Imports System.IO 'Imports libraries needed for reading and writing files
-Public Class PaymentWindow
+﻿Public Class PaymentWindow
 
     ' **************************************************ON LOAD**************************************************
 
@@ -13,21 +12,18 @@ Public Class PaymentWindow
         AmountPaidTextBox.Text = "0000" ''Resets textbox to default value
         ChangeToGiveLabel.Text = "Amount to pay:" 'Resets label to default value
 
-        If Not File.Exists(LoginWindow.DailySalesFilePath) Then ' Checks to see if a daily sales file has already been created
-
-            Dim sw As New StreamWriter(LoginWindow.DailySalesFilePath, True) 'Creates a file writer
-            sw.WriteLine("TransactionID" & "," & "Date" & "," & "Time" & "," & "Sale Total" & "," & "No of Items" & "," & "Items Bought" & "," & "Change Given") 'Writes headings row
-            sw.Close() 'Closes opened file
-            MsgBox("A new daily sales file has been created at " & LoginWindow.DailySalesFilePath, vbInformation, "New file created!") 'Gives notification that a new sales file has been created
+        If Not CSV.Exists(CSV.DailySalesFilePath) Then ' Checks to see if a daily sales file has already been created
+            Dim HeadingsRow As String = "TransactionID" & "," & "Date" & "," & "Time" & "," & "Sale Total" & "," & "No of Items" & "," & "Items Bought" & "," & "Change Given"
+            CSV.Overwrite(CSV.DailySalesFilePath, HeadingsRow) 'Writes a headings row to file.
+            MsgBox("A new daily sales file has been created at " & CSV.DailySalesFilePath, vbInformation, "New file created!") 'Gives notification that a new sales file has been created
 
         End If
 
-        If Not File.Exists(LoginWindow.WeeklySalesFilePath) Then ' Checks to see if a weekly sales file has already been created
+        If Not CSV.Exists(CSV.WeeklySalesFilePath) Then ' Checks to see if a weekly sales file has already been created
+            Dim HeadingsRow As String = "Date" & "," & "Sale Total" & "," & "No of Items"
+            CSV.Overwrite(CSV.WeeklySalesFilePath, HeadingsRow) 'Writes a headings row to file.
 
-            Dim sw As New StreamWriter(LoginWindow.WeeklySalesFilePath, True) 'Creates a file writer
-            sw.WriteLine("Date" & "," & "Sale Total" & "," & "No of Items") 'Writes headings row
-            sw.Close() 'Closes opened file
-            MsgBox("A new weekly sales file has been created at " & LoginWindow.WeeklySalesFilePath, vbInformation, "New file created!") 'Gives notification that a new sales file has been created
+            MsgBox("A new weekly sales file has been created at " & CSV.WeeklySalesFilePath, vbInformation, "New file created!") 'Gives notification that a new sales file has been created
 
         End If
 
@@ -107,13 +103,13 @@ Public Class PaymentWindow
     End Sub
 
     Private Sub ContinueSale_Click(sender As Object, e As EventArgs) Handles ContinueSaleButton.Click ' Continues the sale
-        Me.Close() 'Closes payment window without saving data to text file
+        Close() 'Closes payment window without saving data to text file
     End Sub
 
     ' **************************************************DAILY SALES FILE**************************************************
 
     Private Function ReadTransactionIDFromFile() ' Gets most recent sales number from the sales file
-        Dim SaleData() As String = File.ReadAllLines(LoginWindow.DailySalesFilePath) ' This reads all data from the sales file
+        Dim SaleData() As String = CSV.ReadAsArray(CSV.DailySalesFilePath) ' This reads all data from the sales file
         Dim CurrentSaleNumber As Integer = 0 ' Sets current sale number to 0
 
         If SaleData.Length > 1 Then ' Tests to see if there is more than one line in the sales file (there will be a header row)
@@ -131,35 +127,33 @@ Public Class PaymentWindow
     End Function
 
     Private Sub WriteToDailySalesFile(NoOfItems As Integer, ItemsBought As String)
-        Dim sw As New StreamWriter(LoginWindow.DailySalesFilePath, True) 'Creates a file writer
-        sw.WriteLine(TransactionID & "," & DateTime.Today & "," & DateTime.Now.ToShortTimeString() & "," & SalesWindow.SaleTotal & "," & NoOfItems & "," & ItemsBought & "," & ChangeLabel.Text)
-        sw.Close() 'Closes opened file
+        Dim LineToWrite As String = Environment.NewLine & TransactionID & "," & Date.Today & "," & Date.Now.ToShortTimeString() & "," & SalesWindow.SaleTotal & "," & NoOfItems & "," & ItemsBought & "," & ChangeLabel.Text
+        CSV.Append(CSV.DailySalesFilePath, LineToWrite) 'Writes line to file
     End Sub
 
     Private Sub WriteToWeeklySalesFile(NoOfItems As Integer)
-        Dim WeeklySaleFileContents() As String = File.ReadAllLines(LoginWindow.WeeklySalesFilePath) 'Gets entire contents of weekly sales file
+        Dim WeeklySaleFileContents() As String = CSV.ReadAsArray(CSV.WeeklySalesFilePath) 'Gets entire contents of weekly sales file
         For i = 0 To UBound(WeeklySaleFileContents) 'Runs through each line
 
             Dim day As String() = WeeklySaleFileContents(i).Split(",") 'Splits line on commas
 
             If day(0) = "Date" Then 'If the line is the title line
                 If UBound(WeeklySaleFileContents) = 0 Then 'If there is only one line in the file
-                    Dim sw As New StreamWriter(LoginWindow.WeeklySalesFilePath, True) 'Creates a file writer
-                    sw.WriteLine(DateTime.Today & "," & SalesWindow.SaleTotal & "," & NoOfItems) 'Writes date, total and no of items to file
-                    sw.Close() 'Closes opened file
+                    Dim LineToWrite As String = Environment.NewLine & Date.Today & "," & SalesWindow.SaleTotal & "," & NoOfItems 'Writes date, total and no of items to file
+                    CSV.Append(CSV.WeeklySalesFilePath, LineToWrite) 'Writes line to file
                 End If
 
-            ElseIf day(0) = DateTime.Today Then 'If date matches with current date
+            ElseIf day(0) = Date.Today Then 'If date matches with current date
                 Dim NewSalesTotal As Double = SalesWindow.SaleTotal + CDbl(day(1)) 'Adds current sale total to the total in the file
                 Dim NewNoOfItems As Integer = NoOfItems + CDbl(day(2)) 'Adds current no of items to the no of items in the file
 
-                WeeklySaleFileContents(i) = (DateTime.Today & "," & NewSalesTotal & "," & NewNoOfItems) 'Replace line with updated day
-                File.WriteAllLines(LoginWindow.WeeklySalesFilePath, WeeklySaleFileContents) 'Replace file with updated version
+                WeeklySaleFileContents(i) = (Date.Today & "," & NewSalesTotal & "," & NewNoOfItems) 'Replace line with updated day
+                CSV.ArrayOverwrite(CSV.WeeklySalesFilePath, WeeklySaleFileContents) 'Replace file with updated version
 
             ElseIf i = UBound(WeeklySaleFileContents) Then 'If it is not the title line, the date does not match with current date and the current line is the last line in the file
-                Dim sw As New StreamWriter(LoginWindow.WeeklySalesFilePath, True) 'Creates a file writer
-                sw.WriteLine(DateTime.Today & "," & SalesWindow.SaleTotal & "," & NoOfItems) 'Writes date, total and no of items to file
-                sw.Close() 'Closes opened file
+
+                Dim LineToWrite As String = Environment.NewLine & Date.Today & "," & SalesWindow.SaleTotal & "," & NoOfItems 'Writes date, total and no of items to file
+                CSV.Append(CSV.WeeklySalesFilePath, LineToWrite) 'Writes line to file
             End If
 
         Next
@@ -173,7 +167,7 @@ Public Class PaymentWindow
         For Each ItemBought In SalesWindow.CurrentSale 'Interates through every item in the current sale
             ItemsBought += ItemBought.ISBN & " " 'Adds item to space-separated list
             NoOfItems += 1 'Increases no of items by 1
-        Next
+        Next ItemBought
         ItemsBought = ItemsBought.TrimEnd(" ") 'Remove space on end
 
         WriteToDailySalesFile(NoOfItems, ItemsBought)
@@ -183,7 +177,7 @@ Public Class PaymentWindow
         ChangeLabel.Text = "" 'Resets label to default
         AmountPaidTextBox.Text = "0000" 'Resets textbox to default
         SalesWindow.MainWindowClearAll() 'Clears all mainwindow variables
-        Me.Close() 'Closes payment window
+        Close() 'Closes payment window
     End Sub
 
 End Class

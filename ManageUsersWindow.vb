@@ -1,40 +1,42 @@
-﻿Imports System.IO
-Public Class ManageUsersWindow
+﻿Public Class ManageUsersWindow
 
     ' **************************************************ON LOAD**************************************************
-
-    Private Mode As UserMode = UserMode.None
-    Private Sub ManageUsersWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'The startup location is set in the form properties to 1024, 768 to prevent glitching
-        Me.FormBorderStyle = Windows.Forms.FormBorderStyle.None
-        Me.StartPosition = FormStartPosition.Manual
-        Me.Location = New Point(100, 50)
-        ResetUsersWindow()
-    End Sub
-
-    Private Enum UserMode
+    Private Enum UserMode 'Mode to select what action to be taken for saving and searching
         NewUser
         EditUser
         DeleteUser
         None
     End Enum
 
+    Private Mode As UserMode = UserMode.None
+    Private Sub ManageUsersWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'The startup location is set in the form properties to 1024, 768 to prevent glitching
+        FormBorderStyle = FormBorderStyle.None 'Removes border
+        StartPosition = FormStartPosition.Manual 'Prevents automatic cascade of MDI windows
+        Location = New Point(100, 50) 'Sets form location to centre of Manager window
+        ResetUsersWindow()
+    End Sub
+
+
+
     Private Sub ResetUsersWindow() 'Resets all values to default
-        UserIDTextBox.Text = ""
-        UsernameTextBox.Text = ""
-        PasswordTextBox.Text = ""
+
+        UserIDTextBox.Clear() 'Clear all text boxes
+        UsernameTextBox.Clear()
+        PasswordTextBox.Clear()
         AccessLevelComboBox.Text = ""
         InstructionLabel.Text = "Please select which action you would like to perform."
 
-        UserIDTextBox.Enabled = False
+        UserIDTextBox.Enabled = False 'Disable all text boxes
         UsernameTextBox.Enabled = False
         PasswordTextBox.Enabled = False
         AccessLevelComboBox.Enabled = False
-        SaveUserButton.Hide()
+
+        SaveUserButton.Hide() 'Hide all buttons
         SearchButton.Hide()
         FoundUsersListBox.Hide()
-        FoundUsersListBox.Items.Clear()
-        Mode = UserMode.None
+        FoundUsersListBox.Items.Clear() 'Empty listbox
+        Mode = UserMode.None 'Set mode to none
     End Sub
 
     ' **************************************************UTILITY BUTTONS**************************************************
@@ -56,7 +58,9 @@ Public Class ManageUsersWindow
             Case SearchButton.Name
                 SearchForUser()
             Case CloseButton.Name 'If close, return to manager window
-                Me.Close()
+                Close() 'Close current window
+            Case Else
+                Exit Select
         End Select
     End Sub
 
@@ -76,19 +80,12 @@ Public Class ManageUsersWindow
     Private Sub SaveUser()
 
         If Mode = UserMode.EditUser Then 'If a user is being edited, the new details need to be inserted
-            Dim UserFileContents() As String = File.ReadAllLines(LoginWindow.UserFilePath) 'Gets entire contents of user file
-            For i = 0 To UBound(UserFileContents) 'Runs through each line
-                Dim user As String() = UserFileContents(i).Split(",") 'Splits line on commas
-                If user(0) = UserIDTextBox.Text Then 'If ID matches with edited user
-                    UserFileContents(i) = (UserIDTextBox.Text & "," & UsernameTextBox.Text & "," & PasswordTextBox.Text & "," & GetUserAccessFromTextBox()) 'Replace line with edit
-                    File.WriteAllLines(LoginWindow.UserFilePath, UserFileContents)
-                End If
-            Next
 
+            Dim UserToSave As String = UserIDTextBox.Text & "," & UsernameTextBox.Text & "," & PasswordTextBox.Text & "," & GetUserAccessFromTextBox()
+            CSV.Replace(CSV.UserFilePath, UserIDTextBox.Text, UserToSave) 'Replaces any lines matching UserID text box
         ElseIf Mode = UserMode.NewUser Then 'If a new user is being made, they can be added at the end of the file
-            Dim sw As New System.IO.StreamWriter(LoginWindow.UserFilePath, True) 'Creates new streamwriter to add user to file
-            sw.WriteLine(UserIDTextBox.Text & "," & UsernameTextBox.Text & "," & PasswordTextBox.Text & "," & GetUserAccessFromTextBox()) 'Verification needed
-            sw.Close() 'Closes file
+            Dim LineToWrite As String = Environment.NewLine & UserIDTextBox.Text & "," & UsernameTextBox.Text & "," & PasswordTextBox.Text & "," & GetUserAccessFromTextBox() 'Verification needed
+            CSV.Append(CSV.UserFilePath, LineToWrite) 'Writes line to file
         End If
 
         ResetUsersWindow() 'Prevents user from entering text
@@ -108,16 +105,16 @@ Public Class ManageUsersWindow
 
 
     Private Sub SearchForUser()
-        Dim UserFileContents() As String = File.ReadAllLines(LoginWindow.UserFilePath) 'Read entire users file
+        Dim UserFileContents() As String = CSV.ReadAsArray(CSV.UserFilePath) 'Read entire users file
 
-        For i = 0 To UBound(UserFileContents) 'Runs through each line
-            Dim user As String() = UserFileContents(i).Split(",") 'Splits line on commas
+        For Each Line In UserFileContents 'Runs through each line
+            Dim user As String() = Line.Split(",") 'Splits line on commas
             If user(0) = UserIDTextBox.Text Or user(1) = UsernameTextBox.Text Or GetUserAccessFromFile(user(3)) = AccessLevelComboBox.Text Then 'If ID or username or access level match
-                FoundUsersListBox.Items.Add(UserFileContents(i)) 'Add to displayed listbox
+                FoundUsersListBox.Items.Add(Line) 'Add to displayed listbox
             End If
-        Next
+        Next Line
 
-        If FoundUsersListBox.Items.Count >= 1 Then
+        If FoundUsersListBox.Items.Count <> 0 Then
             InstructionLabel.Text = "Please double-click the user you would like to edit."
             FoundUsersListBox.Show()
         Else
@@ -128,19 +125,19 @@ Public Class ManageUsersWindow
     Private Function GetUserAccessFromTextBox() 'Converts from dropdown to enum
         Select Case AccessLevelComboBox.Text
             Case "Manager"
-                Return LoginWindow.UserAccessLevel.Manager
+                Return User.UserAccessLevel.Manager
             Case "User"
-                Return LoginWindow.UserAccessLevel.User
+                Return User.UserAccessLevel.User
             Case Else
-                Return LoginWindow.UserAccessLevel.None
+                Return User.UserAccessLevel.None
         End Select
     End Function
 
     Private Function GetUserAccessFromFile(UserAccess As String) 'Converts from file to dropdown
         Select Case UserAccess
-            Case LoginWindow.UserAccessLevel.Manager
+            Case User.UserAccessLevel.Manager
                 Return "Manager"
-            Case LoginWindow.UserAccessLevel.User
+            Case User.UserAccessLevel.User
                 Return "User"
             Case Else
                 Return "None"
@@ -148,7 +145,7 @@ Public Class ManageUsersWindow
     End Function
 
     Private Function GetNewUserID()
-        Dim UserFileContents() As String = File.ReadAllLines(LoginWindow.UserFilePath) 'Read entire users file
+        Dim UserFileContents() As String = CSV.ReadAsArray(CSV.UserFilePath) 'Read entire users file
         Dim LastUser As String() = UserFileContents.Last.Split(",") 'Gets last user - needs verification/error handling
         Dim LastUserID As Integer = CInt(LastUser(0)) + 1 'Definitely needs error handling
         Return LastUserID.ToString("00000")
@@ -156,25 +153,25 @@ Public Class ManageUsersWindow
 
     ' **************************************************EDIT/DELETE USERS**************************************************
 
-    Private Sub EditUser(UserToEdit As String())
+    Private Sub EditUser(UserToEdit As User)
         InstructionLabel.Text = "Edit the user's details and click save"
         SearchButton.Hide()
         FoundUsersListBox.Hide()
-        UserIDTextBox.Text = UserToEdit(0)
+        UserIDTextBox.Text = UserToEdit.UserID.ToString("00000")
         UserIDTextBox.ReadOnly = True
-        UsernameTextBox.Text = UserToEdit(1)
-        PasswordTextBox.Text = UserToEdit(2)
-        AccessLevelComboBox.Text = GetUserAccessFromFile(UserToEdit(3)) 'Converts from file to dropdown
+        UsernameTextBox.Text = UserToEdit.UserName
+        PasswordTextBox.Text = UserToEdit.Password
+        AccessLevelComboBox.Text = GetUserAccessFromFile(UserToEdit.AccessLevel) 'Converts from file to dropdown
         SaveUserButton.Show()
     End Sub
 
-    Private Sub DeleteUser(UserToEdit As String())
-        Dim UserFileContents() As String = File.ReadAllLines(LoginWindow.UserFilePath) 'Gets entire contents of user file
+    Private Sub DeleteUser(UserToEdit As User)
+        Dim UserFileContents() As String = CSV.ReadAsArray(CSV.UserFilePath) 'Gets entire contents of user file
         For i = 0 To UBound(UserFileContents) 'Runs through each line
-            Dim user As String() = UserFileContents(i).Split(",") 'Splits line on commas
-            If user(0) = UserToEdit(0) Then 'If ID matches with edited user
-                If InputBox("Please type 'YES' to confirm deletion of user " & user(0) & " " & user(1)) = "YES" Then 'Confirms user deletion
-                    File.WriteAllLines(LoginWindow.UserFilePath, ArrayRemove(UserFileContents, i)) 'Overwrites file with new list of users
+            Dim UserFound As User = User.FromLine(UserFileContents(i)) 'Converts to user
+            If UserFound.UserID = UserToEdit.UserID Then 'If ID matches with edited user
+                If InputBox("Please type 'YES' to confirm deletion of user " & UserFound.UserID & " " & UserFound.UserName) = "YES" Then 'Confirms user deletion
+                    CSV.ArrayOverwrite(CSV.UserFilePath, ArrayRemove(UserFileContents, i)) 'Overwrites file with new list of users
                 End If
             End If
         Next
@@ -189,12 +186,13 @@ Public Class ManageUsersWindow
     End Function
 
     Private Sub FoundUsersListBox_DoubleClick(sender As Object, e As EventArgs) Handles FoundUsersListBox.DoubleClick
-        If Mode = UserMode.EditUser Then 'If a user is being edited, the new details need to be inserted
-            EditUser(FoundUsersListBox.SelectedItem.Split(",")) 'Sends user to edit to the edit subroutine
+        If FoundUsersListBox.SelectedItem <> Nothing Then 'If a user is selected
+            If Mode = UserMode.EditUser Then 'If a user is being edited, the new details need to be inserted
+                EditUser(User.FromLine(FoundUsersListBox.SelectedItem)) 'Sends user to edit to the edit subroutine
 
-        ElseIf Mode = UserMode.DeleteUser Then 'If a user is being deleted, they need to be removed
-            DeleteUser(FoundUsersListBox.SelectedItem.Split(",")) 'Sends user to delete to the edit subroutine
+            ElseIf Mode = UserMode.DeleteUser Then 'If a user is being deleted, they need to be removed
+                DeleteUser(User.FromLine(FoundUsersListBox.SelectedItem)) 'Sends user to delete to the edit subroutine
+            End If
         End If
-
     End Sub
 End Class

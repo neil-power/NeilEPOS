@@ -1,14 +1,13 @@
-﻿Imports System.IO
-''' <summary>
+﻿''' <summary>
 ''' TO DO NEXT
-''' Replace streamwriter with File
-''' Replace ="" with .clear()
-'''  
+''' Refactor sales window
+''' Add more detail to sales summary window
+'''
 ''' FEATURES TO ADD
-''' Create products file, read from products file, search and sort products file, edit product in file, scrape details off internet, change stock number
+''' Create products file and class, read from products file, search and sort products file, edit product in file, scrape details off internet, change stock number
 ''' Create product lookup page
-''' Create transaction file - auto update 
-''' 
+''' Create transaction file - auto update
+'''
 ''' FINAL STAGES OF DEVELOPMENT
 ''' Validation - use built-in validation event
 ''' Try catch loops for everything that can go wrong
@@ -16,7 +15,7 @@
 ''' Functional UI design - prevent selection of some objects, set up tabbing, etc
 ''' Visual UI design - colours, logos, branding
 ''' Lots of testing
-''' 
+'''
 ''' POTENTIAL NEW THINGS TO ADD
 ''' Stock in?
 ''' Payment types?
@@ -26,35 +25,27 @@
 ''' Error logging?
 ''' Random/direct file access - for products minimum
 ''' Search that doesn't require a direct match
-''' 
+''' CSV file writing class
+'''
 ''' KNOWN BUGS/ISSUES
 ''' Can't enter a price higher than 99.99.
 ''' Date should be in YYYY-MM-DD format
-''' 
+'''
 ''' INFO
 ''' Standard window size - 1024 x 768
 ''' Standard MDI form size - 800 x 600, starting position 100, 50
 ''' </summary>
 
-
 Public Class LoginWindow
 
-    ' **************************************************FILE PATHS**************************************************
-
-    Public Shared UserFilePath As String = My.Computer.FileSystem.SpecialDirectories.Desktop & "\" & "NeilEPOSUsers.csv" ' Desktop and location of users file
-    Public Shared DailySalesFilePath As String = My.Computer.FileSystem.SpecialDirectories.Desktop & "\" & CStr(DateTime.Today).Replace("/", "-") & " DAILY SALES.csv" ' Desktop and current date for file to save to
-    Public Shared WeekNumber As Integer = DatePart(DateInterval.WeekOfYear, Date.Today) 'Gets week number
-    Public Shared WeeklySalesFilePath As String = My.Computer.FileSystem.SpecialDirectories.Desktop + "\" & DateTime.Now.Year & " " & WeekNumber & " WEEKLY SALES.csv" ' Sets week number and year for file to save to on desktop
 
 
     ' **************************************************FILE INPUT**************************************************
 
     Private Sub LoginWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        If Not File.Exists(UserFilePath) Then ' Checks to see if the NeilEPOSUsers.csv file exists
-            Dim sw As New StreamWriter(UserFilePath, True) 'This makes sure there is actually a database to enter/read data. If not, it creates a new blank one.
-            sw.WriteLine("00001,Default,123,0") 'Writes a default manager account to the file to create a file for storing data.
-            'sw.WriteLine("00002,Default,123,1") 'USER ACCOUNT FOR TESTING - REMOVE LATER
-            sw.Close() 'Closes file after writing to it
+        If Not CSV.Exists(CSV.UserFilePath) Then ' Checks to see if the NeilEPOSUsers.csv file exists
+            Dim DefaultUserDetails As String = "00001" & "," & "Default" & "," & "123" & "," & "0"
+            CSV.Overwrite(CSV.UserFilePath, DefaultUserDetails) 'Writes a default manager account to the file to create a file for storing data.
             MsgBox("A new users file has been created. A default manager account with ID 00001 and password 123 has been created.", vbExclamation, "Warning!")
         End If
     End Sub
@@ -69,38 +60,28 @@ Public Class LoginWindow
                 Environment.Exit(0)' Closes all windows and exits
             Case LoginButton.Name
                 LoginUser()
+            Case Else
+                Exit Select
         End Select
     End Sub
 
-
     Private Sub ClearFields() 'Clears all entered login details
-        UserIDTextBox.Text = "" 'Resets contents of employee ID text box
-        PasswordTextBox.Text = "" 'Resets contents of employee password text box
+        UserIDTextBox.Clear() 'Resets contents of employee ID text box
+        PasswordTextBox.Clear() 'Resets contents of employee password text box
     End Sub
 
     ' **************************************************LOGIN MECHANISM**************************************************
-    Public Enum UserAccessLevel 'Data structure containg possible access levels
-        Manager 'Can add/remove users, edit product details, view summaries and all user actions
-        User 'Can make sales, lookup product details
-        None 'No permissions
-    End Enum
-
-    Public Structure User 'Data structure for a user
-        Public UserID As Integer 'Unique UserID 
-        Public UserName As String 'User display name
-        Public Password As String ' Password to login
-        Public AccessLevel As UserAccessLevel 'Access level
-    End Structure
-
     Public Shared CurrentUser As New User 'Creates a variable to store the currently logged in user
 
     Private Sub TextBox_KeyDown(sender As Object, e As KeyEventArgs) Handles UserIDTextBox.KeyDown, PasswordTextBox.KeyDown 'To handle enter key presses
-        If e.KeyCode = Keys.Enter Then
+        If e.KeyCode = Keys.Enter Then 'If enter key is pressed
             Select Case sender.name
                 Case UserIDTextBox.Name
                     PasswordTextBox.Focus() 'Switch to password box
                 Case PasswordTextBox.Name
                     LoginUser() 'Login user
+                Case Else
+                    Exit Select
             End Select
         End If
     End Sub
@@ -108,33 +89,38 @@ Public Class LoginWindow
     Private Sub LoginUser() 'Logs in user
         CurrentUser = VerifyUserLogin(UserIDTextBox.Text, PasswordTextBox.Text) 'Verifies ID and Password
 
-        If CurrentUser.AccessLevel <> UserAccessLevel.None Then 'If returned user access level is not none, open correct window
+        If CurrentUser.AccessLevel <> User.UserAccessLevel.None Then 'If returned user access level is not none, open correct window
             Select Case CurrentUser.AccessLevel 'Select access level
-                Case UserAccessLevel.Manager 'If manager, open manager window
+                Case User.UserAccessLevel.Manager 'If manager, open manager window
                     ClearFields() 'Clear ID and password fields
                     Me.Hide() 'Hides login window as variables still in use
                     ManagerWindow.Show() 'Open manager window
-                Case UserAccessLevel.User
+                Case User.UserAccessLevel.User
                     ClearFields() 'Clear ID and password fields
                     Me.Hide() 'Hides login window as variables still in use
                     UserWindow.Show() 'Open user window
+                Case User.UserAccessLevel.None
+                    MsgBox("You do not have access rights to log in to this system.")
+                Case Else
+                    Exit Select
             End Select
-        Else 'If user does not exist or have login rights
-            MsgBox("Incorrect Login") 'Alerts user to incorrect password 
+        Else 'If user does not exist
+            MsgBox("Incorrect Login") 'Alerts user to incorrect password
         End If
 
     End Sub
 
     Private Function VerifyUserLogin(ByVal UserID As Integer, ByVal Password As String) 'Reads file and matches ID and password
-        Dim UserFileContents() As String = File.ReadAllLines(UserFilePath) 'Read entire users file
-        If UserFileContents.Length >= 1 Then 'Tests to see if there are any users in the sale file.
-            For Each user In UserFileContents ' Runs through each line in user file - INEFFICIENT
-                If user.Split(",")(0) = UserID And user.Split(",")(2) = Password Then ' If ID and password match
-                    Return New User With {.UserID = user.Split(",")(0), .UserName = user.Split(",")(1), .Password = user.Split(",")(2), .AccessLevel = user.Split(",")(3)} 'Return user with details from file
+        Dim UserFileContents() As String = CSV.ReadAsArray(CSV.UserFilePath) 'Read entire users file as array
+        If UserFileContents.Length <> 0 Then 'Tests to see if there are any users in the sale file.
+            For Each Line In UserFileContents ' Runs through each line in user file - INEFFICIENT
+                Dim UserOnLine As User = User.FromLine(Line) 'Gets the user on the line as a user data type
+                If UserOnLine.UserID = UserID And UserOnLine.Password = Password Then ' If ID and password match
+                    Return UserOnLine 'Return the user on that line if the details match
                 End If
-            Next
+            Next Line
         End If
-        Return New User With {.UserID = 0, .UserName = "", .Password = "", .AccessLevel = UserAccessLevel.None} 'Returns blank user if false
+        Return New User With {.UserID = 0, .UserName = "", .Password = "", .AccessLevel = User.UserAccessLevel.None} 'Returns blank user if false
     End Function
 
 End Class

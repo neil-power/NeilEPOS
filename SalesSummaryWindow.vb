@@ -1,10 +1,9 @@
-﻿Imports System.IO
-Public Class SalesSummaryWindow
+﻿Public Class SalesSummaryWindow
     Private Sub SalesSummaryWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'The startup location is set in the form properties to 1024, 768 to prevent glitching
-        Me.FormBorderStyle = Windows.Forms.FormBorderStyle.None
-        Me.StartPosition = FormStartPosition.Manual
-        Me.Location = New Point(100, 50)
+        FormBorderStyle = FormBorderStyle.None 'Removes border
+        StartPosition = FormStartPosition.Manual 'Prevents automatic cascade of MDI windows
+        Location = New Point(100, 50) 'Sets form location to centre of Manager window
         ClearSales()
     End Sub
 
@@ -15,6 +14,8 @@ Public Class SalesSummaryWindow
                 GetDailySalesFileSummary()
             Case WeeklySummaryButton.Name
                 GetWeeklySalesFileSummary()
+            Case Else
+                Exit Select
         End Select
     End Sub
 
@@ -23,20 +24,17 @@ Public Class SalesSummaryWindow
     End Sub
 
     Private Sub GetDailySalesFileSummary()
-        Dim DailySalesFileContents() As String = File.ReadAllLines(LoginWindow.DailySalesFilePath)
+        Dim DailySalesFileContents() As String = CSV.ReadAsArray(CSV.DailySalesFilePath)
         For Each Transaction In DailySalesFileContents
             SalesListBox.Items.Add(Transaction)
-        Next
-
-        '(TransactionID & "," & DateTime.Today & "," & DateTime.Now.ToShortTimeString() & "," & SalesWindow.SaleTotal & "," & NoOfItems & "," & ItemsBought & "," & ChangeLabel.Text)
-
+        Next Transaction
     End Sub
 
     Private Sub GetWeeklySalesFileSummary()
-        Dim WeeklySalesFileContents() As String = File.ReadAllLines(LoginWindow.WeeklySalesFilePath)
+        Dim WeeklySalesFileContents() As String = CSV.ReadAsArray(CSV.WeeklySalesFilePath)
         For Each Transaction In WeeklySalesFileContents
             SalesListBox.Items.Add(Transaction)
-        Next
+        Next Transaction
 
     End Sub
 
