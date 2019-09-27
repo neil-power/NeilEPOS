@@ -17,8 +17,9 @@
             Case SalesButton.Name 'If it is the make sales button, open window
                 SalesWindow.MdiParent = Me 'Sets manager form as MDI parent of sales form
                 SalesWindow.Show() 'Opens the sales window
-            Case ProductLookupButton.Name
-                'Opens the window
+            Case ProductLookupButton.Name 'Opens the product window
+                ProductLookupWindow.MdiParent = Me 'Sets manager form as MDI parent of product lookup form
+                ProductLookupWindow.Show()'Opens the product window
             Case EditProductButton.Name
                 'Opens the window
             Case SalesSummaryButton.Name

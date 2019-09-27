@@ -4,7 +4,7 @@
 
     Public Shared TransactionID As Integer ' Creates a variable for a running total of sales
 
-    Private Sub Payment_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated 'Runs when payment form opened
+    Private Sub Payment_Activated(sender As Object, e As EventArgs) Handles MyBase.Load 'Runs when payment form opened
 
         TotalLabel.Text = SalesWindow.SaleTotal 'Sets total to the sale total
 
@@ -29,7 +29,7 @@
 
         TransactionID = ReadTransactionIDFromFile()
 
-        Me.BringToFront() 'Brings window to front
+        BringToFront() 'Brings window to front
         AmountPaidTextBox.Select(AmountPaidTextBox.Text.Length + 1, 0) 'Selects amount paid textbox
 
     End Sub
@@ -110,19 +110,19 @@
 
     Private Function ReadTransactionIDFromFile() ' Gets most recent sales number from the sales file
         Dim SaleData() As String = CSV.ReadAsArray(CSV.DailySalesFilePath) ' This reads all data from the sales file
-        Dim CurrentSaleNumber As Integer = 0 ' Sets current sale number to 0
 
         If SaleData.Length > 1 Then ' Tests to see if there is more than one line in the sales file (there will be a header row)
+            Dim LastSale As String = SaleData.Last 'Gets last line of saledata
 
-            Dim LastSaleNumber As String = Trim(Mid(SaleData(SaleData.Length - 1), 21, 5)) 'Takes the sale number from the last line (most recent sale) of the file and removes spaces
+            Dim LastSaleNumber As String = LastSale.Split(",")(0) 'Takes the sale number from the last line (most recent sale) of the file and removes spaces
 
             If Integer.TryParse(LastSaleNumber, New Integer) Then 'Tests to see if the sales number is an integer to prevent errors
-                CurrentSaleNumber = LastSaleNumber 'Returns the last sale number (1 will be added to it when finish sale is clicked)
+                Return LastSaleNumber 'Returns the last sale number (1 will be added to it when finish sale is clicked)
             End If
 
         End If
 
-        Return CurrentSaleNumber 'Returns sale number, which will be 0 unless the sales file has a more recent sale number
+        Return 0 'Returns sale number 0 as the sales file does not have more recent sale number
 
     End Function
 
@@ -135,17 +135,17 @@
         Dim WeeklySaleFileContents() As String = CSV.ReadAsArray(CSV.WeeklySalesFilePath) 'Gets entire contents of weekly sales file
         For i = 0 To UBound(WeeklySaleFileContents) 'Runs through each line
 
-            Dim day As String() = WeeklySaleFileContents(i).Split(",") 'Splits line on commas
+            Dim Day As String() = WeeklySaleFileContents(i).Split(",") 'Splits line on commas
 
-            If day(0) = "Date" Then 'If the line is the title line
+            If Day(0) = "Date" Then 'If the line is the title line
                 If UBound(WeeklySaleFileContents) = 0 Then 'If there is only one line in the file
                     Dim LineToWrite As String = Environment.NewLine & Date.Today & "," & SalesWindow.SaleTotal & "," & NoOfItems 'Writes date, total and no of items to file
                     CSV.Append(CSV.WeeklySalesFilePath, LineToWrite) 'Writes line to file
                 End If
 
-            ElseIf day(0) = Date.Today Then 'If date matches with current date
-                Dim NewSalesTotal As Double = SalesWindow.SaleTotal + CDbl(day(1)) 'Adds current sale total to the total in the file
-                Dim NewNoOfItems As Integer = NoOfItems + CDbl(day(2)) 'Adds current no of items to the no of items in the file
+            ElseIf Day(0) = Date.Today Then 'If date matches with current date
+                Dim NewSalesTotal As Double = SalesWindow.SaleTotal + CDbl(Day(1)) 'Adds current sale total to the total in the file
+                Dim NewNoOfItems As Integer = NoOfItems + CDbl(Day(2)) 'Adds current no of items to the no of items in the file
 
                 WeeklySaleFileContents(i) = (Date.Today & "," & NewSalesTotal & "," & NewNoOfItems) 'Replace line with updated day
                 CSV.ArrayOverwrite(CSV.WeeklySalesFilePath, WeeklySaleFileContents) 'Replace file with updated version

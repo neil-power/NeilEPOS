@@ -25,13 +25,12 @@ NeilEPOS
 <member name="T:NeilEPOS.LoginWindow">
  <summary>
  TO DO NEXT
- Refactor sales window
- Add more detail to sales summary window
-
+ Add more detailed sales summary information
+ Search and sort products file, edit product in file, scrape details off internet
+ Create product edit form
+ 
  FEATURES TO ADD
- Create products file and class, read from products file, search and sort products file, edit product in file, scrape details off internet, change stock number
- Create product lookup page
- Create transaction file - auto update
+  Edit product in file, scrape details off internet
 
  FINAL STAGES OF DEVELOPMENT
  Validation - use built-in validation event
@@ -48,9 +47,7 @@ NeilEPOS
  Make payment window mdi
  Custom msgbox form for notifications
  Error logging?
- Random/direct file access - for products minimum
  Search that doesn't require a direct match
- CSV file writing class
 
  KNOWN BUGS/ISSUES
  Can't enter a price higher than 99.99.

@@ -105,6 +105,14 @@
     <Compile Include="ManagerWindow.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Product.vb" />
+    <Compile Include="ProductLookupWindow.Designer.vb">
+      <DependentUpon>ProductLookupWindow.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ProductLookupWindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RandomFile.vb" />
     <Compile Include="SalesSummaryWindow.Designer.vb">
       <DependentUpon>SalesSummaryWindow.vb</DependentUpon>
     </Compile>
@@ -162,6 +170,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ManageUsersWindow.resx">
       <DependentUpon>ManageUsersWindow.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductLookupWindow.resx">
+      <DependentUpon>ProductLookupWindow.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SalesSummaryWindow.resx">
       <DependentUpon>SalesSummaryWindow.vb</DependentUpon>

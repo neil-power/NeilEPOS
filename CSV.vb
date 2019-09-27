@@ -17,11 +17,7 @@ Public Class CSV
     End Function
 
     Public Shared Function Exists(FilePath As String) 'Returns true if file exists
-        If File.Exists(FilePath) Then
-            Return True
-        Else
-            Return False
-        End If
+        Return File.Exists(FilePath)
     End Function
 
     ' **************************************************WRITING TO FILES**************************************************
@@ -36,7 +32,7 @@ Public Class CSV
     End Sub
 
     Public Shared Sub Append(FilePath As String, DataToWrite As String) 'Appends string line to file
-        My.Computer.FileSystem.WriteAllText(FilePath, DataToWrite, True)
+        My.Computer.FileSystem.WriteAllText(FilePath, DataToWrite & Environment.NewLine, True)
     End Sub
 
     Public Shared Sub Replace(FilePath As String, LineToReplaceID As Integer, NewLine As String) 'Replaces line starting with specified ID

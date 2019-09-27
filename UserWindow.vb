@@ -1,12 +1,14 @@
 ﻿Public Class UserWindow
 
     Private Sub ActionButton_Click(sender As Object, e As EventArgs) Handles SalesButton.Click, ProductLookupButton.Click, LogoutButton.Click 'When a button is clicked, opens the correct window
+        CloseAllMDIWindows()
         Select Case sender.Name 'Selects the button pressed
             Case SalesButton.Name 'If it is the make sales button, open window
                 SalesWindow.MdiParent = Me 'Sets user form as MDI parent of sales form
                 SalesWindow.Show() 'Opens the sales window
-            Case ProductLookupButton.Name
-                'Opens the window
+            Case ProductLookupButton.Name 'Opens the window
+                ProductLookupWindow.MdiParent = Me
+                ProductLookupWindow.Show()
             Case LogoutButton.Name 'If it is the log out button, logout
                 LoginWindow.CurrentUser = Nothing 'Set user access rights to none as logging out
                 LoginWindow.Show() ' Return to login screen
@@ -26,4 +28,9 @@
         Next ctl
     End Sub
 
+
+    Private Sub CloseAllMDIWindows() 'Closes all currently open MDI windows
+        SalesWindow.Close() 'Add more
+
+    End Sub
 End Class
