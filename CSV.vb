@@ -2,14 +2,20 @@
 Public Class CSV
 
     ' **************************************************FILE PATHS**************************************************
-    Public Shared DesktopFilePath As String = My.Computer.FileSystem.SpecialDirectories.Desktop
+
+    Public Shared MainDirectoryFilePath = My.Computer.FileSystem.SpecialDirectories.Desktop & "\NeilEPOS Data\"
 
     Public Shared WeekNumber As Integer = DatePart(DateInterval.WeekOfYear, Date.Today) 'Gets week number
 
-    Public Shared UserFilePath As String = DesktopFilePath & "\" & "NeilEPOSUsers.csv" 'Location of users file
-    Public Shared DailySalesFilePath As String = DesktopFilePath & "\" & CStr(Date.Today).Replace("/", "-") & " DAILY SALES.csv" ' Desktop and current date for file to save to
-    Public Shared WeeklySalesFilePath As String = DesktopFilePath + "\" & Date.Now.Year & " " & WeekNumber & " WEEKLY SALES.csv" ' Sets week number and year for file to save to on desktop
+    Public Shared UserFilePath As String = MainDirectoryFilePath & "NeilEPOSUsers.csv" 'Location of users file
+    Public Shared DailySalesFilePath As String = MainDirectoryFilePath & CStr(Date.Today).Replace("/", "-") & " DAILY SALES.csv" ' Desktop and current date for file to save to
+    Public Shared WeeklySalesFilePath As String = MainDirectoryFilePath & Date.Now.Year & " " & WeekNumber & " WEEKLY SALES.csv" ' Sets week number and year for file to save to on desktop
 
+    Public Shared Sub CheckMainDirectoryExists() 'Checks if the main directory folder exists, if not, one is created
+        If Not Directory.Exists(MainDirectoryFilePath) Then
+            Directory.CreateDirectory(MainDirectoryFilePath)
+        End If
+    End Sub
     ' **************************************************READING FROM FILES**************************************************
 
     Public Shared Function ReadAsArray(FilePath As String) 'Returns entire file as string array
@@ -45,5 +51,12 @@ Public Class CSV
             End If
         Next
     End Sub
+
+    Public Shared Function RemoveFromArray(Array As String(), Index As Integer) 'Removes an item from a string array
+        Dim TempList As New List(Of String)
+        TempList.AddRange(Array) 'Converts into list
+        TempList.RemoveAt(Index) 'Removes item from list
+        Return TempList.ToArray 'Converts back into array
+    End Function
 
 End Class

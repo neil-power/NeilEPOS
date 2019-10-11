@@ -22,7 +22,6 @@ Partial Class ProductLookupWindow
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.FoundProductsListBox = New System.Windows.Forms.ListBox()
         Me.InstructionLabel = New System.Windows.Forms.Label()
         Me.CloseButton = New System.Windows.Forms.Button()
         Me.SearchButton = New System.Windows.Forms.Button()
@@ -37,17 +36,8 @@ Partial Class ProductLookupWindow
         Me.RRPLabel = New System.Windows.Forms.Label()
         Me.ISBNLabel = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.ClearButton = New System.Windows.Forms.Button()
         Me.SuspendLayout()
-        '
-        'FoundProductsListBox
-        '
-        Me.FoundProductsListBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
-        Me.FoundProductsListBox.FormattingEnabled = True
-        Me.FoundProductsListBox.ItemHeight = 16
-        Me.FoundProductsListBox.Location = New System.Drawing.Point(20, 244)
-        Me.FoundProductsListBox.Name = "FoundProductsListBox"
-        Me.FoundProductsListBox.Size = New System.Drawing.Size(339, 68)
-        Me.FoundProductsListBox.TabIndex = 55
         '
         'InstructionLabel
         '
@@ -62,7 +52,7 @@ Partial Class ProductLookupWindow
         'CloseButton
         '
         Me.CloseButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CloseButton.Location = New System.Drawing.Point(127, 318)
+        Me.CloseButton.Location = New System.Drawing.Point(236, 318)
         Me.CloseButton.Name = "CloseButton"
         Me.CloseButton.Size = New System.Drawing.Size(100, 75)
         Me.CloseButton.TabIndex = 52
@@ -188,13 +178,23 @@ Partial Class ProductLookupWindow
         Me.Button1.Text = "Write examples"
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'ClearButton
+        '
+        Me.ClearButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ClearButton.Location = New System.Drawing.Point(128, 318)
+        Me.ClearButton.Name = "ClearButton"
+        Me.ClearButton.Size = New System.Drawing.Size(100, 75)
+        Me.ClearButton.TabIndex = 52
+        Me.ClearButton.Text = "Clear"
+        Me.ClearButton.UseVisualStyleBackColor = True
+        '
         'ProductLookupWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(784, 561)
-        Me.Controls.Add(Me.FoundProductsListBox)
         Me.Controls.Add(Me.InstructionLabel)
+        Me.Controls.Add(Me.ClearButton)
         Me.Controls.Add(Me.CloseButton)
         Me.Controls.Add(Me.SearchButton)
         Me.Controls.Add(Me.FoundGenreLabel)
@@ -215,8 +215,6 @@ Partial Class ProductLookupWindow
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents FoundProductsListBox As ListBox
     Friend WithEvents InstructionLabel As Label
     Friend WithEvents CloseButton As Button
     Friend WithEvents SearchButton As Button
@@ -231,4 +229,5 @@ Partial Class ProductLookupWindow
     Friend WithEvents RRPLabel As Label
     Friend WithEvents ISBNLabel As Label
     Friend WithEvents Button1 As Button
+    Friend WithEvents ClearButton As Button
 End Class

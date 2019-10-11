@@ -15,7 +15,7 @@
         If Not CSV.Exists(CSV.DailySalesFilePath) Then ' Checks to see if a daily sales file has already been created
             Dim HeadingsRow As String = "TransactionID" & "," & "Date" & "," & "Time" & "," & "Sale Total" & "," & "No of Items" & "," & "Items Bought" & "," & "Change Given"
             CSV.Overwrite(CSV.DailySalesFilePath, HeadingsRow) 'Writes a headings row to file.
-            MsgBox("A new daily sales file has been created at " & CSV.DailySalesFilePath, vbInformation, "New file created!") 'Gives notification that a new sales file has been created
+            MessageBox.Show("A new daily sales file has been created at " & CSV.DailySalesFilePath, "New file created!") 'Gives notification that a new sales file has been created
 
         End If
 
@@ -23,7 +23,7 @@
             Dim HeadingsRow As String = "Date" & "," & "Sale Total" & "," & "No of Items"
             CSV.Overwrite(CSV.WeeklySalesFilePath, HeadingsRow) 'Writes a headings row to file.
 
-            MsgBox("A new weekly sales file has been created at " & CSV.WeeklySalesFilePath, vbInformation, "New file created!") 'Gives notification that a new sales file has been created
+            MessageBox.Show("A new weekly sales file has been created at " & CSV.WeeklySalesFilePath, "New file created!") 'Gives notification that a new sales file has been created
 
         End If
 

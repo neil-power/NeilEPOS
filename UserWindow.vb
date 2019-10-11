@@ -28,9 +28,9 @@
         Next ctl
     End Sub
 
-
-    Private Sub CloseAllMDIWindows() 'Closes all currently open MDI windows
-        SalesWindow.Close() 'Add more
-
+    Private Sub CloseAllMDIWindows() 'Closes all currently open MDI windows. May not be necessary for multiple window use
+        SalesWindow.Close()
+        ProductLookupWindow.Close()
     End Sub
+
 End Class

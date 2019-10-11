@@ -99,6 +99,12 @@
     <Compile Include="LoginWindow.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ManageProductsWindow.Designer.vb">
+      <DependentUpon>ManageProductsWindow.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ManageProductsWindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ManagerWindow.Designer.vb">
       <DependentUpon>ManagerWindow.vb</DependentUpon>
     </Compile>
@@ -164,6 +170,9 @@
   <ItemGroup>
     <EmbeddedResource Include="LoginWindow.resx">
       <DependentUpon>LoginWindow.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageProductsWindow.resx">
+      <DependentUpon>ManageProductsWindow.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManagerWindow.resx">
       <DependentUpon>ManagerWindow.vb</DependentUpon>

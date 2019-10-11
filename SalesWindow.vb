@@ -226,7 +226,7 @@ Public Class SalesWindow
                 End If
 
             Else
-                MsgBox("Item not found") 'Gives error if the book is not found
+                MessageBox.Show("Item not found") 'Gives error if the book is not found
             End If
 
         End If

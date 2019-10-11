@@ -23,19 +23,20 @@ NeilEPOS
 </summary>
 </member>
 <member name="T:NeilEPOS.LoginWindow">
- <summary>
+ <todo>
  TO DO NEXT
  Add more detailed sales summary information
- Search and sort products file, edit product in file, scrape details off internet
- Create product edit form
+ Integrate product lookup with sales window
+ Add new search button to product lookup window
  
  FEATURES TO ADD
-  Edit product in file, scrape details off internet
-
+ Backups
+ Binary search and sorting for index file
+ Store all files within a central folder
+ 
  FINAL STAGES OF DEVELOPMENT
  Validation - use built-in validation event
  Try catch loops for everything that can go wrong
- Make code shorter and more efficient
  Functional UI design - prevent selection of some objects, set up tabbing, etc
  Visual UI design - colours, logos, branding
  Lots of testing
@@ -47,16 +48,17 @@ NeilEPOS
  Make payment window mdi
  Custom msgbox form for notifications
  Error logging?
- Search that doesn't require a direct match
+ Cleanup method - copy all records mentioned in index file to new master file.
+ Indexed file for each attribute - can search based on any attribute of product
 
  KNOWN BUGS/ISSUES
  Can't enter a price higher than 99.99.
- Date should be in YYYY-MM-DD format
+ Date should be in YYYY-MM-DD for file names
 
  INFO
  Standard window size - 1024 x 768
  Standard MDI form size - 800 x 600, starting position 100, 50
- </summary>
+ </todo>
 </member>
 </members>
 </doc>

@@ -84,7 +84,7 @@
             Dim UserToSave As String = UserIDTextBox.Text & "," & UsernameTextBox.Text & "," & PasswordTextBox.Text & "," & GetUserAccessFromTextBox()
             CSV.Replace(CSV.UserFilePath, UserIDTextBox.Text, UserToSave) 'Replaces any lines matching UserID text box
         ElseIf Mode = UserMode.NewUser Then 'If a new user is being made, they can be added at the end of the file
-            Dim LineToWrite As String = Environment.NewLine & UserIDTextBox.Text & "," & UsernameTextBox.Text & "," & PasswordTextBox.Text & "," & GetUserAccessFromTextBox() 'Verification needed
+            Dim LineToWrite As String = UserIDTextBox.Text & "," & UsernameTextBox.Text & "," & PasswordTextBox.Text & "," & GetUserAccessFromTextBox() 'Verification needed
             CSV.Append(CSV.UserFilePath, LineToWrite) 'Writes line to file
         End If
 
@@ -171,19 +171,12 @@
             Dim UserFound As User = User.FromLine(UserFileContents(i)) 'Converts to user
             If UserFound.UserID = UserToEdit.UserID Then 'If ID matches with edited user
                 If InputBox("Please type 'YES' to confirm deletion of user " & UserFound.UserID & " " & UserFound.UserName) = "YES" Then 'Confirms user deletion
-                    CSV.ArrayOverwrite(CSV.UserFilePath, ArrayRemove(UserFileContents, i)) 'Overwrites file with new list of users
+                    CSV.ArrayOverwrite(CSV.UserFilePath, CSV.RemoveFromArray(UserFileContents, i)) 'Overwrites file with new list of users
                 End If
             End If
         Next
         ResetUsersWindow()
     End Sub
-
-    Private Function ArrayRemove(array As String(), index As Integer) 'Removes an item from a string array
-        Dim tempList As New List(Of String)
-        tempList.AddRange(array) 'Converts into list
-        tempList.RemoveAt(index) 'Removes item from list
-        Return tempList.ToArray 'Converts back into array
-    End Function
 
     Private Sub FoundUsersListBox_DoubleClick(sender As Object, e As EventArgs) Handles FoundUsersListBox.DoubleClick
         If FoundUsersListBox.SelectedItem <> Nothing Then 'If a user is selected

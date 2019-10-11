@@ -19,9 +19,10 @@
                 SalesWindow.Show() 'Opens the sales window
             Case ProductLookupButton.Name 'Opens the product window
                 ProductLookupWindow.MdiParent = Me 'Sets manager form as MDI parent of product lookup form
-                ProductLookupWindow.Show()'Opens the product window
-            Case EditProductButton.Name
-                'Opens the window
+                ProductLookupWindow.Show() 'Opens the product window
+            Case EditProductButton.Name 'Opens the product management window
+                ManageProductsWindow.MdiParent = Me 'Sets manager form as MDI parent of product management form
+                ManageProductsWindow.Show() 'Opens the product management window
             Case SalesSummaryButton.Name
                 SalesSummaryWindow.MdiParent = Me 'Sets manager form as MDI parent of summary form
                 SalesSummaryWindow.Show()  'Opens the summary window
@@ -38,8 +39,10 @@
 
     End Sub
 
-    Private Sub CloseAllMDIWindows() 'Closes all currently open MDI windows
-        SalesWindow.Close() 'Add more
+    Private Sub CloseAllMDIWindows() 'Closes all currently open MDI windows. May not be necessary for multiple window use
+        SalesWindow.Close()
+        ProductLookupWindow.Close()
+        ManageProductsWindow.Close()
         SalesSummaryWindow.Close()
         ManageUsersWindow.Close()
     End Sub
