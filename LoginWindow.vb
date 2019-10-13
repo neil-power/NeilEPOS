@@ -1,53 +1,5 @@
-﻿''' <todo>
-''' TO DO NEXT
-''' Add more detailed sales summary information
-''' Integrate product lookup with sales window
-''' Add new search button to product lookup window
-''' 
-''' FEATURES TO ADD
-''' Backups
-''' Binary search and sorting for index file
-''' Store all files within a central folder
-''' 
-''' FINAL STAGES OF DEVELOPMENT
-''' Validation - use built-in validation event
-''' Try catch loops for everything that can go wrong
-''' Functional UI design - prevent selection of some objects, set up tabbing, etc
-''' Visual UI design - colours, logos, branding
-''' Lots of testing
-'''
-''' POTENTIAL NEW THINGS TO ADD
-''' Stock in?
-''' Payment types?
-''' Single numpad for all screens?
-''' Make payment window mdi
-''' Custom msgbox form for notifications
-''' Error logging?
-''' Cleanup method - copy all records mentioned in index file to new master file.
-''' Indexed file for each attribute - can search based on any attribute of product
-'''
-''' KNOWN BUGS/ISSUES
-''' Can't enter a price higher than 99.99.
-''' Date should be in YYYY-MM-DD for file names
-'''
-''' INFO
-''' Standard window size - 1024 x 768
-''' Standard MDI form size - 800 x 600, starting position 100, 50
-''' </todo>
+﻿Public Class LoginWindow
 
-Public Class LoginWindow
-
-    ' **************************************************FILE INPUT**************************************************
-
-    Private Sub LoginWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        CSV.CheckMainDirectoryExists() 'Checks if the main directory folder exists, if not, one is created
-
-        If Not CSV.Exists(CSV.UserFilePath) Then ' Checks to see if the NeilEPOSUsers.csv file exists
-            Dim DefaultUserDetails As String = "00001" & "," & "Default" & "," & "123" & "," & "0"
-            CSV.Overwrite(CSV.UserFilePath, DefaultUserDetails) 'Writes a default manager account to the file to create a file for storing data.
-            MsgBox("A new users file has been created. A default manager account with ID 00001 and password 123 has been created.", vbExclamation, "Warning!")
-        End If
-    End Sub
 
     ' **************************************************UTILITY BUTTONS**************************************************
     Private Sub UtilityButton_Click(sender As Object, e As EventArgs) Handles ClearButton.Click, CloseButton.Click, LoginButton.Click
@@ -92,11 +44,11 @@ Public Class LoginWindow
             Select Case CurrentUser.AccessLevel 'Select access level
                 Case User.UserAccessLevel.Manager 'If manager, open manager window
                     ClearFields() 'Clear ID and password fields
-                    Me.Hide() 'Hides login window as variables still in use
+                    Hide() 'Hides login window as variables still in use
                     ManagerWindow.Show() 'Open manager window
                 Case User.UserAccessLevel.User
                     ClearFields() 'Clear ID and password fields
-                    Me.Hide() 'Hides login window as variables still in use
+                    Hide() 'Hides login window as variables still in use
                     UserWindow.Show() 'Open user window
                 Case User.UserAccessLevel.None
                     MsgBox("You do not have access rights to log in to this system.")

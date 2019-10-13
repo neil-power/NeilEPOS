@@ -22,7 +22,7 @@ NeilEPOS
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
-<member name="T:NeilEPOS.LoginWindow">
+<member name="T:NeilEPOS.StartupWindow">
  <todo>
  TO DO NEXT
  Add more detailed sales summary information
@@ -42,12 +42,14 @@ NeilEPOS
  Lots of testing
 
  POTENTIAL NEW THINGS TO ADD
+ My.Settings file - for file paths etc
  Stock in?
  Payment types?
  Single numpad for all screens?
  Make payment window mdi
  Custom msgbox form for notifications
  Error logging?
+ Encryption for users file
  Cleanup method - copy all records mentioned in index file to new master file.
  Indexed file for each attribute - can search based on any attribute of product
 

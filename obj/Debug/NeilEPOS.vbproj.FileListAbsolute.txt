@@ -38,7 +38,6 @@ C:\Users\Neil Power\Documents\GitHub Repositories\NeilEPOS\obj\Debug\NeilEPOS.Re
 C:\Users\Neil Power\Documents\GitHub Repositories\NeilEPOS\obj\Debug\NeilEPOS.PaymentWindow.resources
 C:\Users\Neil Power\Documents\GitHub Repositories\NeilEPOS\obj\Debug\NeilEPOS.UserWindow.resources
 C:\Users\Neil Power\Documents\GitHub Repositories\NeilEPOS\obj\Debug\NeilEPOS.vbproj.GenerateResource.cache
-C:\Users\Neil Power\Documents\GitHub Repositories\NeilEPOS\obj\Debug\NeilEPOS.vbproj.CoreCompileInputs.cache
 C:\Users\Neil Power\Documents\GitHub Repositories\NeilEPOS\obj\Debug\NeilEPOS.exe
 C:\Users\Neil Power\Documents\GitHub Repositories\NeilEPOS\obj\Debug\NeilEPOS.xml
 C:\Users\Neil Power\Documents\GitHub Repositories\NeilEPOS\obj\Debug\NeilEPOS.pdb
@@ -47,3 +46,4 @@ C:\Users\Neil Power\Documents\GitHub Repositories\NeilEPOS\obj\Debug\NeilEPOS.vb
 C:\Users\Neil Power\Documents\GitHub Repositories\NeilEPOS\obj\Debug\NeilEPOS.SalesSummaryWindow.resources
 C:\Users\Neil Power\Documents\GitHub Repositories\NeilEPOS\obj\Debug\NeilEPOS.ProductLookupWindow.resources
 C:\Users\Neil Power\Documents\GitHub Repositories\NeilEPOS\obj\Debug\NeilEPOS.ManageProductsWindow.resources
+C:\Users\Neil Power\Documents\GitHub Repositories\NeilEPOS\obj\Debug\NeilEPOS.StartupWindow.resources

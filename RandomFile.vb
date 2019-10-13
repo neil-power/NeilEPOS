@@ -35,16 +35,6 @@ Public Class RandomFile
 
     Public Shared Sub Write(ItemToWrite As String, FilePath As String, FileIndexPath As String)
 
-        If Not Exists(FilePath) Then ' Checks to see if product file exists
-            CSV.Overwrite(FilePath, "") 'Create a new blank file
-            MessageBox.Show("A new product file has been created at " & FilePath, "New file created!") 'Gives notification that a new product file has been created
-        End If
-
-        If Not Exists(FileIndexPath) Then ' Checks to see if product file exists
-            CSV.Overwrite(FileIndexPath, "") 'Create a new blank file
-            MessageBox.Show("A new product index file has been created at " & FileIndexPath, "New file created!") 'Gives notification that a new product file has been created
-        End If
-
         Dim Position As Integer
         'WRITE FULL PRODUCT TO PRODUCTS FILE AT POSITION = LENGTH OF FILE
         Dim bytesToWrite() As Byte = Text.Encoding.UTF8.GetBytes(ItemToWrite)
@@ -69,6 +59,7 @@ Public Class RandomFile
             End If
         Next
     End Sub
+
     Public Shared Sub Replace(FieldID As String, NewItemToWrite As String, FilePath As String, FileIndexPath As String)
         Delete(FieldID, FileIndexPath) 'Remove ID from index file
         Write(NewItemToWrite, FilePath, FileIndexPath) 'Write new product details and add new index to file

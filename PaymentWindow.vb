@@ -12,21 +12,6 @@
         AmountPaidTextBox.Text = "0000" ''Resets textbox to default value
         ChangeToGiveLabel.Text = "Amount to pay:" 'Resets label to default value
 
-        If Not CSV.Exists(CSV.DailySalesFilePath) Then ' Checks to see if a daily sales file has already been created
-            Dim HeadingsRow As String = "TransactionID" & "," & "Date" & "," & "Time" & "," & "Sale Total" & "," & "No of Items" & "," & "Items Bought" & "," & "Change Given"
-            CSV.Overwrite(CSV.DailySalesFilePath, HeadingsRow) 'Writes a headings row to file.
-            MessageBox.Show("A new daily sales file has been created at " & CSV.DailySalesFilePath, "New file created!") 'Gives notification that a new sales file has been created
-
-        End If
-
-        If Not CSV.Exists(CSV.WeeklySalesFilePath) Then ' Checks to see if a weekly sales file has already been created
-            Dim HeadingsRow As String = "Date" & "," & "Sale Total" & "," & "No of Items"
-            CSV.Overwrite(CSV.WeeklySalesFilePath, HeadingsRow) 'Writes a headings row to file.
-
-            MessageBox.Show("A new weekly sales file has been created at " & CSV.WeeklySalesFilePath, "New file created!") 'Gives notification that a new sales file has been created
-
-        End If
-
         TransactionID = ReadTransactionIDFromFile()
 
         BringToFront() 'Brings window to front

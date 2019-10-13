@@ -159,6 +159,12 @@
     <Compile Include="ManageUsersWindow.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="StartupWindow.Designer.vb">
+      <DependentUpon>StartupWindow.vb</DependentUpon>
+    </Compile>
+    <Compile Include="StartupWindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="User.vb" />
     <Compile Include="UserWindow.Designer.vb">
       <DependentUpon>UserWindow.vb</DependentUpon>
@@ -197,6 +203,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PaymentWindow.resx">
       <DependentUpon>PaymentWindow.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StartupWindow.resx">
+      <DependentUpon>StartupWindow.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserWindow.resx">
       <DependentUpon>UserWindow.vb</DependentUpon>
