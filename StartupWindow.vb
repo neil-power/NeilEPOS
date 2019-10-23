@@ -39,7 +39,7 @@
 
 Public Class StartupWindow
 
-    Private NoOfChecks As Integer = 6
+    Private ReadOnly NoOfChecks As Integer = 6
     Private ChecksCompleted As Integer = 0
 
     Private Sub StartupWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
