@@ -105,7 +105,7 @@
 
     Private Sub SearchForProduct()
         Dim FoundProduct As String = Product.GetProductFromID(ProductIDTextBox.Text) 'Attempt to read product from file
-        If FoundProduct <> "Item not found" Then 'If read subroutine does not return "not found"
+        If FoundProduct <> Nothing Then 'If read subroutine does not return "not found"
 
             If Mode = ProductMode.EditProduct Then 'If a product is being edited, the new details need to be inserted
                 EditProduct(Product.FromLine(FoundProduct)) 'Sends product to edit to the edit subroutine
@@ -135,10 +135,10 @@
     End Sub
 
     Private Function ArrayRemove(array As String(), index As Integer) 'Removes an item from a string array
-        Dim tempList As New List(Of String)
-        tempList.AddRange(array) 'Converts into list
-        tempList.RemoveAt(index) 'Removes item from list
-        Return tempList.ToArray 'Converts back into array
+        Dim TempList As New List(Of String)
+        TempList.AddRange(array) 'Converts into list
+        TempList.RemoveAt(index) 'Removes item from list
+        Return TempList.ToArray 'Converts back into array
     End Function
 
 End Class

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class ProductLookupWindow
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class ProductLookupWindow
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.InstructionLabel = New System.Windows.Forms.Label()
         Me.CloseButton = New System.Windows.Forms.Button()
@@ -37,6 +37,9 @@ Partial Class ProductLookupWindow
         Me.ISBNLabel = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.ClearButton = New System.Windows.Forms.Button()
+        Me.WebCrawler = New System.Windows.Forms.WebBrowser()
+        Me.OnlineLookupButton = New System.Windows.Forms.Button()
+        Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.SuspendLayout()
         '
         'InstructionLabel
@@ -171,7 +174,7 @@ Partial Class ProductLookupWindow
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(433, 469)
+        Me.Button1.Location = New System.Drawing.Point(428, 374)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(106, 93)
         Me.Button1.TabIndex = 41
@@ -188,14 +191,44 @@ Partial Class ProductLookupWindow
         Me.ClearButton.Text = "Clear"
         Me.ClearButton.UseVisualStyleBackColor = True
         '
+        'WebCrawler
+        '
+        Me.WebCrawler.Location = New System.Drawing.Point(719, 509)
+        Me.WebCrawler.MinimumSize = New System.Drawing.Size(20, 20)
+        Me.WebCrawler.Name = "WebCrawler"
+        Me.WebCrawler.Size = New System.Drawing.Size(53, 40)
+        Me.WebCrawler.TabIndex = 57
+        Me.WebCrawler.Visible = False
+        '
+        'OnlineLookupButton
+        '
+        Me.OnlineLookupButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.OnlineLookupButton.Location = New System.Drawing.Point(21, 410)
+        Me.OnlineLookupButton.Name = "OnlineLookupButton"
+        Me.OnlineLookupButton.Size = New System.Drawing.Size(100, 75)
+        Me.OnlineLookupButton.TabIndex = 53
+        Me.OnlineLookupButton.Text = "Online Lookup"
+        Me.OnlineLookupButton.UseVisualStyleBackColor = True
+        '
+        'ListBox1
+        '
+        Me.ListBox1.FormattingEnabled = True
+        Me.ListBox1.Location = New System.Drawing.Point(428, 46)
+        Me.ListBox1.Name = "ListBox1"
+        Me.ListBox1.Size = New System.Drawing.Size(344, 251)
+        Me.ListBox1.TabIndex = 58
+        '
         'ProductLookupWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(784, 561)
+        Me.Controls.Add(Me.ListBox1)
+        Me.Controls.Add(Me.WebCrawler)
         Me.Controls.Add(Me.InstructionLabel)
         Me.Controls.Add(Me.ClearButton)
         Me.Controls.Add(Me.CloseButton)
+        Me.Controls.Add(Me.OnlineLookupButton)
         Me.Controls.Add(Me.SearchButton)
         Me.Controls.Add(Me.FoundGenreLabel)
         Me.Controls.Add(Me.FoundPriceLabel)
@@ -230,4 +263,7 @@ Partial Class ProductLookupWindow
     Friend WithEvents ISBNLabel As Label
     Friend WithEvents Button1 As Button
     Friend WithEvents ClearButton As Button
+    Friend WithEvents WebCrawler As WebBrowser
+    Friend WithEvents OnlineLookupButton As Button
+    Friend WithEvents ListBox1 As ListBox
 End Class

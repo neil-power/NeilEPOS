@@ -11,8 +11,9 @@
                 ProductLookupWindow.Show()
             Case LogoutButton.Name 'If it is the log out button, logout
                 LoginWindow.CurrentUser = Nothing 'Set user access rights to none as logging out
+                LoginWindow.BringToFront()
                 LoginWindow.Show() ' Return to login screen
-                Close() 'Closes user window
+                Hide() 'Closes user window
             Case Else
                 Exit Select
         End Select
@@ -31,6 +32,14 @@
     Private Sub CloseAllMDIWindows() 'Closes all currently open MDI windows. May not be necessary for multiple window use
         SalesWindow.Close()
         ProductLookupWindow.Close()
+    End Sub
+
+
+    Private Sub UserWindow_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        If e.CloseReason = CloseReason.UserClosing Then 'If user clicks close button
+            CloseAllMDIWindows()
+            StartupWindow.Close() 'Ensures program closes fully if user clicks close button
+        End If
     End Sub
 
 End Class

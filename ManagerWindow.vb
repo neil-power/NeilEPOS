@@ -31,8 +31,9 @@
                 ManageUsersWindow.Show() 'Opens the manage users window
             Case LogoutButton.Name 'If it is the log out button, logout
                 LoginWindow.CurrentUser = Nothing 'Set user access rights to none as logging out
+                LoginWindow.BringToFront()
                 LoginWindow.Show() ' Return to login screen
-                Close() 'Closes the manager window
+                Hide() 'Closes the manager window
             Case Else
                 Exit Select
         End Select
@@ -47,4 +48,10 @@
         ManageUsersWindow.Close()
     End Sub
 
+    Private Sub ManagerWindow_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        If e.CloseReason = CloseReason.UserClosing Then 'If user clicks close button
+            CloseAllMDIWindows()
+            StartupWindow.Close() 'Ensures program closes fully if user clicks close button
+        End If
+    End Sub
 End Class

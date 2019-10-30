@@ -1,5 +1,4 @@
-﻿Imports System.IO 'Imports libraries needed for reading and writing files
-Public Class SalesWindow
+﻿Public Class SalesWindow
 
     ' **************************************************ON LOAD**************************************************
     'GLOBAL VARIABLES

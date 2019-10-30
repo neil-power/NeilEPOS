@@ -20,6 +20,7 @@
     Private Sub ResetProductLookupWindow() 'Resets all values to default
 
         ISBNMaskedTextBox.Clear() 'Clear all text boxes and labels
+        ISBNMaskedTextBox.ReadOnly = False
         FoundTitleLabel.Text = ""
         FoundAuthorLabel.Text = ""
         FoundPriceLabel.Text = ""
@@ -45,7 +46,7 @@
 
     Private Sub SearchForProduct() 'Searches for product based on ID
         Dim FoundProduct As String = Product.GetProductFromID(ISBNMaskedTextBox.Text.Trim()) 'Gets product based on ID from master file
-        If FoundProduct <> "Item not found" Then 'Product lookup will return not found
+        If FoundProduct <> Nothing Then 'Product lookup will return not found
             InstructionLabel.Text = "Product found" 'Change instruction label
             ShowProduct(Product.FromLine(FoundProduct)) 'Display product on form
         Else
@@ -66,4 +67,37 @@
     Private Sub ClearButton_Click(sender As Object, e As EventArgs) Handles ClearButton.Click
         ResetProductLookupWindow()
     End Sub
+
+    ' **************************************************ONLINE LOOKUP**************************************************
+
+    Private Sub OnlineLookupButton_Click(sender As Object, e As EventArgs) Handles OnlineLookupButton.Click
+        If Trim(ISBNMaskedTextBox.Text).Length >= 10 And Trim(ISBNMaskedTextBox.Text).Length <= 13 Then 'Checks if data in textbox is the right ISBN length
+            WebCrawler.Navigate("https://www.bertrams.com/BertWeb/public/itemLookup.do?method=list&ITEM=" & Trim(ISBNMaskedTextBox.Text)) 'Navigates to the bertrams webpage for the book
+        End If
+        '9781529018585
+    End Sub
+
+
+    Private Sub WebCrawler_DocumentCompleted(sender As Object, e As WebBrowserDocumentCompletedEventArgs) Handles WebCrawler.DocumentCompleted ' Runs when webpage is loaded
+        If e.Url = WebCrawler.Url Then 'Checks if webpage has loaded - if full url equals current url
+            Dim FoundProduct As New Product  'Creates a blank product
+            MsgBox(WebCrawler.Document.GetElementsByTagName("h1").Count)
+
+            Dim ListOfDivs As HtmlElementCollection = WebCrawler.Document.GetElementsByTagName("div") 'Finds all HTML divs and adds them to a list
+            For Each Element As HtmlElement In ListOfDivs 'Runs through all the divs to find the price div
+                ListBox1.Items.Add(Element.GetAttribute("classname"))
+                If Element.GetAttribute("classname").ToString = "col-12" Then 'Checks if the class of the element is the title
+                    MsgBox(Element.InnerHtml.ToString)
+                End If
+
+                If Element.GetAttribute("classname").ToString = "col-7 priceInfo" Then 'Checks if the class of the element is the price info
+                    FoundProduct.RRP = Element.InnerText.Substring(0, Element.InnerText.Length - 5) 'Gets the inner text of the price div, without the last 5 characters (" GDP")
+                End If
+
+            Next Element
+        End If
+
+    End Sub
+
+
 End Class

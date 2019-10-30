@@ -45,9 +45,9 @@ Partial Class SalesWindow
         Me.PriceTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.ISBNTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.QuantityTextBox = New System.Windows.Forms.MaskedTextBox()
-        Me.WebCrawler = New System.Windows.Forms.WebBrowser()
         Me.PriceLookupButton = New System.Windows.Forms.Button()
         Me.CloseButton = New System.Windows.Forms.Button()
+        Me.WebCrawler = New System.Windows.Forms.WebBrowser()
         Me.SuspendLayout()
         '
         'ISBNLabel
@@ -285,15 +285,6 @@ Partial Class SalesWindow
         Me.QuantityTextBox.Size = New System.Drawing.Size(181, 29)
         Me.QuantityTextBox.TabIndex = 9
         '
-        'WebCrawler
-        '
-        Me.WebCrawler.Location = New System.Drawing.Point(711, 512)
-        Me.WebCrawler.MinimumSize = New System.Drawing.Size(20, 20)
-        Me.WebCrawler.Name = "WebCrawler"
-        Me.WebCrawler.Size = New System.Drawing.Size(53, 40)
-        Me.WebCrawler.TabIndex = 11
-        Me.WebCrawler.Visible = False
-        '
         'PriceLookupButton
         '
         Me.PriceLookupButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -313,6 +304,15 @@ Partial Class SalesWindow
         Me.CloseButton.TabIndex = 4
         Me.CloseButton.Text = "Close"
         Me.CloseButton.UseVisualStyleBackColor = True
+        '
+        'WebCrawler
+        '
+        Me.WebCrawler.Location = New System.Drawing.Point(711, 509)
+        Me.WebCrawler.MinimumSize = New System.Drawing.Size(20, 20)
+        Me.WebCrawler.Name = "WebCrawler"
+        Me.WebCrawler.Size = New System.Drawing.Size(53, 40)
+        Me.WebCrawler.TabIndex = 56
+        Me.WebCrawler.Visible = False
         '
         'SalesWindow
         '
@@ -377,7 +377,7 @@ Partial Class SalesWindow
     Friend WithEvents PriceTextBox As MaskedTextBox
     Friend WithEvents ISBNTextBox As MaskedTextBox
     Friend WithEvents QuantityTextBox As MaskedTextBox
-    Friend WithEvents WebCrawler As WebBrowser
     Friend WithEvents PriceLookupButton As Button
     Friend WithEvents CloseButton As Button
+    Friend WithEvents WebCrawler As WebBrowser
 End Class

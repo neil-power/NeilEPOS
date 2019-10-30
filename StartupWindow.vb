@@ -1,13 +1,12 @@
 ﻿''' <todo>
 ''' TO DO NEXT
 ''' Add more detailed sales summary information
-''' Integrate product lookup with sales window
 ''' Add new search button to product lookup window
+''' Add FromWeb lookup
 ''' 
 ''' FEATURES TO ADD
 ''' Backups
 ''' Binary search and sorting for index file
-''' Store all files within a central folder
 ''' 
 ''' FINAL STAGES OF DEVELOPMENT
 ''' Validation - use built-in validation event
@@ -48,6 +47,7 @@ Public Class StartupWindow
         LoadProgressBar.Value = 0
         PerformStartupChecks() 'Runs file checks
         StartButton.Show()
+        StartButton.Select() 'Selects start button so user can press enter key
 
     End Sub
 

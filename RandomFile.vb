@@ -18,7 +18,7 @@ Public Class RandomFile
         Next
 
         If LengthToRead = 0 Then 'If a length to read is not returned
-            Return "Item not found" 'Item is not found
+            Return Nothing 'Item is not found
         End If
 
         'NAVIGATE TO LOCATION AND EXTRACT PRODUCT DETAILS
