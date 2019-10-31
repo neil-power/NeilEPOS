@@ -38,16 +38,18 @@
 
         SaveProductButton.Hide() 'Hide all buttons
         SearchButton.Hide()
+        OnlineLookupButton.Hide()
         Mode = ProductMode.None 'Set mode to none
     End Sub
 
     ' **************************************************UTILITY BUTTONS**************************************************
-    Private Sub ProductButton_Click(sender As Object, e As EventArgs) Handles NewProductButton.Click, EditProductButton.Click, DeleteProductButton.Click, SaveProductButton.Click, CloseButton.Click, SearchButton.Click 'Handles clicks of utility buttons
+    Private Sub ProductButton_Click(sender As Object, e As EventArgs) Handles SearchButton.Click, SaveProductButton.Click, OnlineLookupButton.Click, NewProductButton.Click, EditProductButton.Click, DeleteProductButton.Click, CloseButton.Click  'Handles clicks of utility buttons
         Select Case sender.Name 'Selects button pressed
             Case NewProductButton.Name 'If new product, create a new product
                 ResetProductsWindow()
                 Mode = ProductMode.NewProduct
                 InstructionLabel.Text = "Please fill in the details for the new product and click save."
+                OnlineLookupButton.Show()
                 AllowTextboxExit()
             Case EditProductButton.Name 'If edit product, search for then edit product
                 PrepareForSearch() 'Sets fields and shows search button
@@ -140,5 +142,52 @@
         TempList.RemoveAt(index) 'Removes item from list
         Return TempList.ToArray 'Converts back into array
     End Function
+
+
+    ' **************************************************ONLINE LOOKUP**************************************************
+
+    Private Sub OnlineLookupButton_Click(sender As Object, e As EventArgs) Handles OnlineLookupButton.Click
+        If Trim(ProductIDTextBox.Text).Length >= 10 And Trim(ProductIDTextBox.Text).Length <= 13 Then 'Checks if data in textbox is the right ISBN length
+            WebCrawler.Navigate("https://www.bertrams.com/BertWeb/public/itemLookup.do?method=list&ITEM=" & ProductIDTextBox.Text) 'Navigates to the bertrams webpage for the book
+        End If
+    End Sub
+
+
+    Private Sub WebCrawler_DocumentCompleted(sender As Object, e As WebBrowserDocumentCompletedEventArgs) Handles WebCrawler.DocumentCompleted ' Runs when webpage is loaded
+        If e.Url = WebCrawler.Url Then 'Checks if webpage has loaded - if full url equals current url
+
+            Dim FoundProduct As New Product With {.ISBN = Trim(ProductIDTextBox.Text)}  'Creates a blank product
+
+            'TITLE
+            Dim ListOfH1s As HtmlElementCollection = WebCrawler.Document.GetElementsByTagName("h1") 'Finds all HTML h1s and adds them to a list
+            For Each Element As HtmlElement In ListOfH1s 'Runs through all the h1s to find the title h1
+                If Element.GetAttribute("classname") = "b" Then 'If class of h1 is the title h1
+                    FoundProduct.Title = Element.InnerText 'Add title to found product
+                End If
+            Next Element
+
+            'AUTHOR AND RRP
+            Dim ListOfDivs As HtmlElementCollection = WebCrawler.Document.GetElementsByTagName("div") 'Finds all HTML divs and adds them to a list
+            For Each Element As HtmlElement In ListOfDivs 'Runs through all the divs to find the price and author divs
+                'AUTHOR
+                If Element.GetAttribute("classname").ToString = "contributorInfo col-12" Then 'Checks if the class of the element is the author
+                    FoundProduct.Author = Element.InnerText.Substring(12) 'Gets the inner text of the author div, without the first 12 characters ("By author: ")
+                End If
+                'RRP
+                If Element.GetAttribute("classname").ToString = "col-7 priceInfo" Then 'Checks if the class of the element is the price info
+                    FoundProduct.RRP = Element.InnerText.Substring(0, Element.InnerText.Length - 5) 'Gets the inner text of the price div, without the last 5 characters (" GDP")
+                End If
+
+            Next Element
+
+            If FoundProduct.RRP <> Nothing And FoundProduct.Author <> Nothing And FoundProduct.Title <> Nothing Then 'Checks if a product was found
+                EditProduct(FoundProduct) 'Displays the found product
+            Else
+                MessageBox.Show("Unable to find product")
+            End If
+
+        End If
+
+    End Sub
 
 End Class

@@ -39,6 +39,8 @@ Partial Class ManageProductsWindow
         Me.ProductIDTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.AuthorLabel = New System.Windows.Forms.Label()
         Me.ProductIDLabel = New System.Windows.Forms.Label()
+        Me.OnlineLookupButton = New System.Windows.Forms.Button()
+        Me.WebCrawler = New System.Windows.Forms.WebBrowser()
         Me.SuspendLayout()
         '
         'InstructionLabel
@@ -180,7 +182,7 @@ Partial Class ManageProductsWindow
         '
         Me.ProductIDTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ProductIDTextBox.Location = New System.Drawing.Point(186, 135)
-        Me.ProductIDTextBox.Mask = "000000000999"
+        Me.ProductIDTextBox.Mask = "0000000000999"
         Me.ProductIDTextBox.Name = "ProductIDTextBox"
         Me.ProductIDTextBox.Size = New System.Drawing.Size(191, 29)
         Me.ProductIDTextBox.TabIndex = 45
@@ -206,15 +208,37 @@ Partial Class ManageProductsWindow
         Me.ProductIDLabel.TabIndex = 40
         Me.ProductIDLabel.Text = "Product ID: "
         '
+        'OnlineLookupButton
+        '
+        Me.OnlineLookupButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.OnlineLookupButton.Location = New System.Drawing.Point(25, 450)
+        Me.OnlineLookupButton.Name = "OnlineLookupButton"
+        Me.OnlineLookupButton.Size = New System.Drawing.Size(100, 75)
+        Me.OnlineLookupButton.TabIndex = 51
+        Me.OnlineLookupButton.Text = "Online Lookup"
+        Me.OnlineLookupButton.UseVisualStyleBackColor = True
+        '
+        'WebCrawler
+        '
+        Me.WebCrawler.Location = New System.Drawing.Point(752, 529)
+        Me.WebCrawler.MinimumSize = New System.Drawing.Size(20, 20)
+        Me.WebCrawler.Name = "WebCrawler"
+        Me.WebCrawler.Size = New System.Drawing.Size(20, 20)
+        Me.WebCrawler.TabIndex = 58
+        Me.WebCrawler.TabStop = False
+        Me.WebCrawler.Visible = False
+        '
         'ManageProductsWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(784, 561)
+        Me.Controls.Add(Me.WebCrawler)
         Me.Controls.Add(Me.InstructionLabel)
         Me.Controls.Add(Me.GenreComboBox)
         Me.Controls.Add(Me.CloseButton)
         Me.Controls.Add(Me.SearchButton)
+        Me.Controls.Add(Me.OnlineLookupButton)
         Me.Controls.Add(Me.SaveProductButton)
         Me.Controls.Add(Me.DeleteProductButton)
         Me.Controls.Add(Me.EditProductButton)
@@ -253,4 +277,6 @@ Partial Class ManageProductsWindow
     Friend WithEvents ProductIDTextBox As MaskedTextBox
     Friend WithEvents AuthorLabel As Label
     Friend WithEvents ProductIDLabel As Label
+    Friend WithEvents OnlineLookupButton As Button
+    Friend WithEvents WebCrawler As WebBrowser
 End Class

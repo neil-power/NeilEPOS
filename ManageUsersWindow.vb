@@ -107,7 +107,7 @@
     Private Sub SearchForUser()
         Dim UserFileContents() As String = CSV.ReadAsArray(CSV.UserFilePath) 'Read entire users file
 
-        For Each Line In UserFileContents 'Runs through each line
+        For Each Line As String In UserFileContents 'Runs through each line
             Dim user As String() = Line.Split(",") 'Splits line on commas
             If user(0) = UserIDTextBox.Text Or user(1) = UsernameTextBox.Text Or GetUserAccessFromFile(user(3)) = AccessLevelComboBox.Text Then 'If ID or username or access level match
                 FoundUsersListBox.Items.Add(Line) 'Add to displayed listbox

@@ -307,10 +307,10 @@ Partial Class SalesWindow
         '
         'WebCrawler
         '
-        Me.WebCrawler.Location = New System.Drawing.Point(711, 509)
+        Me.WebCrawler.Location = New System.Drawing.Point(744, 529)
         Me.WebCrawler.MinimumSize = New System.Drawing.Size(20, 20)
         Me.WebCrawler.Name = "WebCrawler"
-        Me.WebCrawler.Size = New System.Drawing.Size(53, 40)
+        Me.WebCrawler.Size = New System.Drawing.Size(20, 20)
         Me.WebCrawler.TabIndex = 56
         Me.WebCrawler.Visible = False
         '

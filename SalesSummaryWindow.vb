@@ -25,14 +25,14 @@
 
     Private Sub GetDailySalesFileSummary()
         Dim DailySalesFileContents() As String = CSV.ReadAsArray(CSV.DailySalesFilePath)
-        For Each Transaction In DailySalesFileContents
+        For Each Transaction As String In DailySalesFileContents
             SalesListBox.Items.Add(Transaction.Replace(",", " | "))
         Next Transaction
     End Sub
 
     Private Sub GetWeeklySalesFileSummary()
         Dim WeeklySalesFileContents() As String = CSV.ReadAsArray(CSV.WeeklySalesFilePath)
-        For Each Transaction In WeeklySalesFileContents
+        For Each Transaction As String In WeeklySalesFileContents
             SalesListBox.Items.Add(Transaction.Replace(",", " | "))
         Next Transaction
 

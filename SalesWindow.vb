@@ -176,7 +176,7 @@
 
     Private Sub TakePaymentButton_Click(sender As Object, e As EventArgs) Handles TakePaymentButton.Click ' Calculates the total and opens payment window
         SaleTotal = 0 'Sets saletotal to 0 before it is calculated
-        For Each ItemBought In CurrentSale ' Runs through all items in the current sale
+        For Each ItemBought As Item In CurrentSale ' Runs through all items in the current sale
             SaleTotal += ItemBought.Price * ItemBought.Quantity ' Calculates sale total
         Next ItemBought
 
@@ -204,12 +204,12 @@
             Dim ListOfDivs As HtmlElementCollection = WebCrawler.Document.GetElementsByTagName("div") 'Finds all HTML divs and adds them to a list
             Dim FoundPrice As String = "" 'Creates a blank string for the price
 
-            For Each element As HtmlElement In ListOfDivs 'Runs through all the divs to find the price div
-                If element.GetAttribute("classname").ToString = "col-7 priceInfo" Then 'Checks if the class of the div is the price info
-                    FoundPrice = element.InnerText 'Gets the inner text of the price div
+            For Each Element As HtmlElement In ListOfDivs 'Runs through all the divs to find the price div
+                If Element.GetAttribute("classname").ToString = "col-7 priceInfo" Then 'Checks if the class of the div is the price info
+                    FoundPrice = Element.InnerText 'Gets the inner text of the price div
                     Exit For 'Ends loop when found
                 End If
-            Next element
+            Next Element
 
             If FoundPrice <> "" Then 'If the price is not empty (either no price, or 404 error)
                 FoundPrice = FoundPrice.Substring(0, FoundPrice.Length - 5) ' Removes last 5 characters of the price (" GDP")

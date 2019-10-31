@@ -39,7 +39,6 @@ Partial Class ProductLookupWindow
         Me.ClearButton = New System.Windows.Forms.Button()
         Me.WebCrawler = New System.Windows.Forms.WebBrowser()
         Me.OnlineLookupButton = New System.Windows.Forms.Button()
-        Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.SuspendLayout()
         '
         'InstructionLabel
@@ -146,7 +145,7 @@ Partial Class ProductLookupWindow
         '
         Me.ISBNMaskedTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ISBNMaskedTextBox.Location = New System.Drawing.Point(181, 41)
-        Me.ISBNMaskedTextBox.Mask = "000000000999"
+        Me.ISBNMaskedTextBox.Mask = "0000000000999"
         Me.ISBNMaskedTextBox.Name = "ISBNMaskedTextBox"
         Me.ISBNMaskedTextBox.Size = New System.Drawing.Size(191, 29)
         Me.ISBNMaskedTextBox.TabIndex = 51
@@ -193,11 +192,12 @@ Partial Class ProductLookupWindow
         '
         'WebCrawler
         '
-        Me.WebCrawler.Location = New System.Drawing.Point(719, 509)
+        Me.WebCrawler.Location = New System.Drawing.Point(752, 529)
         Me.WebCrawler.MinimumSize = New System.Drawing.Size(20, 20)
         Me.WebCrawler.Name = "WebCrawler"
-        Me.WebCrawler.Size = New System.Drawing.Size(53, 40)
+        Me.WebCrawler.Size = New System.Drawing.Size(20, 20)
         Me.WebCrawler.TabIndex = 57
+        Me.WebCrawler.TabStop = False
         Me.WebCrawler.Visible = False
         '
         'OnlineLookupButton
@@ -210,20 +210,11 @@ Partial Class ProductLookupWindow
         Me.OnlineLookupButton.Text = "Online Lookup"
         Me.OnlineLookupButton.UseVisualStyleBackColor = True
         '
-        'ListBox1
-        '
-        Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.Location = New System.Drawing.Point(428, 46)
-        Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(344, 251)
-        Me.ListBox1.TabIndex = 58
-        '
         'ProductLookupWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(784, 561)
-        Me.Controls.Add(Me.ListBox1)
         Me.Controls.Add(Me.WebCrawler)
         Me.Controls.Add(Me.InstructionLabel)
         Me.Controls.Add(Me.ClearButton)
@@ -265,5 +256,4 @@ Partial Class ProductLookupWindow
     Friend WithEvents ClearButton As Button
     Friend WithEvents WebCrawler As WebBrowser
     Friend WithEvents OnlineLookupButton As Button
-    Friend WithEvents ListBox1 As ListBox
 End Class

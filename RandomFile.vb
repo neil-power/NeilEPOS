@@ -10,7 +10,7 @@ Public Class RandomFile
         Dim LengthToRead As Integer = 0
         Dim Index As String() = File.ReadAllLines(FileIndexPath) 'Reads index file as array
         Array.Sort(Index) 'Sorts index file - REPLACE WITH SORT ALGORITHM
-        For Each line In Index 'Searches for matching product ID - REPLACE WITH BETTER SEARCH
+        For Each line As String In Index 'Searches for matching product ID - REPLACE WITH BETTER SEARCH
             If FieldID = line.Split(",")(0) Then 'If first line is equivalent to field id
                 Position = line.Split(",")(1) 'Set position to the position stored in the index file
                 LengthToRead = line.Split(",")(2) 'Set length to the length stored in the index file

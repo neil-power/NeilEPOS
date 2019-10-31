@@ -149,7 +149,7 @@
         TransactionID += 1 'Increments transaction ID by 1
         Dim ItemsBought As String = ""
         Dim NoOfItems As Integer = 0
-        For Each ItemBought In SalesWindow.CurrentSale 'Interates through every item in the current sale
+        For Each ItemBought As SalesWindow.Item In SalesWindow.CurrentSale 'Interates through every item in the current sale
             ItemsBought += ItemBought.ISBN & " " 'Adds item to space-separated list
             NoOfItems += 1 'Increases no of items by 1
         Next ItemBought
