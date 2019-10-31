@@ -1,19 +1,17 @@
 ﻿''' <todo>
 ''' TO DO NEXT
-''' Add more detailed sales summary information
-''' Add new search button to product lookup window
-''' Add FromWeb lookup
+''' 
 ''' 
 ''' FEATURES TO ADD
-''' Backups
-''' Binary search and sorting for index file
 ''' 
-''' FINAL STAGES OF DEVELOPMENT
+''' POST-PROTOTYPE/FINAL STAGES OF DEVELOPMENT
 ''' Validation - use built-in validation event
+''' Binary search and sorting for index file
 ''' Try catch loops for everything that can go wrong
 ''' Functional UI design - prevent selection of some objects, set up tabbing, etc
 ''' Visual UI design - colours, logos, branding
 ''' Lots of testing
+''' Add more detailed sales summary information
 '''
 ''' POTENTIAL NEW THINGS TO ADD
 ''' My.Settings file - for file paths etc
@@ -28,8 +26,7 @@
 ''' Indexed file for each attribute - can search based on any attribute of product
 '''
 ''' KNOWN BUGS/ISSUES
-''' Can't enter a price higher than 99.99.
-''' Date should be in YYYY-MM-DD for file names
+''' Can't enter a price higher than 99.99 into price input boxes
 '''
 ''' INFO
 ''' Standard window size - 1024 x 768
@@ -38,7 +35,7 @@
 
 Public Class StartupWindow
 
-    Private ReadOnly NoOfChecks As Integer = 6
+    Private ReadOnly NoOfChecks As Integer = 7
     Private ChecksCompleted As Integer = 0
 
     Private Sub StartupWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -108,6 +105,14 @@ Public Class StartupWindow
         End If
         IncrementProgressBar()
 
+        'HAS A WEEKLY BACKUP BEEN MADE?
+        If MakeBackups() = True Then
+            ProgressListBox.Items.Add("A new backup of all files has been made at " & My.Computer.FileSystem.SpecialDirectories.Desktop)
+        ElseIf MakeBackups = False Then
+            ProgressListBox.Items.Add("A weekly backup of all files already exists at " & My.Computer.FileSystem.SpecialDirectories.Desktop)
+        End If
+        IncrementProgressBar()
+
         ProgressListBox.Items.Add("Checks complete")
     End Sub
 
@@ -115,4 +120,15 @@ Public Class StartupWindow
         ChecksCompleted += 1
         LoadProgressBar.Value = (ChecksCompleted / NoOfChecks) * 100
     End Sub
+
+    Private Function MakeBackups()
+        Dim BackupDirectoryFilePath As String = My.Computer.FileSystem.SpecialDirectories.Desktop & "/BACKUP WEEK " & DatePart(DateInterval.WeekOfYear, Date.Today)
+        MsgBox(BackupDirectoryFilePath)
+        If Not CSV.DirectoryExists(BackupDirectoryFilePath) Then
+            My.Computer.FileSystem.CopyDirectory(CSV.MainDirectoryFilePath, BackupDirectoryFilePath)
+            Return True
+        Else
+            Return False
+        End If
+    End Function
 End Class

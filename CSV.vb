@@ -8,7 +8,7 @@ Public Class CSV
     Public Shared WeekNumber As Integer = DatePart(DateInterval.WeekOfYear, Date.Today) 'Gets week number
 
     Public Shared UserFilePath As String = MainDirectoryFilePath & "NeilEPOSUsers.csv" 'Location of users file
-    Public Shared DailySalesFilePath As String = MainDirectoryFilePath & CStr(Date.Today).Replace("/", "-") & " DAILY SALES.csv" ' Desktop and current date for file to save to
+    Public Shared DailySalesFilePath As String = MainDirectoryFilePath & Date.Today.ToString("yyyy-MM-dd") & " DAILY SALES.csv" ' Desktop and current date for file to save to
     Public Shared WeeklySalesFilePath As String = MainDirectoryFilePath & Date.Now.Year & " " & WeekNumber & " WEEKLY SALES.csv" ' Sets week number and year for file to save to on desktop
 
     Public Shared Sub CheckMainDirectoryExists() 'Checks if the main directory folder exists, if not, one is created
@@ -16,6 +16,11 @@ Public Class CSV
             Directory.CreateDirectory(MainDirectoryFilePath)
         End If
     End Sub
+
+    Public Shared Function DirectoryExists(DirectoryPath As String) 'Checks if the directory exists
+        Return Directory.Exists(DirectoryPath)
+    End Function
+
     ' **************************************************READING FROM FILES**************************************************
 
     Public Shared Function ReadAsArray(FilePath As String) 'Returns entire file as string array
