@@ -1,19 +1,25 @@
 ﻿''' <todo>
 ''' TO DO NEXT
+''' Validation - add log file
+''' For every user input in order of priority:
+''' 1. Limit options (dropdown box or numeric up down)
+''' 2. Input mask on masked textbox
+''' 3. In the validation event, if statement checks for length, range, type etc
+''' 4. Try catch loops - notify user for some exceptions, log to txt file for others.
 ''' 
+''' For every file input, try catch loops - notify user and log to txt file
 ''' 
 ''' FEATURES TO ADD
-''' 
-''' POST-PROTOTYPE/FINAL STAGES OF DEVELOPMENT
-''' Validation - use built-in validation event
 ''' Binary search and sorting for index file
-''' Try catch loops for everything that can go wrong
 ''' Functional UI design - prevent selection of some objects, set up tabbing, etc
 ''' Visual UI design - colours, logos, branding
-''' Lots of testing
 ''' Add more detailed sales summary information
-'''
+''' 
+''' POST-PROTOTYPE/FINAL STAGES OF DEVELOPMENT
+''' Lots of testing
+''' 
 ''' POTENTIAL NEW THINGS TO ADD
+''' Set start location to centre of screen
 ''' My.Settings file - for file paths etc
 ''' Stock in?
 ''' Payment types?
@@ -123,7 +129,6 @@ Public Class StartupWindow
 
     Private Function MakeBackups()
         Dim BackupDirectoryFilePath As String = My.Computer.FileSystem.SpecialDirectories.Desktop & "/BACKUP WEEK " & DatePart(DateInterval.WeekOfYear, Date.Today)
-        MsgBox(BackupDirectoryFilePath)
         If Not CSV.DirectoryExists(BackupDirectoryFilePath) Then
             My.Computer.FileSystem.CopyDirectory(CSV.MainDirectoryFilePath, BackupDirectoryFilePath)
             Return True

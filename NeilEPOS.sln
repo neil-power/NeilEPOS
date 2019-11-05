@@ -6,9 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "NeilEPOS", "NeilEPOS.vbproj", "{56DE3D00-7AF4-4202-A365-E01EC4A57AA1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{32D7EAF3-000F-4B1D-8CDC-EBF3F539C804}"
-	ProjectSection(SolutionItems) = preProject
-		Code Flow.txt = Code Flow.txt
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -35,7 +35,6 @@ Partial Class ProductLookupWindow
         Me.ISBNMaskedTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.RRPLabel = New System.Windows.Forms.Label()
         Me.ISBNLabel = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.ClearButton = New System.Windows.Forms.Button()
         Me.WebCrawler = New System.Windows.Forms.WebBrowser()
         Me.OnlineLookupButton = New System.Windows.Forms.Button()
@@ -171,15 +170,6 @@ Partial Class ProductLookupWindow
         Me.ISBNLabel.TabIndex = 42
         Me.ISBNLabel.Text = "ISBN/EAN: "
         '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(428, 374)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(106, 93)
-        Me.Button1.TabIndex = 41
-        Me.Button1.Text = "Write examples"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
         'ClearButton
         '
         Me.ClearButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -231,7 +221,6 @@ Partial Class ProductLookupWindow
         Me.Controls.Add(Me.ISBNMaskedTextBox)
         Me.Controls.Add(Me.RRPLabel)
         Me.Controls.Add(Me.ISBNLabel)
-        Me.Controls.Add(Me.Button1)
         Me.Location = New System.Drawing.Point(1024, 768)
         Me.Name = "ProductLookupWindow"
         Me.Text = "ProductLookupWindow"
@@ -252,7 +241,6 @@ Partial Class ProductLookupWindow
     Friend WithEvents ISBNMaskedTextBox As MaskedTextBox
     Friend WithEvents RRPLabel As Label
     Friend WithEvents ISBNLabel As Label
-    Friend WithEvents Button1 As Button
     Friend WithEvents ClearButton As Button
     Friend WithEvents WebCrawler As WebBrowser
     Friend WithEvents OnlineLookupButton As Button

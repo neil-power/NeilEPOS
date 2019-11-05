@@ -191,12 +191,13 @@
 
     ' **************************************************PRICE LOOKUP**************************************************
 
-    Private Sub PriceLookupButton_Click(sender As Object, e As EventArgs) Handles PriceLookupButton.Click 'When lookup button clicked, search Bertrams website
-
-        If Trim(ISBNTextBox.Text).Length >= 10 And Trim(ISBNTextBox.Text).Length <= 13 Then 'Checks if data in textbox is the right ISBN length
-            WebCrawler.Navigate("https://www.bertrams.com/BertWeb/public/itemLookup.do?method=list&ITEM=" & Trim(ISBNTextBox.Text)) 'Navigates to the bertrams webpage for the book
+    Private Sub PriceLookupButton_Click(sender As Object, e As EventArgs) Handles PriceLookupButton.Click 'When lookup button clicked, search local database and then Bertrams website
+        Dim FoundProduct As String = Product.GetProductFromID(ISBNTextBox.Text) 'Attempt to search local database
+        If FoundProduct <> Nothing Then 'If product is in local database
+            ShowPrice(Product.FromLine(FoundProduct).RRP)
+        Else
+            WebCrawler.Navigate("https://www.bertrams.com/BertWeb/public/itemLookup.do?method=list&ITEM=" & Trim(ISBNTextBox.Text)) ' Navigates to the bertrams webpage for the book
         End If
-
     End Sub
 
     Private Sub WebCrawler_DocumentCompleted(sender As Object, e As WebBrowserDocumentCompletedEventArgs) Handles WebCrawler.DocumentCompleted ' Runs when webpage is loaded
@@ -213,16 +214,7 @@
 
             If FoundPrice <> "" Then 'If the price is not empty (either no price, or 404 error)
                 FoundPrice = FoundPrice.Substring(0, FoundPrice.Length - 5) ' Removes last 5 characters of the price (" GDP")
-
-                If Double.TryParse(FoundPrice, New Double) Then ' Checks to see if the price is a decimal
-
-                    If FoundPrice.Length = 4 Then 'Checks if price is 4 digits (0.00) 
-                        PriceTextBox.Text = "0" & FoundPrice 'Updates price textbox with price
-                    ElseIf FoundPrice.Length = 5 Then 'Checks if price is 5 digits (00.00) - greater than 99.99 will not work
-                        PriceTextBox.Text = FoundPrice 'Updates price textbox with price
-                    End If
-
-                End If
+                ShowPrice(FoundPrice)
 
             Else
                 MessageBox.Show("Item not found") 'Gives error if the book is not found
@@ -230,6 +222,18 @@
 
         End If
 
+    End Sub
+
+    Private Sub ShowPrice(Price As String)
+        If Double.TryParse(Price, New Double) Then ' Checks to see if the price is a decimal
+
+            If Price.Length = 4 Then 'Checks if price is 4 digits (0.00) 
+                PriceTextBox.Text = "0" & Price 'Updates price textbox with price
+            ElseIf Price.Length = 5 Then 'Checks if price is 5 digits (00.00) - greater than 99.99 will not work
+                PriceTextBox.Text = Price 'Updates price textbox with price
+            End If
+
+        End If
     End Sub
 
 End Class

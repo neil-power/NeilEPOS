@@ -9,14 +9,6 @@
         ResetProductLookupWindow()
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click ''''''''''''''FOR TESTING 
-
-        RandomFile.Write("978122345124,The Hunger Games,Suzanne Collins,£9.99,Fiction", Product.ProductsFilePath, Product.ProductsIndexPath)
-        RandomFile.Write("978645353561,Harry Potter,J.K.Rowling,£6.99,Fiction", Product.ProductsFilePath, Product.ProductsIndexPath)
-        RandomFile.Write("978564323565,How to VB,Pyn Wrice,£19.99,Computer Science", Product.ProductsFilePath, Product.ProductsIndexPath)
-
-    End Sub
-
     Private Sub ResetProductLookupWindow() 'Resets all values to default
         SearchButton.Show()
         ISBNMaskedTextBox.Clear() 'Clear all text boxes and labels
