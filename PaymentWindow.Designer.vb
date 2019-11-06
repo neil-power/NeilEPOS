@@ -248,7 +248,7 @@ Partial Class PaymentWindow
         Me.AmountPaidTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.AmountPaidTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         '
-        'Payment
+        'PaymentWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -273,7 +273,8 @@ Partial Class PaymentWindow
         Me.Controls.Add(Me.NumButton8)
         Me.Controls.Add(Me.NumButton1)
         Me.Controls.Add(Me.NumButton7)
-        Me.Name = "Payment"
+        Me.Name = "PaymentWindow"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Payment"
         Me.ResumeLayout(False)
         Me.PerformLayout()

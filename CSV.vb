@@ -13,7 +13,11 @@ Public Class CSV
 
     Public Shared Sub CheckMainDirectoryExists() 'Checks if the main directory folder exists, if not, one is created
         If Not Directory.Exists(MainDirectoryFilePath) Then
-            Directory.CreateDirectory(MainDirectoryFilePath)
+            Try
+                Directory.CreateDirectory(MainDirectoryFilePath)
+            Catch ThrownException As Exception
+                ErrorHandling.Warn(ThrownException, MainDirectoryFilePath)
+            End Try
         End If
     End Sub
 
@@ -24,7 +28,12 @@ Public Class CSV
     ' **************************************************READING FROM FILES**************************************************
 
     Public Shared Function ReadAsArray(FilePath As String) 'Returns entire file as string array
-        Return File.ReadAllLines(FilePath)
+        Try
+            Return File.ReadAllLines(FilePath)
+        Catch ThrownException As Exception
+            ErrorHandling.Warn(ThrownException, FilePath)
+            Return New String() {} 'Returns empty string if an error occurs
+        End Try
     End Function
 
     Public Shared Function Exists(FilePath As String) 'Returns true if file exists
@@ -34,16 +43,28 @@ Public Class CSV
     ' **************************************************WRITING TO FILES**************************************************
 
     Public Shared Sub Overwrite(FilePath As String, DataToWrite As String) 'Overwrites file with specific data string
-        My.Computer.FileSystem.WriteAllText(FilePath, DataToWrite, False)
+        Try
+            My.Computer.FileSystem.WriteAllText(FilePath, DataToWrite, False)
+        Catch ThrownException As Exception
+            ErrorHandling.Warn(ThrownException, FilePath)
+        End Try
     End Sub
 
 
     Public Shared Sub ArrayOverwrite(FilePath As String, DataToWrite As String()) 'Overwrites file with specific data array
-        File.WriteAllLines(FilePath, DataToWrite)
+        Try
+            File.WriteAllLines(FilePath, DataToWrite)
+        Catch ThrownException As Exception
+            ErrorHandling.Warn(ThrownException, FilePath)
+        End Try
     End Sub
 
     Public Shared Sub Append(FilePath As String, DataToWrite As String) 'Appends string line to file
-        My.Computer.FileSystem.WriteAllText(FilePath, DataToWrite & Environment.NewLine, True)
+        Try
+            My.Computer.FileSystem.WriteAllText(FilePath, DataToWrite & Environment.NewLine, True)
+        Catch ThrownException As Exception
+            ErrorHandling.Warn(ThrownException, FilePath)
+        End Try
     End Sub
 
     Public Shared Sub Replace(FilePath As String, LineToReplaceID As Integer, NewLine As String) 'Replaces line starting with specified ID

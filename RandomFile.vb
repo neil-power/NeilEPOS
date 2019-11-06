@@ -8,7 +8,7 @@ Public Class RandomFile
         'LOCATE ID IN INDEX FILE AND EXTRACT LOCATION AND LENGTH
         Dim Position As Integer = 0 'Sets position to read from from file
         Dim LengthToRead As Integer = 0
-        Dim Index As String() = File.ReadAllLines(FileIndexPath) 'Reads index file as array
+        Dim Index As String() = CSV.ReadAsArray(FileIndexPath) 'Reads index file as array
         Array.Sort(Index) 'Sorts index file - REPLACE WITH SORT ALGORITHM
         For Each line As String In Index 'Searches for matching product ID - REPLACE WITH BETTER SEARCH
             If FieldID = line.Split(",")(0) Then 'If first line is equivalent to field id
@@ -22,15 +22,20 @@ Public Class RandomFile
         End If
 
         'NAVIGATE TO LOCATION AND EXTRACT PRODUCT DETAILS
-        Using fs As New FileStream(FilePath, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite) 'Creates new file stream to directly read from file
-            Dim bytesToRead(LengthToRead) As Byte 'Creates byte array to store read text
-            fs.Seek(Position, SeekOrigin.Begin) 'Navigates to position
-            fs.Read(bytesToRead, 0, LengthToRead) 'Reads array of bytes from position
-            Dim FinalText As String = Text.Encoding.UTF8.GetString(bytesToRead) 'Converts from bytes to string
-            FinalText = FinalText.Replace(vbNullChar, "") 'Removes any null characters
-            Return FinalText 'Returns read text
+        Try
+            Using fs As New FileStream(FilePath, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite) 'Creates new file stream to directly read from file
+                Dim bytesToRead(LengthToRead) As Byte 'Creates byte array to store read text
+                fs.Seek(Position, SeekOrigin.Begin) 'Navigates to position
+                fs.Read(bytesToRead, 0, LengthToRead) 'Reads array of bytes from position
+                Dim FinalText As String = Text.Encoding.UTF8.GetString(bytesToRead) 'Converts from bytes to string
+                FinalText = FinalText.Replace(vbNullChar, "") 'Removes any null characters
+                Return FinalText 'Returns read text
+            End Using
+        Catch ThrownException As Exception
+            ErrorHandling.Warn(ThrownException, FilePath)
+            Return "" 'Returns an empty string if error occurs
+        End Try
 
-        End Using
     End Function
 
     Public Shared Sub Write(ItemToWrite As String, FilePath As String, FileIndexPath As String)
@@ -38,11 +43,15 @@ Public Class RandomFile
         Dim Position As Integer
         'WRITE FULL PRODUCT TO PRODUCTS FILE AT POSITION = LENGTH OF FILE
         Dim bytesToWrite() As Byte = Text.Encoding.UTF8.GetBytes(ItemToWrite)
-        Using fs As New FileStream(FilePath, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite)
-            Position = fs.Length
-            fs.Seek(Position, SeekOrigin.Begin) 'Offset is location to begin writing or reading
-            fs.Write(bytesToWrite, 0, bytesToWrite.Length) 'Offset is where to start from array, Count is no of bytes from array to write
-        End Using
+        Try
+            Using fs As New FileStream(FilePath, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite)
+                Position = fs.Length
+                fs.Seek(Position, SeekOrigin.Begin) 'Offset is location to begin writing or reading
+                fs.Write(bytesToWrite, 0, bytesToWrite.Length) 'Offset is where to start from array, Count is no of bytes from array to write
+            End Using
+        Catch ThrownException As Exception
+            ErrorHandling.Warn(ThrownException, FilePath)
+        End Try
 
         'Write ISBN And File LOCATION TO INDEX FILE
         CSV.Append(FileIndexPath, ItemToWrite.Split(",")(0) & "," & Position & "," & bytesToWrite.Length)

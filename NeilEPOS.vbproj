@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CSV.vb" />
+    <Compile Include="ErrorHandling.vb" />
     <Compile Include="LoginWindow.Designer.vb">
       <DependentUpon>LoginWindow.vb</DependentUpon>
     </Compile>

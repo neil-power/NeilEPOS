@@ -1,13 +1,11 @@
 ﻿''' <todo>
 ''' TO DO NEXT
-''' Validation - add log file
+''' User Input Validation
 ''' For every user input in order of priority:
 ''' 1. Limit options (dropdown box or numeric up down)
 ''' 2. Input mask on masked textbox
 ''' 3. In the validation event, if statement checks for length, range, type etc
 ''' 4. Try catch loops - notify user for some exceptions, log to txt file for others.
-''' 
-''' For every file input, try catch loops - notify user and log to txt file
 ''' 
 ''' FEATURES TO ADD
 ''' Binary search and sorting for index file
@@ -19,14 +17,12 @@
 ''' Lots of testing
 ''' 
 ''' POTENTIAL NEW THINGS TO ADD
-''' Set start location to centre of screen
 ''' My.Settings file - for file paths etc
 ''' Stock in?
 ''' Payment types?
 ''' Single numpad for all screens?
 ''' Make payment window mdi
 ''' Custom msgbox form for notifications
-''' Error logging?
 ''' Encryption for users file
 ''' Cleanup method - copy all records mentioned in index file to new master file.
 ''' Indexed file for each attribute - can search based on any attribute of product
@@ -41,7 +37,7 @@
 
 Public Class StartupWindow
 
-    Private ReadOnly NoOfChecks As Integer = 7
+    Private ReadOnly NoOfChecks As Integer = 8
     Private ChecksCompleted As Integer = 0
 
     Private Sub StartupWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -65,6 +61,14 @@ Public Class StartupWindow
         'DOES MAIN DIRECTORY EXIST?
         ProgressListBox.Items.Add("Checking main directory exists")
         CSV.CheckMainDirectoryExists() 'Checks if the main directory folder exists, if not, one is created
+        IncrementProgressBar()
+
+        'DOES LOG FILE EXIST?
+        ProgressListBox.Items.Add("Checking log file exists")
+        If Not CSV.Exists(ErrorHandling.LogFilePath) Then ' Checks to see if the log file exists
+            CSV.Overwrite(ErrorHandling.LogFilePath, "") 'Creates log file
+            ProgressListBox.Items.Add("A new log file has been created.")
+        End If
         IncrementProgressBar()
 
         'DOES USERS FILE EXIST?
@@ -130,7 +134,12 @@ Public Class StartupWindow
     Private Function MakeBackups()
         Dim BackupDirectoryFilePath As String = My.Computer.FileSystem.SpecialDirectories.Desktop & "/BACKUP WEEK " & DatePart(DateInterval.WeekOfYear, Date.Today)
         If Not CSV.DirectoryExists(BackupDirectoryFilePath) Then
-            My.Computer.FileSystem.CopyDirectory(CSV.MainDirectoryFilePath, BackupDirectoryFilePath)
+            Try
+                My.Computer.FileSystem.CopyDirectory(CSV.MainDirectoryFilePath, BackupDirectoryFilePath)
+            Catch ThrownException As Exception
+                ErrorHandling.Warn(ThrownException, BackupDirectoryFilePath)
+                Return False
+            End Try
             Return True
         Else
             Return False

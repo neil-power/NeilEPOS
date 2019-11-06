@@ -151,6 +151,7 @@ Partial Class LoginWindow
         Me.MaximumSize = New System.Drawing.Size(1024, 768)
         Me.MinimumSize = New System.Drawing.Size(1024, 726)
         Me.Name = "LoginWindow"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "LoginWindow"
         Me.ResumeLayout(False)
         Me.PerformLayout()

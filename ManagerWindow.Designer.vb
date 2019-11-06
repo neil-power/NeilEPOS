@@ -116,6 +116,7 @@ Partial Class ManagerWindow
         Me.MaximumSize = New System.Drawing.Size(1024, 768)
         Me.MinimumSize = New System.Drawing.Size(1024, 726)
         Me.Name = "ManagerWindow"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "ManagerWindow"
         Me.ResumeLayout(False)
         Me.PerformLayout()

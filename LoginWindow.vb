@@ -51,7 +51,7 @@
                     Hide() 'Hides login window as variables still in use
                     UserWindow.Show() 'Open user window
                 Case User.UserAccessLevel.None
-                    MsgBox("You do not have access rights to log in to this system.")
+                    MessageBox.Show("You do not have access rights to log in to this system.")
                 Case Else
                     Exit Select
             End Select

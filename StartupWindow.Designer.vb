@@ -84,6 +84,7 @@ Partial Class StartupWindow
         Me.Controls.Add(Me.TaglineLabel)
         Me.Controls.Add(Me.LogoLabel)
         Me.Name = "StartupWindow"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "StartupWindow"
         Me.ResumeLayout(False)
         Me.PerformLayout()

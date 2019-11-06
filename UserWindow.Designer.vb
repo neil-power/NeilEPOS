@@ -80,6 +80,7 @@ Partial Class UserWindow
         Me.MaximumSize = New System.Drawing.Size(1024, 768)
         Me.MinimumSize = New System.Drawing.Size(1024, 726)
         Me.Name = "UserWindow"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "UserWindow"
         Me.ResumeLayout(False)
         Me.PerformLayout()
