@@ -10,7 +10,7 @@
 
     Private Mode As UserMode = UserMode.None
     Private Sub ManageUsersWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'The startup location is set in the form properties to 1024, 768 to prevent glitching
+        'The startup location is set in the form properties to 1024, 768 to prevent visual issue
         FormBorderStyle = FormBorderStyle.None 'Removes border
         StartPosition = FormStartPosition.Manual 'Prevents automatic cascade of MDI windows
         Location = New Point(100, 50) 'Sets form location to centre of Manager window
@@ -73,22 +73,25 @@
         UserIDTextBox.ReadOnly = True
         PasswordTextBox.Enabled = True
         AccessLevelComboBox.Enabled = True
+        AccessLevelComboBox.Text = "None"
         UserIDTextBox.Text = GetNewUserID() 'Gets most recent user ID
         SaveUserButton.Show()
     End Sub
 
     Private Sub SaveUser()
 
-        If Mode = UserMode.EditUser Then 'If a user is being edited, the new details need to be inserted
+        Dim UserToSave As String = UserIDTextBox.Text & "," & UserNameTextBox.Text.Trim() & "," & PasswordTextBox.Text.Trim() & "," & GetUserAccessFromTextBox()
+        If User.CheckValidUser(UserToSave.Split(",")) Then
 
-            Dim UserToSave As String = UserIDTextBox.Text & "," & UsernameTextBox.Text & "," & PasswordTextBox.Text & "," & GetUserAccessFromTextBox()
-            CSV.Replace(CSV.UserFilePath, UserIDTextBox.Text, UserToSave) 'Replaces any lines matching UserID text box
-        ElseIf Mode = UserMode.NewUser Then 'If a new user is being made, they can be added at the end of the file
-            Dim LineToWrite As String = UserIDTextBox.Text & "," & UsernameTextBox.Text & "," & PasswordTextBox.Text & "," & GetUserAccessFromTextBox() 'Verification needed
-            CSV.Append(CSV.UserFilePath, LineToWrite) 'Writes line to file
+            If Mode = UserMode.EditUser Then 'If a user is being edited, the new details need to be inserted
+                CSV.Replace(CSV.UserFilePath, UserIDTextBox.Text, UserToSave) 'Replaces any lines matching UserID text box
+            ElseIf Mode = UserMode.NewUser Then 'If a new user is being made, they can be added at the end of the file
+                CSV.Append(CSV.UserFilePath, UserToSave) 'Writes line to file
+            End If
+
+            ResetUsersWindow() 'Prevents user from entering text
         End If
 
-        ResetUsersWindow() 'Prevents user from entering text
     End Sub
 
     ' **************************************************VIEW USERS**************************************************
@@ -159,6 +162,8 @@
         FoundUsersListBox.Hide()
         UserIDTextBox.Text = UserToEdit.UserID.ToString("00000")
         UserIDTextBox.ReadOnly = True
+        PasswordTextBox.Enabled = True
+        AccessLevelComboBox.Enabled = True
         UsernameTextBox.Text = UserToEdit.UserName
         PasswordTextBox.Text = UserToEdit.Password
         AccessLevelComboBox.Text = GetUserAccessFromFile(UserToEdit.AccessLevel) 'Converts from file to dropdown
@@ -188,4 +193,5 @@
             End If
         End If
     End Sub
+
 End Class

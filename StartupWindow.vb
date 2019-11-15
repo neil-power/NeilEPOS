@@ -1,11 +1,7 @@
 ﻿''' <todo>
 ''' TO DO NEXT
-''' User Input Validation
-''' For every user input in order of priority:
-''' 1. Limit options (dropdown box or numeric up down)
-''' 2. Input mask on masked textbox
-''' 3. In the validation event, if statement checks for length, range, type etc
-''' 4. Try catch loops - notify user for some exceptions, log to txt file for others.
+''' User Input Validation for manageproductwindow, productlookupwindow, saleswindow
+''' ISBN check digit calculation for saleswindow, manageproductwindow, productlookupwindow (for those beginning with 978 only)
 ''' 
 ''' FEATURES TO ADD
 ''' Binary search and sorting for index file
@@ -26,13 +22,18 @@
 ''' Encryption for users file
 ''' Cleanup method - copy all records mentioned in index file to new master file.
 ''' Indexed file for each attribute - can search based on any attribute of product
+''' Add user name to sales files
 '''
 ''' KNOWN BUGS/ISSUES
 ''' Can't enter a price higher than 99.99 into price input boxes
+''' Commas in author names, or passwords
 '''
 ''' INFO
 ''' Standard window size - 1024 x 768
 ''' Standard MDI form size - 800 x 600, starting position 100, 50
+''' ISBN Mask -  0000000000999
+''' Username Mask - LL??????????????????
+''' Password Mask -  ampersand x 8, CCCCCCCCCCCC
 ''' </todo>
 
 Public Class StartupWindow
@@ -74,9 +75,9 @@ Public Class StartupWindow
         'DOES USERS FILE EXIST?
         ProgressListBox.Items.Add("Checking users file exists")
         If Not CSV.Exists(CSV.UserFilePath) Then ' Checks to see if the NeilEPOSUsers.csv file exists
-            Dim DefaultUserDetails As String = "00001" & "," & "Default" & "," & "123" & "," & "0"
+            Dim DefaultUserDetails As String = "00001" & "," & "Default" & "," & "NeilEPOSv0.21" & "," & "0" & Environment.NewLine
             CSV.Overwrite(CSV.UserFilePath, DefaultUserDetails) 'Writes a default manager account to the file to create a file for storing data.
-            ProgressListBox.Items.Add("A new users file has been created. A default manager account with ID 00001 and password 123 has been created.")
+            ProgressListBox.Items.Add("A new users file has been created. A default manager account with ID 00001 and password NeilEPOSv0.21 has been created.")
         End If
         IncrementProgressBar()
 

@@ -146,6 +146,7 @@ Partial Class ProductLookupWindow
         Me.ISBNMaskedTextBox.Location = New System.Drawing.Point(181, 41)
         Me.ISBNMaskedTextBox.Mask = "0000000000999"
         Me.ISBNMaskedTextBox.Name = "ISBNMaskedTextBox"
+        Me.ISBNMaskedTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
         Me.ISBNMaskedTextBox.Size = New System.Drawing.Size(191, 29)
         Me.ISBNMaskedTextBox.TabIndex = 51
         Me.ISBNMaskedTextBox.ValidatingType = GetType(Integer)

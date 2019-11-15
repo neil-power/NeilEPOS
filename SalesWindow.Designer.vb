@@ -269,7 +269,7 @@ Partial Class SalesWindow
         '
         Me.ISBNTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
         Me.ISBNTextBox.Location = New System.Drawing.Point(122, 30)
-        Me.ISBNTextBox.Mask = "#############"
+        Me.ISBNTextBox.Mask = "0000000000999"
         Me.ISBNTextBox.Name = "ISBNTextBox"
         Me.ISBNTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
         Me.ISBNTextBox.Size = New System.Drawing.Size(181, 29)

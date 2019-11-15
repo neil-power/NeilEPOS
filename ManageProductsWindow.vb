@@ -11,7 +11,7 @@
     Private Mode As ProductMode = ProductMode.None 'Sets current mode to nothing
 
     Private Sub ManageProductWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'The startup location is set in the form properties to 1024, 768 to prevent glitching
+        'The startup location is set in the form properties to 1024, 768 to prevent visual issue
         FormBorderStyle = FormBorderStyle.None 'Removes border
         StartPosition = FormStartPosition.Manual 'Prevents automatic cascade of MDI windows
         Location = New Point(100, 50) 'Sets form location to centre of Manager window
@@ -80,13 +80,11 @@
     End Sub
 
     Private Sub SaveProduct()
-
+        Dim ProductToSave As String = ProductIDTextBox.Text & "," & TitleTextBox.Text & "," & AuthorTextBox.Text & "," & RRPTextBox.Text & "," & GenreComboBox.Text
         If Mode = ProductMode.EditProduct Then 'If a product is being edited, the new details need to be inserted
-            Dim ProductToSave As String = ProductIDTextBox.Text & "," & TitleTextBox.Text & "," & AuthorTextBox.Text & "," & RRPTextBox.Text & "," & GenreComboBox.Text
             Product.EditProduct(Product.FromLine(ProductToSave))
         ElseIf Mode = ProductMode.NewProduct Then 'If a new product is being made, they can be added at the end of the file
-            Dim LineToWrite As String = ProductIDTextBox.Text & "," & TitleTextBox.Text & "," & AuthorTextBox.Text & "," & RRPTextBox.Text & "," & GenreComboBox.Text 'Verification needed
-            Product.AddNewProduct(Product.FromLine(LineToWrite))
+            Product.AddNewProduct(Product.FromLine(ProductToSave))
         End If
 
         ResetProductsWindow() 'Prevents user from entering text

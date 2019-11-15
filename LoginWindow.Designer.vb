@@ -27,11 +27,11 @@ Partial Class LoginWindow
         Me.PasswordLabel = New System.Windows.Forms.Label()
         Me.TaglineLabel = New System.Windows.Forms.Label()
         Me.UserIDTextBox = New System.Windows.Forms.MaskedTextBox()
-        Me.PasswordTextBox = New System.Windows.Forms.TextBox()
         Me.LoginPromptLabel = New System.Windows.Forms.Label()
         Me.LoginButton = New System.Windows.Forms.Button()
         Me.CloseButton = New System.Windows.Forms.Button()
         Me.ClearButton = New System.Windows.Forms.Button()
+        Me.PasswordTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.SuspendLayout()
         '
         'LogoLabel
@@ -77,21 +77,13 @@ Partial Class LoginWindow
         'UserIDTextBox
         '
         Me.UserIDTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.UserIDTextBox.Location = New System.Drawing.Point(496, 269)
+        Me.UserIDTextBox.Location = New System.Drawing.Point(480, 269)
         Me.UserIDTextBox.Mask = "00000"
         Me.UserIDTextBox.Name = "UserIDTextBox"
-        Me.UserIDTextBox.Size = New System.Drawing.Size(191, 29)
+        Me.UserIDTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
+        Me.UserIDTextBox.Size = New System.Drawing.Size(207, 29)
         Me.UserIDTextBox.TabIndex = 3
         Me.UserIDTextBox.ValidatingType = GetType(Integer)
-        '
-        'PasswordTextBox
-        '
-        Me.PasswordTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.PasswordTextBox.Location = New System.Drawing.Point(496, 316)
-        Me.PasswordTextBox.Name = "PasswordTextBox"
-        Me.PasswordTextBox.Size = New System.Drawing.Size(191, 29)
-        Me.PasswordTextBox.TabIndex = 4
-        Me.PasswordTextBox.UseSystemPasswordChar = True
         '
         'LoginPromptLabel
         '
@@ -133,6 +125,18 @@ Partial Class LoginWindow
         Me.ClearButton.Text = "Clear"
         Me.ClearButton.UseVisualStyleBackColor = True
         '
+        'PasswordTextBox
+        '
+        Me.PasswordTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PasswordTextBox.Location = New System.Drawing.Point(480, 316)
+        Me.PasswordTextBox.Mask = "&&&&&&&&CCCCCCCCCCCC"
+        Me.PasswordTextBox.Name = "PasswordTextBox"
+        Me.PasswordTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
+        Me.PasswordTextBox.Size = New System.Drawing.Size(207, 29)
+        Me.PasswordTextBox.TabIndex = 3
+        Me.PasswordTextBox.UseSystemPasswordChar = True
+        Me.PasswordTextBox.ValidatingType = GetType(Integer)
+        '
         'LoginWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -163,9 +167,9 @@ Partial Class LoginWindow
     Friend WithEvents PasswordLabel As Label
     Friend WithEvents TaglineLabel As Label
     Friend WithEvents UserIDTextBox As MaskedTextBox
-    Friend WithEvents PasswordTextBox As TextBox
     Friend WithEvents LoginPromptLabel As Label
     Friend WithEvents LoginButton As Button
     Friend WithEvents CloseButton As Button
     Friend WithEvents ClearButton As Button
+    Friend WithEvents PasswordTextBox As MaskedTextBox
 End Class

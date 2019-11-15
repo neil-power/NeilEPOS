@@ -45,9 +45,9 @@ Partial Class StartupWindow
         Me.LogoLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 50.0!)
         Me.LogoLabel.Location = New System.Drawing.Point(3, 9)
         Me.LogoLabel.Name = "LogoLabel"
-        Me.LogoLabel.Size = New System.Drawing.Size(333, 76)
+        Me.LogoLabel.Size = New System.Drawing.Size(515, 76)
         Me.LogoLabel.TabIndex = 2
-        Me.LogoLabel.Text = "NeilEPOS"
+        Me.LogoLabel.Text = "NeilEPOS v0.21"
         '
         'LoadProgressBar
         '

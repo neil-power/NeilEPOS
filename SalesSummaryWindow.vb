@@ -1,19 +1,21 @@
 ﻿Public Class SalesSummaryWindow
     Private Sub SalesSummaryWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'The startup location is set in the form properties to 1024, 768 to prevent glitching
+        'The startup location is set in the form properties to 1024, 768 to prevent visual issue
         FormBorderStyle = FormBorderStyle.None 'Removes border
         StartPosition = FormStartPosition.Manual 'Prevents automatic cascade of MDI windows
         Location = New Point(100, 50) 'Sets form location to centre of Manager window
         ClearSales()
     End Sub
 
-    Private Sub SummaryButton_Click(sender As Object, e As EventArgs) Handles DailySummaryButton.Click, WeeklySummaryButton.Click
+    Private Sub SummaryButton_Click(sender As Object, e As EventArgs) Handles DailySummaryButton.Click, WeeklySummaryButton.Click, CloseButton.Click
         ClearSales()
         Select Case sender.Name
             Case DailySummaryButton.Name
                 GetDailySalesFileSummary()
             Case WeeklySummaryButton.Name
                 GetWeeklySalesFileSummary()
+            Case CloseButton.Name
+                Close() 'Closes window
             Case Else
                 Exit Select
         End Select
@@ -37,6 +39,5 @@
         Next Transaction
 
     End Sub
-    'Summary of total sales for day, total no of items, 
-    'Close button
+
 End Class

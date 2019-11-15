@@ -22,12 +22,10 @@ Partial Class ManageUsersWindow
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.PasswordTextBox = New System.Windows.Forms.TextBox()
         Me.UserIDTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.PasswordLabel = New System.Windows.Forms.Label()
         Me.UserIDLabel = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.UsernameTextBox = New System.Windows.Forms.TextBox()
         Me.NewUserButton = New System.Windows.Forms.Button()
         Me.EditUserButton = New System.Windows.Forms.Button()
         Me.DeleteUserButton = New System.Windows.Forms.Button()
@@ -38,15 +36,9 @@ Partial Class ManageUsersWindow
         Me.SearchButton = New System.Windows.Forms.Button()
         Me.InstructionLabel = New System.Windows.Forms.Label()
         Me.FoundUsersListBox = New System.Windows.Forms.ListBox()
+        Me.PasswordTextBox = New System.Windows.Forms.MaskedTextBox()
+        Me.UserNameTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.SuspendLayout()
-        '
-        'PasswordTextBox
-        '
-        Me.PasswordTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.PasswordTextBox.Location = New System.Drawing.Point(195, 224)
-        Me.PasswordTextBox.Name = "PasswordTextBox"
-        Me.PasswordTextBox.Size = New System.Drawing.Size(191, 29)
-        Me.PasswordTextBox.TabIndex = 8
         '
         'UserIDTextBox
         '
@@ -54,7 +46,8 @@ Partial Class ManageUsersWindow
         Me.UserIDTextBox.Location = New System.Drawing.Point(195, 137)
         Me.UserIDTextBox.Mask = "00000"
         Me.UserIDTextBox.Name = "UserIDTextBox"
-        Me.UserIDTextBox.Size = New System.Drawing.Size(191, 29)
+        Me.UserIDTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
+        Me.UserIDTextBox.Size = New System.Drawing.Size(207, 29)
         Me.UserIDTextBox.TabIndex = 7
         Me.UserIDTextBox.ValidatingType = GetType(Integer)
         '
@@ -87,14 +80,6 @@ Partial Class ManageUsersWindow
         Me.Label1.Size = New System.Drawing.Size(107, 24)
         Me.Label1.TabIndex = 6
         Me.Label1.Text = "Username: "
-        '
-        'UsernameTextBox
-        '
-        Me.UsernameTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.UsernameTextBox.Location = New System.Drawing.Point(195, 184)
-        Me.UsernameTextBox.Name = "UsernameTextBox"
-        Me.UsernameTextBox.Size = New System.Drawing.Size(191, 29)
-        Me.UsernameTextBox.TabIndex = 8
         '
         'NewUserButton
         '
@@ -144,7 +129,7 @@ Partial Class ManageUsersWindow
         Me.AccessLevelComboBox.Items.AddRange(New Object() {"None", "User", "Manager"})
         Me.AccessLevelComboBox.Location = New System.Drawing.Point(195, 264)
         Me.AccessLevelComboBox.Name = "AccessLevelComboBox"
-        Me.AccessLevelComboBox.Size = New System.Drawing.Size(191, 32)
+        Me.AccessLevelComboBox.Size = New System.Drawing.Size(207, 32)
         Me.AccessLevelComboBox.TabIndex = 22
         '
         'SaveUserButton
@@ -197,11 +182,35 @@ Partial Class ManageUsersWindow
         Me.FoundUsersListBox.Size = New System.Drawing.Size(339, 68)
         Me.FoundUsersListBox.TabIndex = 24
         '
+        'PasswordTextBox
+        '
+        Me.PasswordTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PasswordTextBox.Location = New System.Drawing.Point(195, 224)
+        Me.PasswordTextBox.Mask = "&&&&&&&&CCCCCCCCCCCC"
+        Me.PasswordTextBox.Name = "PasswordTextBox"
+        Me.PasswordTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
+        Me.PasswordTextBox.Size = New System.Drawing.Size(207, 29)
+        Me.PasswordTextBox.TabIndex = 25
+        Me.PasswordTextBox.UseSystemPasswordChar = True
+        Me.PasswordTextBox.ValidatingType = GetType(Integer)
+        '
+        'UserNameTextBox
+        '
+        Me.UserNameTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.UserNameTextBox.Location = New System.Drawing.Point(195, 181)
+        Me.UserNameTextBox.Mask = "LL??????????????????"
+        Me.UserNameTextBox.Name = "UserNameTextBox"
+        Me.UserNameTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
+        Me.UserNameTextBox.Size = New System.Drawing.Size(207, 29)
+        Me.UserNameTextBox.TabIndex = 7
+        Me.UserNameTextBox.ValidatingType = GetType(Integer)
+        '
         'ManageUsersWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 600)
+        Me.Controls.Add(Me.PasswordTextBox)
         Me.Controls.Add(Me.FoundUsersListBox)
         Me.Controls.Add(Me.InstructionLabel)
         Me.Controls.Add(Me.AccessLevelComboBox)
@@ -211,10 +220,9 @@ Partial Class ManageUsersWindow
         Me.Controls.Add(Me.DeleteUserButton)
         Me.Controls.Add(Me.EditUserButton)
         Me.Controls.Add(Me.NewUserButton)
-        Me.Controls.Add(Me.UsernameTextBox)
-        Me.Controls.Add(Me.PasswordTextBox)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.UserNameTextBox)
         Me.Controls.Add(Me.UserIDTextBox)
         Me.Controls.Add(Me.PasswordLabel)
         Me.Controls.Add(Me.UserIDLabel)
@@ -227,13 +235,10 @@ Partial Class ManageUsersWindow
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents PasswordTextBox As TextBox
     Friend WithEvents UserIDTextBox As MaskedTextBox
     Friend WithEvents PasswordLabel As Label
     Friend WithEvents UserIDLabel As Label
     Friend WithEvents Label1 As Label
-    Friend WithEvents UsernameTextBox As TextBox
     Friend WithEvents NewUserButton As Button
     Friend WithEvents EditUserButton As Button
     Friend WithEvents DeleteUserButton As Button
@@ -244,4 +249,6 @@ Partial Class ManageUsersWindow
     Friend WithEvents SearchButton As Button
     Friend WithEvents InstructionLabel As Label
     Friend WithEvents FoundUsersListBox As ListBox
+    Friend WithEvents PasswordTextBox As MaskedTextBox
+    Friend WithEvents UserNameTextBox As MaskedTextBox
 End Class

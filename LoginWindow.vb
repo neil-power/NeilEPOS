@@ -1,5 +1,8 @@
 ﻿Public Class LoginWindow
 
+    Private Sub LoginWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        UserIDTextBox.Select() ' Sets cursor to start of ID text box
+    End Sub
 
     ' **************************************************UTILITY BUTTONS**************************************************
     Private Sub UtilityButton_Click(sender As Object, e As EventArgs) Handles ClearButton.Click, CloseButton.Click, LoginButton.Click

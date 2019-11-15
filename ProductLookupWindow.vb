@@ -2,7 +2,7 @@
 
     ' **************************************************ON LOAD**************************************************
     Private Sub ProductLookupWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'The startup location is set in the form properties to 1024, 768 to prevent glitching
+        'The startup location is set in the form properties to 1024, 768 to prevent visual issue
         FormBorderStyle = FormBorderStyle.None 'Removes border
         StartPosition = FormStartPosition.Manual 'Prevents automatic cascade of MDI windows
         Location = New Point(100, 50) 'Sets form location to centre of Manager/User window

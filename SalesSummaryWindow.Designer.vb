@@ -25,6 +25,7 @@ Partial Class SalesSummaryWindow
         Me.WeeklySummaryButton = New System.Windows.Forms.Button()
         Me.DailySummaryButton = New System.Windows.Forms.Button()
         Me.SalesListBox = New System.Windows.Forms.ListBox()
+        Me.CloseButton = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'WeeklySummaryButton
@@ -57,11 +58,22 @@ Partial Class SalesSummaryWindow
         Me.SalesListBox.Size = New System.Drawing.Size(507, 224)
         Me.SalesListBox.TabIndex = 24
         '
+        'CloseButton
+        '
+        Me.CloseButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CloseButton.Location = New System.Drawing.Point(28, 406)
+        Me.CloseButton.Name = "CloseButton"
+        Me.CloseButton.Size = New System.Drawing.Size(100, 75)
+        Me.CloseButton.TabIndex = 50
+        Me.CloseButton.Text = "Close"
+        Me.CloseButton.UseVisualStyleBackColor = True
+        '
         'SalesSummaryWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(784, 561)
+        Me.Controls.Add(Me.CloseButton)
         Me.Controls.Add(Me.SalesListBox)
         Me.Controls.Add(Me.WeeklySummaryButton)
         Me.Controls.Add(Me.DailySummaryButton)
@@ -75,4 +87,5 @@ Partial Class SalesSummaryWindow
     Friend WithEvents WeeklySummaryButton As Button
     Friend WithEvents DailySummaryButton As Button
     Friend WithEvents SalesListBox As ListBox
+    Friend WithEvents CloseButton As Button
 End Class

@@ -184,6 +184,7 @@ Partial Class ManageProductsWindow
         Me.ProductIDTextBox.Location = New System.Drawing.Point(186, 135)
         Me.ProductIDTextBox.Mask = "0000000000999"
         Me.ProductIDTextBox.Name = "ProductIDTextBox"
+        Me.ProductIDTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
         Me.ProductIDTextBox.Size = New System.Drawing.Size(191, 29)
         Me.ProductIDTextBox.TabIndex = 45
         Me.ProductIDTextBox.ValidatingType = GetType(Integer)

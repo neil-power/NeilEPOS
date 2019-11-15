@@ -22,7 +22,7 @@
 
     Private Sub SalesWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load 'Runs when form opens
 
-        'The startup location is set in the form properties to 1024, 768 to prevent glitching
+        'The startup location is set in the form properties to 1024, 768 to prevent visual issue
         FormBorderStyle = FormBorderStyle.None 'No border
         StartPosition = FormStartPosition.Manual 'Manual start position
         Location = New Point(100, 50) 'Set location to inside manager/user form
