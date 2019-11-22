@@ -9,6 +9,10 @@
         ResetProductLookupWindow()
     End Sub
 
+    Private Sub MaskedTextBox_Click(sender As Object, e As EventArgs) Handles ISBNMaskedTextBox.Click
+        sender.Select(sender.Text.Length, 0) 'Selects first character on click for masked text boxes
+    End Sub
+
     Private Sub ResetProductLookupWindow() 'Resets all values to default
         SearchButton.Show()
         ISBNMaskedTextBox.Clear() 'Clear all text boxes and labels
@@ -18,7 +22,6 @@
         FoundPriceLabel.Text = ""
         FoundGenreLabel.Text = ""
         InstructionLabel.Text = "Please enter Product ISBN or EAN"
-
     End Sub
 
     ' **************************************************UTILITY BUTTONS**************************************************
@@ -63,9 +66,12 @@
     ' **************************************************ONLINE LOOKUP**************************************************
 
     Private Sub OnlineLookupButton_Click(sender As Object, e As EventArgs) Handles OnlineLookupButton.Click
-        If Trim(ISBNMaskedTextBox.Text).Length >= 10 And Trim(ISBNMaskedTextBox.Text).Length <= 13 Then 'Checks if data in textbox is the right ISBN length
-            WebCrawler.Navigate("https://www.bertrams.com/BertWeb/public/itemLookup.do?method=list&ITEM=" & ISBNMaskedTextBox.Text) 'Navigates to the bertrams webpage for the book
+        If Trim(ISBNMaskedTextBox.Text).Length = 13 Then 'Checks if data in textbox is the right ISBN length
+            If Product.ValidateISBN(ISBNMaskedTextBox.Text) Then 'Checks if ISBN is valid
+                WebCrawler.Navigate("https://www.bertrams.com/BertWeb/public/itemLookup.do?method=list&ITEM=" & ISBNMaskedTextBox.Text) 'Navigates to the bertrams webpage for the book
+            End If
         End If
+
     End Sub
 
 

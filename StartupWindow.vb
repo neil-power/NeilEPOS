@@ -1,10 +1,8 @@
 ﻿''' <todo>
 ''' TO DO NEXT
-''' User Input Validation for manageproductwindow, productlookupwindow, saleswindow
-''' ISBN check digit calculation for saleswindow, manageproductwindow, productlookupwindow (for those beginning with 978 only)
+''' Binary search and sorting for index file
 ''' 
 ''' FEATURES TO ADD
-''' Binary search and sorting for index file
 ''' Functional UI design - prevent selection of some objects, set up tabbing, etc
 ''' Visual UI design - colours, logos, branding
 ''' Add more detailed sales summary information
@@ -27,22 +25,26 @@
 ''' KNOWN BUGS/ISSUES
 ''' Can't enter a price higher than 99.99 into price input boxes
 ''' Commas in author names, or passwords
+''' Masked textboxes do not set to first position by default
 '''
 ''' INFO
 ''' Standard window size - 1024 x 768
 ''' Standard MDI form size - 800 x 600, starting position 100, 50
 ''' ISBN Mask -  0000000000999
-''' Username Mask - LL??????????????????
+''' Username/Author Mask - LL??????????????????
+''' Title Mask - AAaaaaaaaaaaaaaaaaaa
 ''' Password Mask -  ampersand x 8, CCCCCCCCCCCC
 ''' </todo>
 
 Public Class StartupWindow
 
+    Private ReadOnly Version As String = "0.22"
     Private ReadOnly NoOfChecks As Integer = 8
     Private ChecksCompleted As Integer = 0
 
     Private Sub StartupWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         BringToFront() 'Brings to front
+        LogoLabel.Text = "NeilEPOS v" & Version 'Updates logo label with version
         StartButton.Hide() 'Resets window
         LoadProgressBar.Value = 0
         PerformStartupChecks() 'Runs file checks
@@ -75,9 +77,9 @@ Public Class StartupWindow
         'DOES USERS FILE EXIST?
         ProgressListBox.Items.Add("Checking users file exists")
         If Not CSV.Exists(CSV.UserFilePath) Then ' Checks to see if the NeilEPOSUsers.csv file exists
-            Dim DefaultUserDetails As String = "00001" & "," & "Default" & "," & "NeilEPOSv0.21" & "," & "0" & Environment.NewLine
+            Dim DefaultUserDetails As String = "00001" & "," & "Default" & "," & "NeilEPOSv" & Version & "," & "0" & Environment.NewLine
             CSV.Overwrite(CSV.UserFilePath, DefaultUserDetails) 'Writes a default manager account to the file to create a file for storing data.
-            ProgressListBox.Items.Add("A new users file has been created. A default manager account with ID 00001 and password NeilEPOSv0.21 has been created.")
+            ProgressListBox.Items.Add("A new users file has been created. A default manager account with ID 00001 and password NeilEPOSv" & Version & " has been created.")
         End If
         IncrementProgressBar()
 
@@ -119,7 +121,7 @@ Public Class StartupWindow
         'HAS A WEEKLY BACKUP BEEN MADE?
         If MakeBackups() = True Then
             ProgressListBox.Items.Add("A new backup of all files has been made at " & My.Computer.FileSystem.SpecialDirectories.Desktop)
-        ElseIf MakeBackups = False Then
+        ElseIf MakeBackups() = False Then
             ProgressListBox.Items.Add("A weekly backup of all files already exists at " & My.Computer.FileSystem.SpecialDirectories.Desktop)
         End If
         IncrementProgressBar()

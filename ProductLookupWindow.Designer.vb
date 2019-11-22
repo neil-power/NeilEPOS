@@ -56,7 +56,7 @@ Partial Class ProductLookupWindow
         Me.CloseButton.Location = New System.Drawing.Point(236, 318)
         Me.CloseButton.Name = "CloseButton"
         Me.CloseButton.Size = New System.Drawing.Size(100, 75)
-        Me.CloseButton.TabIndex = 52
+        Me.CloseButton.TabIndex = 4
         Me.CloseButton.Text = "Close"
         Me.CloseButton.UseVisualStyleBackColor = True
         '
@@ -66,7 +66,7 @@ Partial Class ProductLookupWindow
         Me.SearchButton.Location = New System.Drawing.Point(21, 318)
         Me.SearchButton.Name = "SearchButton"
         Me.SearchButton.Size = New System.Drawing.Size(100, 75)
-        Me.SearchButton.TabIndex = 53
+        Me.SearchButton.TabIndex = 2
         Me.SearchButton.Text = "Search"
         Me.SearchButton.UseVisualStyleBackColor = True
         '
@@ -148,7 +148,8 @@ Partial Class ProductLookupWindow
         Me.ISBNMaskedTextBox.Name = "ISBNMaskedTextBox"
         Me.ISBNMaskedTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
         Me.ISBNMaskedTextBox.Size = New System.Drawing.Size(191, 29)
-        Me.ISBNMaskedTextBox.TabIndex = 51
+        Me.ISBNMaskedTextBox.TabIndex = 1
+        Me.ISBNMaskedTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         Me.ISBNMaskedTextBox.ValidatingType = GetType(Integer)
         '
         'RRPLabel
@@ -177,7 +178,7 @@ Partial Class ProductLookupWindow
         Me.ClearButton.Location = New System.Drawing.Point(128, 318)
         Me.ClearButton.Name = "ClearButton"
         Me.ClearButton.Size = New System.Drawing.Size(100, 75)
-        Me.ClearButton.TabIndex = 52
+        Me.ClearButton.TabIndex = 3
         Me.ClearButton.Text = "Clear"
         Me.ClearButton.UseVisualStyleBackColor = True
         '
@@ -197,7 +198,7 @@ Partial Class ProductLookupWindow
         Me.OnlineLookupButton.Location = New System.Drawing.Point(21, 410)
         Me.OnlineLookupButton.Name = "OnlineLookupButton"
         Me.OnlineLookupButton.Size = New System.Drawing.Size(100, 75)
-        Me.OnlineLookupButton.TabIndex = 53
+        Me.OnlineLookupButton.TabIndex = 5
         Me.OnlineLookupButton.Text = "Online Lookup"
         Me.OnlineLookupButton.UseVisualStyleBackColor = True
         '

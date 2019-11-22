@@ -45,9 +45,9 @@ Partial Class StartupWindow
         Me.LogoLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 50.0!)
         Me.LogoLabel.Location = New System.Drawing.Point(3, 9)
         Me.LogoLabel.Name = "LogoLabel"
-        Me.LogoLabel.Size = New System.Drawing.Size(515, 76)
+        Me.LogoLabel.Size = New System.Drawing.Size(532, 76)
         Me.LogoLabel.TabIndex = 2
-        Me.LogoLabel.Text = "NeilEPOS v0.21"
+        Me.LogoLabel.Text = "NeilEPOS v[X.X]"
         '
         'LoadProgressBar
         '
@@ -59,17 +59,19 @@ Partial Class StartupWindow
         'ProgressListBox
         '
         Me.ProgressListBox.FormattingEnabled = True
+        Me.ProgressListBox.HorizontalScrollbar = True
         Me.ProgressListBox.Location = New System.Drawing.Point(16, 113)
         Me.ProgressListBox.Name = "ProgressListBox"
         Me.ProgressListBox.Size = New System.Drawing.Size(499, 95)
-        Me.ProgressListBox.TabIndex = 4
+        Me.ProgressListBox.TabIndex = 2
+        Me.ProgressListBox.TabStop = False
         '
         'StartButton
         '
         Me.StartButton.Location = New System.Drawing.Point(16, 258)
         Me.StartButton.Name = "StartButton"
         Me.StartButton.Size = New System.Drawing.Size(499, 60)
-        Me.StartButton.TabIndex = 5
+        Me.StartButton.TabIndex = 1
         Me.StartButton.Text = "Start"
         Me.StartButton.UseVisualStyleBackColor = True
         '

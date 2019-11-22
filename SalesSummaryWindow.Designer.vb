@@ -34,7 +34,7 @@ Partial Class SalesSummaryWindow
         Me.WeeklySummaryButton.Location = New System.Drawing.Point(146, 26)
         Me.WeeklySummaryButton.Name = "WeeklySummaryButton"
         Me.WeeklySummaryButton.Size = New System.Drawing.Size(100, 75)
-        Me.WeeklySummaryButton.TabIndex = 22
+        Me.WeeklySummaryButton.TabIndex = 2
         Me.WeeklySummaryButton.Text = "This Week"
         Me.WeeklySummaryButton.UseVisualStyleBackColor = True
         '
@@ -44,7 +44,7 @@ Partial Class SalesSummaryWindow
         Me.DailySummaryButton.Location = New System.Drawing.Point(28, 26)
         Me.DailySummaryButton.Name = "DailySummaryButton"
         Me.DailySummaryButton.Size = New System.Drawing.Size(100, 75)
-        Me.DailySummaryButton.TabIndex = 23
+        Me.DailySummaryButton.TabIndex = 1
         Me.DailySummaryButton.Text = "Today"
         Me.DailySummaryButton.UseVisualStyleBackColor = True
         '
@@ -57,6 +57,7 @@ Partial Class SalesSummaryWindow
         Me.SalesListBox.Name = "SalesListBox"
         Me.SalesListBox.Size = New System.Drawing.Size(507, 224)
         Me.SalesListBox.TabIndex = 24
+        Me.SalesListBox.TabStop = False
         '
         'CloseButton
         '
@@ -64,7 +65,7 @@ Partial Class SalesSummaryWindow
         Me.CloseButton.Location = New System.Drawing.Point(28, 406)
         Me.CloseButton.Name = "CloseButton"
         Me.CloseButton.Size = New System.Drawing.Size(100, 75)
-        Me.CloseButton.TabIndex = 50
+        Me.CloseButton.TabIndex = 3
         Me.CloseButton.Text = "Close"
         Me.CloseButton.UseVisualStyleBackColor = True
         '

@@ -17,7 +17,9 @@
         ResetUsersWindow()
     End Sub
 
-
+    Private Sub MaskedTextBox_Click(sender As Object, e As EventArgs) Handles UserNameTextBox.Click, UserIDTextBox.Click, PasswordTextBox.Click
+        sender.Select(sender.Text.Length, 0) 'Selects first character on click for masked text boxes
+    End Sub
 
     Private Sub ResetUsersWindow() 'Resets all values to default
 

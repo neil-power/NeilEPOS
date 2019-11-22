@@ -82,7 +82,8 @@ Partial Class LoginWindow
         Me.UserIDTextBox.Name = "UserIDTextBox"
         Me.UserIDTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
         Me.UserIDTextBox.Size = New System.Drawing.Size(207, 29)
-        Me.UserIDTextBox.TabIndex = 3
+        Me.UserIDTextBox.TabIndex = 1
+        Me.UserIDTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         Me.UserIDTextBox.ValidatingType = GetType(Integer)
         '
         'LoginPromptLabel
@@ -101,7 +102,7 @@ Partial Class LoginWindow
         Me.LoginButton.Location = New System.Drawing.Point(346, 377)
         Me.LoginButton.Name = "LoginButton"
         Me.LoginButton.Size = New System.Drawing.Size(100, 75)
-        Me.LoginButton.TabIndex = 19
+        Me.LoginButton.TabIndex = 3
         Me.LoginButton.Text = "Login"
         Me.LoginButton.UseVisualStyleBackColor = True
         '
@@ -111,7 +112,7 @@ Partial Class LoginWindow
         Me.CloseButton.Location = New System.Drawing.Point(587, 377)
         Me.CloseButton.Name = "CloseButton"
         Me.CloseButton.Size = New System.Drawing.Size(100, 75)
-        Me.CloseButton.TabIndex = 19
+        Me.CloseButton.TabIndex = 5
         Me.CloseButton.Text = "Close"
         Me.CloseButton.UseVisualStyleBackColor = True
         '
@@ -121,7 +122,7 @@ Partial Class LoginWindow
         Me.ClearButton.Location = New System.Drawing.Point(466, 377)
         Me.ClearButton.Name = "ClearButton"
         Me.ClearButton.Size = New System.Drawing.Size(100, 75)
-        Me.ClearButton.TabIndex = 19
+        Me.ClearButton.TabIndex = 4
         Me.ClearButton.Text = "Clear"
         Me.ClearButton.UseVisualStyleBackColor = True
         '
@@ -133,7 +134,8 @@ Partial Class LoginWindow
         Me.PasswordTextBox.Name = "PasswordTextBox"
         Me.PasswordTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
         Me.PasswordTextBox.Size = New System.Drawing.Size(207, 29)
-        Me.PasswordTextBox.TabIndex = 3
+        Me.PasswordTextBox.TabIndex = 2
+        Me.PasswordTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         Me.PasswordTextBox.UseSystemPasswordChar = True
         Me.PasswordTextBox.ValidatingType = GetType(Integer)
         '

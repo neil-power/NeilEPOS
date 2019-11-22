@@ -196,7 +196,11 @@
         If FoundProduct <> Nothing Then 'If product is in local database
             ShowPrice(Product.FromLine(FoundProduct).RRP)
         Else
-            WebCrawler.Navigate("https://www.bertrams.com/BertWeb/public/itemLookup.do?method=list&ITEM=" & Trim(ISBNTextBox.Text)) ' Navigates to the bertrams webpage for the book
+            If Trim(ISBNTextBox.Text).Length = 13 Then 'Checks if data in textbox is the right ISBN length
+                If Product.ValidateISBN(ISBNTextBox.Text) Then 'Checks if ISBN is valid
+                    WebCrawler.Navigate("https://www.bertrams.com/BertWeb/public/itemLookup.do?method=list&ITEM=" & ISBNTextBox.Text) 'Navigates to the bertrams webpage for the book
+                End If
+            End If
         End If
     End Sub
 

@@ -58,19 +58,25 @@ Public Class RandomFile
 
     End Sub
 
-    Public Shared Sub Delete(FieldID As Long, FileIndexPath As String) 'Remove item from indexed file
+    Public Shared Sub Delete(FieldID As Long, FileIndexPath As String, Confirm As Boolean) 'Remove item from indexed file
         Dim IndexFileContents() As String = CSV.ReadAsArray(FileIndexPath) 'Gets entire contents of index file
         For i = 0 To UBound(IndexFileContents) 'Runs through each line
             If FieldID = IndexFileContents(i).Split(",")(0) Then 'If item ID matches field ID
-                If InputBox("Please type 'YES' to confirm deletion of item " & IndexFileContents(i).Split(",")(0)) = "YES" Then 'Confirms item deletion
+                If Confirm = True Then 'If user is deleting item, confirm
+                    If InputBox("Please type 'YES' to confirm deletion of item " & IndexFileContents(i).Split(",")(0)) = "YES" Then 'Confirms item deletion
+                        CSV.ArrayOverwrite(FileIndexPath, CSV.RemoveFromArray(IndexFileContents, i)) 'Overwrites file with new list of products
+                    End If
+                ElseIf Confirm = False Then 'If system is deleting item, do not confirm
                     CSV.ArrayOverwrite(FileIndexPath, CSV.RemoveFromArray(IndexFileContents, i)) 'Overwrites file with new list of products
                 End If
+
             End If
+
         Next
     End Sub
 
     Public Shared Sub Replace(FieldID As String, NewItemToWrite As String, FilePath As String, FileIndexPath As String)
-        Delete(FieldID, FileIndexPath) 'Remove ID from index file
+        Delete(FieldID, FileIndexPath, False) 'Remove ID from index file, does not confirm
         Write(NewItemToWrite, FilePath, FileIndexPath) 'Write new product details and add new index to file
     End Sub
 

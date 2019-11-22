@@ -47,7 +47,7 @@ Partial Class ManagerWindow
         Me.SalesButton.Location = New System.Drawing.Point(19, 79)
         Me.SalesButton.Name = "SalesButton"
         Me.SalesButton.Size = New System.Drawing.Size(100, 75)
-        Me.SalesButton.TabIndex = 20
+        Me.SalesButton.TabIndex = 1
         Me.SalesButton.Text = "Sales"
         Me.SalesButton.UseVisualStyleBackColor = True
         '
@@ -57,7 +57,7 @@ Partial Class ManagerWindow
         Me.ProductLookupButton.Location = New System.Drawing.Point(19, 171)
         Me.ProductLookupButton.Name = "ProductLookupButton"
         Me.ProductLookupButton.Size = New System.Drawing.Size(100, 75)
-        Me.ProductLookupButton.TabIndex = 20
+        Me.ProductLookupButton.TabIndex = 2
         Me.ProductLookupButton.Text = "Product Lookup"
         Me.ProductLookupButton.UseVisualStyleBackColor = True
         '
@@ -67,7 +67,7 @@ Partial Class ManagerWindow
         Me.SalesSummaryButton.Location = New System.Drawing.Point(19, 447)
         Me.SalesSummaryButton.Name = "SalesSummaryButton"
         Me.SalesSummaryButton.Size = New System.Drawing.Size(100, 75)
-        Me.SalesSummaryButton.TabIndex = 20
+        Me.SalesSummaryButton.TabIndex = 5
         Me.SalesSummaryButton.Text = "Sales Summary"
         Me.SalesSummaryButton.UseVisualStyleBackColor = True
         '
@@ -77,7 +77,7 @@ Partial Class ManagerWindow
         Me.EditProductButton.Location = New System.Drawing.Point(19, 263)
         Me.EditProductButton.Name = "EditProductButton"
         Me.EditProductButton.Size = New System.Drawing.Size(100, 75)
-        Me.EditProductButton.TabIndex = 20
+        Me.EditProductButton.TabIndex = 3
         Me.EditProductButton.Text = "Edit Product"
         Me.EditProductButton.UseVisualStyleBackColor = True
         '
@@ -87,7 +87,7 @@ Partial Class ManagerWindow
         Me.ManageUsersButton.Location = New System.Drawing.Point(19, 358)
         Me.ManageUsersButton.Name = "ManageUsersButton"
         Me.ManageUsersButton.Size = New System.Drawing.Size(100, 75)
-        Me.ManageUsersButton.TabIndex = 20
+        Me.ManageUsersButton.TabIndex = 4
         Me.ManageUsersButton.Text = "Manage Users"
         Me.ManageUsersButton.UseVisualStyleBackColor = True
         '
@@ -97,7 +97,7 @@ Partial Class ManagerWindow
         Me.LogoutButton.Location = New System.Drawing.Point(19, 545)
         Me.LogoutButton.Name = "LogoutButton"
         Me.LogoutButton.Size = New System.Drawing.Size(100, 75)
-        Me.LogoutButton.TabIndex = 20
+        Me.LogoutButton.TabIndex = 6
         Me.LogoutButton.Text = "Logout"
         Me.LogoutButton.UseVisualStyleBackColor = True
         '

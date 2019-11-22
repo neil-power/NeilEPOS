@@ -48,7 +48,8 @@ Partial Class ManageUsersWindow
         Me.UserIDTextBox.Name = "UserIDTextBox"
         Me.UserIDTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
         Me.UserIDTextBox.Size = New System.Drawing.Size(207, 29)
-        Me.UserIDTextBox.TabIndex = 7
+        Me.UserIDTextBox.TabIndex = 4
+        Me.UserIDTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         Me.UserIDTextBox.ValidatingType = GetType(Integer)
         '
         'PasswordLabel
@@ -87,7 +88,7 @@ Partial Class ManageUsersWindow
         Me.NewUserButton.Location = New System.Drawing.Point(34, 26)
         Me.NewUserButton.Name = "NewUserButton"
         Me.NewUserButton.Size = New System.Drawing.Size(100, 75)
-        Me.NewUserButton.TabIndex = 21
+        Me.NewUserButton.TabIndex = 1
         Me.NewUserButton.Text = "New User"
         Me.NewUserButton.UseVisualStyleBackColor = True
         '
@@ -97,7 +98,7 @@ Partial Class ManageUsersWindow
         Me.EditUserButton.Location = New System.Drawing.Point(152, 26)
         Me.EditUserButton.Name = "EditUserButton"
         Me.EditUserButton.Size = New System.Drawing.Size(100, 75)
-        Me.EditUserButton.TabIndex = 21
+        Me.EditUserButton.TabIndex = 2
         Me.EditUserButton.Text = "Edit User Details"
         Me.EditUserButton.UseVisualStyleBackColor = True
         '
@@ -107,7 +108,7 @@ Partial Class ManageUsersWindow
         Me.DeleteUserButton.Location = New System.Drawing.Point(273, 26)
         Me.DeleteUserButton.Name = "DeleteUserButton"
         Me.DeleteUserButton.Size = New System.Drawing.Size(100, 75)
-        Me.DeleteUserButton.TabIndex = 21
+        Me.DeleteUserButton.TabIndex = 3
         Me.DeleteUserButton.Text = "Delete User"
         Me.DeleteUserButton.UseVisualStyleBackColor = True
         '
@@ -130,7 +131,7 @@ Partial Class ManageUsersWindow
         Me.AccessLevelComboBox.Location = New System.Drawing.Point(195, 264)
         Me.AccessLevelComboBox.Name = "AccessLevelComboBox"
         Me.AccessLevelComboBox.Size = New System.Drawing.Size(207, 32)
-        Me.AccessLevelComboBox.TabIndex = 22
+        Me.AccessLevelComboBox.TabIndex = 7
         '
         'SaveUserButton
         '
@@ -138,7 +139,7 @@ Partial Class ManageUsersWindow
         Me.SaveUserButton.Location = New System.Drawing.Point(34, 374)
         Me.SaveUserButton.Name = "SaveUserButton"
         Me.SaveUserButton.Size = New System.Drawing.Size(100, 75)
-        Me.SaveUserButton.TabIndex = 21
+        Me.SaveUserButton.TabIndex = 8
         Me.SaveUserButton.Text = "Save User"
         Me.SaveUserButton.UseVisualStyleBackColor = True
         '
@@ -148,7 +149,7 @@ Partial Class ManageUsersWindow
         Me.CloseButton.Location = New System.Drawing.Point(273, 374)
         Me.CloseButton.Name = "CloseButton"
         Me.CloseButton.Size = New System.Drawing.Size(100, 75)
-        Me.CloseButton.TabIndex = 21
+        Me.CloseButton.TabIndex = 10
         Me.CloseButton.Text = "Close"
         Me.CloseButton.UseVisualStyleBackColor = True
         '
@@ -158,7 +159,7 @@ Partial Class ManageUsersWindow
         Me.SearchButton.Location = New System.Drawing.Point(152, 374)
         Me.SearchButton.Name = "SearchButton"
         Me.SearchButton.Size = New System.Drawing.Size(100, 75)
-        Me.SearchButton.TabIndex = 21
+        Me.SearchButton.TabIndex = 9
         Me.SearchButton.Text = "Search"
         Me.SearchButton.UseVisualStyleBackColor = True
         '
@@ -181,6 +182,7 @@ Partial Class ManageUsersWindow
         Me.FoundUsersListBox.Name = "FoundUsersListBox"
         Me.FoundUsersListBox.Size = New System.Drawing.Size(339, 68)
         Me.FoundUsersListBox.TabIndex = 24
+        Me.FoundUsersListBox.TabStop = False
         '
         'PasswordTextBox
         '
@@ -190,7 +192,8 @@ Partial Class ManageUsersWindow
         Me.PasswordTextBox.Name = "PasswordTextBox"
         Me.PasswordTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
         Me.PasswordTextBox.Size = New System.Drawing.Size(207, 29)
-        Me.PasswordTextBox.TabIndex = 25
+        Me.PasswordTextBox.TabIndex = 6
+        Me.PasswordTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         Me.PasswordTextBox.UseSystemPasswordChar = True
         Me.PasswordTextBox.ValidatingType = GetType(Integer)
         '
@@ -202,7 +205,8 @@ Partial Class ManageUsersWindow
         Me.UserNameTextBox.Name = "UserNameTextBox"
         Me.UserNameTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
         Me.UserNameTextBox.Size = New System.Drawing.Size(207, 29)
-        Me.UserNameTextBox.TabIndex = 7
+        Me.UserNameTextBox.TabIndex = 5
+        Me.UserNameTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         Me.UserNameTextBox.ValidatingType = GetType(Integer)
         '
         'ManageUsersWindow

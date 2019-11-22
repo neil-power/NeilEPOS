@@ -51,6 +51,7 @@ Partial Class PaymentWindow
         Me.DelButton.Name = "DelButton"
         Me.DelButton.Size = New System.Drawing.Size(75, 75)
         Me.DelButton.TabIndex = 3
+        Me.DelButton.TabStop = False
         Me.DelButton.Text = "DEL"
         Me.DelButton.UseVisualStyleBackColor = True
         '
@@ -61,6 +62,7 @@ Partial Class PaymentWindow
         Me.NumButton6.Name = "NumButton6"
         Me.NumButton6.Size = New System.Drawing.Size(75, 75)
         Me.NumButton6.TabIndex = 4
+        Me.NumButton6.TabStop = False
         Me.NumButton6.Text = "6"
         Me.NumButton6.UseVisualStyleBackColor = True
         '
@@ -71,6 +73,7 @@ Partial Class PaymentWindow
         Me.NumButton0.Name = "NumButton0"
         Me.NumButton0.Size = New System.Drawing.Size(75, 75)
         Me.NumButton0.TabIndex = 5
+        Me.NumButton0.TabStop = False
         Me.NumButton0.Text = "0"
         Me.NumButton0.UseVisualStyleBackColor = True
         '
@@ -81,6 +84,7 @@ Partial Class PaymentWindow
         Me.NumButton5.Name = "NumButton5"
         Me.NumButton5.Size = New System.Drawing.Size(75, 75)
         Me.NumButton5.TabIndex = 6
+        Me.NumButton5.TabStop = False
         Me.NumButton5.Text = "5"
         Me.NumButton5.UseVisualStyleBackColor = True
         '
@@ -91,6 +95,7 @@ Partial Class PaymentWindow
         Me.ClearButton.Name = "ClearButton"
         Me.ClearButton.Size = New System.Drawing.Size(75, 75)
         Me.ClearButton.TabIndex = 7
+        Me.ClearButton.TabStop = False
         Me.ClearButton.Text = "CLR"
         Me.ClearButton.UseVisualStyleBackColor = True
         '
@@ -101,6 +106,7 @@ Partial Class PaymentWindow
         Me.NumButton4.Name = "NumButton4"
         Me.NumButton4.Size = New System.Drawing.Size(75, 75)
         Me.NumButton4.TabIndex = 8
+        Me.NumButton4.TabStop = False
         Me.NumButton4.Text = "4"
         Me.NumButton4.UseVisualStyleBackColor = True
         '
@@ -111,6 +117,7 @@ Partial Class PaymentWindow
         Me.NumButton3.Name = "NumButton3"
         Me.NumButton3.Size = New System.Drawing.Size(75, 75)
         Me.NumButton3.TabIndex = 9
+        Me.NumButton3.TabStop = False
         Me.NumButton3.Text = "3"
         Me.NumButton3.UseVisualStyleBackColor = True
         '
@@ -121,6 +128,7 @@ Partial Class PaymentWindow
         Me.NumButton9.Name = "NumButton9"
         Me.NumButton9.Size = New System.Drawing.Size(75, 75)
         Me.NumButton9.TabIndex = 10
+        Me.NumButton9.TabStop = False
         Me.NumButton9.Text = "9"
         Me.NumButton9.UseVisualStyleBackColor = True
         '
@@ -131,6 +139,7 @@ Partial Class PaymentWindow
         Me.NumButton2.Name = "NumButton2"
         Me.NumButton2.Size = New System.Drawing.Size(75, 75)
         Me.NumButton2.TabIndex = 11
+        Me.NumButton2.TabStop = False
         Me.NumButton2.Text = "2"
         Me.NumButton2.UseVisualStyleBackColor = True
         '
@@ -141,6 +150,7 @@ Partial Class PaymentWindow
         Me.NumButton8.Name = "NumButton8"
         Me.NumButton8.Size = New System.Drawing.Size(75, 75)
         Me.NumButton8.TabIndex = 12
+        Me.NumButton8.TabStop = False
         Me.NumButton8.Text = "8"
         Me.NumButton8.UseVisualStyleBackColor = True
         '
@@ -151,6 +161,7 @@ Partial Class PaymentWindow
         Me.NumButton1.Name = "NumButton1"
         Me.NumButton1.Size = New System.Drawing.Size(75, 75)
         Me.NumButton1.TabIndex = 13
+        Me.NumButton1.TabStop = False
         Me.NumButton1.Text = "1"
         Me.NumButton1.UseVisualStyleBackColor = True
         '
@@ -161,6 +172,7 @@ Partial Class PaymentWindow
         Me.NumButton7.Name = "NumButton7"
         Me.NumButton7.Size = New System.Drawing.Size(75, 75)
         Me.NumButton7.TabIndex = 14
+        Me.NumButton7.TabStop = False
         Me.NumButton7.Text = "7"
         Me.NumButton7.UseVisualStyleBackColor = True
         '
@@ -220,7 +232,7 @@ Partial Class PaymentWindow
         Me.FinishSale.Location = New System.Drawing.Point(334, 202)
         Me.FinishSale.Name = "FinishSale"
         Me.FinishSale.Size = New System.Drawing.Size(100, 75)
-        Me.FinishSale.TabIndex = 18
+        Me.FinishSale.TabIndex = 2
         Me.FinishSale.Text = "Finish Sale"
         Me.FinishSale.UseVisualStyleBackColor = True
         '
@@ -230,7 +242,7 @@ Partial Class PaymentWindow
         Me.ContinueSaleButton.Location = New System.Drawing.Point(452, 202)
         Me.ContinueSaleButton.Name = "ContinueSaleButton"
         Me.ContinueSaleButton.Size = New System.Drawing.Size(100, 75)
-        Me.ContinueSaleButton.TabIndex = 18
+        Me.ContinueSaleButton.TabIndex = 3
         Me.ContinueSaleButton.Text = "ContinueSale"
         Me.ContinueSaleButton.UseVisualStyleBackColor = True
         '
@@ -244,7 +256,7 @@ Partial Class PaymentWindow
         Me.AmountPaidTextBox.ResetOnPrompt = False
         Me.AmountPaidTextBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.AmountPaidTextBox.Size = New System.Drawing.Size(179, 29)
-        Me.AmountPaidTextBox.TabIndex = 19
+        Me.AmountPaidTextBox.TabIndex = 1
         Me.AmountPaidTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.AmountPaidTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         '

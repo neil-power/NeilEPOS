@@ -18,6 +18,10 @@
         ResetProductsWindow()
     End Sub
 
+    Private Sub MaskedTextBox_Click(sender As Object, e As EventArgs) Handles TitleTextBox.Click, RRPTextBox.Click, ProductIDTextBox.Click, AuthorTextBox.Click
+        sender.Select(sender.Text.Length, 0) 'Selects first character on click for masked text boxes
+    End Sub
+
     Private Sub ResetProductsWindow() 'Resets all values to default
 
         ProductIDTextBox.Clear() 'Clear all text boxes
@@ -25,8 +29,7 @@
         AuthorTextBox.Clear()
         RRPTextBox.Clear()
         GenreComboBox.Items.Clear()
-        Dim ListOfGenres As String() = {"Fiction", "Non-Fiction", "Other", "ADD MORE LATER"} 'Add more later
-        GenreComboBox.Items.AddRange(ListOfGenres) 'Adds list of genres to combo box
+        GenreComboBox.Items.AddRange(Product.GenreList) 'Adds list of genres to combo box
         GenreComboBox.Text = "Select Genre"
         InstructionLabel.Text = "Please select which action you would like to perform."
 
@@ -80,14 +83,16 @@
     End Sub
 
     Private Sub SaveProduct()
-        Dim ProductToSave As String = ProductIDTextBox.Text & "," & TitleTextBox.Text & "," & AuthorTextBox.Text & "," & RRPTextBox.Text & "," & GenreComboBox.Text
-        If Mode = ProductMode.EditProduct Then 'If a product is being edited, the new details need to be inserted
-            Product.EditProduct(Product.FromLine(ProductToSave))
-        ElseIf Mode = ProductMode.NewProduct Then 'If a new product is being made, they can be added at the end of the file
-            Product.AddNewProduct(Product.FromLine(ProductToSave))
-        End If
+        Dim ProductToSave As String = ProductIDTextBox.Text.Trim & "," & TitleTextBox.Text.Trim & "," & AuthorTextBox.Text.Trim & "," & If(RRPTextBox.Text <> "", RRPTextBox.Text.Trim, 0) & "," & GenreComboBox.Text 'If RRP is blank, set price to 0
+        If Product.CheckValidProduct(ProductToSave.Split(",")) Then
+            If Mode = ProductMode.EditProduct Then 'If a product is being edited, the new details need to be inserted
+                Product.EditProduct(Product.FromLine(ProductToSave))
+            ElseIf Mode = ProductMode.NewProduct Then 'If a new product is being made, they can be added at the end of the file
+                Product.AddNewProduct(Product.FromLine(ProductToSave))
+            End If
 
-        ResetProductsWindow() 'Prevents user from entering text
+            ResetProductsWindow() 'Prevents user from entering text
+        End If
     End Sub
 
     ' **************************************************VIEW USERS**************************************************
@@ -145,8 +150,10 @@
     ' **************************************************ONLINE LOOKUP**************************************************
 
     Private Sub OnlineLookupButton_Click(sender As Object, e As EventArgs) Handles OnlineLookupButton.Click
-        If Trim(ProductIDTextBox.Text).Length >= 10 And Trim(ProductIDTextBox.Text).Length <= 13 Then 'Checks if data in textbox is the right ISBN length
-            WebCrawler.Navigate("https://www.bertrams.com/BertWeb/public/itemLookup.do?method=list&ITEM=" & ProductIDTextBox.Text) 'Navigates to the bertrams webpage for the book
+        If Trim(ProductIDTextBox.Text).Length = 13 Then 'Checks if data in textbox is the right ISBN length
+            If Product.ValidateISBN(ProductIDTextBox.Text) Then 'Checks if ISBN is valid
+                WebCrawler.Navigate("https://www.bertrams.com/BertWeb/public/itemLookup.do?method=list&ITEM=" & ProductIDTextBox.Text) 'Navigates to the bertrams webpage for the book
+            End If
         End If
     End Sub
 

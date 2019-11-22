@@ -30,9 +30,6 @@ Partial Class ManageProductsWindow
         Me.DeleteProductButton = New System.Windows.Forms.Button()
         Me.EditProductButton = New System.Windows.Forms.Button()
         Me.NewProductButton = New System.Windows.Forms.Button()
-        Me.TitleTextBox = New System.Windows.Forms.TextBox()
-        Me.RRPTextBox = New System.Windows.Forms.TextBox()
-        Me.AuthorTextBox = New System.Windows.Forms.TextBox()
         Me.TitleLabel = New System.Windows.Forms.Label()
         Me.GenreLabel = New System.Windows.Forms.Label()
         Me.RRPLabel = New System.Windows.Forms.Label()
@@ -41,6 +38,9 @@ Partial Class ManageProductsWindow
         Me.ProductIDLabel = New System.Windows.Forms.Label()
         Me.OnlineLookupButton = New System.Windows.Forms.Button()
         Me.WebCrawler = New System.Windows.Forms.WebBrowser()
+        Me.RRPTextBox = New System.Windows.Forms.MaskedTextBox()
+        Me.TitleTextBox = New System.Windows.Forms.MaskedTextBox()
+        Me.AuthorTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.SuspendLayout()
         '
         'InstructionLabel
@@ -61,8 +61,8 @@ Partial Class ManageProductsWindow
         Me.GenreComboBox.Items.AddRange(New Object() {"None", "User", "Manager"})
         Me.GenreComboBox.Location = New System.Drawing.Point(186, 298)
         Me.GenreComboBox.Name = "GenreComboBox"
-        Me.GenreComboBox.Size = New System.Drawing.Size(191, 32)
-        Me.GenreComboBox.TabIndex = 55
+        Me.GenreComboBox.Size = New System.Drawing.Size(237, 32)
+        Me.GenreComboBox.TabIndex = 8
         '
         'CloseButton
         '
@@ -70,7 +70,7 @@ Partial Class ManageProductsWindow
         Me.CloseButton.Location = New System.Drawing.Point(264, 369)
         Me.CloseButton.Name = "CloseButton"
         Me.CloseButton.Size = New System.Drawing.Size(100, 75)
-        Me.CloseButton.TabIndex = 49
+        Me.CloseButton.TabIndex = 11
         Me.CloseButton.Text = "Close"
         Me.CloseButton.UseVisualStyleBackColor = True
         '
@@ -80,7 +80,7 @@ Partial Class ManageProductsWindow
         Me.SearchButton.Location = New System.Drawing.Point(143, 369)
         Me.SearchButton.Name = "SearchButton"
         Me.SearchButton.Size = New System.Drawing.Size(100, 75)
-        Me.SearchButton.TabIndex = 50
+        Me.SearchButton.TabIndex = 10
         Me.SearchButton.Text = "Search"
         Me.SearchButton.UseVisualStyleBackColor = True
         '
@@ -90,7 +90,7 @@ Partial Class ManageProductsWindow
         Me.SaveProductButton.Location = New System.Drawing.Point(25, 369)
         Me.SaveProductButton.Name = "SaveProductButton"
         Me.SaveProductButton.Size = New System.Drawing.Size(100, 75)
-        Me.SaveProductButton.TabIndex = 51
+        Me.SaveProductButton.TabIndex = 9
         Me.SaveProductButton.Text = "Save Product"
         Me.SaveProductButton.UseVisualStyleBackColor = True
         '
@@ -100,7 +100,7 @@ Partial Class ManageProductsWindow
         Me.DeleteProductButton.Location = New System.Drawing.Point(264, 24)
         Me.DeleteProductButton.Name = "DeleteProductButton"
         Me.DeleteProductButton.Size = New System.Drawing.Size(100, 75)
-        Me.DeleteProductButton.TabIndex = 52
+        Me.DeleteProductButton.TabIndex = 3
         Me.DeleteProductButton.Text = "Delete Product"
         Me.DeleteProductButton.UseVisualStyleBackColor = True
         '
@@ -110,7 +110,7 @@ Partial Class ManageProductsWindow
         Me.EditProductButton.Location = New System.Drawing.Point(143, 24)
         Me.EditProductButton.Name = "EditProductButton"
         Me.EditProductButton.Size = New System.Drawing.Size(100, 75)
-        Me.EditProductButton.TabIndex = 53
+        Me.EditProductButton.TabIndex = 2
         Me.EditProductButton.Text = "Edit Product"
         Me.EditProductButton.UseVisualStyleBackColor = True
         '
@@ -120,33 +120,9 @@ Partial Class ManageProductsWindow
         Me.NewProductButton.Location = New System.Drawing.Point(25, 24)
         Me.NewProductButton.Name = "NewProductButton"
         Me.NewProductButton.Size = New System.Drawing.Size(100, 75)
-        Me.NewProductButton.TabIndex = 54
+        Me.NewProductButton.TabIndex = 1
         Me.NewProductButton.Text = "New Product"
         Me.NewProductButton.UseVisualStyleBackColor = True
-        '
-        'TitleTextBox
-        '
-        Me.TitleTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TitleTextBox.Location = New System.Drawing.Point(186, 182)
-        Me.TitleTextBox.Name = "TitleTextBox"
-        Me.TitleTextBox.Size = New System.Drawing.Size(191, 29)
-        Me.TitleTextBox.TabIndex = 46
-        '
-        'RRPTextBox
-        '
-        Me.RRPTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RRPTextBox.Location = New System.Drawing.Point(186, 259)
-        Me.RRPTextBox.Name = "RRPTextBox"
-        Me.RRPTextBox.Size = New System.Drawing.Size(191, 29)
-        Me.RRPTextBox.TabIndex = 47
-        '
-        'AuthorTextBox
-        '
-        Me.AuthorTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.AuthorTextBox.Location = New System.Drawing.Point(186, 222)
-        Me.AuthorTextBox.Name = "AuthorTextBox"
-        Me.AuthorTextBox.Size = New System.Drawing.Size(191, 29)
-        Me.AuthorTextBox.TabIndex = 48
         '
         'TitleLabel
         '
@@ -185,8 +161,9 @@ Partial Class ManageProductsWindow
         Me.ProductIDTextBox.Mask = "0000000000999"
         Me.ProductIDTextBox.Name = "ProductIDTextBox"
         Me.ProductIDTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
-        Me.ProductIDTextBox.Size = New System.Drawing.Size(191, 29)
-        Me.ProductIDTextBox.TabIndex = 45
+        Me.ProductIDTextBox.Size = New System.Drawing.Size(237, 29)
+        Me.ProductIDTextBox.TabIndex = 4
+        Me.ProductIDTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         Me.ProductIDTextBox.ValidatingType = GetType(Integer)
         '
         'AuthorLabel
@@ -215,7 +192,7 @@ Partial Class ManageProductsWindow
         Me.OnlineLookupButton.Location = New System.Drawing.Point(25, 450)
         Me.OnlineLookupButton.Name = "OnlineLookupButton"
         Me.OnlineLookupButton.Size = New System.Drawing.Size(100, 75)
-        Me.OnlineLookupButton.TabIndex = 51
+        Me.OnlineLookupButton.TabIndex = 12
         Me.OnlineLookupButton.Text = "Online Lookup"
         Me.OnlineLookupButton.UseVisualStyleBackColor = True
         '
@@ -228,6 +205,42 @@ Partial Class ManageProductsWindow
         Me.WebCrawler.TabIndex = 58
         Me.WebCrawler.TabStop = False
         Me.WebCrawler.Visible = False
+        '
+        'RRPTextBox
+        '
+        Me.RRPTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RRPTextBox.Location = New System.Drawing.Point(186, 258)
+        Me.RRPTextBox.Mask = "£00.00"
+        Me.RRPTextBox.Name = "RRPTextBox"
+        Me.RRPTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(48)
+        Me.RRPTextBox.Size = New System.Drawing.Size(237, 29)
+        Me.RRPTextBox.TabIndex = 7
+        Me.RRPTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        Me.RRPTextBox.ValidatingType = GetType(Integer)
+        '
+        'TitleTextBox
+        '
+        Me.TitleTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TitleTextBox.Location = New System.Drawing.Point(186, 177)
+        Me.TitleTextBox.Mask = "AAaaaaaaaaaaaaaaaaaa"
+        Me.TitleTextBox.Name = "TitleTextBox"
+        Me.TitleTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
+        Me.TitleTextBox.Size = New System.Drawing.Size(237, 29)
+        Me.TitleTextBox.TabIndex = 5
+        Me.TitleTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        Me.TitleTextBox.ValidatingType = GetType(Integer)
+        '
+        'AuthorTextBox
+        '
+        Me.AuthorTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.AuthorTextBox.Location = New System.Drawing.Point(186, 219)
+        Me.AuthorTextBox.Mask = "LL??????????????????"
+        Me.AuthorTextBox.Name = "AuthorTextBox"
+        Me.AuthorTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
+        Me.AuthorTextBox.Size = New System.Drawing.Size(237, 29)
+        Me.AuthorTextBox.TabIndex = 6
+        Me.AuthorTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        Me.AuthorTextBox.ValidatingType = GetType(Integer)
         '
         'ManageProductsWindow
         '
@@ -244,12 +257,12 @@ Partial Class ManageProductsWindow
         Me.Controls.Add(Me.DeleteProductButton)
         Me.Controls.Add(Me.EditProductButton)
         Me.Controls.Add(Me.NewProductButton)
-        Me.Controls.Add(Me.TitleTextBox)
-        Me.Controls.Add(Me.RRPTextBox)
-        Me.Controls.Add(Me.AuthorTextBox)
         Me.Controls.Add(Me.TitleLabel)
         Me.Controls.Add(Me.GenreLabel)
         Me.Controls.Add(Me.RRPLabel)
+        Me.Controls.Add(Me.RRPTextBox)
+        Me.Controls.Add(Me.AuthorTextBox)
+        Me.Controls.Add(Me.TitleTextBox)
         Me.Controls.Add(Me.ProductIDTextBox)
         Me.Controls.Add(Me.AuthorLabel)
         Me.Controls.Add(Me.ProductIDLabel)
@@ -269,9 +282,6 @@ Partial Class ManageProductsWindow
     Friend WithEvents DeleteProductButton As Button
     Friend WithEvents EditProductButton As Button
     Friend WithEvents NewProductButton As Button
-    Friend WithEvents TitleTextBox As TextBox
-    Friend WithEvents RRPTextBox As TextBox
-    Friend WithEvents AuthorTextBox As TextBox
     Friend WithEvents TitleLabel As Label
     Friend WithEvents GenreLabel As Label
     Friend WithEvents RRPLabel As Label
@@ -280,4 +290,7 @@ Partial Class ManageProductsWindow
     Friend WithEvents ProductIDLabel As Label
     Friend WithEvents OnlineLookupButton As Button
     Friend WithEvents WebCrawler As WebBrowser
+    Friend WithEvents RRPTextBox As MaskedTextBox
+    Friend WithEvents TitleTextBox As MaskedTextBox
+    Friend WithEvents AuthorTextBox As MaskedTextBox
 End Class

@@ -87,6 +87,7 @@ Partial Class SalesWindow
         Me.NumButton7.Name = "NumButton7"
         Me.NumButton7.Size = New System.Drawing.Size(75, 75)
         Me.NumButton7.TabIndex = 2
+        Me.NumButton7.TabStop = False
         Me.NumButton7.Text = "7"
         Me.NumButton7.UseVisualStyleBackColor = True
         '
@@ -97,6 +98,7 @@ Partial Class SalesWindow
         Me.NumButton8.Name = "NumButton8"
         Me.NumButton8.Size = New System.Drawing.Size(75, 75)
         Me.NumButton8.TabIndex = 2
+        Me.NumButton8.TabStop = False
         Me.NumButton8.Text = "8"
         Me.NumButton8.UseVisualStyleBackColor = True
         '
@@ -107,6 +109,7 @@ Partial Class SalesWindow
         Me.NumButton9.Name = "NumButton9"
         Me.NumButton9.Size = New System.Drawing.Size(75, 75)
         Me.NumButton9.TabIndex = 2
+        Me.NumButton9.TabStop = False
         Me.NumButton9.Text = "9"
         Me.NumButton9.UseVisualStyleBackColor = True
         '
@@ -117,6 +120,7 @@ Partial Class SalesWindow
         Me.NumButton4.Name = "NumButton4"
         Me.NumButton4.Size = New System.Drawing.Size(75, 75)
         Me.NumButton4.TabIndex = 2
+        Me.NumButton4.TabStop = False
         Me.NumButton4.Text = "4"
         Me.NumButton4.UseVisualStyleBackColor = True
         '
@@ -127,6 +131,7 @@ Partial Class SalesWindow
         Me.NumButton5.Name = "NumButton5"
         Me.NumButton5.Size = New System.Drawing.Size(75, 75)
         Me.NumButton5.TabIndex = 2
+        Me.NumButton5.TabStop = False
         Me.NumButton5.Text = "5"
         Me.NumButton5.UseVisualStyleBackColor = True
         '
@@ -137,6 +142,7 @@ Partial Class SalesWindow
         Me.NumButton6.Name = "NumButton6"
         Me.NumButton6.Size = New System.Drawing.Size(75, 75)
         Me.NumButton6.TabIndex = 2
+        Me.NumButton6.TabStop = False
         Me.NumButton6.Text = "6"
         Me.NumButton6.UseVisualStyleBackColor = True
         '
@@ -147,6 +153,7 @@ Partial Class SalesWindow
         Me.NumButton1.Name = "NumButton1"
         Me.NumButton1.Size = New System.Drawing.Size(75, 75)
         Me.NumButton1.TabIndex = 2
+        Me.NumButton1.TabStop = False
         Me.NumButton1.Text = "1"
         Me.NumButton1.UseVisualStyleBackColor = True
         '
@@ -157,6 +164,7 @@ Partial Class SalesWindow
         Me.NumButton2.Name = "NumButton2"
         Me.NumButton2.Size = New System.Drawing.Size(75, 75)
         Me.NumButton2.TabIndex = 2
+        Me.NumButton2.TabStop = False
         Me.NumButton2.Text = "2"
         Me.NumButton2.UseVisualStyleBackColor = True
         '
@@ -167,6 +175,7 @@ Partial Class SalesWindow
         Me.NumButton3.Name = "NumButton3"
         Me.NumButton3.Size = New System.Drawing.Size(75, 75)
         Me.NumButton3.TabIndex = 2
+        Me.NumButton3.TabStop = False
         Me.NumButton3.Text = "3"
         Me.NumButton3.UseVisualStyleBackColor = True
         '
@@ -177,6 +186,7 @@ Partial Class SalesWindow
         Me.ClearButton.Name = "ClearButton"
         Me.ClearButton.Size = New System.Drawing.Size(75, 75)
         Me.ClearButton.TabIndex = 2
+        Me.ClearButton.TabStop = False
         Me.ClearButton.Text = "CLR"
         Me.ClearButton.UseVisualStyleBackColor = True
         '
@@ -187,6 +197,7 @@ Partial Class SalesWindow
         Me.NumButton0.Name = "NumButton0"
         Me.NumButton0.Size = New System.Drawing.Size(75, 75)
         Me.NumButton0.TabIndex = 2
+        Me.NumButton0.TabStop = False
         Me.NumButton0.Text = "0"
         Me.NumButton0.UseVisualStyleBackColor = True
         '
@@ -197,6 +208,7 @@ Partial Class SalesWindow
         Me.DelButton.Name = "DelButton"
         Me.DelButton.Size = New System.Drawing.Size(75, 75)
         Me.DelButton.TabIndex = 2
+        Me.DelButton.TabStop = False
         Me.DelButton.Text = "DEL"
         Me.DelButton.UseVisualStyleBackColor = True
         '
@@ -209,6 +221,7 @@ Partial Class SalesWindow
         Me.ItemsSoldListBox.Name = "ItemsSoldListBox"
         Me.ItemsSoldListBox.Size = New System.Drawing.Size(390, 268)
         Me.ItemsSoldListBox.TabIndex = 3
+        Me.ItemsSoldListBox.TabStop = False
         '
         'TakePaymentButton
         '
@@ -216,7 +229,7 @@ Partial Class SalesWindow
         Me.TakePaymentButton.Location = New System.Drawing.Point(374, 421)
         Me.TakePaymentButton.Name = "TakePaymentButton"
         Me.TakePaymentButton.Size = New System.Drawing.Size(100, 75)
-        Me.TakePaymentButton.TabIndex = 4
+        Me.TakePaymentButton.TabIndex = 7
         Me.TakePaymentButton.Text = "Take Payment"
         Me.TakePaymentButton.UseVisualStyleBackColor = True
         '
@@ -236,7 +249,7 @@ Partial Class SalesWindow
         Me.AbandonSale.Location = New System.Drawing.Point(586, 340)
         Me.AbandonSale.Name = "AbandonSale"
         Me.AbandonSale.Size = New System.Drawing.Size(100, 75)
-        Me.AbandonSale.TabIndex = 4
+        Me.AbandonSale.TabIndex = 6
         Me.AbandonSale.Text = "Abandon Sale"
         Me.AbandonSale.UseVisualStyleBackColor = True
         '
@@ -261,7 +274,7 @@ Partial Class SalesWindow
         Me.PriceTextBox.ResetOnPrompt = False
         Me.PriceTextBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.PriceTextBox.Size = New System.Drawing.Size(181, 29)
-        Me.PriceTextBox.TabIndex = 7
+        Me.PriceTextBox.TabIndex = 2
         Me.PriceTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.PriceTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         '
@@ -273,7 +286,7 @@ Partial Class SalesWindow
         Me.ISBNTextBox.Name = "ISBNTextBox"
         Me.ISBNTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
         Me.ISBNTextBox.Size = New System.Drawing.Size(181, 29)
-        Me.ISBNTextBox.TabIndex = 9
+        Me.ISBNTextBox.TabIndex = 1
         '
         'QuantityTextBox
         '
@@ -283,7 +296,7 @@ Partial Class SalesWindow
         Me.QuantityTextBox.Name = "QuantityTextBox"
         Me.QuantityTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
         Me.QuantityTextBox.Size = New System.Drawing.Size(181, 29)
-        Me.QuantityTextBox.TabIndex = 9
+        Me.QuantityTextBox.TabIndex = 3
         '
         'PriceLookupButton
         '
@@ -291,7 +304,7 @@ Partial Class SalesWindow
         Me.PriceLookupButton.Location = New System.Drawing.Point(480, 340)
         Me.PriceLookupButton.Name = "PriceLookupButton"
         Me.PriceLookupButton.Size = New System.Drawing.Size(100, 75)
-        Me.PriceLookupButton.TabIndex = 4
+        Me.PriceLookupButton.TabIndex = 5
         Me.PriceLookupButton.Text = "Price Lookup"
         Me.PriceLookupButton.UseVisualStyleBackColor = True
         '
@@ -301,7 +314,7 @@ Partial Class SalesWindow
         Me.CloseButton.Location = New System.Drawing.Point(480, 421)
         Me.CloseButton.Name = "CloseButton"
         Me.CloseButton.Size = New System.Drawing.Size(100, 75)
-        Me.CloseButton.TabIndex = 4
+        Me.CloseButton.TabIndex = 8
         Me.CloseButton.Text = "Close"
         Me.CloseButton.UseVisualStyleBackColor = True
         '

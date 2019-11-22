@@ -4,6 +4,10 @@
         UserIDTextBox.Select() ' Sets cursor to start of ID text box
     End Sub
 
+    Private Sub MaskedTextBox_Click(sender As Object, e As EventArgs) Handles UserIDTextBox.Click, PasswordTextBox.Click
+        sender.Select(sender.Text.Length, 0) 'Selects first character on click for masked text boxes
+    End Sub
+
     ' **************************************************UTILITY BUTTONS**************************************************
     Private Sub UtilityButton_Click(sender As Object, e As EventArgs) Handles ClearButton.Click, CloseButton.Click, LoginButton.Click
         Select Case sender.name

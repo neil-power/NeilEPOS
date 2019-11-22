@@ -34,7 +34,7 @@ Partial Class UserWindow
         Me.LogoutButton.Location = New System.Drawing.Point(19, 250)
         Me.LogoutButton.Name = "LogoutButton"
         Me.LogoutButton.Size = New System.Drawing.Size(100, 75)
-        Me.LogoutButton.TabIndex = 25
+        Me.LogoutButton.TabIndex = 3
         Me.LogoutButton.Text = "Logout"
         Me.LogoutButton.UseVisualStyleBackColor = True
         '
@@ -44,7 +44,7 @@ Partial Class UserWindow
         Me.SalesButton.Location = New System.Drawing.Point(19, 68)
         Me.SalesButton.Name = "SalesButton"
         Me.SalesButton.Size = New System.Drawing.Size(100, 75)
-        Me.SalesButton.TabIndex = 28
+        Me.SalesButton.TabIndex = 1
         Me.SalesButton.Text = "Sales"
         Me.SalesButton.UseVisualStyleBackColor = True
         '
@@ -54,7 +54,7 @@ Partial Class UserWindow
         Me.ProductLookupButton.Location = New System.Drawing.Point(19, 158)
         Me.ProductLookupButton.Name = "ProductLookupButton"
         Me.ProductLookupButton.Size = New System.Drawing.Size(100, 75)
-        Me.ProductLookupButton.TabIndex = 27
+        Me.ProductLookupButton.TabIndex = 2
         Me.ProductLookupButton.Text = "Product Lookup"
         Me.ProductLookupButton.UseVisualStyleBackColor = True
         '
