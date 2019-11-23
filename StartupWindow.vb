@@ -1,11 +1,9 @@
 ﻿''' <todo>
 ''' TO DO NEXT
-''' Binary search and sorting for index file
+''' Add more detailed sales summary information - all products sold, total per day, by genre etc
 ''' 
 ''' FEATURES TO ADD
-''' Functional UI design - prevent selection of some objects, set up tabbing, etc
 ''' Visual UI design - colours, logos, branding
-''' Add more detailed sales summary information
 ''' 
 ''' POST-PROTOTYPE/FINAL STAGES OF DEVELOPMENT
 ''' Lots of testing
@@ -38,8 +36,8 @@
 
 Public Class StartupWindow
 
-    Private ReadOnly Version As String = "0.22"
-    Private ReadOnly NoOfChecks As Integer = 8
+    Private ReadOnly Version As String = "0.23"
+    Private ReadOnly NoOfChecks As Integer = 9
     Private ChecksCompleted As Integer = 0
 
     Private Sub StartupWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -116,6 +114,11 @@ Public Class StartupWindow
             CSV.Overwrite(Product.ProductsIndexPath, "") 'Create a new blank file
             ProgressListBox.Items.Add("A new product index file has been created at " & Product.ProductsIndexPath) 'Gives notification that a new product file has been created
         End If
+        IncrementProgressBar()
+
+        'SORT PRODUCT INDEX FILE
+        ProgressListBox.Items.Add("Sorting product index file")
+        RandomFile.SortIndex(Product.ProductsIndexPath)
         IncrementProgressBar()
 
         'HAS A WEEKLY BACKUP BEEN MADE?

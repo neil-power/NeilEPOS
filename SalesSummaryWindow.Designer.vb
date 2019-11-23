@@ -55,7 +55,7 @@ Partial Class SalesSummaryWindow
         Me.SalesListBox.ItemHeight = 20
         Me.SalesListBox.Location = New System.Drawing.Point(28, 119)
         Me.SalesListBox.Name = "SalesListBox"
-        Me.SalesListBox.Size = New System.Drawing.Size(507, 224)
+        Me.SalesListBox.Size = New System.Drawing.Size(729, 224)
         Me.SalesListBox.TabIndex = 24
         Me.SalesListBox.TabStop = False
         '

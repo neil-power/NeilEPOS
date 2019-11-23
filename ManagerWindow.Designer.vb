@@ -26,7 +26,7 @@ Partial Class ManagerWindow
         Me.SalesButton = New System.Windows.Forms.Button()
         Me.ProductLookupButton = New System.Windows.Forms.Button()
         Me.SalesSummaryButton = New System.Windows.Forms.Button()
-        Me.EditProductButton = New System.Windows.Forms.Button()
+        Me.ManageProductsButton = New System.Windows.Forms.Button()
         Me.ManageUsersButton = New System.Windows.Forms.Button()
         Me.LogoutButton = New System.Windows.Forms.Button()
         Me.SuspendLayout()
@@ -71,15 +71,15 @@ Partial Class ManagerWindow
         Me.SalesSummaryButton.Text = "Sales Summary"
         Me.SalesSummaryButton.UseVisualStyleBackColor = True
         '
-        'EditProductButton
+        'ManageProductsButton
         '
-        Me.EditProductButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.EditProductButton.Location = New System.Drawing.Point(19, 263)
-        Me.EditProductButton.Name = "EditProductButton"
-        Me.EditProductButton.Size = New System.Drawing.Size(100, 75)
-        Me.EditProductButton.TabIndex = 3
-        Me.EditProductButton.Text = "Edit Product"
-        Me.EditProductButton.UseVisualStyleBackColor = True
+        Me.ManageProductsButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ManageProductsButton.Location = New System.Drawing.Point(19, 263)
+        Me.ManageProductsButton.Name = "ManageProductsButton"
+        Me.ManageProductsButton.Size = New System.Drawing.Size(100, 75)
+        Me.ManageProductsButton.TabIndex = 3
+        Me.ManageProductsButton.Text = "Manage Products"
+        Me.ManageProductsButton.UseVisualStyleBackColor = True
         '
         'ManageUsersButton
         '
@@ -109,7 +109,7 @@ Partial Class ManagerWindow
         Me.Controls.Add(Me.ManageUsersButton)
         Me.Controls.Add(Me.SalesSummaryButton)
         Me.Controls.Add(Me.LogoutButton)
-        Me.Controls.Add(Me.EditProductButton)
+        Me.Controls.Add(Me.ManageProductsButton)
         Me.Controls.Add(Me.ProductLookupButton)
         Me.Controls.Add(Me.SalesButton)
         Me.Controls.Add(Me.LogoLabel)
@@ -127,7 +127,7 @@ Partial Class ManagerWindow
     Friend WithEvents SalesButton As Button
     Friend WithEvents ProductLookupButton As Button
     Friend WithEvents SalesSummaryButton As Button
-    Friend WithEvents EditProductButton As Button
+    Friend WithEvents ManageProductsButton As Button
     Friend WithEvents ManageUsersButton As Button
     Friend WithEvents LogoutButton As Button
 End Class

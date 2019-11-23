@@ -71,7 +71,7 @@
     Private Function VerifyUserLogin(ByVal UserID As Integer, ByVal Password As String) 'Reads file and matches ID and password
         Dim UserFileContents() As String = CSV.ReadAsArray(CSV.UserFilePath) 'Read entire users file as array
         If UserFileContents.Length <> 0 Then 'Tests to see if there are any users in the sale file.
-            For Each Line As String In UserFileContents ' Runs through each line in user file - INEFFICIENT
+            For Each Line As String In UserFileContents ' Runs through each line in user file
                 Dim UserOnLine As User = User.FromLine(Line) 'Gets the user on the line as a user data type
                 If UserOnLine.UserID = UserID And UserOnLine.Password = Password Then ' If ID and password match
                     Return UserOnLine 'Return the user on that line if the details match

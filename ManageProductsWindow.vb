@@ -18,7 +18,7 @@
         ResetProductsWindow()
     End Sub
 
-    Private Sub MaskedTextBox_Click(sender As Object, e As EventArgs) Handles TitleTextBox.Click, RRPTextBox.Click, ProductIDTextBox.Click, AuthorTextBox.Click
+    Private Sub MaskedTextBox_Click(sender As Object, e As EventArgs) Handles TitleTextBox.Click, ProductIDTextBox.Click, AuthorTextBox.Click
         sender.Select(sender.Text.Length, 0) 'Selects first character on click for masked text boxes
     End Sub
 
@@ -83,7 +83,8 @@
     End Sub
 
     Private Sub SaveProduct()
-        Dim ProductToSave As String = ProductIDTextBox.Text.Trim & "," & TitleTextBox.Text.Trim & "," & AuthorTextBox.Text.Trim & "," & If(RRPTextBox.Text <> "", RRPTextBox.Text.Trim, 0) & "," & GenreComboBox.Text 'If RRP is blank, set price to 0
+
+        Dim ProductToSave As String = ProductIDTextBox.Text.Trim & "," & TitleTextBox.Text.Trim & "," & AuthorTextBox.Text.Trim & "," & If(RRPTextBox.Text <> "", RRPTextBox.Text.Replace("£", ""), 0) & "," & GenreComboBox.Text 'If RRP is blank, set price to 0, otherwise replace space with decimal
         If Product.CheckValidProduct(ProductToSave.Split(",")) Then
             If Mode = ProductMode.EditProduct Then 'If a product is being edited, the new details need to be inserted
                 Product.EditProduct(Product.FromLine(ProductToSave))

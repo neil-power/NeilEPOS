@@ -215,7 +215,7 @@ Partial Class ManageProductsWindow
         Me.RRPTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(48)
         Me.RRPTextBox.Size = New System.Drawing.Size(237, 29)
         Me.RRPTextBox.TabIndex = 7
-        Me.RRPTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        Me.RRPTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
         Me.RRPTextBox.ValidatingType = GetType(Integer)
         '
         'TitleTextBox

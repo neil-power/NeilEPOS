@@ -11,7 +11,7 @@
     End Sub
 
 
-    Private Sub ActionButton_Click(sender As Object, e As EventArgs) Handles SalesButton.Click, ProductLookupButton.Click, EditProductButton.Click, SalesSummaryButton.Click, ManageUsersButton.Click, LogoutButton.Click 'When a button is clicked, opens the correct window
+    Private Sub ActionButton_Click(sender As Object, e As EventArgs) Handles SalesButton.Click, ProductLookupButton.Click, ManageProductsButton.Click, SalesSummaryButton.Click, ManageUsersButton.Click, LogoutButton.Click 'When a button is clicked, opens the correct window
         CloseAllMDIWindows()
         Select Case sender.Name 'Gets and selects the name of the button pressed
             Case SalesButton.Name 'If it is the make sales button, open window
@@ -20,7 +20,7 @@
             Case ProductLookupButton.Name 'Opens the product window
                 ProductLookupWindow.MdiParent = Me 'Sets manager form as MDI parent of product lookup form
                 ProductLookupWindow.Show() 'Opens the product window
-            Case EditProductButton.Name 'Opens the product management window
+            Case ManageProductsButton.Name 'Opens the product management window
                 ManageProductsWindow.MdiParent = Me 'Sets manager form as MDI parent of product management form
                 ManageProductsWindow.Show() 'Opens the product management window
             Case SalesSummaryButton.Name
