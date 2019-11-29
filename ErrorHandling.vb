@@ -26,7 +26,7 @@
     End Sub
 
     Public Shared Sub Log(ThrownException As Exception) 'Logs an error to file
-        Dim ErrorToLog As String = Date.Now & "," & ThrownException.ToString & "," & Environment.NewLine & Environment.NewLine
+        Dim ErrorToLog As String = Date.Now & CSV.Delimiter & ThrownException.ToString & CSV.Delimiter & Environment.NewLine & Environment.NewLine
         Try
             My.Computer.FileSystem.WriteAllText(LogFilePath, ErrorToLog, True)
         Catch ex As Exception

@@ -11,6 +11,9 @@ Public Class CSV
     Public Shared DailySalesFilePath As String = MainDirectoryFilePath & Date.Today.ToString("yyyy-MM-dd") & " DAILY SALES.csv" ' Desktop and current date for file to save to
     Public Shared WeeklySalesFilePath As String = MainDirectoryFilePath & Date.Now.Year & " " & WeekNumber & " WEEKLY SALES.csv" ' Sets week number and year for file to save to on desktop
 
+    Public Shared ReadOnly Delimiter As Char = Chr(31)
+    Public Shared ReadOnly Comma As Char = ","
+
     Public Shared Sub CheckMainDirectoryExists() 'Checks if the main directory folder exists, if not, one is created
         If Not Directory.Exists(MainDirectoryFilePath) Then
             Try
@@ -70,7 +73,7 @@ Public Class CSV
     Public Shared Sub Replace(FilePath As String, LineToReplaceID As Integer, NewLine As String) 'Replaces line starting with specified ID
         Dim FileContents() As String = ReadAsArray(FilePath) 'Gets entire contents of specified file
         For i = 0 To UBound(FileContents) 'Runs through each line
-            Dim Line As String() = FileContents(i).Split(",") 'Splits line on commas
+            Dim Line As String() = FileContents(i).Split(Delimiter) 'Splits line on commas
             If Line(0) = LineToReplaceID Then 'If ID matches with line to edit ID
                 FileContents(i) = NewLine 'Replace line with edit
                 ArrayOverwrite(FilePath, FileContents)

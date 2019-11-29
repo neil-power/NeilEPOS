@@ -73,12 +73,12 @@
     End Function
 
     Public Shared Function FromLine(Line As String) 'Converts from line in file to product data type
-        Dim SplitLine As String() = Line.Split(",") 'Splits line on commas
+        Dim SplitLine As String() = Line.Split(CSV.Delimiter) 'Splits line on delimiter character
         Return New Product With {.ISBN = SplitLine(0), .Title = SplitLine(1), .Author = SplitLine(2), .RRP = SplitLine(3), .Genre = SplitLine(4)} 'Adds product on line to product structure
     End Function
 
     Public Shared Function ToLine(ProductToConvert As Product)
-        Return ProductToConvert.ISBN & "," & ProductToConvert.Title & "," & ProductToConvert.Author & "," & ProductToConvert.RRP & "," & ProductToConvert.Genre
+        Return ProductToConvert.ISBN & CSV.Delimiter & ProductToConvert.Title & CSV.Delimiter & ProductToConvert.Author & CSV.Delimiter & ProductToConvert.RRP & CSV.Delimiter & ProductToConvert.Genre
     End Function
     Public Shared Sub AddNewProduct(ProductToAdd As Product)
         RandomFile.Write(ToLine(ProductToAdd), ProductsFilePath, ProductsIndexPath)

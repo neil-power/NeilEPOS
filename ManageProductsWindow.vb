@@ -84,8 +84,8 @@
 
     Private Sub SaveProduct()
 
-        Dim ProductToSave As String = ProductIDTextBox.Text.Trim & "," & TitleTextBox.Text.Trim & "," & AuthorTextBox.Text.Trim & "," & If(RRPTextBox.Text <> "", RRPTextBox.Text.Replace("£", ""), 0) & "," & GenreComboBox.Text 'If RRP is blank, set price to 0, otherwise replace space with decimal
-        If Product.CheckValidProduct(ProductToSave.Split(",")) Then
+        Dim ProductToSave As String = ProductIDTextBox.Text.Trim & CSV.Delimiter & TitleTextBox.Text.Trim & CSV.Delimiter & AuthorTextBox.Text.Trim & CSV.Delimiter & If(RRPTextBox.Text <> "", RRPTextBox.Text.Replace("£", ""), 0) & CSV.Delimiter & GenreComboBox.Text 'If RRP is blank, set price to 0, otherwise replace space with decimal
+        If Product.CheckValidProduct(ProductToSave.Split(CSV.Delimiter)) Then
             If Mode = ProductMode.EditProduct Then 'If a product is being edited, the new details need to be inserted
                 Product.EditProduct(Product.FromLine(ProductToSave))
             ElseIf Mode = ProductMode.NewProduct Then 'If a new product is being made, they can be added at the end of the file

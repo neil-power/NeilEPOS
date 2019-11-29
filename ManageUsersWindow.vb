@@ -82,8 +82,8 @@
 
     Private Sub SaveUser()
 
-        Dim UserToSave As String = UserIDTextBox.Text & "," & UserNameTextBox.Text.Trim() & "," & PasswordTextBox.Text.Trim() & "," & GetUserAccessFromTextBox()
-        If User.CheckValidUser(UserToSave.Split(",")) Then
+        Dim UserToSave As String = UserIDTextBox.Text & CSV.Delimiter & UserNameTextBox.Text.Trim() & CSV.Delimiter & PasswordTextBox.Text.Trim() & CSV.Delimiter & GetUserAccessFromTextBox()
+        If User.CheckValidUser(UserToSave.Split(CSV.Delimiter)) Then
 
             If Mode = UserMode.EditUser Then 'If a user is being edited, the new details need to be inserted
                 CSV.Replace(CSV.UserFilePath, UserIDTextBox.Text, UserToSave) 'Replaces any lines matching UserID text box
@@ -113,7 +113,7 @@
         Dim UserFileContents() As String = CSV.ReadAsArray(CSV.UserFilePath) 'Read entire users file
 
         For Each Line As String In UserFileContents 'Runs through each line
-            Dim user As String() = Line.Split(",") 'Splits line on commas
+            Dim user As String() = Line.Split(CSV.Delimiter) 'Splits line on delimiter character
             If user(0) = UserIDTextBox.Text Or user(1) = UsernameTextBox.Text Or GetUserAccessFromFile(user(3)) = AccessLevelComboBox.Text Then 'If ID or username or access level match
                 FoundUsersListBox.Items.Add(Line) 'Add to displayed listbox
             End If
@@ -151,7 +151,7 @@
 
     Private Function GetNewUserID()
         Dim UserFileContents() As String = CSV.ReadAsArray(CSV.UserFilePath) 'Read entire users file
-        Dim LastUser As String() = UserFileContents.Last.Split(",") 'Gets last user - needs verification/error handling
+        Dim LastUser As String() = UserFileContents.Last.Split(CSV.Delimiter) 'Gets last user - needs verification/error handling
         Dim LastUserID As Integer = CInt(LastUser(0)) + 1 'Definitely needs error handling
         Return LastUserID.ToString("00000")
     End Function
@@ -173,16 +173,20 @@
     End Sub
 
     Private Sub DeleteUser(UserToEdit As User)
-        Dim UserFileContents() As String = CSV.ReadAsArray(CSV.UserFilePath) 'Gets entire contents of user file
-        For i = 0 To UBound(UserFileContents) 'Runs through each line
-            Dim UserFound As User = User.FromLine(UserFileContents(i)) 'Converts to user
-            If UserFound.UserID = UserToEdit.UserID Then 'If ID matches with edited user
-                If InputBox("Please type 'YES' to confirm deletion of user " & UserFound.UserID & " " & UserFound.UserName) = "YES" Then 'Confirms user deletion
-                    CSV.ArrayOverwrite(CSV.UserFilePath, CSV.RemoveFromArray(UserFileContents, i)) 'Overwrites file with new list of users
+        If UserToEdit.UserID <> LoginWindow.CurrentUser.UserID Then
+            Dim UserFileContents() As String = CSV.ReadAsArray(CSV.UserFilePath) 'Gets entire contents of user file
+            For i = 0 To UBound(UserFileContents) 'Runs through each line
+                Dim UserFound As User = User.FromLine(UserFileContents(i)) 'Converts to user
+                If UserFound.UserID = UserToEdit.UserID Then 'If ID matches with edited user
+                    If InputBox("Please type 'YES' to confirm deletion of user " & UserFound.UserID & " " & UserFound.UserName) = "YES" Then 'Confirms user deletion
+                        CSV.ArrayOverwrite(CSV.UserFilePath, CSV.RemoveFromArray(UserFileContents, i)) 'Overwrites file with new list of users
+                    End If
                 End If
-            End If
-        Next
-        ResetUsersWindow()
+            Next
+            ResetUsersWindow()
+        Else
+            InstructionLabel.Text = "You cannot delete the current user"
+        End If
     End Sub
 
     Private Sub FoundUsersListBox_DoubleClick(sender As Object, e As EventArgs) Handles FoundUsersListBox.DoubleClick

@@ -24,8 +24,10 @@ Partial Class SalesSummaryWindow
     Private Sub InitializeComponent()
         Me.WeeklySummaryButton = New System.Windows.Forms.Button()
         Me.DailySummaryButton = New System.Windows.Forms.Button()
-        Me.SalesListBox = New System.Windows.Forms.ListBox()
         Me.CloseButton = New System.Windows.Forms.Button()
+        Me.SalesDataGrid = New System.Windows.Forms.DataGridView()
+        Me.CalculationLabel = New System.Windows.Forms.Label()
+        CType(Me.SalesDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'WeeklySummaryButton
@@ -48,45 +50,63 @@ Partial Class SalesSummaryWindow
         Me.DailySummaryButton.Text = "Today"
         Me.DailySummaryButton.UseVisualStyleBackColor = True
         '
-        'SalesListBox
-        '
-        Me.SalesListBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.SalesListBox.FormattingEnabled = True
-        Me.SalesListBox.ItemHeight = 20
-        Me.SalesListBox.Location = New System.Drawing.Point(28, 119)
-        Me.SalesListBox.Name = "SalesListBox"
-        Me.SalesListBox.Size = New System.Drawing.Size(729, 224)
-        Me.SalesListBox.TabIndex = 24
-        Me.SalesListBox.TabStop = False
-        '
         'CloseButton
         '
         Me.CloseButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CloseButton.Location = New System.Drawing.Point(28, 406)
+        Me.CloseButton.Location = New System.Drawing.Point(28, 474)
         Me.CloseButton.Name = "CloseButton"
         Me.CloseButton.Size = New System.Drawing.Size(100, 75)
         Me.CloseButton.TabIndex = 3
         Me.CloseButton.Text = "Close"
         Me.CloseButton.UseVisualStyleBackColor = True
         '
+        'SalesDataGrid
+        '
+        Me.SalesDataGrid.AllowUserToAddRows = False
+        Me.SalesDataGrid.AllowUserToDeleteRows = False
+        Me.SalesDataGrid.AllowUserToOrderColumns = True
+        Me.SalesDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.SalesDataGrid.Location = New System.Drawing.Point(28, 107)
+        Me.SalesDataGrid.Name = "SalesDataGrid"
+        Me.SalesDataGrid.ReadOnly = True
+        Me.SalesDataGrid.RowHeadersVisible = False
+        Me.SalesDataGrid.ShowCellToolTips = False
+        Me.SalesDataGrid.ShowEditingIcon = False
+        Me.SalesDataGrid.Size = New System.Drawing.Size(731, 277)
+        Me.SalesDataGrid.TabIndex = 25
+        Me.SalesDataGrid.TabStop = False
+        '
+        'CalculationLabel
+        '
+        Me.CalculationLabel.AutoSize = True
+        Me.CalculationLabel.Location = New System.Drawing.Point(28, 401)
+        Me.CalculationLabel.Name = "CalculationLabel"
+        Me.CalculationLabel.Size = New System.Drawing.Size(85, 13)
+        Me.CalculationLabel.TabIndex = 26
+        Me.CalculationLabel.Text = "CalculationLabel"
+        '
         'SalesSummaryWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(784, 561)
+        Me.Controls.Add(Me.CalculationLabel)
+        Me.Controls.Add(Me.SalesDataGrid)
         Me.Controls.Add(Me.CloseButton)
-        Me.Controls.Add(Me.SalesListBox)
         Me.Controls.Add(Me.WeeklySummaryButton)
         Me.Controls.Add(Me.DailySummaryButton)
         Me.Location = New System.Drawing.Point(1024, 768)
         Me.Name = "SalesSummaryWindow"
         Me.Text = "SalesSummary"
+        CType(Me.SalesDataGrid, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents WeeklySummaryButton As Button
     Friend WithEvents DailySummaryButton As Button
-    Friend WithEvents SalesListBox As ListBox
     Friend WithEvents CloseButton As Button
+    Friend WithEvents SalesDataGrid As DataGridView
+    Friend WithEvents CalculationLabel As Label
 End Class

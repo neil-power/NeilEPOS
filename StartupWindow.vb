@@ -1,9 +1,9 @@
 ﻿''' <todo>
 ''' TO DO NEXT
-''' Add more detailed sales summary information - all products sold, total per day, by genre etc
 ''' 
 ''' FEATURES TO ADD
 ''' Visual UI design - colours, logos, branding
+''' Encryption for users file
 ''' 
 ''' POST-PROTOTYPE/FINAL STAGES OF DEVELOPMENT
 ''' Lots of testing
@@ -15,15 +15,11 @@
 ''' Single numpad for all screens?
 ''' Make payment window mdi
 ''' Custom msgbox form for notifications
-''' Encryption for users file
 ''' Cleanup method - copy all records mentioned in index file to new master file.
 ''' Indexed file for each attribute - can search based on any attribute of product
-''' Add user name to sales files
 '''
 ''' KNOWN BUGS/ISSUES
 ''' Can't enter a price higher than 99.99 into price input boxes
-''' Commas in author names, or passwords
-''' Masked textboxes do not set to first position by default
 '''
 ''' INFO
 ''' Standard window size - 1024 x 768
@@ -36,7 +32,7 @@
 
 Public Class StartupWindow
 
-    Private ReadOnly Version As String = "0.23"
+    Private ReadOnly Version As String = "0.24"
     Private ReadOnly NoOfChecks As Integer = 9
     Private ChecksCompleted As Integer = 0
 
@@ -75,7 +71,7 @@ Public Class StartupWindow
         'DOES USERS FILE EXIST?
         ProgressListBox.Items.Add("Checking users file exists")
         If Not CSV.Exists(CSV.UserFilePath) Then ' Checks to see if the NeilEPOSUsers.csv file exists
-            Dim DefaultUserDetails As String = "00001" & "," & "Default" & "," & "NeilEPOSv" & Version & "," & "0" & Environment.NewLine
+            Dim DefaultUserDetails As String = "00001" & CSV.Delimiter & "Default" & CSV.Delimiter & "NeilEPOSv" & Version & CSV.Delimiter & "0" & Environment.NewLine
             CSV.Overwrite(CSV.UserFilePath, DefaultUserDetails) 'Writes a default manager account to the file to create a file for storing data.
             ProgressListBox.Items.Add("A new users file has been created. A default manager account with ID 00001 and password NeilEPOSv" & Version & " has been created.")
         End If
@@ -84,7 +80,7 @@ Public Class StartupWindow
         'DOES DAILY SALES FILE EXIST?
         ProgressListBox.Items.Add("Checking daily sales file exists")
         If Not CSV.Exists(CSV.DailySalesFilePath) Then ' Checks to see if a daily sales file has already been created
-            Dim HeadingsRow As String = "TransactionID" & "," & "Date" & "," & "Time" & "," & "Sale Total" & "," & "No of Items" & "," & "Items Bought" & "," & "Change Given"
+            Dim HeadingsRow As String = "Transaction ID" & CSV.Comma & "Date" & CSV.Comma & "Time" & CSV.Comma & "Item" & CSV.Comma & "Item Cost" & CSV.Comma & "Item Quantity" & CSV.Comma & "Sales Total" & CSV.Comma & "Sales Quantity" & CSV.Comma & "Change Given" & CSV.Comma & "User" & Environment.NewLine
             CSV.Overwrite(CSV.DailySalesFilePath, HeadingsRow) 'Writes a headings row to file.
             ProgressListBox.Items.Add("A new daily sales file has been created at " & CSV.DailySalesFilePath) 'Gives notification that a new sales file has been created
 
@@ -94,7 +90,7 @@ Public Class StartupWindow
         'DOES WEEKLY SALES FILE EXIST?
         ProgressListBox.Items.Add("Checking weekly sales file exists")
         If Not CSV.Exists(CSV.WeeklySalesFilePath) Then ' Checks to see if a weekly sales file has already been created
-            Dim HeadingsRow As String = "Date" & "," & "Sale Total" & "," & "No of Items"
+            Dim HeadingsRow As String = "Date" & CSV.Comma & "Sale Total" & CSV.Comma & "No of Items" & Environment.NewLine
             CSV.Overwrite(CSV.WeeklySalesFilePath, HeadingsRow) 'Writes a headings row to file.
             ProgressListBox.Items.Add("A new weekly sales file has been created at " & CSV.WeeklySalesFilePath) 'Gives notification that a new sales file has been created
         End If
@@ -122,11 +118,8 @@ Public Class StartupWindow
         IncrementProgressBar()
 
         'HAS A WEEKLY BACKUP BEEN MADE?
-        If MakeBackups() = True Then
-            ProgressListBox.Items.Add("A new backup of all files has been made at " & My.Computer.FileSystem.SpecialDirectories.Desktop)
-        ElseIf MakeBackups() = False Then
-            ProgressListBox.Items.Add("A weekly backup of all files already exists at " & My.Computer.FileSystem.SpecialDirectories.Desktop)
-        End If
+        MakeBackups()
+        ProgressListBox.Items.Add("A new backup of all files has been made at " & My.Computer.FileSystem.SpecialDirectories.Desktop)
         IncrementProgressBar()
 
         ProgressListBox.Items.Add("Checks complete")
@@ -137,18 +130,12 @@ Public Class StartupWindow
         LoadProgressBar.Value = (ChecksCompleted / NoOfChecks) * 100
     End Sub
 
-    Private Function MakeBackups()
+    Private Sub MakeBackups()
         Dim BackupDirectoryFilePath As String = My.Computer.FileSystem.SpecialDirectories.Desktop & "/BACKUP WEEK " & DatePart(DateInterval.WeekOfYear, Date.Today)
-        If Not CSV.DirectoryExists(BackupDirectoryFilePath) Then
-            Try
-                My.Computer.FileSystem.CopyDirectory(CSV.MainDirectoryFilePath, BackupDirectoryFilePath)
-            Catch ThrownException As Exception
-                ErrorHandling.Warn(ThrownException, BackupDirectoryFilePath)
-                Return False
-            End Try
-            Return True
-        Else
-            Return False
-        End If
-    End Function
+        Try
+            My.Computer.FileSystem.CopyDirectory(CSV.MainDirectoryFilePath, BackupDirectoryFilePath, True) 'Overwrite previous weekly backup
+        Catch ThrownException As Exception
+            ErrorHandling.Warn(ThrownException, BackupDirectoryFilePath)
+        End Try
+    End Sub
 End Class

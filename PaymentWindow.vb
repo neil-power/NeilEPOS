@@ -99,7 +99,7 @@
         If SaleData.Length > 1 Then ' Tests to see if there is more than one line in the sales file (there will be a header row)
             Dim LastSale As String = SaleData.Last 'Gets last line of saledata
 
-            Dim LastSaleNumber As String = LastSale.Split(",")(0) 'Takes the sale number from the last line (most recent sale) of the file and removes spaces
+            Dim LastSaleNumber As String = LastSale.Split(CSV.Comma)(0) 'Takes the sale number from the last line (most recent sale) of the file and removes spaces
 
             If Integer.TryParse(LastSaleNumber, New Integer) Then 'Tests to see if the sales number is an integer to prevent errors
                 Return LastSaleNumber 'Returns the last sale number (1 will be added to it when finish sale is clicked)
@@ -111,33 +111,42 @@
 
     End Function
 
-    Private Sub WriteToDailySalesFile(NoOfItems As Integer, ItemsBought As String)
-        Dim LineToWrite As String = Environment.NewLine & TransactionID & "," & Date.Today & "," & Date.Now.ToShortTimeString() & "," & SalesWindow.SaleTotal & "," & NoOfItems & "," & ItemsBought & "," & ChangeLabel.Text
-        CSV.Append(CSV.DailySalesFilePath, LineToWrite) 'Writes line to file
+    Private Sub WriteToDailySalesFile(NoOfItems As Integer)
+        For Each Item As SalesWindow.Item In SalesWindow.CurrentSale 'Iterate through every item in current transaction
+            ' Write Transaction ID, Date, Time, Item, Item Cost, Item Quantity,Sales Total,Sales Quantity,Change Given, User
+            If SalesWindow.CurrentSale.IndexOf(Item) = SalesWindow.CurrentSale.Count - 1 Then 'If item is last item in current sale, write sales totals
+                Dim LineToWrite As String = TransactionID & CSV.Comma & Date.Today & CSV.Comma & Date.Now.ToShortTimeString() & CSV.Comma & Item.ISBN & CSV.Comma & Item.Price & CSV.Comma & Item.Quantity & CSV.Comma & SalesWindow.SaleTotal & CSV.Comma & NoOfItems & CSV.Comma & ChangeLabel.Text & CSV.Comma & LoginWindow.CurrentUser.UserName
+                CSV.Append(CSV.DailySalesFilePath, LineToWrite) 'Writes line to file
+            Else 'Don't write sales totals
+                Dim LineToWrite As String = TransactionID & CSV.Comma & Date.Today & CSV.Comma & Date.Now.ToShortTimeString() & CSV.Comma & Item.ISBN & CSV.Comma & Item.Price & CSV.Comma & Item.Quantity
+                CSV.Append(CSV.DailySalesFilePath, LineToWrite) 'Writes line to file
+            End If
+
+        Next Item
     End Sub
 
     Private Sub WriteToWeeklySalesFile(NoOfItems As Integer)
         Dim WeeklySaleFileContents() As String = CSV.ReadAsArray(CSV.WeeklySalesFilePath) 'Gets entire contents of weekly sales file
         For i = 0 To UBound(WeeklySaleFileContents) 'Runs through each line
 
-            Dim Day As String() = WeeklySaleFileContents(i).Split(",") 'Splits line on commas
+            Dim Day As String() = WeeklySaleFileContents(i).Split(CSV.Comma) 'Splits line on delimiter character
 
             If Day(0) = "Date" Then 'If the line is the title line
                 If UBound(WeeklySaleFileContents) = 0 Then 'If there is only one line in the file
-                    Dim LineToWrite As String = Environment.NewLine & Date.Today & "," & SalesWindow.SaleTotal & "," & NoOfItems 'Writes date, total and no of items to file
+                    Dim LineToWrite As String = Date.Today & CSV.Comma & SalesWindow.SaleTotal & CSV.Comma & NoOfItems 'Writes date, total and no of items to file
                     CSV.Append(CSV.WeeklySalesFilePath, LineToWrite) 'Writes line to file
                 End If
 
             ElseIf Day(0) = Date.Today Then 'If date matches with current date
-                Dim NewSalesTotal As Double = SalesWindow.SaleTotal + CDbl(Day(1)) 'Adds current sale total to the total in the file
-                Dim NewNoOfItems As Integer = NoOfItems + CDbl(Day(2)) 'Adds current no of items to the no of items in the file
+                Dim NewSalesTotal As Double = SalesWindow.SaleTotal + Day(1) 'Adds current sale total to the total in the file
+                Dim NewNoOfItems As Integer = NoOfItems + Day(2) 'Adds current no of items to the no of items in the file
 
-                WeeklySaleFileContents(i) = (Date.Today & "," & NewSalesTotal & "," & NewNoOfItems) 'Replace line with updated day
+                WeeklySaleFileContents(i) = (Date.Today & CSV.Comma & NewSalesTotal & CSV.Comma & NewNoOfItems) 'Replace line with updated day
                 CSV.ArrayOverwrite(CSV.WeeklySalesFilePath, WeeklySaleFileContents) 'Replace file with updated version
 
             ElseIf i = UBound(WeeklySaleFileContents) Then 'If it is not the title line, the date does not match with current date and the current line is the last line in the file
 
-                Dim LineToWrite As String = Environment.NewLine & Date.Today & "," & SalesWindow.SaleTotal & "," & NoOfItems 'Writes date, total and no of items to file
+                Dim LineToWrite As String = Date.Today & CSV.Comma & SalesWindow.SaleTotal & CSV.Comma & NoOfItems 'Writes date, total and no of items to file
                 CSV.Append(CSV.WeeklySalesFilePath, LineToWrite) 'Writes line to file
             End If
 
@@ -147,15 +156,12 @@
 
     Private Sub FinishSale_Click(sender As Object, e As EventArgs) Handles FinishSale.Click ' Writes the information to the sales file
         TransactionID += 1 'Increments transaction ID by 1
-        Dim ItemsBought As String = ""
         Dim NoOfItems As Integer = 0
         For Each ItemBought As SalesWindow.Item In SalesWindow.CurrentSale 'Interates through every item in the current sale
-            ItemsBought += ItemBought.ISBN & " " 'Adds item to space-separated list
-            NoOfItems += 1 'Increases no of items by 1
+            NoOfItems += ItemBought.Quantity 'Adds quantity of item bought to running total
         Next ItemBought
-        ItemsBought = ItemsBought.TrimEnd(" ") 'Remove space on end
 
-        WriteToDailySalesFile(NoOfItems, ItemsBought)
+        WriteToDailySalesFile(NoOfItems)
         WriteToWeeklySalesFile(NoOfItems)
 
         TotalLabel.Text = "" 'Resets label to default

@@ -14,8 +14,8 @@ Public Class RandomFile
         If FoundLine = Nothing Then 'If a matching line is not returned
             Return Nothing 'Item is not found
         Else
-            Position = FoundLine.Split(",")(1) 'Get item position from line
-            LengthToRead = FoundLine.Split(",")(2) 'Get item length from line
+            Position = FoundLine.Split(CSV.Delimiter)(1) 'Get item position from line
+            LengthToRead = FoundLine.Split(CSV.Delimiter)(2) 'Get item length from line
         End If
 
         'NAVIGATE TO LOCATION AND EXTRACT ITEM DETAILS
@@ -51,16 +51,16 @@ Public Class RandomFile
         End Try
 
         'WRITE ITEM ID AND ITEM LOCATION TO INDEX FILE
-        CSV.Append(FileIndexPath, ItemToWrite.Split(",")(0) & "," & Position & "," & bytesToWrite.Length)
+        CSV.Append(FileIndexPath, ItemToWrite.Split(CSV.Delimiter)(0) & CSV.Delimiter & Position & CSV.Delimiter & bytesToWrite.Length)
         SortIndex(FileIndexPath) 'Sort index file
     End Sub
 
     Public Shared Sub Delete(FieldID As Long, FileIndexPath As String, Confirm As Boolean) 'Remove item from indexed file
         Dim IndexFileContents() As String = CSV.ReadAsArray(FileIndexPath) 'Gets entire contents of index file
         For i = 0 To UBound(IndexFileContents) 'Runs through each line
-            If FieldID = IndexFileContents(i).Split(",")(0) Then 'If item ID matches field ID
+            If FieldID = IndexFileContents(i).Split(CSV.Delimiter)(0) Then 'If item ID matches field ID
                 If Confirm = True Then 'If user is deleting item, confirm
-                    If InputBox("Please type 'YES' to confirm deletion of item " & IndexFileContents(i).Split(",")(0)) = "YES" Then 'Confirms item deletion
+                    If InputBox("Please type 'YES' to confirm deletion of item " & IndexFileContents(i).Split(CSV.Delimiter)(0)) = "YES" Then 'Confirms item deletion
                         CSV.ArrayOverwrite(FileIndexPath, CSV.RemoveFromArray(IndexFileContents, i)) 'Overwrites file with new list of products
                     End If
                 ElseIf Confirm = False Then 'If system is deleting item, do not confirm
@@ -110,11 +110,11 @@ Public Class RandomFile
 
         Do Until ItemFound = True Or LowerBound > UpperBound 'Loops until item is found, or every element in list has been checked
             Midpoint = (UpperBound + LowerBound) / 2 'Sets midpoint to midway between bounds
-            If IndexFile(Midpoint).Split(",")(0) = FieldID Then 'If field ID of array matches query
+            If IndexFile(Midpoint).Split(CSV.Delimiter)(0) = FieldID Then 'If field ID of array matches query
                 ItemFound = True 'Item has been found
-            ElseIf IndexFile(Midpoint).Split(",")(0) < FieldID Then 'If field ID is greater than item at the midpoint
+            ElseIf IndexFile(Midpoint).Split(CSV.Delimiter)(0) < FieldID Then 'If field ID is greater than item at the midpoint
                 LowerBound = Midpoint + 1 'Set new lower bound to one place above midpoint
-            ElseIf IndexFile(Midpoint).Split(",")(0) > FieldID Then 'If field ID is less than item at the midpoint
+            ElseIf IndexFile(Midpoint).Split(CSV.Delimiter)(0) > FieldID Then 'If field ID is less than item at the midpoint
                 UpperBound = Midpoint - 1 'Set new upper bound to one place below midpoint
             End If
 
