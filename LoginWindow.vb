@@ -73,7 +73,7 @@
         If UserFileContents.Length <> 0 Then 'Tests to see if there are any users in the sale file.
             For Each Line As String In UserFileContents ' Runs through each line in user file
                 Dim UserOnLine As User = User.FromLine(Line) 'Gets the user on the line as a user data type
-                If UserOnLine.UserID = UserID And UserOnLine.Password = Password Then ' If ID and password match
+                If UserOnLine.UserID = UserID And User.VerifyHash(Password, UserOnLine.Password) Then ' If ID and password match
                     Return UserOnLine 'Return the user on that line if the details match
                 End If
             Next Line

@@ -35,9 +35,10 @@ Partial Class ManageUsersWindow
         Me.CloseButton = New System.Windows.Forms.Button()
         Me.SearchButton = New System.Windows.Forms.Button()
         Me.InstructionLabel = New System.Windows.Forms.Label()
-        Me.FoundUsersListBox = New System.Windows.Forms.ListBox()
         Me.PasswordTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.UserNameTextBox = New System.Windows.Forms.MaskedTextBox()
+        Me.UsersDataGrid = New System.Windows.Forms.DataGridView()
+        CType(Me.UsersDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'UserIDTextBox
@@ -173,17 +174,6 @@ Partial Class ManageUsersWindow
         Me.InstructionLabel.TabIndex = 23
         Me.InstructionLabel.Text = "[Instruction]"
         '
-        'FoundUsersListBox
-        '
-        Me.FoundUsersListBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
-        Me.FoundUsersListBox.FormattingEnabled = True
-        Me.FoundUsersListBox.ItemHeight = 16
-        Me.FoundUsersListBox.Location = New System.Drawing.Point(34, 302)
-        Me.FoundUsersListBox.Name = "FoundUsersListBox"
-        Me.FoundUsersListBox.Size = New System.Drawing.Size(339, 68)
-        Me.FoundUsersListBox.TabIndex = 24
-        Me.FoundUsersListBox.TabStop = False
-        '
         'PasswordTextBox
         '
         Me.PasswordTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -209,13 +199,29 @@ Partial Class ManageUsersWindow
         Me.UserNameTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         Me.UserNameTextBox.ValidatingType = GetType(Integer)
         '
+        'UsersDataGrid
+        '
+        Me.UsersDataGrid.AllowUserToAddRows = False
+        Me.UsersDataGrid.AllowUserToDeleteRows = False
+        Me.UsersDataGrid.AllowUserToOrderColumns = True
+        Me.UsersDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.UsersDataGrid.Location = New System.Drawing.Point(34, 302)
+        Me.UsersDataGrid.Name = "UsersDataGrid"
+        Me.UsersDataGrid.ReadOnly = True
+        Me.UsersDataGrid.RowHeadersVisible = False
+        Me.UsersDataGrid.ShowCellToolTips = False
+        Me.UsersDataGrid.ShowEditingIcon = False
+        Me.UsersDataGrid.Size = New System.Drawing.Size(368, 66)
+        Me.UsersDataGrid.TabIndex = 26
+        Me.UsersDataGrid.TabStop = False
+        '
         'ManageUsersWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 600)
+        Me.Controls.Add(Me.UsersDataGrid)
         Me.Controls.Add(Me.PasswordTextBox)
-        Me.Controls.Add(Me.FoundUsersListBox)
         Me.Controls.Add(Me.InstructionLabel)
         Me.Controls.Add(Me.AccessLevelComboBox)
         Me.Controls.Add(Me.CloseButton)
@@ -235,6 +241,7 @@ Partial Class ManageUsersWindow
         Me.Name = "ManageUsersWindow"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "UserManageWindow"
+        CType(Me.UsersDataGrid, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -252,7 +259,7 @@ Partial Class ManageUsersWindow
     Friend WithEvents CloseButton As Button
     Friend WithEvents SearchButton As Button
     Friend WithEvents InstructionLabel As Label
-    Friend WithEvents FoundUsersListBox As ListBox
     Friend WithEvents PasswordTextBox As MaskedTextBox
     Friend WithEvents UserNameTextBox As MaskedTextBox
+    Friend WithEvents UsersDataGrid As DataGridView
 End Class

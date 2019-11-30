@@ -58,4 +58,23 @@
         None 'No permissions
     End Enum
 
+
+    Public Shared Function CreatePasswordHash(StringPassword As String) 'Creates a SHA512 hash from a given string
+        Dim StringBytes() As Byte = Text.Encoding.UTF8.GetBytes(StringPassword) 'Converts string into bytes
+        Dim SHA512 As New Security.Cryptography.SHA512Managed 'Creates new SHA512 object
+        Dim HashOfBytes() As Byte = SHA512.ComputeHash(StringBytes) 'Creates a hash from the password
+        SHA512.Dispose()
+        Dim StringHashOfBytes As String = Convert.ToBase64String(HashOfBytes) 'Converts bytes back to string
+        Return StringHashOfBytes
+    End Function
+
+    Public Shared Function VerifyHash(TestPassword As String, FilePasswordHash As String) 'Tests a password against a given hash
+        Dim TestHash As String = CreatePasswordHash(TestPassword) 'Creates hash of test password
+        If FilePasswordHash = TestHash Then 'If the hashes match
+            Return True
+        Else 'If the hashes do not match
+            Return False
+        End If
+    End Function
+
 End Class

@@ -264,7 +264,7 @@ Partial Class PaymentWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(784, 561)
         Me.Controls.Add(Me.AmountPaidTextBox)
         Me.Controls.Add(Me.ContinueSaleButton)
         Me.Controls.Add(Me.FinishSale)
@@ -285,8 +285,8 @@ Partial Class PaymentWindow
         Me.Controls.Add(Me.NumButton8)
         Me.Controls.Add(Me.NumButton1)
         Me.Controls.Add(Me.NumButton7)
+        Me.Location = New System.Drawing.Point(1024, 768)
         Me.Name = "PaymentWindow"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Payment"
         Me.ResumeLayout(False)
         Me.PerformLayout()

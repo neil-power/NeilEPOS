@@ -5,6 +5,10 @@
     Public Shared TransactionID As Integer ' Creates a variable for a running total of sales
 
     Private Sub Payment_Activated(sender As Object, e As EventArgs) Handles MyBase.Load 'Runs when payment form opened
+        'The startup location is set in the form properties to 1024, 768 to prevent visual issue
+        FormBorderStyle = FormBorderStyle.None 'Removes border
+        StartPosition = FormStartPosition.Manual 'Prevents automatic cascade of MDI windows
+        Location = New Point(100, 50) 'Sets form location to centre of Manager/User window
 
         TotalLabel.Text = SalesWindow.SaleTotal 'Sets total to the sale total
 
@@ -14,7 +18,6 @@
 
         TransactionID = ReadTransactionIDFromFile()
 
-        BringToFront() 'Brings window to front
         AmountPaidTextBox.Select(AmountPaidTextBox.Text.Length + 1, 0) 'Selects amount paid textbox
 
     End Sub

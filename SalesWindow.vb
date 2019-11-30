@@ -180,6 +180,11 @@
             SaleTotal += ItemBought.Price * ItemBought.Quantity ' Calculates sale total
         Next ItemBought
 
+        If LoginWindow.CurrentUser.AccessLevel = User.UserAccessLevel.Manager Then 'If current user is manager, set container as manager window
+            PaymentWindow.MdiParent = ManagerWindow
+        Else 'Set container to user window
+            PaymentWindow.MdiParent = UserWindow
+        End If
         PaymentWindow.Show() ' Opens payment window
 
     End Sub

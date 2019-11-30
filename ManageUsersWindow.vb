@@ -9,6 +9,8 @@
     End Enum
 
     Private Mode As UserMode = UserMode.None
+    Private UserPassword As String = ""
+    Private ReadOnly Placeholder As String = "#1PlAcEhOlDeR#1"
     Private Sub ManageUsersWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'The startup location is set in the form properties to 1024, 768 to prevent visual issue
         FormBorderStyle = FormBorderStyle.None 'Removes border
@@ -36,8 +38,15 @@
 
         SaveUserButton.Hide() 'Hide all buttons
         SearchButton.Hide()
-        FoundUsersListBox.Hide()
-        FoundUsersListBox.Items.Clear() 'Empty listbox
+        UsersDataGrid.Hide()
+        UsersDataGrid.Rows.Clear() 'Empty listbox
+        UsersDataGrid.Columns.Clear()
+        Dim HeaderRow As String() = {"User ID", "User Name", "Password", "Access Level"}
+        For Each Header In HeaderRow 'Populate data grid
+            UsersDataGrid.Columns.Add(Header, Header)
+        Next
+        UsersDataGrid.Columns(2).Visible = False 'Hide password column
+
         Mode = UserMode.None 'Set mode to none
     End Sub
 
@@ -82,9 +91,9 @@
 
     Private Sub SaveUser()
 
-        Dim UserToSave As String = UserIDTextBox.Text & CSV.Delimiter & UserNameTextBox.Text.Trim() & CSV.Delimiter & PasswordTextBox.Text.Trim() & CSV.Delimiter & GetUserAccessFromTextBox()
-        If User.CheckValidUser(UserToSave.Split(CSV.Delimiter)) Then
-
+        Dim UserToCheck As String = UserIDTextBox.Text & CSV.Delimiter & UserNameTextBox.Text.Trim() & CSV.Delimiter & PasswordTextBox.Text.Trim() & CSV.Delimiter & GetUserAccessFromTextBox()
+        If User.CheckValidUser(UserToCheck.Split(CSV.Delimiter)) Then
+            Dim UserToSave As String = UserIDTextBox.Text & CSV.Delimiter & UserNameTextBox.Text.Trim() & CSV.Delimiter & If(PasswordTextBox.Text = Placeholder, UserPassword, User.CreatePasswordHash(PasswordTextBox.Text.Trim())) & CSV.Delimiter & GetUserAccessFromTextBox() 'If password is placeholder, write saved hash to file, else write hash of textbox
             If Mode = UserMode.EditUser Then 'If a user is being edited, the new details need to be inserted
                 CSV.Replace(CSV.UserFilePath, UserIDTextBox.Text, UserToSave) 'Replaces any lines matching UserID text box
             ElseIf Mode = UserMode.NewUser Then 'If a new user is being made, they can be added at the end of the file
@@ -113,15 +122,15 @@
         Dim UserFileContents() As String = CSV.ReadAsArray(CSV.UserFilePath) 'Read entire users file
 
         For Each Line As String In UserFileContents 'Runs through each line
-            Dim user As String() = Line.Split(CSV.Delimiter) 'Splits line on delimiter character
-            If user(0) = UserIDTextBox.Text Or user(1) = UsernameTextBox.Text Or GetUserAccessFromFile(user(3)) = AccessLevelComboBox.Text Then 'If ID or username or access level match
-                FoundUsersListBox.Items.Add(Line) 'Add to displayed listbox
+            Dim User As String() = Line.Split(CSV.Delimiter) 'Splits line on delimiter character
+            If User(0) = UserIDTextBox.Text Or User(1) = UserNameTextBox.Text Or GetUserAccessFromFile(User(3)) = AccessLevelComboBox.Text Then 'If ID or username or access level match
+                UsersDataGrid.Rows.Add(User)
             End If
         Next Line
 
-        If FoundUsersListBox.Items.Count <> 0 Then
+        If UsersDataGrid.Rows.Count <> 0 Then
             InstructionLabel.Text = "Please double-click the user you would like to edit."
-            FoundUsersListBox.Show()
+            UsersDataGrid.Show()
         Else
             InstructionLabel.Text = "No users were found."
         End If
@@ -151,8 +160,8 @@
 
     Private Function GetNewUserID()
         Dim UserFileContents() As String = CSV.ReadAsArray(CSV.UserFilePath) 'Read entire users file
-        Dim LastUser As String() = UserFileContents.Last.Split(CSV.Delimiter) 'Gets last user - needs verification/error handling
-        Dim LastUserID As Integer = CInt(LastUser(0)) + 1 'Definitely needs error handling
+        Dim LastUser As String() = UserFileContents.Last.Split(CSV.Delimiter) 'Gets last user
+        Dim LastUserID As Integer = CInt(LastUser(0)) + 1
         Return LastUserID.ToString("00000")
     End Function
 
@@ -161,13 +170,14 @@
     Private Sub EditUser(UserToEdit As User)
         InstructionLabel.Text = "Edit the user's details and click save"
         SearchButton.Hide()
-        FoundUsersListBox.Hide()
+        UsersDataGrid.Hide()
         UserIDTextBox.Text = UserToEdit.UserID.ToString("00000")
         UserIDTextBox.ReadOnly = True
         PasswordTextBox.Enabled = True
         AccessLevelComboBox.Enabled = True
-        UsernameTextBox.Text = UserToEdit.UserName
-        PasswordTextBox.Text = UserToEdit.Password
+        UserNameTextBox.Text = UserToEdit.UserName
+        UserPassword = UserToEdit.Password 'Sets password to variable, so if unchanged can be written back to file.
+        PasswordTextBox.Text = Placeholder 'Placeholder in password box
         AccessLevelComboBox.Text = GetUserAccessFromFile(UserToEdit.AccessLevel) 'Converts from file to dropdown
         SaveUserButton.Show()
     End Sub
@@ -189,13 +199,15 @@
         End If
     End Sub
 
-    Private Sub FoundUsersListBox_DoubleClick(sender As Object, e As EventArgs) Handles FoundUsersListBox.DoubleClick
-        If FoundUsersListBox.SelectedItem <> Nothing Then 'If a user is selected
+    Private Sub UsersDataGrid_DoubleClick(sender As Object, e As EventArgs) Handles UsersDataGrid.DoubleClick
+        Dim SelectedRow As DataGridViewRow = UsersDataGrid.Rows(UsersDataGrid.SelectedCells(0).RowIndex) 'Gets currently selected row
+        Dim SelectedUser As String = SelectedRow.Cells(0).Value & CSV.Delimiter & SelectedRow.Cells(1).Value & CSV.Delimiter & SelectedRow.Cells(2).Value & CSV.Delimiter & SelectedRow.Cells(3).Value
+        If UsersDataGrid.SelectedCells.Count <> 0 Then 'If a user is selected
             If Mode = UserMode.EditUser Then 'If a user is being edited, the new details need to be inserted
-                EditUser(User.FromLine(FoundUsersListBox.SelectedItem)) 'Sends user to edit to the edit subroutine
+                EditUser(User.FromLine(SelectedUser)) 'Sends user to edit to the edit subroutine
 
             ElseIf Mode = UserMode.DeleteUser Then 'If a user is being deleted, they need to be removed
-                DeleteUser(User.FromLine(FoundUsersListBox.SelectedItem)) 'Sends user to delete to the edit subroutine
+                DeleteUser(User.FromLine(SelectedUser)) 'Sends user to delete to the edit subroutine
             End If
         End If
     End Sub
