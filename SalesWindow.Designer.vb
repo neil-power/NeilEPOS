@@ -22,6 +22,7 @@ Partial Class SalesWindow
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SalesWindow))
         Me.ISBNLabel = New System.Windows.Forms.Label()
         Me.PriceLabel = New System.Windows.Forms.Label()
         Me.QuantityLabel = New System.Windows.Forms.Label()
@@ -53,39 +54,41 @@ Partial Class SalesWindow
         'ISBNLabel
         '
         Me.ISBNLabel.AutoSize = True
-        Me.ISBNLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
-        Me.ISBNLabel.Location = New System.Drawing.Point(34, 30)
+        Me.ISBNLabel.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ISBNLabel.Location = New System.Drawing.Point(20, 20)
         Me.ISBNLabel.Name = "ISBNLabel"
-        Me.ISBNLabel.Size = New System.Drawing.Size(57, 24)
+        Me.ISBNLabel.Size = New System.Drawing.Size(79, 37)
         Me.ISBNLabel.TabIndex = 0
         Me.ISBNLabel.Text = "ISBN:"
         '
         'PriceLabel
         '
         Me.PriceLabel.AutoSize = True
-        Me.PriceLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
-        Me.PriceLabel.Location = New System.Drawing.Point(34, 65)
+        Me.PriceLabel.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PriceLabel.Location = New System.Drawing.Point(20, 80)
         Me.PriceLabel.Name = "PriceLabel"
-        Me.PriceLabel.Size = New System.Drawing.Size(58, 24)
+        Me.PriceLabel.Size = New System.Drawing.Size(80, 37)
         Me.PriceLabel.TabIndex = 0
         Me.PriceLabel.Text = "Price:"
         '
         'QuantityLabel
         '
         Me.QuantityLabel.AutoSize = True
-        Me.QuantityLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
-        Me.QuantityLabel.Location = New System.Drawing.Point(34, 100)
+        Me.QuantityLabel.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.QuantityLabel.Location = New System.Drawing.Point(20, 140)
         Me.QuantityLabel.Name = "QuantityLabel"
-        Me.QuantityLabel.Size = New System.Drawing.Size(83, 24)
+        Me.QuantityLabel.Size = New System.Drawing.Size(125, 37)
         Me.QuantityLabel.TabIndex = 0
         Me.QuantityLabel.Text = "Quantity:"
         '
         'NumButton7
         '
-        Me.NumButton7.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NumButton7.Location = New System.Drawing.Point(38, 163)
+        Me.NumButton7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.NumButton7.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NumButton7.Location = New System.Drawing.Point(20, 210)
+        Me.NumButton7.Margin = New System.Windows.Forms.Padding(0)
         Me.NumButton7.Name = "NumButton7"
-        Me.NumButton7.Size = New System.Drawing.Size(75, 75)
+        Me.NumButton7.Size = New System.Drawing.Size(100, 100)
         Me.NumButton7.TabIndex = 2
         Me.NumButton7.TabStop = False
         Me.NumButton7.Text = "7"
@@ -93,10 +96,12 @@ Partial Class SalesWindow
         '
         'NumButton8
         '
-        Me.NumButton8.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NumButton8.Location = New System.Drawing.Point(119, 163)
+        Me.NumButton8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.NumButton8.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NumButton8.Location = New System.Drawing.Point(120, 210)
+        Me.NumButton8.Margin = New System.Windows.Forms.Padding(0)
         Me.NumButton8.Name = "NumButton8"
-        Me.NumButton8.Size = New System.Drawing.Size(75, 75)
+        Me.NumButton8.Size = New System.Drawing.Size(100, 100)
         Me.NumButton8.TabIndex = 2
         Me.NumButton8.TabStop = False
         Me.NumButton8.Text = "8"
@@ -104,10 +109,12 @@ Partial Class SalesWindow
         '
         'NumButton9
         '
-        Me.NumButton9.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NumButton9.Location = New System.Drawing.Point(200, 163)
+        Me.NumButton9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.NumButton9.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NumButton9.Location = New System.Drawing.Point(220, 210)
+        Me.NumButton9.Margin = New System.Windows.Forms.Padding(0)
         Me.NumButton9.Name = "NumButton9"
-        Me.NumButton9.Size = New System.Drawing.Size(75, 75)
+        Me.NumButton9.Size = New System.Drawing.Size(100, 100)
         Me.NumButton9.TabIndex = 2
         Me.NumButton9.TabStop = False
         Me.NumButton9.Text = "9"
@@ -115,10 +122,12 @@ Partial Class SalesWindow
         '
         'NumButton4
         '
-        Me.NumButton4.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NumButton4.Location = New System.Drawing.Point(38, 244)
+        Me.NumButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.NumButton4.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NumButton4.Location = New System.Drawing.Point(20, 310)
+        Me.NumButton4.Margin = New System.Windows.Forms.Padding(0)
         Me.NumButton4.Name = "NumButton4"
-        Me.NumButton4.Size = New System.Drawing.Size(75, 75)
+        Me.NumButton4.Size = New System.Drawing.Size(100, 100)
         Me.NumButton4.TabIndex = 2
         Me.NumButton4.TabStop = False
         Me.NumButton4.Text = "4"
@@ -126,10 +135,12 @@ Partial Class SalesWindow
         '
         'NumButton5
         '
-        Me.NumButton5.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NumButton5.Location = New System.Drawing.Point(119, 244)
+        Me.NumButton5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.NumButton5.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NumButton5.Location = New System.Drawing.Point(120, 309)
+        Me.NumButton5.Margin = New System.Windows.Forms.Padding(0)
         Me.NumButton5.Name = "NumButton5"
-        Me.NumButton5.Size = New System.Drawing.Size(75, 75)
+        Me.NumButton5.Size = New System.Drawing.Size(100, 100)
         Me.NumButton5.TabIndex = 2
         Me.NumButton5.TabStop = False
         Me.NumButton5.Text = "5"
@@ -137,10 +148,12 @@ Partial Class SalesWindow
         '
         'NumButton6
         '
-        Me.NumButton6.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NumButton6.Location = New System.Drawing.Point(200, 244)
+        Me.NumButton6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.NumButton6.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NumButton6.Location = New System.Drawing.Point(220, 309)
+        Me.NumButton6.Margin = New System.Windows.Forms.Padding(0)
         Me.NumButton6.Name = "NumButton6"
-        Me.NumButton6.Size = New System.Drawing.Size(75, 75)
+        Me.NumButton6.Size = New System.Drawing.Size(100, 100)
         Me.NumButton6.TabIndex = 2
         Me.NumButton6.TabStop = False
         Me.NumButton6.Text = "6"
@@ -148,10 +161,12 @@ Partial Class SalesWindow
         '
         'NumButton1
         '
-        Me.NumButton1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NumButton1.Location = New System.Drawing.Point(38, 325)
+        Me.NumButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.NumButton1.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NumButton1.Location = New System.Drawing.Point(20, 409)
+        Me.NumButton1.Margin = New System.Windows.Forms.Padding(0)
         Me.NumButton1.Name = "NumButton1"
-        Me.NumButton1.Size = New System.Drawing.Size(75, 75)
+        Me.NumButton1.Size = New System.Drawing.Size(100, 100)
         Me.NumButton1.TabIndex = 2
         Me.NumButton1.TabStop = False
         Me.NumButton1.Text = "1"
@@ -159,10 +174,12 @@ Partial Class SalesWindow
         '
         'NumButton2
         '
-        Me.NumButton2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NumButton2.Location = New System.Drawing.Point(119, 325)
+        Me.NumButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.NumButton2.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NumButton2.Location = New System.Drawing.Point(120, 409)
+        Me.NumButton2.Margin = New System.Windows.Forms.Padding(0)
         Me.NumButton2.Name = "NumButton2"
-        Me.NumButton2.Size = New System.Drawing.Size(75, 75)
+        Me.NumButton2.Size = New System.Drawing.Size(100, 100)
         Me.NumButton2.TabIndex = 2
         Me.NumButton2.TabStop = False
         Me.NumButton2.Text = "2"
@@ -170,10 +187,12 @@ Partial Class SalesWindow
         '
         'NumButton3
         '
-        Me.NumButton3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NumButton3.Location = New System.Drawing.Point(200, 325)
+        Me.NumButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.NumButton3.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NumButton3.Location = New System.Drawing.Point(220, 409)
+        Me.NumButton3.Margin = New System.Windows.Forms.Padding(0)
         Me.NumButton3.Name = "NumButton3"
-        Me.NumButton3.Size = New System.Drawing.Size(75, 75)
+        Me.NumButton3.Size = New System.Drawing.Size(100, 100)
         Me.NumButton3.TabIndex = 2
         Me.NumButton3.TabStop = False
         Me.NumButton3.Text = "3"
@@ -181,10 +200,12 @@ Partial Class SalesWindow
         '
         'ClearButton
         '
-        Me.ClearButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ClearButton.Location = New System.Drawing.Point(38, 406)
+        Me.ClearButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ClearButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ClearButton.Location = New System.Drawing.Point(20, 509)
+        Me.ClearButton.Margin = New System.Windows.Forms.Padding(0)
         Me.ClearButton.Name = "ClearButton"
-        Me.ClearButton.Size = New System.Drawing.Size(75, 75)
+        Me.ClearButton.Size = New System.Drawing.Size(100, 100)
         Me.ClearButton.TabIndex = 2
         Me.ClearButton.TabStop = False
         Me.ClearButton.Text = "CLR"
@@ -192,10 +213,12 @@ Partial Class SalesWindow
         '
         'NumButton0
         '
-        Me.NumButton0.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NumButton0.Location = New System.Drawing.Point(119, 406)
+        Me.NumButton0.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.NumButton0.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NumButton0.Location = New System.Drawing.Point(120, 509)
+        Me.NumButton0.Margin = New System.Windows.Forms.Padding(0)
         Me.NumButton0.Name = "NumButton0"
-        Me.NumButton0.Size = New System.Drawing.Size(75, 75)
+        Me.NumButton0.Size = New System.Drawing.Size(100, 100)
         Me.NumButton0.TabIndex = 2
         Me.NumButton0.TabStop = False
         Me.NumButton0.Text = "0"
@@ -203,10 +226,12 @@ Partial Class SalesWindow
         '
         'DelButton
         '
-        Me.DelButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DelButton.Location = New System.Drawing.Point(200, 406)
+        Me.DelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.DelButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DelButton.Location = New System.Drawing.Point(220, 509)
+        Me.DelButton.Margin = New System.Windows.Forms.Padding(0)
         Me.DelButton.Name = "DelButton"
-        Me.DelButton.Size = New System.Drawing.Size(75, 75)
+        Me.DelButton.Size = New System.Drawing.Size(100, 100)
         Me.DelButton.TabIndex = 2
         Me.DelButton.TabStop = False
         Me.DelButton.Text = "DEL"
@@ -217,38 +242,44 @@ Partial Class SalesWindow
         Me.ItemsSoldListBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ItemsSoldListBox.FormattingEnabled = True
         Me.ItemsSoldListBox.ItemHeight = 24
-        Me.ItemsSoldListBox.Location = New System.Drawing.Point(374, 42)
+        Me.ItemsSoldListBox.Location = New System.Drawing.Point(365, 67)
         Me.ItemsSoldListBox.Name = "ItemsSoldListBox"
-        Me.ItemsSoldListBox.Size = New System.Drawing.Size(390, 268)
+        Me.ItemsSoldListBox.Size = New System.Drawing.Size(450, 292)
         Me.ItemsSoldListBox.TabIndex = 3
         Me.ItemsSoldListBox.TabStop = False
         '
         'TakePaymentButton
         '
-        Me.TakePaymentButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TakePaymentButton.Location = New System.Drawing.Point(374, 421)
+        Me.TakePaymentButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.TakePaymentButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TakePaymentButton.Location = New System.Drawing.Point(365, 472)
+        Me.TakePaymentButton.Margin = New System.Windows.Forms.Padding(0)
         Me.TakePaymentButton.Name = "TakePaymentButton"
-        Me.TakePaymentButton.Size = New System.Drawing.Size(100, 75)
+        Me.TakePaymentButton.Size = New System.Drawing.Size(150, 100)
         Me.TakePaymentButton.TabIndex = 7
         Me.TakePaymentButton.Text = "Take Payment"
         Me.TakePaymentButton.UseVisualStyleBackColor = True
         '
         'AddItemButton
         '
-        Me.AddItemButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.AddItemButton.Location = New System.Drawing.Point(374, 340)
+        Me.AddItemButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.AddItemButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.AddItemButton.Location = New System.Drawing.Point(365, 372)
+        Me.AddItemButton.Margin = New System.Windows.Forms.Padding(0)
         Me.AddItemButton.Name = "AddItemButton"
-        Me.AddItemButton.Size = New System.Drawing.Size(100, 75)
+        Me.AddItemButton.Size = New System.Drawing.Size(150, 100)
         Me.AddItemButton.TabIndex = 4
         Me.AddItemButton.Text = "Add Item"
         Me.AddItemButton.UseVisualStyleBackColor = True
         '
         'AbandonSale
         '
-        Me.AbandonSale.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.AbandonSale.Location = New System.Drawing.Point(586, 340)
+        Me.AbandonSale.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.AbandonSale.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.AbandonSale.Location = New System.Drawing.Point(665, 372)
+        Me.AbandonSale.Margin = New System.Windows.Forms.Padding(0)
         Me.AbandonSale.Name = "AbandonSale"
-        Me.AbandonSale.Size = New System.Drawing.Size(100, 75)
+        Me.AbandonSale.Size = New System.Drawing.Size(150, 100)
         Me.AbandonSale.TabIndex = 6
         Me.AbandonSale.Text = "Abandon Sale"
         Me.AbandonSale.UseVisualStyleBackColor = True
@@ -256,64 +287,68 @@ Partial Class SalesWindow
         'HeadingsLabel
         '
         Me.HeadingsLabel.AutoSize = True
-        Me.HeadingsLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.HeadingsLabel.Location = New System.Drawing.Point(374, 9)
+        Me.HeadingsLabel.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.HeadingsLabel.Location = New System.Drawing.Point(358, 20)
         Me.HeadingsLabel.Name = "HeadingsLabel"
-        Me.HeadingsLabel.Size = New System.Drawing.Size(254, 24)
+        Me.HeadingsLabel.Size = New System.Drawing.Size(352, 37)
         Me.HeadingsLabel.TabIndex = 5
         Me.HeadingsLabel.Tag = ""
         Me.HeadingsLabel.Text = "ISBN                   | £        | QTY"
         '
         'PriceTextBox
         '
-        Me.PriceTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
-        Me.PriceTextBox.Location = New System.Drawing.Point(122, 65)
+        Me.PriceTextBox.Font = New System.Drawing.Font("Segoe UI", 20.0!)
+        Me.PriceTextBox.Location = New System.Drawing.Point(151, 74)
         Me.PriceTextBox.Mask = "##.## $"
         Me.PriceTextBox.Name = "PriceTextBox"
         Me.PriceTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(48)
         Me.PriceTextBox.ResetOnPrompt = False
         Me.PriceTextBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.PriceTextBox.Size = New System.Drawing.Size(181, 29)
+        Me.PriceTextBox.Size = New System.Drawing.Size(181, 43)
         Me.PriceTextBox.TabIndex = 2
         Me.PriceTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.PriceTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         '
         'ISBNTextBox
         '
-        Me.ISBNTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
-        Me.ISBNTextBox.Location = New System.Drawing.Point(122, 30)
+        Me.ISBNTextBox.Font = New System.Drawing.Font("Segoe UI", 20.0!)
+        Me.ISBNTextBox.Location = New System.Drawing.Point(106, 14)
         Me.ISBNTextBox.Mask = "0000000000999"
         Me.ISBNTextBox.Name = "ISBNTextBox"
         Me.ISBNTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
-        Me.ISBNTextBox.Size = New System.Drawing.Size(181, 29)
+        Me.ISBNTextBox.Size = New System.Drawing.Size(226, 43)
         Me.ISBNTextBox.TabIndex = 1
         '
         'QuantityTextBox
         '
-        Me.QuantityTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
-        Me.QuantityTextBox.Location = New System.Drawing.Point(122, 100)
+        Me.QuantityTextBox.Font = New System.Drawing.Font("Segoe UI", 20.0!)
+        Me.QuantityTextBox.Location = New System.Drawing.Point(152, 134)
         Me.QuantityTextBox.Mask = "##"
         Me.QuantityTextBox.Name = "QuantityTextBox"
         Me.QuantityTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
-        Me.QuantityTextBox.Size = New System.Drawing.Size(181, 29)
+        Me.QuantityTextBox.Size = New System.Drawing.Size(180, 43)
         Me.QuantityTextBox.TabIndex = 3
         '
         'PriceLookupButton
         '
-        Me.PriceLookupButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.PriceLookupButton.Location = New System.Drawing.Point(480, 340)
+        Me.PriceLookupButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.PriceLookupButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PriceLookupButton.Location = New System.Drawing.Point(515, 372)
+        Me.PriceLookupButton.Margin = New System.Windows.Forms.Padding(0)
         Me.PriceLookupButton.Name = "PriceLookupButton"
-        Me.PriceLookupButton.Size = New System.Drawing.Size(100, 75)
+        Me.PriceLookupButton.Size = New System.Drawing.Size(150, 100)
         Me.PriceLookupButton.TabIndex = 5
         Me.PriceLookupButton.Text = "Price Lookup"
         Me.PriceLookupButton.UseVisualStyleBackColor = True
         '
         'CloseButton
         '
-        Me.CloseButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CloseButton.Location = New System.Drawing.Point(480, 421)
+        Me.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.CloseButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CloseButton.Location = New System.Drawing.Point(515, 472)
+        Me.CloseButton.Margin = New System.Windows.Forms.Padding(0)
         Me.CloseButton.Name = "CloseButton"
-        Me.CloseButton.Size = New System.Drawing.Size(100, 75)
+        Me.CloseButton.Size = New System.Drawing.Size(150, 100)
         Me.CloseButton.TabIndex = 8
         Me.CloseButton.Text = "Close"
         Me.CloseButton.UseVisualStyleBackColor = True
@@ -331,7 +366,7 @@ Partial Class SalesWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(784, 561)
+        Me.ClientSize = New System.Drawing.Size(850, 650)
         Me.Controls.Add(Me.WebCrawler)
         Me.Controls.Add(Me.QuantityTextBox)
         Me.Controls.Add(Me.ISBNTextBox)
@@ -358,6 +393,8 @@ Partial Class SalesWindow
         Me.Controls.Add(Me.QuantityLabel)
         Me.Controls.Add(Me.PriceLabel)
         Me.Controls.Add(Me.ISBNLabel)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Location = New System.Drawing.Point(1024, 768)
         Me.Name = "SalesWindow"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual

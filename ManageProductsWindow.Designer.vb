@@ -22,6 +22,7 @@ Partial Class ManageProductsWindow
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ManageProductsWindow))
         Me.InstructionLabel = New System.Windows.Forms.Label()
         Me.GenreComboBox = New System.Windows.Forms.ComboBox()
         Me.CloseButton = New System.Windows.Forms.Button()
@@ -46,80 +47,92 @@ Partial Class ManageProductsWindow
         'InstructionLabel
         '
         Me.InstructionLabel.AutoSize = True
-        Me.InstructionLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!)
-        Me.InstructionLabel.Location = New System.Drawing.Point(21, 105)
+        Me.InstructionLabel.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.InstructionLabel.Location = New System.Drawing.Point(20, 120)
         Me.InstructionLabel.Name = "InstructionLabel"
-        Me.InstructionLabel.Size = New System.Drawing.Size(105, 24)
+        Me.InstructionLabel.Size = New System.Drawing.Size(158, 37)
         Me.InstructionLabel.TabIndex = 56
         Me.InstructionLabel.Text = "[Instruction]"
         '
         'GenreComboBox
         '
         Me.GenreComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.GenreComboBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!)
+        Me.GenreComboBox.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GenreComboBox.FormattingEnabled = True
         Me.GenreComboBox.Items.AddRange(New Object() {"None", "User", "Manager"})
-        Me.GenreComboBox.Location = New System.Drawing.Point(186, 298)
+        Me.GenreComboBox.Location = New System.Drawing.Point(198, 412)
         Me.GenreComboBox.Name = "GenreComboBox"
-        Me.GenreComboBox.Size = New System.Drawing.Size(237, 32)
+        Me.GenreComboBox.Size = New System.Drawing.Size(422, 45)
         Me.GenreComboBox.TabIndex = 8
         '
         'CloseButton
         '
-        Me.CloseButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CloseButton.Location = New System.Drawing.Point(264, 369)
+        Me.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.CloseButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CloseButton.Location = New System.Drawing.Point(470, 500)
+        Me.CloseButton.Margin = New System.Windows.Forms.Padding(0)
         Me.CloseButton.Name = "CloseButton"
-        Me.CloseButton.Size = New System.Drawing.Size(100, 75)
-        Me.CloseButton.TabIndex = 11
+        Me.CloseButton.Size = New System.Drawing.Size(150, 100)
+        Me.CloseButton.TabIndex = 12
         Me.CloseButton.Text = "Close"
         Me.CloseButton.UseVisualStyleBackColor = True
         '
         'SearchButton
         '
-        Me.SearchButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SearchButton.Location = New System.Drawing.Point(143, 369)
+        Me.SearchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.SearchButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SearchButton.Location = New System.Drawing.Point(320, 500)
+        Me.SearchButton.Margin = New System.Windows.Forms.Padding(0)
         Me.SearchButton.Name = "SearchButton"
-        Me.SearchButton.Size = New System.Drawing.Size(100, 75)
-        Me.SearchButton.TabIndex = 10
+        Me.SearchButton.Size = New System.Drawing.Size(150, 100)
+        Me.SearchButton.TabIndex = 11
         Me.SearchButton.Text = "Search"
         Me.SearchButton.UseVisualStyleBackColor = True
         '
         'SaveProductButton
         '
-        Me.SaveProductButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SaveProductButton.Location = New System.Drawing.Point(25, 369)
+        Me.SaveProductButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.SaveProductButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SaveProductButton.Location = New System.Drawing.Point(20, 500)
+        Me.SaveProductButton.Margin = New System.Windows.Forms.Padding(0)
         Me.SaveProductButton.Name = "SaveProductButton"
-        Me.SaveProductButton.Size = New System.Drawing.Size(100, 75)
+        Me.SaveProductButton.Size = New System.Drawing.Size(150, 100)
         Me.SaveProductButton.TabIndex = 9
         Me.SaveProductButton.Text = "Save Product"
         Me.SaveProductButton.UseVisualStyleBackColor = True
         '
         'DeleteProductButton
         '
-        Me.DeleteProductButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DeleteProductButton.Location = New System.Drawing.Point(264, 24)
+        Me.DeleteProductButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.DeleteProductButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DeleteProductButton.Location = New System.Drawing.Point(320, 0)
+        Me.DeleteProductButton.Margin = New System.Windows.Forms.Padding(0)
         Me.DeleteProductButton.Name = "DeleteProductButton"
-        Me.DeleteProductButton.Size = New System.Drawing.Size(100, 75)
+        Me.DeleteProductButton.Size = New System.Drawing.Size(150, 100)
         Me.DeleteProductButton.TabIndex = 3
         Me.DeleteProductButton.Text = "Delete Product"
         Me.DeleteProductButton.UseVisualStyleBackColor = True
         '
         'EditProductButton
         '
-        Me.EditProductButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.EditProductButton.Location = New System.Drawing.Point(143, 24)
+        Me.EditProductButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.EditProductButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.EditProductButton.Location = New System.Drawing.Point(170, 0)
+        Me.EditProductButton.Margin = New System.Windows.Forms.Padding(0)
         Me.EditProductButton.Name = "EditProductButton"
-        Me.EditProductButton.Size = New System.Drawing.Size(100, 75)
+        Me.EditProductButton.Size = New System.Drawing.Size(150, 100)
         Me.EditProductButton.TabIndex = 2
         Me.EditProductButton.Text = "Edit Product"
         Me.EditProductButton.UseVisualStyleBackColor = True
         '
         'NewProductButton
         '
-        Me.NewProductButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NewProductButton.Location = New System.Drawing.Point(25, 24)
+        Me.NewProductButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.NewProductButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NewProductButton.Location = New System.Drawing.Point(20, 0)
+        Me.NewProductButton.Margin = New System.Windows.Forms.Padding(0)
         Me.NewProductButton.Name = "NewProductButton"
-        Me.NewProductButton.Size = New System.Drawing.Size(100, 75)
+        Me.NewProductButton.Size = New System.Drawing.Size(150, 100)
         Me.NewProductButton.TabIndex = 1
         Me.NewProductButton.Text = "New Product"
         Me.NewProductButton.UseVisualStyleBackColor = True
@@ -127,41 +140,41 @@ Partial Class ManageProductsWindow
         'TitleLabel
         '
         Me.TitleLabel.AutoSize = True
-        Me.TitleLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TitleLabel.Location = New System.Drawing.Point(34, 182)
+        Me.TitleLabel.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TitleLabel.Location = New System.Drawing.Point(20, 240)
         Me.TitleLabel.Name = "TitleLabel"
-        Me.TitleLabel.Size = New System.Drawing.Size(50, 24)
+        Me.TitleLabel.Size = New System.Drawing.Size(74, 37)
         Me.TitleLabel.TabIndex = 41
         Me.TitleLabel.Text = "Title:"
         '
         'GenreLabel
         '
         Me.GenreLabel.AutoSize = True
-        Me.GenreLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GenreLabel.Location = New System.Drawing.Point(34, 301)
+        Me.GenreLabel.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GenreLabel.Location = New System.Drawing.Point(20, 420)
         Me.GenreLabel.Name = "GenreLabel"
-        Me.GenreLabel.Size = New System.Drawing.Size(68, 24)
+        Me.GenreLabel.Size = New System.Drawing.Size(94, 37)
         Me.GenreLabel.TabIndex = 42
         Me.GenreLabel.Text = "Genre:"
         '
         'RRPLabel
         '
         Me.RRPLabel.AutoSize = True
-        Me.RRPLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RRPLabel.Location = New System.Drawing.Point(34, 261)
+        Me.RRPLabel.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RRPLabel.Location = New System.Drawing.Point(20, 360)
         Me.RRPLabel.Name = "RRPLabel"
-        Me.RRPLabel.Size = New System.Drawing.Size(53, 24)
+        Me.RRPLabel.Size = New System.Drawing.Size(70, 37)
         Me.RRPLabel.TabIndex = 43
         Me.RRPLabel.Text = "RRP:"
         '
         'ProductIDTextBox
         '
-        Me.ProductIDTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ProductIDTextBox.Location = New System.Drawing.Point(186, 135)
+        Me.ProductIDTextBox.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ProductIDTextBox.Location = New System.Drawing.Point(198, 174)
         Me.ProductIDTextBox.Mask = "0000000000999"
         Me.ProductIDTextBox.Name = "ProductIDTextBox"
         Me.ProductIDTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
-        Me.ProductIDTextBox.Size = New System.Drawing.Size(237, 29)
+        Me.ProductIDTextBox.Size = New System.Drawing.Size(422, 43)
         Me.ProductIDTextBox.TabIndex = 4
         Me.ProductIDTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         Me.ProductIDTextBox.ValidatingType = GetType(Integer)
@@ -169,30 +182,32 @@ Partial Class ManageProductsWindow
         'AuthorLabel
         '
         Me.AuthorLabel.AutoSize = True
-        Me.AuthorLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.AuthorLabel.Location = New System.Drawing.Point(34, 222)
+        Me.AuthorLabel.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.AuthorLabel.Location = New System.Drawing.Point(20, 300)
         Me.AuthorLabel.Name = "AuthorLabel"
-        Me.AuthorLabel.Size = New System.Drawing.Size(76, 24)
+        Me.AuthorLabel.Size = New System.Drawing.Size(111, 37)
         Me.AuthorLabel.TabIndex = 44
         Me.AuthorLabel.Text = "Author: "
         '
         'ProductIDLabel
         '
         Me.ProductIDLabel.AutoSize = True
-        Me.ProductIDLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ProductIDLabel.Location = New System.Drawing.Point(34, 140)
+        Me.ProductIDLabel.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ProductIDLabel.Location = New System.Drawing.Point(20, 180)
         Me.ProductIDLabel.Name = "ProductIDLabel"
-        Me.ProductIDLabel.Size = New System.Drawing.Size(107, 24)
+        Me.ProductIDLabel.Size = New System.Drawing.Size(155, 37)
         Me.ProductIDLabel.TabIndex = 40
         Me.ProductIDLabel.Text = "Product ID: "
         '
         'OnlineLookupButton
         '
-        Me.OnlineLookupButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.OnlineLookupButton.Location = New System.Drawing.Point(25, 450)
+        Me.OnlineLookupButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.OnlineLookupButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.OnlineLookupButton.Location = New System.Drawing.Point(170, 500)
+        Me.OnlineLookupButton.Margin = New System.Windows.Forms.Padding(0)
         Me.OnlineLookupButton.Name = "OnlineLookupButton"
-        Me.OnlineLookupButton.Size = New System.Drawing.Size(100, 75)
-        Me.OnlineLookupButton.TabIndex = 12
+        Me.OnlineLookupButton.Size = New System.Drawing.Size(150, 100)
+        Me.OnlineLookupButton.TabIndex = 10
         Me.OnlineLookupButton.Text = "Online Lookup"
         Me.OnlineLookupButton.UseVisualStyleBackColor = True
         '
@@ -208,36 +223,36 @@ Partial Class ManageProductsWindow
         '
         'RRPTextBox
         '
-        Me.RRPTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RRPTextBox.Location = New System.Drawing.Point(186, 258)
+        Me.RRPTextBox.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RRPTextBox.Location = New System.Drawing.Point(198, 354)
         Me.RRPTextBox.Mask = "£00.00"
         Me.RRPTextBox.Name = "RRPTextBox"
         Me.RRPTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(48)
-        Me.RRPTextBox.Size = New System.Drawing.Size(237, 29)
+        Me.RRPTextBox.Size = New System.Drawing.Size(422, 43)
         Me.RRPTextBox.TabIndex = 7
         Me.RRPTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
         Me.RRPTextBox.ValidatingType = GetType(Integer)
         '
         'TitleTextBox
         '
-        Me.TitleTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TitleTextBox.Location = New System.Drawing.Point(186, 177)
+        Me.TitleTextBox.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TitleTextBox.Location = New System.Drawing.Point(198, 234)
         Me.TitleTextBox.Mask = "AAaaaaaaaaaaaaaaaaaa"
         Me.TitleTextBox.Name = "TitleTextBox"
         Me.TitleTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
-        Me.TitleTextBox.Size = New System.Drawing.Size(237, 29)
+        Me.TitleTextBox.Size = New System.Drawing.Size(422, 43)
         Me.TitleTextBox.TabIndex = 5
         Me.TitleTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         Me.TitleTextBox.ValidatingType = GetType(Integer)
         '
         'AuthorTextBox
         '
-        Me.AuthorTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.AuthorTextBox.Location = New System.Drawing.Point(186, 219)
+        Me.AuthorTextBox.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.AuthorTextBox.Location = New System.Drawing.Point(198, 294)
         Me.AuthorTextBox.Mask = "LL??????????????????"
         Me.AuthorTextBox.Name = "AuthorTextBox"
         Me.AuthorTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
-        Me.AuthorTextBox.Size = New System.Drawing.Size(237, 29)
+        Me.AuthorTextBox.Size = New System.Drawing.Size(422, 43)
         Me.AuthorTextBox.TabIndex = 6
         Me.AuthorTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         Me.AuthorTextBox.ValidatingType = GetType(Integer)
@@ -246,7 +261,7 @@ Partial Class ManageProductsWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(784, 561)
+        Me.ClientSize = New System.Drawing.Size(850, 650)
         Me.Controls.Add(Me.WebCrawler)
         Me.Controls.Add(Me.InstructionLabel)
         Me.Controls.Add(Me.GenreComboBox)
@@ -266,9 +281,12 @@ Partial Class ManageProductsWindow
         Me.Controls.Add(Me.ProductIDTextBox)
         Me.Controls.Add(Me.AuthorLabel)
         Me.Controls.Add(Me.ProductIDLabel)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Location = New System.Drawing.Point(1024, 768)
         Me.Name = "ManageProductsWindow"
-        Me.Text = "ManageProductsWindow"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.Text = "NeilEPOS"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

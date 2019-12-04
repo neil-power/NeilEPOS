@@ -1,6 +1,6 @@
 ﻿Public Class UserWindow
 
-    Private Sub ActionButton_Click(sender As Object, e As EventArgs) Handles SalesButton.Click, ProductLookupButton.Click, LogoutButton.Click 'When a button is clicked, opens the correct window
+    Private Sub ActionButton_Click(sender As Object, e As EventArgs) Handles SalesButton.Click, ProductLookupButton.Click, LogoutButton.Click  'When a button is clicked, opens the correct window
         CloseAllMDIWindows()
         Select Case sender.Name 'Selects the button pressed
             Case SalesButton.Name 'If it is the make sales button, open window
@@ -22,11 +22,34 @@
     Private Sub UserWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         IsMdiContainer = True 'Sets current form as MDI container
 
-        For Each ctl As Control In Controls ' Changes colour - runs through every control in form
-            If TypeOf ctl Is MdiClient Then 'If control is part of MDI
-                ctl.BackColor = BackColor 'Set control colour to the form colour
-            End If
-        Next ctl
+        LoadTheme()
+    End Sub
+
+    Private Sub LoadTheme() 'GUI setup
+        BackColor = StartupWindow.BackgroundColour
+
+
+        For Each Ctl As Control In Controls ' Runs through every control in form
+
+            If TypeOf Ctl Is Button Then 'If control is button
+                        Dim CurrentButton As Button = TryCast(Ctl, Button)
+                        CurrentButton.BackColor = StartupWindow.ThemeColour
+                        CurrentButton.FlatAppearance.BorderColor = StartupWindow.ThemeColour
+                        CurrentButton.FlatAppearance.MouseOverBackColor = StartupWindow.HoverColour
+                        CurrentButton.FlatAppearance.MouseDownBackColor = StartupWindow.HoverColour
+                        CurrentButton.Font = New Font(StartupWindow.MainFont, 20, GraphicsUnit.Point)
+
+            ElseIf TypeOf Ctl Is MdiClient Then 'If control is part of MDI
+                        Ctl.BackColor = StartupWindow.BackgroundColour 'Set control colour to the form colour
+                    End If
+                Next Ctl
+
+                LogoLabel.Font = New Font(StartupWindow.LogoFont, 40, GraphicsUnit.Point)
+        BrandLabel.Font = New Font(StartupWindow.MainFont, 20, GraphicsUnit.Point)
+        BrandLabel.Text = "for " & StartupWindow.BusinessName
+        UserLabel.Font = New Font(StartupWindow.MainFont, 20, GraphicsUnit.Point)
+        UserLabel.Text = "User: " & LoginWindow.CurrentUser.UserName
+
     End Sub
 
     Private Sub CloseAllMDIWindows() 'Closes all currently open MDI windows. May not be necessary for multiple window use

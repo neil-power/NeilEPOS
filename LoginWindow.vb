@@ -2,6 +2,33 @@
 
     Private Sub LoginWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         UserIDTextBox.Select() ' Sets cursor to start of ID text box
+        LoadTheme()
+    End Sub
+
+    Private Sub LoadTheme() 'GUI setup
+        BackColor = StartupWindow.BackgroundColour
+        For Each Ctl As Control In Controls ' Runs through every control in form
+            If TypeOf Ctl Is Button Then 'If control is button
+                Dim CurrentButton As Button = TryCast(Ctl, Button)
+                CurrentButton.BackColor = StartupWindow.ThemeColour
+                CurrentButton.FlatAppearance.BorderColor = StartupWindow.ThemeColour
+                CurrentButton.FlatAppearance.MouseOverBackColor = StartupWindow.HoverColour
+                CurrentButton.FlatAppearance.MouseDownBackColor = StartupWindow.HoverColour
+                CurrentButton.Font = New Font(StartupWindow.MainFont, 20, GraphicsUnit.Point)
+            ElseIf TypeOf Ctl Is MaskedTextBox Then 'If control is button
+                Dim CurrentTextBox As MaskedTextBox = TryCast(Ctl, MaskedTextBox)
+                CurrentTextBox.Font = New Font(StartupWindow.MainFont, 20, GraphicsUnit.Point)
+            End If
+
+        Next Ctl
+
+
+        LogoLabel.Font = New Font(StartupWindow.LogoFont, 60, GraphicsUnit.Point)
+        LoginPromptLabel.Font = New Font(StartupWindow.MainFont, 15, GraphicsUnit.Point)
+        LoginPromptLabel.Text = "Please login with your User ID and Password"
+        UserIDLabel.Font = New Font(StartupWindow.MainFont, 20, GraphicsUnit.Point)
+        PasswordLabel.Font = New Font(StartupWindow.MainFont, 20, GraphicsUnit.Point)
+
     End Sub
 
     Private Sub MaskedTextBox_Click(sender As Object, e As EventArgs) Handles UserIDTextBox.Click, PasswordTextBox.Click
@@ -26,6 +53,7 @@
     Private Sub ClearFields() 'Clears all entered login details
         UserIDTextBox.Clear() 'Resets contents of employee ID text box
         PasswordTextBox.Clear() 'Resets contents of employee password text box
+        LoginPromptLabel.Text = "Please login with your User ID and Password"
     End Sub
 
     ' **************************************************LOGIN MECHANISM**************************************************
@@ -58,12 +86,12 @@
                     Hide() 'Hides login window as variables still in use
                     UserWindow.Show() 'Open user window
                 Case User.UserAccessLevel.None
-                    MessageBox.Show("You do not have access rights to log in to this system.")
+                    LoginPromptLabel.Text = "You do not have access rights to log in to this system."
                 Case Else
                     Exit Select
             End Select
         Else 'If user does not exist
-            MsgBox("Incorrect Login") 'Alerts user to incorrect password
+            LoginPromptLabel.Text = "The User ID or Password is incorrect" 'Alerts user to incorrect password
         End If
 
     End Sub
@@ -80,5 +108,11 @@
         End If
         Return New User With {.UserID = 0, .UserName = "", .Password = "", .AccessLevel = User.UserAccessLevel.None} 'Returns blank user if false
     End Function
+
+    Private Sub LoginWindow_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        If e.CloseReason = CloseReason.UserClosing Then 'If user clicks close button
+            StartupWindow.Close() 'Ensures program closes fully if user clicks close button
+        End If
+    End Sub
 
 End Class

@@ -1,7 +1,6 @@
 ﻿''' <todo>
 ''' TO DO NEXT
-''' Visual UI design - colours, logos, branding
-''' 
+''' Replace listbox in sales window with datagrid
 ''' 
 ''' FEATURES TO ADD
 ''' 
@@ -21,8 +20,11 @@
 ''' Prevent the only manager setting self to user
 '''
 ''' INFO
-''' Standard window size - 1024 x 768
-''' Standard MDI form size - 800 x 600, starting position 100, 50
+''' Standard window size - 1024 x 768 4:3
+''' Standard MDI form size - 850 x 650, starting position 150, 75 
+''' Startup window size - 640 x 360 16:9
+''' Login window size 480 x 360 4:3
+''' Standard border style - FixedSingle
 ''' ISBN Mask -  0000000000999
 ''' Username/Author Mask - LL??????????????????
 ''' Title Mask - AAaaaaaaaaaaaaaaaaaa
@@ -31,19 +33,41 @@
 
 Public Class StartupWindow
 
-    Private ReadOnly Version As String = "0.25"
+    'THEME
+    Public Shared BackgroundColour As Color = Color.White
+    Public Shared ThemeColour As Color = Color.DeepSkyBlue
+    Public Shared HoverColour As Color = Color.LightSkyBlue
+    Public Shared LogoFont As String = "Rockwell"
+    Public Shared MainFont As String = "Segoe UI"
+    Public Shared BusinessName As String = "Penarth Books"
+    Public Shared ReadOnly Version As String = "0.26"
+
     Private ReadOnly NoOfChecks As Integer = 9
     Private ChecksCompleted As Integer = 0
 
     Private Sub StartupWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         BringToFront() 'Brings to front
-        LogoLabel.Text = "NeilEPOS v" & Version 'Updates logo label with version
+        LoadTheme()
+        VersionLabel.Text = "v " & Version 'Updates logo label with version
         StartButton.Hide() 'Resets window
         LoadProgressBar.Value = 0
         PerformStartupChecks() 'Runs file checks
         StartButton.Show()
         StartButton.Select() 'Selects start button so user can press enter key
 
+    End Sub
+
+    Private Sub LoadTheme() 'GUI setup
+        BackColor = BackgroundColour
+        StartButton.BackColor = ThemeColour
+        StartButton.FlatAppearance.BorderColor = ThemeColour
+        StartButton.FlatAppearance.MouseOverBackColor = HoverColour
+        StartButton.FlatAppearance.MouseDownBackColor = HoverColour
+        LogoLabel.Font = New Font(LogoFont, 60, GraphicsUnit.Point)
+        VersionLabel.Font = New Font("Segoe UI", 50, GraphicsUnit.Point)
+        TaglineLabel.Font = New Font(MainFont, 20, GraphicsUnit.Point)
+        ProgressListBox.Font = New Font(MainFont, 10, GraphicsUnit.Point)
+        StartButton.Font = New Font(MainFont, 20, GraphicsUnit.Point)
     End Sub
 
     Private Sub StartButton_Click(sender As Object, e As EventArgs) Handles StartButton.Click
@@ -128,11 +152,13 @@ Public Class StartupWindow
         IncrementProgressBar()
 
         ProgressListBox.Items.Add("Checks complete")
+        ProgressListBox.TopIndex = ProgressListBox.Items.Count - 1 'Moves to bottom of listbox
     End Sub
 
     Private Sub IncrementProgressBar()
         ChecksCompleted += 1
         LoadProgressBar.Value = (ChecksCompleted / NoOfChecks) * 100
+        ProgressListBox.TopIndex = ProgressListBox.Items.Count - 1 'Moves to bottom of listbox
     End Sub
 
     Private Sub MakeBackups()

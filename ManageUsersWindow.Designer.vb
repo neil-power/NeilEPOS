@@ -22,6 +22,7 @@ Partial Class ManageUsersWindow
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ManageUsersWindow))
         Me.UserIDTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.PasswordLabel = New System.Windows.Forms.Label()
         Me.UserIDLabel = New System.Windows.Forms.Label()
@@ -43,12 +44,12 @@ Partial Class ManageUsersWindow
         '
         'UserIDTextBox
         '
-        Me.UserIDTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.UserIDTextBox.Location = New System.Drawing.Point(195, 137)
+        Me.UserIDTextBox.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.UserIDTextBox.Location = New System.Drawing.Point(200, 174)
         Me.UserIDTextBox.Mask = "00000"
         Me.UserIDTextBox.Name = "UserIDTextBox"
         Me.UserIDTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
-        Me.UserIDTextBox.Size = New System.Drawing.Size(207, 29)
+        Me.UserIDTextBox.Size = New System.Drawing.Size(270, 43)
         Me.UserIDTextBox.TabIndex = 4
         Me.UserIDTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         Me.UserIDTextBox.ValidatingType = GetType(Integer)
@@ -56,59 +57,65 @@ Partial Class ManageUsersWindow
         'PasswordLabel
         '
         Me.PasswordLabel.AutoSize = True
-        Me.PasswordLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.PasswordLabel.Location = New System.Drawing.Point(43, 224)
+        Me.PasswordLabel.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PasswordLabel.Location = New System.Drawing.Point(20, 300)
         Me.PasswordLabel.Name = "PasswordLabel"
-        Me.PasswordLabel.Size = New System.Drawing.Size(102, 24)
+        Me.PasswordLabel.Size = New System.Drawing.Size(141, 37)
         Me.PasswordLabel.TabIndex = 6
         Me.PasswordLabel.Text = "Password: "
         '
         'UserIDLabel
         '
         Me.UserIDLabel.AutoSize = True
-        Me.UserIDLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.UserIDLabel.Location = New System.Drawing.Point(43, 142)
+        Me.UserIDLabel.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.UserIDLabel.Location = New System.Drawing.Point(20, 180)
         Me.UserIDLabel.Name = "UserIDLabel"
-        Me.UserIDLabel.Size = New System.Drawing.Size(81, 24)
+        Me.UserIDLabel.Size = New System.Drawing.Size(116, 37)
         Me.UserIDLabel.TabIndex = 5
         Me.UserIDLabel.Text = "User ID: "
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(43, 184)
+        Me.Label1.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(20, 240)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(107, 24)
+        Me.Label1.Size = New System.Drawing.Size(149, 37)
         Me.Label1.TabIndex = 6
         Me.Label1.Text = "Username: "
         '
         'NewUserButton
         '
-        Me.NewUserButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NewUserButton.Location = New System.Drawing.Point(34, 26)
+        Me.NewUserButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.NewUserButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NewUserButton.Location = New System.Drawing.Point(20, 0)
+        Me.NewUserButton.Margin = New System.Windows.Forms.Padding(0)
         Me.NewUserButton.Name = "NewUserButton"
-        Me.NewUserButton.Size = New System.Drawing.Size(100, 75)
+        Me.NewUserButton.Size = New System.Drawing.Size(150, 100)
         Me.NewUserButton.TabIndex = 1
         Me.NewUserButton.Text = "New User"
         Me.NewUserButton.UseVisualStyleBackColor = True
         '
         'EditUserButton
         '
-        Me.EditUserButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.EditUserButton.Location = New System.Drawing.Point(152, 26)
+        Me.EditUserButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.EditUserButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.EditUserButton.Location = New System.Drawing.Point(170, 0)
+        Me.EditUserButton.Margin = New System.Windows.Forms.Padding(0)
         Me.EditUserButton.Name = "EditUserButton"
-        Me.EditUserButton.Size = New System.Drawing.Size(100, 75)
+        Me.EditUserButton.Size = New System.Drawing.Size(150, 100)
         Me.EditUserButton.TabIndex = 2
         Me.EditUserButton.Text = "Edit User Details"
         Me.EditUserButton.UseVisualStyleBackColor = True
         '
         'DeleteUserButton
         '
-        Me.DeleteUserButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DeleteUserButton.Location = New System.Drawing.Point(273, 26)
+        Me.DeleteUserButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.DeleteUserButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DeleteUserButton.Location = New System.Drawing.Point(320, 0)
+        Me.DeleteUserButton.Margin = New System.Windows.Forms.Padding(0)
         Me.DeleteUserButton.Name = "DeleteUserButton"
-        Me.DeleteUserButton.Size = New System.Drawing.Size(100, 75)
+        Me.DeleteUserButton.Size = New System.Drawing.Size(150, 100)
         Me.DeleteUserButton.TabIndex = 3
         Me.DeleteUserButton.Text = "Delete User"
         Me.DeleteUserButton.UseVisualStyleBackColor = True
@@ -116,50 +123,56 @@ Partial Class ManageUsersWindow
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(43, 267)
+        Me.Label2.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(20, 360)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(127, 24)
+        Me.Label2.Size = New System.Drawing.Size(168, 37)
         Me.Label2.TabIndex = 6
         Me.Label2.Text = "Access Level:"
         '
         'AccessLevelComboBox
         '
         Me.AccessLevelComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.AccessLevelComboBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!)
+        Me.AccessLevelComboBox.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.AccessLevelComboBox.FormattingEnabled = True
         Me.AccessLevelComboBox.Items.AddRange(New Object() {"None", "User", "Manager"})
-        Me.AccessLevelComboBox.Location = New System.Drawing.Point(195, 264)
+        Me.AccessLevelComboBox.Location = New System.Drawing.Point(200, 352)
         Me.AccessLevelComboBox.Name = "AccessLevelComboBox"
-        Me.AccessLevelComboBox.Size = New System.Drawing.Size(207, 32)
+        Me.AccessLevelComboBox.Size = New System.Drawing.Size(270, 45)
         Me.AccessLevelComboBox.TabIndex = 7
         '
         'SaveUserButton
         '
-        Me.SaveUserButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SaveUserButton.Location = New System.Drawing.Point(34, 374)
+        Me.SaveUserButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.SaveUserButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SaveUserButton.Location = New System.Drawing.Point(20, 420)
+        Me.SaveUserButton.Margin = New System.Windows.Forms.Padding(0)
         Me.SaveUserButton.Name = "SaveUserButton"
-        Me.SaveUserButton.Size = New System.Drawing.Size(100, 75)
+        Me.SaveUserButton.Size = New System.Drawing.Size(150, 100)
         Me.SaveUserButton.TabIndex = 8
         Me.SaveUserButton.Text = "Save User"
         Me.SaveUserButton.UseVisualStyleBackColor = True
         '
         'CloseButton
         '
-        Me.CloseButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CloseButton.Location = New System.Drawing.Point(273, 374)
+        Me.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.CloseButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CloseButton.Location = New System.Drawing.Point(320, 420)
+        Me.CloseButton.Margin = New System.Windows.Forms.Padding(0)
         Me.CloseButton.Name = "CloseButton"
-        Me.CloseButton.Size = New System.Drawing.Size(100, 75)
+        Me.CloseButton.Size = New System.Drawing.Size(150, 100)
         Me.CloseButton.TabIndex = 10
         Me.CloseButton.Text = "Close"
         Me.CloseButton.UseVisualStyleBackColor = True
         '
         'SearchButton
         '
-        Me.SearchButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SearchButton.Location = New System.Drawing.Point(152, 374)
+        Me.SearchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.SearchButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SearchButton.Location = New System.Drawing.Point(170, 420)
+        Me.SearchButton.Margin = New System.Windows.Forms.Padding(0)
         Me.SearchButton.Name = "SearchButton"
-        Me.SearchButton.Size = New System.Drawing.Size(100, 75)
+        Me.SearchButton.Size = New System.Drawing.Size(150, 100)
         Me.SearchButton.TabIndex = 9
         Me.SearchButton.Text = "Search"
         Me.SearchButton.UseVisualStyleBackColor = True
@@ -167,21 +180,21 @@ Partial Class ManageUsersWindow
         'InstructionLabel
         '
         Me.InstructionLabel.AutoSize = True
-        Me.InstructionLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!)
-        Me.InstructionLabel.Location = New System.Drawing.Point(30, 107)
+        Me.InstructionLabel.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.InstructionLabel.Location = New System.Drawing.Point(20, 120)
         Me.InstructionLabel.Name = "InstructionLabel"
-        Me.InstructionLabel.Size = New System.Drawing.Size(105, 24)
+        Me.InstructionLabel.Size = New System.Drawing.Size(158, 37)
         Me.InstructionLabel.TabIndex = 23
         Me.InstructionLabel.Text = "[Instruction]"
         '
         'PasswordTextBox
         '
-        Me.PasswordTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.PasswordTextBox.Location = New System.Drawing.Point(195, 224)
+        Me.PasswordTextBox.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PasswordTextBox.Location = New System.Drawing.Point(200, 294)
         Me.PasswordTextBox.Mask = "&&&&&&&&CCCCCCCCCCCC"
         Me.PasswordTextBox.Name = "PasswordTextBox"
         Me.PasswordTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
-        Me.PasswordTextBox.Size = New System.Drawing.Size(207, 29)
+        Me.PasswordTextBox.Size = New System.Drawing.Size(270, 43)
         Me.PasswordTextBox.TabIndex = 6
         Me.PasswordTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         Me.PasswordTextBox.UseSystemPasswordChar = True
@@ -189,12 +202,12 @@ Partial Class ManageUsersWindow
         '
         'UserNameTextBox
         '
-        Me.UserNameTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.UserNameTextBox.Location = New System.Drawing.Point(195, 181)
+        Me.UserNameTextBox.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.UserNameTextBox.Location = New System.Drawing.Point(200, 234)
         Me.UserNameTextBox.Mask = "LL??????????????????"
         Me.UserNameTextBox.Name = "UserNameTextBox"
         Me.UserNameTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
-        Me.UserNameTextBox.Size = New System.Drawing.Size(207, 29)
+        Me.UserNameTextBox.Size = New System.Drawing.Size(270, 43)
         Me.UserNameTextBox.TabIndex = 5
         Me.UserNameTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         Me.UserNameTextBox.ValidatingType = GetType(Integer)
@@ -205,13 +218,13 @@ Partial Class ManageUsersWindow
         Me.UsersDataGrid.AllowUserToDeleteRows = False
         Me.UsersDataGrid.AllowUserToOrderColumns = True
         Me.UsersDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.UsersDataGrid.Location = New System.Drawing.Point(34, 302)
+        Me.UsersDataGrid.Location = New System.Drawing.Point(489, 174)
         Me.UsersDataGrid.Name = "UsersDataGrid"
         Me.UsersDataGrid.ReadOnly = True
         Me.UsersDataGrid.RowHeadersVisible = False
         Me.UsersDataGrid.ShowCellToolTips = False
         Me.UsersDataGrid.ShowEditingIcon = False
-        Me.UsersDataGrid.Size = New System.Drawing.Size(368, 66)
+        Me.UsersDataGrid.Size = New System.Drawing.Size(338, 234)
         Me.UsersDataGrid.TabIndex = 26
         Me.UsersDataGrid.TabStop = False
         '
@@ -219,7 +232,7 @@ Partial Class ManageUsersWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 600)
+        Me.ClientSize = New System.Drawing.Size(850, 650)
         Me.Controls.Add(Me.UsersDataGrid)
         Me.Controls.Add(Me.PasswordTextBox)
         Me.Controls.Add(Me.InstructionLabel)
@@ -237,10 +250,11 @@ Partial Class ManageUsersWindow
         Me.Controls.Add(Me.PasswordLabel)
         Me.Controls.Add(Me.UserIDLabel)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Location = New System.Drawing.Point(1024, 768)
         Me.Name = "ManageUsersWindow"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "UserManageWindow"
+        Me.Text = "NeilEPOS"
         CType(Me.UsersDataGrid, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

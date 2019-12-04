@@ -1,11 +1,33 @@
 ﻿Public Class SalesSummaryWindow
     Private Sub SalesSummaryWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'The startup location is set in the form properties to 1024, 768 to prevent visual issue
+        LoadTheme()
+
+        ClearSales()
+    End Sub
+
+    Private Sub LoadTheme() 'GUI setup
         FormBorderStyle = FormBorderStyle.None 'Removes border
         StartPosition = FormStartPosition.Manual 'Prevents automatic cascade of MDI windows
-        Location = New Point(100, 50) 'Sets form location to centre of Manager window
+        Location = New Point(150, 75) 'Sets form location to centre of Manager/User window
+
+        BackColor = StartupWindow.BackgroundColour
+
+        For Each Ctl As Control In Controls ' Runs through every control in form
+            If TypeOf Ctl Is Button Then 'If control is button
+                Dim CurrentButton As Button = TryCast(Ctl, Button)
+                CurrentButton.BackColor = StartupWindow.ThemeColour
+                CurrentButton.FlatAppearance.BorderColor = StartupWindow.ThemeColour
+                CurrentButton.FlatAppearance.MouseOverBackColor = StartupWindow.HoverColour
+                CurrentButton.FlatAppearance.MouseDownBackColor = StartupWindow.HoverColour
+                CurrentButton.Font = New Font(StartupWindow.MainFont, 20, GraphicsUnit.Point)
+            ElseIf TypeOf Ctl Is Label Then 'If control is label
+                Dim CurrentLabel As Label = TryCast(Ctl, Label)
+                CurrentLabel.Font = New Font(StartupWindow.MainFont, 20, GraphicsUnit.Point)
+            End If
+        Next Ctl
+
         SalesDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells 'Sets resize mode
-        ClearSales()
     End Sub
 
     Private Sub SummaryButton_Click(sender As Object, e As EventArgs) Handles DailySummaryButton.Click, WeeklySummaryButton.Click, CloseButton.Click
