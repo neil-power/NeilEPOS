@@ -5,6 +5,8 @@
     Public Property Password As String ' Password to login
     Public Property AccessLevel As UserAccessLevel 'Access level
 
+    Public Shared UserFilePath As String = CSV.MainDirectoryFilePath & "NeilEPOSUsers.csv" 'Location of users file
+
     Public Shared Function FromLine(line As String) 'Converts from line in file to user data type
         Dim SplitLine As String() = line.Split(CSV.Delimiter) 'Splits line on delimiter character
         Dim NewUserID As Integer = SplitLine(0) 'Converts ID to integer to add leading zeroes

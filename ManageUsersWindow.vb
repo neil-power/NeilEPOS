@@ -24,18 +24,24 @@
         Location = New Point(150, 75) 'Sets form location to centre of Manager/User window
 
         BackColor = StartupWindow.BackgroundColour
+        ForeColor = StartupWindow.ForegroundColor
 
         For Each Ctl As Control In Controls ' Runs through every control in form
             If TypeOf Ctl Is Button Then 'If control is button
                 Dim CurrentButton As Button = TryCast(Ctl, Button)
                 CurrentButton.BackColor = StartupWindow.ThemeColour
+                CurrentButton.ForeColor = StartupWindow.ForegroundColor
                 CurrentButton.FlatAppearance.BorderColor = StartupWindow.ThemeColour
                 CurrentButton.FlatAppearance.MouseOverBackColor = StartupWindow.HoverColour
                 CurrentButton.FlatAppearance.MouseDownBackColor = StartupWindow.HoverColour
-                CurrentButton.Font = New Font(StartupWindow.MainFont, 20, GraphicsUnit.Point)
+                CurrentButton.Font = StartupWindow.LabelFont
             ElseIf TypeOf Ctl Is Label Then 'If control is label
                 Dim CurrentLabel As Label = TryCast(Ctl, Label)
-                CurrentLabel.Font = New Font(StartupWindow.MainFont, 20, GraphicsUnit.Point)
+                CurrentLabel.Font = StartupWindow.LabelFont
+                CurrentLabel.ForeColor = StartupWindow.ForegroundColor
+            ElseIf TypeOf Ctl Is DataGridView Then 'If control is data grid
+                Dim CurrentDataGrid As DataGridView = TryCast(Ctl, DataGridView)
+                CurrentDataGrid.ForeColor = Color.Black
             End If
         Next Ctl
 
@@ -117,9 +123,9 @@
         If User.CheckValidUser(UserToCheck.Split(CSV.Delimiter)) Then
             Dim UserToSave As String = UserIDTextBox.Text & CSV.Delimiter & UserNameTextBox.Text.Trim() & CSV.Delimiter & If(PasswordTextBox.Text = Placeholder, UserPassword, User.CreatePasswordHash(PasswordTextBox.Text.Trim())) & CSV.Delimiter & GetUserAccessFromTextBox() 'If password is placeholder, write saved hash to file, else write hash of textbox
             If Mode = UserMode.EditUser Then 'If a user is being edited, the new details need to be inserted
-                CSV.Replace(CSV.UserFilePath, UserIDTextBox.Text, UserToSave) 'Replaces any lines matching UserID text box
+                CSV.Replace(User.UserFilePath, UserIDTextBox.Text, UserToSave) 'Replaces any lines matching UserID text box
             ElseIf Mode = UserMode.NewUser Then 'If a new user is being made, they can be added at the end of the file
-                CSV.Append(CSV.UserFilePath, UserToSave) 'Writes line to file
+                CSV.Append(User.UserFilePath, UserToSave) 'Writes line to file
             End If
 
             ResetUsersWindow() 'Prevents user from entering text
@@ -141,7 +147,7 @@
 
 
     Private Sub SearchForUser()
-        Dim UserFileContents() As String = CSV.ReadAsArray(CSV.UserFilePath) 'Read entire users file
+        Dim UserFileContents() As String = CSV.ReadAsArray(User.UserFilePath) 'Read entire users file
 
         For Each Line As String In UserFileContents 'Runs through each line
             Dim User As String() = Line.Split(CSV.Delimiter) 'Splits line on delimiter character
@@ -181,7 +187,7 @@
     End Function
 
     Private Function GetNewUserID()
-        Dim UserFileContents() As String = CSV.ReadAsArray(CSV.UserFilePath) 'Read entire users file
+        Dim UserFileContents() As String = CSV.ReadAsArray(User.UserFilePath) 'Read entire users file
         Dim LastUser As String() = UserFileContents.Last.Split(CSV.Delimiter) 'Gets last user
         Dim LastUserID As Integer = CInt(LastUser(0)) + 1
         Return LastUserID.ToString("00000")
@@ -206,12 +212,12 @@
 
     Private Sub DeleteUser(UserToEdit As User)
         If UserToEdit.UserID <> LoginWindow.CurrentUser.UserID Then
-            Dim UserFileContents() As String = CSV.ReadAsArray(CSV.UserFilePath) 'Gets entire contents of user file
+            Dim UserFileContents() As String = CSV.ReadAsArray(User.UserFilePath) 'Gets entire contents of user file
             For i = 0 To UBound(UserFileContents) 'Runs through each line
                 Dim UserFound As User = User.FromLine(UserFileContents(i)) 'Converts to user
                 If UserFound.UserID = UserToEdit.UserID Then 'If ID matches with edited user
                     If InputBox("Please type 'YES' to confirm deletion of user " & UserFound.UserID & " " & UserFound.UserName) = "YES" Then 'Confirms user deletion
-                        CSV.ArrayOverwrite(CSV.UserFilePath, CSV.RemoveFromArray(UserFileContents, i)) 'Overwrites file with new list of users
+                        CSV.ArrayOverwrite(User.UserFilePath, CSV.RemoveFromArray(UserFileContents, i)) 'Overwrites file with new list of users
                     End If
                 End If
             Next

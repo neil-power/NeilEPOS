@@ -149,6 +149,7 @@ Partial Class LoginWindow
         Me.Controls.Add(Me.UserIDLabel)
         Me.Controls.Add(Me.LoginPromptLabel)
         Me.Controls.Add(Me.LogoLabel)
+        Me.ForeColor = System.Drawing.SystemColors.ControlText
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "LoginWindow"

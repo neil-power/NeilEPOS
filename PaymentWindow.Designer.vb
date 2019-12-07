@@ -22,6 +22,7 @@ Partial Class PaymentWindow
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PaymentWindow))
         Me.DelButton = New System.Windows.Forms.Button()
         Me.NumButton6 = New System.Windows.Forms.Button()
         Me.NumButton0 = New System.Windows.Forms.Button()
@@ -46,10 +47,12 @@ Partial Class PaymentWindow
         '
         'DelButton
         '
-        Me.DelButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DelButton.Location = New System.Drawing.Point(189, 355)
+        Me.DelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.DelButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DelButton.Location = New System.Drawing.Point(220, 400)
+        Me.DelButton.Margin = New System.Windows.Forms.Padding(0)
         Me.DelButton.Name = "DelButton"
-        Me.DelButton.Size = New System.Drawing.Size(75, 75)
+        Me.DelButton.Size = New System.Drawing.Size(100, 100)
         Me.DelButton.TabIndex = 3
         Me.DelButton.TabStop = False
         Me.DelButton.Text = "DEL"
@@ -57,10 +60,12 @@ Partial Class PaymentWindow
         '
         'NumButton6
         '
-        Me.NumButton6.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NumButton6.Location = New System.Drawing.Point(189, 193)
+        Me.NumButton6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.NumButton6.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NumButton6.Location = New System.Drawing.Point(220, 200)
+        Me.NumButton6.Margin = New System.Windows.Forms.Padding(0)
         Me.NumButton6.Name = "NumButton6"
-        Me.NumButton6.Size = New System.Drawing.Size(75, 75)
+        Me.NumButton6.Size = New System.Drawing.Size(100, 100)
         Me.NumButton6.TabIndex = 4
         Me.NumButton6.TabStop = False
         Me.NumButton6.Text = "6"
@@ -68,10 +73,12 @@ Partial Class PaymentWindow
         '
         'NumButton0
         '
-        Me.NumButton0.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NumButton0.Location = New System.Drawing.Point(108, 355)
+        Me.NumButton0.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.NumButton0.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NumButton0.Location = New System.Drawing.Point(120, 400)
+        Me.NumButton0.Margin = New System.Windows.Forms.Padding(0)
         Me.NumButton0.Name = "NumButton0"
-        Me.NumButton0.Size = New System.Drawing.Size(75, 75)
+        Me.NumButton0.Size = New System.Drawing.Size(100, 100)
         Me.NumButton0.TabIndex = 5
         Me.NumButton0.TabStop = False
         Me.NumButton0.Text = "0"
@@ -79,10 +86,12 @@ Partial Class PaymentWindow
         '
         'NumButton5
         '
-        Me.NumButton5.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NumButton5.Location = New System.Drawing.Point(108, 193)
+        Me.NumButton5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.NumButton5.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NumButton5.Location = New System.Drawing.Point(120, 200)
+        Me.NumButton5.Margin = New System.Windows.Forms.Padding(0)
         Me.NumButton5.Name = "NumButton5"
-        Me.NumButton5.Size = New System.Drawing.Size(75, 75)
+        Me.NumButton5.Size = New System.Drawing.Size(100, 100)
         Me.NumButton5.TabIndex = 6
         Me.NumButton5.TabStop = False
         Me.NumButton5.Text = "5"
@@ -90,10 +99,12 @@ Partial Class PaymentWindow
         '
         'ClearButton
         '
-        Me.ClearButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ClearButton.Location = New System.Drawing.Point(27, 355)
+        Me.ClearButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ClearButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ClearButton.Location = New System.Drawing.Point(20, 400)
+        Me.ClearButton.Margin = New System.Windows.Forms.Padding(0)
         Me.ClearButton.Name = "ClearButton"
-        Me.ClearButton.Size = New System.Drawing.Size(75, 75)
+        Me.ClearButton.Size = New System.Drawing.Size(100, 100)
         Me.ClearButton.TabIndex = 7
         Me.ClearButton.TabStop = False
         Me.ClearButton.Text = "CLR"
@@ -101,10 +112,12 @@ Partial Class PaymentWindow
         '
         'NumButton4
         '
-        Me.NumButton4.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NumButton4.Location = New System.Drawing.Point(27, 193)
+        Me.NumButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.NumButton4.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NumButton4.Location = New System.Drawing.Point(20, 200)
+        Me.NumButton4.Margin = New System.Windows.Forms.Padding(0)
         Me.NumButton4.Name = "NumButton4"
-        Me.NumButton4.Size = New System.Drawing.Size(75, 75)
+        Me.NumButton4.Size = New System.Drawing.Size(100, 100)
         Me.NumButton4.TabIndex = 8
         Me.NumButton4.TabStop = False
         Me.NumButton4.Text = "4"
@@ -112,10 +125,12 @@ Partial Class PaymentWindow
         '
         'NumButton3
         '
-        Me.NumButton3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NumButton3.Location = New System.Drawing.Point(189, 274)
+        Me.NumButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.NumButton3.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NumButton3.Location = New System.Drawing.Point(220, 300)
+        Me.NumButton3.Margin = New System.Windows.Forms.Padding(0)
         Me.NumButton3.Name = "NumButton3"
-        Me.NumButton3.Size = New System.Drawing.Size(75, 75)
+        Me.NumButton3.Size = New System.Drawing.Size(100, 100)
         Me.NumButton3.TabIndex = 9
         Me.NumButton3.TabStop = False
         Me.NumButton3.Text = "3"
@@ -123,10 +138,12 @@ Partial Class PaymentWindow
         '
         'NumButton9
         '
-        Me.NumButton9.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NumButton9.Location = New System.Drawing.Point(189, 112)
+        Me.NumButton9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.NumButton9.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NumButton9.Location = New System.Drawing.Point(220, 100)
+        Me.NumButton9.Margin = New System.Windows.Forms.Padding(0)
         Me.NumButton9.Name = "NumButton9"
-        Me.NumButton9.Size = New System.Drawing.Size(75, 75)
+        Me.NumButton9.Size = New System.Drawing.Size(100, 100)
         Me.NumButton9.TabIndex = 10
         Me.NumButton9.TabStop = False
         Me.NumButton9.Text = "9"
@@ -134,10 +151,12 @@ Partial Class PaymentWindow
         '
         'NumButton2
         '
-        Me.NumButton2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NumButton2.Location = New System.Drawing.Point(108, 274)
+        Me.NumButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.NumButton2.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NumButton2.Location = New System.Drawing.Point(120, 300)
+        Me.NumButton2.Margin = New System.Windows.Forms.Padding(0)
         Me.NumButton2.Name = "NumButton2"
-        Me.NumButton2.Size = New System.Drawing.Size(75, 75)
+        Me.NumButton2.Size = New System.Drawing.Size(100, 100)
         Me.NumButton2.TabIndex = 11
         Me.NumButton2.TabStop = False
         Me.NumButton2.Text = "2"
@@ -145,10 +164,12 @@ Partial Class PaymentWindow
         '
         'NumButton8
         '
-        Me.NumButton8.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NumButton8.Location = New System.Drawing.Point(108, 112)
+        Me.NumButton8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.NumButton8.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NumButton8.Location = New System.Drawing.Point(120, 100)
+        Me.NumButton8.Margin = New System.Windows.Forms.Padding(0)
         Me.NumButton8.Name = "NumButton8"
-        Me.NumButton8.Size = New System.Drawing.Size(75, 75)
+        Me.NumButton8.Size = New System.Drawing.Size(100, 100)
         Me.NumButton8.TabIndex = 12
         Me.NumButton8.TabStop = False
         Me.NumButton8.Text = "8"
@@ -156,10 +177,12 @@ Partial Class PaymentWindow
         '
         'NumButton1
         '
-        Me.NumButton1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NumButton1.Location = New System.Drawing.Point(27, 274)
+        Me.NumButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.NumButton1.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NumButton1.Location = New System.Drawing.Point(20, 300)
+        Me.NumButton1.Margin = New System.Windows.Forms.Padding(0)
         Me.NumButton1.Name = "NumButton1"
-        Me.NumButton1.Size = New System.Drawing.Size(75, 75)
+        Me.NumButton1.Size = New System.Drawing.Size(100, 100)
         Me.NumButton1.TabIndex = 13
         Me.NumButton1.TabStop = False
         Me.NumButton1.Text = "1"
@@ -167,10 +190,12 @@ Partial Class PaymentWindow
         '
         'NumButton7
         '
-        Me.NumButton7.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NumButton7.Location = New System.Drawing.Point(27, 112)
+        Me.NumButton7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.NumButton7.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NumButton7.Location = New System.Drawing.Point(20, 100)
+        Me.NumButton7.Margin = New System.Windows.Forms.Padding(0)
         Me.NumButton7.Name = "NumButton7"
-        Me.NumButton7.Size = New System.Drawing.Size(75, 75)
+        Me.NumButton7.Size = New System.Drawing.Size(100, 100)
         Me.NumButton7.TabIndex = 14
         Me.NumButton7.TabStop = False
         Me.NumButton7.Text = "7"
@@ -179,83 +204,87 @@ Partial Class PaymentWindow
         'TotalToPayLabel
         '
         Me.TotalToPayLabel.AutoSize = True
-        Me.TotalToPayLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
-        Me.TotalToPayLabel.Location = New System.Drawing.Point(322, 43)
+        Me.TotalToPayLabel.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TotalToPayLabel.Location = New System.Drawing.Point(370, 50)
         Me.TotalToPayLabel.Name = "TotalToPayLabel"
-        Me.TotalToPayLabel.Size = New System.Drawing.Size(112, 24)
+        Me.TotalToPayLabel.Size = New System.Drawing.Size(160, 37)
         Me.TotalToPayLabel.TabIndex = 15
         Me.TotalToPayLabel.Text = "Total to Pay:"
         '
         'TotalLabel
         '
         Me.TotalLabel.AutoSize = True
-        Me.TotalLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TotalLabel.Location = New System.Drawing.Point(460, 36)
+        Me.TotalLabel.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TotalLabel.Location = New System.Drawing.Point(572, 50)
         Me.TotalLabel.Name = "TotalLabel"
-        Me.TotalLabel.Size = New System.Drawing.Size(92, 31)
+        Me.TotalLabel.Size = New System.Drawing.Size(90, 37)
         Me.TotalLabel.TabIndex = 16
         Me.TotalLabel.Text = "[Price]"
         '
         'AmountPaidLabel
         '
         Me.AmountPaidLabel.AutoSize = True
-        Me.AmountPaidLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
-        Me.AmountPaidLabel.Location = New System.Drawing.Point(322, 82)
+        Me.AmountPaidLabel.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.AmountPaidLabel.Location = New System.Drawing.Point(370, 110)
         Me.AmountPaidLabel.Name = "AmountPaidLabel"
-        Me.AmountPaidLabel.Size = New System.Drawing.Size(123, 24)
+        Me.AmountPaidLabel.Size = New System.Drawing.Size(176, 37)
         Me.AmountPaidLabel.TabIndex = 15
         Me.AmountPaidLabel.Text = "Amount Paid:"
         '
         'ChangeToGiveLabel
         '
         Me.ChangeToGiveLabel.AutoSize = True
-        Me.ChangeToGiveLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
-        Me.ChangeToGiveLabel.Location = New System.Drawing.Point(322, 121)
+        Me.ChangeToGiveLabel.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ChangeToGiveLabel.Location = New System.Drawing.Point(370, 170)
         Me.ChangeToGiveLabel.Name = "ChangeToGiveLabel"
-        Me.ChangeToGiveLabel.Size = New System.Drawing.Size(82, 24)
+        Me.ChangeToGiveLabel.Size = New System.Drawing.Size(114, 37)
         Me.ChangeToGiveLabel.TabIndex = 15
         Me.ChangeToGiveLabel.Text = "Change:"
         '
         'ChangeLabel
         '
         Me.ChangeLabel.AutoSize = True
-        Me.ChangeLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ChangeLabel.Location = New System.Drawing.Point(460, 121)
+        Me.ChangeLabel.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ChangeLabel.Location = New System.Drawing.Point(572, 170)
         Me.ChangeLabel.Name = "ChangeLabel"
-        Me.ChangeLabel.Size = New System.Drawing.Size(125, 31)
+        Me.ChangeLabel.Size = New System.Drawing.Size(124, 37)
         Me.ChangeLabel.TabIndex = 16
         Me.ChangeLabel.Text = "[Change]"
         '
         'FinishSale
         '
-        Me.FinishSale.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.FinishSale.Location = New System.Drawing.Point(334, 202)
+        Me.FinishSale.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.FinishSale.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.FinishSale.Location = New System.Drawing.Point(420, 300)
+        Me.FinishSale.Margin = New System.Windows.Forms.Padding(0)
         Me.FinishSale.Name = "FinishSale"
-        Me.FinishSale.Size = New System.Drawing.Size(100, 75)
+        Me.FinishSale.Size = New System.Drawing.Size(150, 100)
         Me.FinishSale.TabIndex = 2
         Me.FinishSale.Text = "Finish Sale"
         Me.FinishSale.UseVisualStyleBackColor = True
         '
         'ContinueSaleButton
         '
-        Me.ContinueSaleButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ContinueSaleButton.Location = New System.Drawing.Point(452, 202)
+        Me.ContinueSaleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ContinueSaleButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ContinueSaleButton.Location = New System.Drawing.Point(569, 300)
+        Me.ContinueSaleButton.Margin = New System.Windows.Forms.Padding(0)
         Me.ContinueSaleButton.Name = "ContinueSaleButton"
-        Me.ContinueSaleButton.Size = New System.Drawing.Size(100, 75)
+        Me.ContinueSaleButton.Size = New System.Drawing.Size(150, 100)
         Me.ContinueSaleButton.TabIndex = 3
-        Me.ContinueSaleButton.Text = "ContinueSale"
+        Me.ContinueSaleButton.Text = "Continue Sale"
         Me.ContinueSaleButton.UseVisualStyleBackColor = True
         '
         'AmountPaidTextBox
         '
-        Me.AmountPaidTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
-        Me.AmountPaidTextBox.Location = New System.Drawing.Point(466, 82)
+        Me.AmountPaidTextBox.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.AmountPaidTextBox.Location = New System.Drawing.Point(579, 107)
         Me.AmountPaidTextBox.Mask = "##.## $"
         Me.AmountPaidTextBox.Name = "AmountPaidTextBox"
         Me.AmountPaidTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(48)
         Me.AmountPaidTextBox.ResetOnPrompt = False
         Me.AmountPaidTextBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.AmountPaidTextBox.Size = New System.Drawing.Size(179, 29)
+        Me.AmountPaidTextBox.Size = New System.Drawing.Size(179, 43)
         Me.AmountPaidTextBox.TabIndex = 1
         Me.AmountPaidTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.AmountPaidTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
@@ -264,7 +293,7 @@ Partial Class PaymentWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(784, 561)
+        Me.ClientSize = New System.Drawing.Size(834, 611)
         Me.Controls.Add(Me.AmountPaidTextBox)
         Me.Controls.Add(Me.ContinueSaleButton)
         Me.Controls.Add(Me.FinishSale)
@@ -285,9 +314,11 @@ Partial Class PaymentWindow
         Me.Controls.Add(Me.NumButton8)
         Me.Controls.Add(Me.NumButton1)
         Me.Controls.Add(Me.NumButton7)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Location = New System.Drawing.Point(1024, 768)
         Me.Name = "PaymentWindow"
-        Me.Text = "Payment"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.Text = "NeilEPOS"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

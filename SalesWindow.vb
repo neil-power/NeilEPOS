@@ -35,21 +35,25 @@
         Location = New Point(150, 75) 'Sets form location to centre of Manager/User window
 
         BackColor = StartupWindow.BackgroundColour
+        ForeColor = StartupWindow.ForegroundColor
 
         For Each Ctl As Control In Controls ' Runs through every control in form
             If TypeOf Ctl Is Button Then 'If control is button
                 Dim CurrentButton As Button = TryCast(Ctl, Button)
                 CurrentButton.BackColor = StartupWindow.ThemeColour
+                CurrentButton.ForeColor = StartupWindow.ForegroundColor
                 CurrentButton.FlatAppearance.BorderColor = StartupWindow.ThemeColour
                 CurrentButton.FlatAppearance.MouseOverBackColor = StartupWindow.HoverColour
                 CurrentButton.FlatAppearance.MouseDownBackColor = StartupWindow.HoverColour
-                CurrentButton.Font = New Font(StartupWindow.MainFont, 20, GraphicsUnit.Point)
+                CurrentButton.Font = StartupWindow.LabelFont
             ElseIf TypeOf Ctl Is ListBox Then
                 Dim CurrentListbox As ListBox = TryCast(Ctl, ListBox)
-                CurrentListbox.Font = New Font(StartupWindow.MainFont, 20, GraphicsUnit.Point)
+                CurrentListbox.Font = StartupWindow.LabelFont
+                CurrentListbox.ForeColor = StartupWindow.ForegroundColor
             ElseIf TypeOf Ctl Is Label Then 'If control is label
                 Dim CurrentLabel As Label = TryCast(Ctl, Label)
-                CurrentLabel.Font = New Font(StartupWindow.MainFont, 20, GraphicsUnit.Point)
+                CurrentLabel.Font = StartupWindow.LabelFont
+                CurrentLabel.ForeColor = StartupWindow.ForegroundColor
             End If
         Next Ctl
 

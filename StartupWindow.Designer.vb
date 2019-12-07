@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class StartupWindow
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class StartupWindow
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(StartupWindow))
         Me.TaglineLabel = New System.Windows.Forms.Label()
@@ -28,7 +28,6 @@ Partial Class StartupWindow
         Me.LoadProgressBar = New System.Windows.Forms.ProgressBar()
         Me.ProgressListBox = New System.Windows.Forms.ListBox()
         Me.StartButton = New System.Windows.Forms.Button()
-        Me.VersionLabel = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'TaglineLabel
@@ -79,16 +78,6 @@ Partial Class StartupWindow
         Me.StartButton.Text = "Start"
         Me.StartButton.UseVisualStyleBackColor = True
         '
-        'VersionLabel
-        '
-        Me.VersionLabel.AutoSize = True
-        Me.VersionLabel.Font = New System.Drawing.Font("Segoe UI", 50.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.VersionLabel.Location = New System.Drawing.Point(389, -5)
-        Me.VersionLabel.Name = "VersionLabel"
-        Me.VersionLabel.Size = New System.Drawing.Size(205, 89)
-        Me.VersionLabel.TabIndex = 4
-        Me.VersionLabel.Text = "v[X.X]"
-        '
         'StartupWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -99,7 +88,6 @@ Partial Class StartupWindow
         Me.Controls.Add(Me.LoadProgressBar)
         Me.Controls.Add(Me.TaglineLabel)
         Me.Controls.Add(Me.LogoLabel)
-        Me.Controls.Add(Me.VersionLabel)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "StartupWindow"
@@ -115,5 +103,4 @@ Partial Class StartupWindow
     Friend WithEvents LoadProgressBar As ProgressBar
     Friend WithEvents ProgressListBox As ListBox
     Friend WithEvents StartButton As Button
-    Friend WithEvents VersionLabel As Label
 End Class

@@ -7,17 +7,19 @@
 
     Private Sub LoadTheme() 'GUI setup
         BackColor = StartupWindow.BackgroundColour
+        ForeColor = StartupWindow.ForegroundColor
         For Each Ctl As Control In Controls ' Runs through every control in form
             If TypeOf Ctl Is Button Then 'If control is button
                 Dim CurrentButton As Button = TryCast(Ctl, Button)
                 CurrentButton.BackColor = StartupWindow.ThemeColour
+                CurrentButton.ForeColor = StartupWindow.ForegroundColor
                 CurrentButton.FlatAppearance.BorderColor = StartupWindow.ThemeColour
                 CurrentButton.FlatAppearance.MouseOverBackColor = StartupWindow.HoverColour
                 CurrentButton.FlatAppearance.MouseDownBackColor = StartupWindow.HoverColour
-                CurrentButton.Font = New Font(StartupWindow.MainFont, 20, GraphicsUnit.Point)
+                CurrentButton.Font = StartupWindow.LabelFont
             ElseIf TypeOf Ctl Is MaskedTextBox Then 'If control is button
                 Dim CurrentTextBox As MaskedTextBox = TryCast(Ctl, MaskedTextBox)
-                CurrentTextBox.Font = New Font(StartupWindow.MainFont, 20, GraphicsUnit.Point)
+                CurrentTextBox.Font = StartupWindow.LabelFont
             End If
 
         Next Ctl
@@ -26,8 +28,8 @@
         LogoLabel.Font = New Font(StartupWindow.LogoFont, 60, GraphicsUnit.Point)
         LoginPromptLabel.Font = New Font(StartupWindow.MainFont, 15, GraphicsUnit.Point)
         LoginPromptLabel.Text = "Please login with your User ID and Password"
-        UserIDLabel.Font = New Font(StartupWindow.MainFont, 20, GraphicsUnit.Point)
-        PasswordLabel.Font = New Font(StartupWindow.MainFont, 20, GraphicsUnit.Point)
+        UserIDLabel.Font = StartupWindow.LabelFont
+        PasswordLabel.Font = StartupWindow.LabelFont
 
     End Sub
 
@@ -97,7 +99,7 @@
     End Sub
 
     Private Function VerifyUserLogin(ByVal UserID As Integer, ByVal Password As String) 'Reads file and matches ID and password
-        Dim UserFileContents() As String = CSV.ReadAsArray(CSV.UserFilePath) 'Read entire users file as array
+        Dim UserFileContents() As String = CSV.ReadAsArray(User.UserFilePath) 'Read entire users file as array
         If UserFileContents.Length <> 0 Then 'Tests to see if there are any users in the sale file.
             For Each Line As String In UserFileContents ' Runs through each line in user file
                 Dim UserOnLine As User = User.FromLine(Line) 'Gets the user on the line as a user data type

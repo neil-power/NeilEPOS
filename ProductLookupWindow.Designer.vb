@@ -55,11 +55,11 @@ Partial Class ProductLookupWindow
         '
         Me.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CloseButton.Font = New System.Drawing.Font("Segoe UI", 20.0!)
-        Me.CloseButton.Location = New System.Drawing.Point(320, 380)
+        Me.CloseButton.Location = New System.Drawing.Point(470, 380)
         Me.CloseButton.Margin = New System.Windows.Forms.Padding(0)
         Me.CloseButton.Name = "CloseButton"
         Me.CloseButton.Size = New System.Drawing.Size(150, 100)
-        Me.CloseButton.TabIndex = 4
+        Me.CloseButton.TabIndex = 5
         Me.CloseButton.Text = "Close"
         Me.CloseButton.UseVisualStyleBackColor = True
         '
@@ -141,11 +141,11 @@ Partial Class ProductLookupWindow
         '
         Me.ClearButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ClearButton.Font = New System.Drawing.Font("Segoe UI", 20.0!)
-        Me.ClearButton.Location = New System.Drawing.Point(170, 380)
+        Me.ClearButton.Location = New System.Drawing.Point(320, 380)
         Me.ClearButton.Margin = New System.Windows.Forms.Padding(0)
         Me.ClearButton.Name = "ClearButton"
         Me.ClearButton.Size = New System.Drawing.Size(150, 100)
-        Me.ClearButton.TabIndex = 3
+        Me.ClearButton.TabIndex = 4
         Me.ClearButton.Text = "Clear"
         Me.ClearButton.UseVisualStyleBackColor = True
         '
@@ -163,11 +163,11 @@ Partial Class ProductLookupWindow
         '
         Me.OnlineLookupButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.OnlineLookupButton.Font = New System.Drawing.Font("Segoe UI", 20.0!)
-        Me.OnlineLookupButton.Location = New System.Drawing.Point(470, 380)
+        Me.OnlineLookupButton.Location = New System.Drawing.Point(170, 380)
         Me.OnlineLookupButton.Margin = New System.Windows.Forms.Padding(0)
         Me.OnlineLookupButton.Name = "OnlineLookupButton"
         Me.OnlineLookupButton.Size = New System.Drawing.Size(150, 100)
-        Me.OnlineLookupButton.TabIndex = 5
+        Me.OnlineLookupButton.TabIndex = 3
         Me.OnlineLookupButton.Text = "Online Lookup"
         Me.OnlineLookupButton.UseVisualStyleBackColor = True
         '

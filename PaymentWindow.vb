@@ -6,9 +6,7 @@
 
     Private Sub Payment_Activated(sender As Object, e As EventArgs) Handles MyBase.Load 'Runs when payment form opened
         'The startup location is set in the form properties to 1024, 768 to prevent visual issue
-        FormBorderStyle = FormBorderStyle.None 'Removes border
-        StartPosition = FormStartPosition.Manual 'Prevents automatic cascade of MDI windows
-        Location = New Point(100, 50) 'Sets form location to centre of Manager/User window
+        LoadTheme()
 
         TotalLabel.Text = SalesWindow.SaleTotal 'Sets total to the sale total
 
@@ -19,6 +17,36 @@
         TransactionID = ReadTransactionIDFromFile()
 
         AmountPaidTextBox.Select(AmountPaidTextBox.Text.Length + 1, 0) 'Selects amount paid textbox
+
+    End Sub
+
+    Private Sub LoadTheme() 'GUI setup
+        FormBorderStyle = FormBorderStyle.None 'Removes border
+        StartPosition = FormStartPosition.Manual 'Prevents automatic cascade of MDI windows
+        Location = New Point(150, 75) 'Sets form location to centre of Manager/User window
+
+        BackColor = StartupWindow.BackgroundColour
+        ForeColor = StartupWindow.ForegroundColor
+
+        For Each Ctl As Control In Controls ' Runs through every control in form
+            If TypeOf Ctl Is Button Then 'If control is button
+                Dim CurrentButton As Button = TryCast(Ctl, Button)
+                CurrentButton.BackColor = StartupWindow.ThemeColour
+                CurrentButton.ForeColor = StartupWindow.ForegroundColor
+                CurrentButton.FlatAppearance.BorderColor = StartupWindow.ThemeColour
+                CurrentButton.FlatAppearance.MouseOverBackColor = StartupWindow.HoverColour
+                CurrentButton.FlatAppearance.MouseDownBackColor = StartupWindow.HoverColour
+                CurrentButton.Font = StartupWindow.LabelFont
+
+            ElseIf TypeOf Ctl Is Label Then 'If control is label
+                Dim CurrentLabel As Label = TryCast(Ctl, Label)
+                CurrentLabel.Font = StartupWindow.LabelFont
+                CurrentLabel.ForeColor = StartupWindow.ForegroundColor
+            ElseIf TypeOf Ctl Is MaskedTextBox Then 'If control is text box
+                Dim CurrentTextBox As MaskedTextBox = TryCast(Ctl, MaskedTextBox)
+                CurrentTextBox.Font = StartupWindow.LabelFont
+            End If
+        Next Ctl
 
     End Sub
 
@@ -97,7 +125,7 @@
     ' **************************************************DAILY SALES FILE**************************************************
 
     Private Function ReadTransactionIDFromFile() ' Gets most recent sales number from the sales file
-        Dim SaleData() As String = CSV.ReadAsArray(CSV.DailySalesFilePath) ' This reads all data from the sales file
+        Dim SaleData() As String = CSV.ReadAsArray(Product.DailySalesFilePath) ' This reads all data from the sales file
 
         If SaleData.Length > 1 Then ' Tests to see if there is more than one line in the sales file (there will be a header row)
             Dim LastSale As String = SaleData.Last 'Gets last line of saledata
@@ -119,17 +147,17 @@
             ' Write Transaction ID, Date, Time, Item, Item Cost, Item Quantity,Sales Total,Sales Quantity,Change Given, User
             If SalesWindow.CurrentSale.IndexOf(Item) = SalesWindow.CurrentSale.Count - 1 Then 'If item is last item in current sale, write sales totals
                 Dim LineToWrite As String = TransactionID & CSV.Comma & Date.Today & CSV.Comma & Date.Now.ToShortTimeString() & CSV.Comma & Item.ISBN & CSV.Comma & Item.Price & CSV.Comma & Item.Quantity & CSV.Comma & SalesWindow.SaleTotal & CSV.Comma & NoOfItems & CSV.Comma & ChangeLabel.Text & CSV.Comma & LoginWindow.CurrentUser.UserName
-                CSV.Append(CSV.DailySalesFilePath, LineToWrite) 'Writes line to file
+                CSV.Append(Product.DailySalesFilePath, LineToWrite) 'Writes line to file
             Else 'Don't write sales totals
                 Dim LineToWrite As String = TransactionID & CSV.Comma & Date.Today & CSV.Comma & Date.Now.ToShortTimeString() & CSV.Comma & Item.ISBN & CSV.Comma & Item.Price & CSV.Comma & Item.Quantity
-                CSV.Append(CSV.DailySalesFilePath, LineToWrite) 'Writes line to file
+                CSV.Append(Product.DailySalesFilePath, LineToWrite) 'Writes line to file
             End If
 
         Next Item
     End Sub
 
     Private Sub WriteToWeeklySalesFile(NoOfItems As Integer)
-        Dim WeeklySaleFileContents() As String = CSV.ReadAsArray(CSV.WeeklySalesFilePath) 'Gets entire contents of weekly sales file
+        Dim WeeklySaleFileContents() As String = CSV.ReadAsArray(Product.WeeklySalesFilePath) 'Gets entire contents of weekly sales file
         For i = 0 To UBound(WeeklySaleFileContents) 'Runs through each line
 
             Dim Day As String() = WeeklySaleFileContents(i).Split(CSV.Comma) 'Splits line on delimiter character
@@ -137,7 +165,7 @@
             If Day(0) = "Date" Then 'If the line is the title line
                 If UBound(WeeklySaleFileContents) = 0 Then 'If there is only one line in the file
                     Dim LineToWrite As String = Date.Today & CSV.Comma & SalesWindow.SaleTotal & CSV.Comma & NoOfItems 'Writes date, total and no of items to file
-                    CSV.Append(CSV.WeeklySalesFilePath, LineToWrite) 'Writes line to file
+                    CSV.Append(Product.WeeklySalesFilePath, LineToWrite) 'Writes line to file
                 End If
 
             ElseIf Day(0) = Date.Today Then 'If date matches with current date
@@ -145,12 +173,12 @@
                 Dim NewNoOfItems As Integer = NoOfItems + Day(2) 'Adds current no of items to the no of items in the file
 
                 WeeklySaleFileContents(i) = (Date.Today & CSV.Comma & NewSalesTotal & CSV.Comma & NewNoOfItems) 'Replace line with updated day
-                CSV.ArrayOverwrite(CSV.WeeklySalesFilePath, WeeklySaleFileContents) 'Replace file with updated version
+                CSV.ArrayOverwrite(Product.WeeklySalesFilePath, WeeklySaleFileContents) 'Replace file with updated version
 
             ElseIf i = UBound(WeeklySaleFileContents) Then 'If it is not the title line, the date does not match with current date and the current line is the last line in the file
 
                 Dim LineToWrite As String = Date.Today & CSV.Comma & SalesWindow.SaleTotal & CSV.Comma & NoOfItems 'Writes date, total and no of items to file
-                CSV.Append(CSV.WeeklySalesFilePath, LineToWrite) 'Writes line to file
+                CSV.Append(Product.WeeklySalesFilePath, LineToWrite) 'Writes line to file
             End If
 
         Next

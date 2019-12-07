@@ -5,12 +5,6 @@ Public Class CSV
 
     Public Shared MainDirectoryFilePath = My.Computer.FileSystem.SpecialDirectories.Desktop & "\NeilEPOS Data\"
 
-    Public Shared WeekNumber As Integer = DatePart(DateInterval.WeekOfYear, Date.Today) 'Gets week number
-
-    Public Shared UserFilePath As String = MainDirectoryFilePath & "NeilEPOSUsers.csv" 'Location of users file
-    Public Shared DailySalesFilePath As String = MainDirectoryFilePath & Date.Today.ToString("yyyy-MM-dd") & " DAILY SALES.csv" ' Desktop and current date for file to save to
-    Public Shared WeeklySalesFilePath As String = MainDirectoryFilePath & Date.Now.Year & " " & WeekNumber & " WEEKLY SALES.csv" ' Sets week number and year for file to save to on desktop
-
     Public Shared ReadOnly Delimiter As Char = Chr(31)
     Public Shared ReadOnly Comma As Char = ","
 

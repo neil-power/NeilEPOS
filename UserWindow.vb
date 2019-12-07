@@ -27,27 +27,28 @@
 
     Private Sub LoadTheme() 'GUI setup
         BackColor = StartupWindow.BackgroundColour
-
+        ForeColor = StartupWindow.ForegroundColor
 
         For Each Ctl As Control In Controls ' Runs through every control in form
 
             If TypeOf Ctl Is Button Then 'If control is button
-                        Dim CurrentButton As Button = TryCast(Ctl, Button)
-                        CurrentButton.BackColor = StartupWindow.ThemeColour
-                        CurrentButton.FlatAppearance.BorderColor = StartupWindow.ThemeColour
-                        CurrentButton.FlatAppearance.MouseOverBackColor = StartupWindow.HoverColour
-                        CurrentButton.FlatAppearance.MouseDownBackColor = StartupWindow.HoverColour
-                        CurrentButton.Font = New Font(StartupWindow.MainFont, 20, GraphicsUnit.Point)
+                Dim CurrentButton As Button = TryCast(Ctl, Button)
+                CurrentButton.BackColor = StartupWindow.ThemeColour
+                CurrentButton.ForeColor = StartupWindow.ForegroundColor
+                CurrentButton.FlatAppearance.BorderColor = StartupWindow.ThemeColour
+                CurrentButton.FlatAppearance.MouseOverBackColor = StartupWindow.HoverColour
+                CurrentButton.FlatAppearance.MouseDownBackColor = StartupWindow.HoverColour
+                CurrentButton.Font = StartupWindow.LabelFont
 
             ElseIf TypeOf Ctl Is MdiClient Then 'If control is part of MDI
-                        Ctl.BackColor = StartupWindow.BackgroundColour 'Set control colour to the form colour
-                    End If
-                Next Ctl
+                Ctl.BackColor = StartupWindow.BackgroundColour 'Set control colour to the form colour
+            End If
+        Next Ctl
 
-                LogoLabel.Font = New Font(StartupWindow.LogoFont, 40, GraphicsUnit.Point)
-        BrandLabel.Font = New Font(StartupWindow.MainFont, 20, GraphicsUnit.Point)
+        LogoLabel.Font = New Font(StartupWindow.LogoFont, 40, GraphicsUnit.Point)
+        BrandLabel.Font = StartupWindow.LabelFont
         BrandLabel.Text = "for " & StartupWindow.BusinessName
-        UserLabel.Font = New Font(StartupWindow.MainFont, 20, GraphicsUnit.Point)
+        UserLabel.Font = StartupWindow.LabelFont
         UserLabel.Text = "User: " & LoginWindow.CurrentUser.UserName
 
     End Sub

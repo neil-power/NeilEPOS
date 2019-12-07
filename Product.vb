@@ -2,6 +2,12 @@
     Public Shared ProductsFilePath As String = CSV.MainDirectoryFilePath & "Products.dat"
     Public Shared ProductsIndexPath As String = CSV.MainDirectoryFilePath & "Products.idx"
 
+    Public Shared WeekNumber As Integer = DatePart(DateInterval.WeekOfYear, Date.Today) 'Gets week number
+
+    Public Shared DailySalesFilePath As String = CSV.MainDirectoryFilePath & Date.Today.ToString("yyyy-MM-dd") & " DAILY SALES.csv" ' Desktop and current date for file to save to
+    Public Shared WeeklySalesFilePath As String = CSV.MainDirectoryFilePath & Date.Now.Year & " " & WeekNumber & " WEEKLY SALES.csv" ' Sets week number and year for file to save to on desktop
+
+
     Public Property ISBN As Long
     Public Property Title As String
     Public Property Author As String
@@ -49,19 +55,19 @@
     Public Shared Function ValidateISBN(ISBN As String)
 
         Dim Sum As Integer = 0
-        For i = 0 To ISBN.Length - 2 'First 12 digits (13th is check digit(
+        For i = 0 To ISBN.Length - 2 'First 12 digits (13th is check digit)
             If i Mod 2 = 0 Then 'If digit position is even, add to sum
                 Sum += Val(ISBN(i)) 'If digit position is odd, multiply by 3 and add to sum
             Else
-                Sum += Val(ISBN(i)) * 3
+                Sum += Val(ISBN(i)) * 3 'If digit position is even, add to sum
             End If
         Next
-        Dim CheckDigit As Integer = Sum Mod 10
-        If CheckDigit <> 0 Then
+        Dim CheckDigit As Integer = Sum Mod 10 'Calculate mod 10 of check digit
+        If CheckDigit <> 0 Then 'Subtract check digit from 10 if non-zero
             CheckDigit = 10 - CheckDigit
         End If
 
-        If CheckDigit.ToString = ISBN(12) Then
+        If CheckDigit.ToString = ISBN(12) Then 'Check digit should be last digit of ISBN
             Return True
         Else
             Return False
