@@ -1,6 +1,5 @@
 ﻿''' <todo>
 ''' TO DO NEXT
-''' Replace listbox in sales window with datagrid
 ''' 
 ''' FEATURES TO ADD
 ''' 
@@ -9,9 +8,10 @@
 ''' Lots of testing
 ''' 
 ''' POTENTIAL NEW THINGS TO ADD
+''' Sale total for sales window datagrid
+''' Ability to delete items from current sale
 ''' Allow user to customise file paths - My.Settings file
 ''' Allow recording of payment type in payment window 
-''' Tidy up user notifications - use labels and custom message boxes
 ''' Cleanup method - copy all records mentioned in index file to new master file.
 ''' Indexed file for each attribute - can search based on any attribute of product
 '''
@@ -26,8 +26,9 @@
 ''' Login window size 480 x 360 4:3
 ''' Standard border style - FixedSingle
 ''' ISBN Mask -  0000000000999
-''' Username/Author Mask - LL??????????????????
-''' Title Mask - AAaaaaaaaaaaaaaaaaaa
+''' Username Mask - LL??????????????????
+''' Author Mask - LL??????????????????????????????????????
+''' Title Mask - ampersand x 2, CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 ''' Password Mask -  ampersand x 8, CCCCCCCCCCCC
 ''' </todo>
 
@@ -43,7 +44,7 @@ Public Class StartupWindow
     Public Shared MainFont As String = "Franklin Gothic"
     Public Shared LabelFont As New Font(MainFont, 20, GraphicsUnit.Point)
     Public Shared BusinessName As String = "Penarth Books"
-    Public Shared ReadOnly Version As String = "0.27"
+    Public Shared ReadOnly Version As String = "0.28"
 
     Private ReadOnly NoOfChecks As Integer = 9
     Private ChecksCompleted As Integer = 0

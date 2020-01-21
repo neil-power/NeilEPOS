@@ -42,6 +42,7 @@
             ElseIf TypeOf Ctl Is DataGridView Then 'If control is data grid
                 Dim CurrentDataGrid As DataGridView = TryCast(Ctl, DataGridView)
                 CurrentDataGrid.ForeColor = Color.Black
+                CurrentDataGrid.BackgroundColor = StartupWindow.BackgroundColour
             End If
         Next Ctl
 
@@ -119,7 +120,8 @@
 
     Private Sub SaveUser()
 
-        Dim UserToCheck As String = UserIDTextBox.Text & CSV.Delimiter & UserNameTextBox.Text.Trim() & CSV.Delimiter & PasswordTextBox.Text.Trim() & CSV.Delimiter & GetUserAccessFromTextBox()
+        'Dim UserToCheck As String = UserIDTextBox.Text & CSV.Delimiter & UserNameTextBox.Text.Trim() & CSV.Delimiter & PasswordTextBox.Text.Trim() & CSV.Delimiter & GetUserAccessFromTextBox()
+        Dim UserToCheck As String = UserIDTextBox.Text & CSV.Delimiter & UserNameTextBox.Text & CSV.Delimiter & PasswordTextBox.Text & CSV.Delimiter & GetUserAccessFromTextBox()
         If User.CheckValidUser(UserToCheck.Split(CSV.Delimiter)) Then
             Dim UserToSave As String = UserIDTextBox.Text & CSV.Delimiter & UserNameTextBox.Text.Trim() & CSV.Delimiter & If(PasswordTextBox.Text = Placeholder, UserPassword, User.CreatePasswordHash(PasswordTextBox.Text.Trim())) & CSV.Delimiter & GetUserAccessFromTextBox() 'If password is placeholder, write saved hash to file, else write hash of textbox
             If Mode = UserMode.EditUser Then 'If a user is being edited, the new details need to be inserted

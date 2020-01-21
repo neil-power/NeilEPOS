@@ -11,7 +11,7 @@
     Public Property ISBN As Long
     Public Property Title As String
     Public Property Author As String
-    Public Property RRP As Double
+    Public Property RRP As Decimal
     Public Property Genre As String
 
     Public Shared ReadOnly GenreList As String() = {"General Fiction", "Children's Fiction", "General Non-Fiction", "Children's Non-Fiction", "Education and Reference", "Biography and Memoir", "Other"}
@@ -32,12 +32,12 @@
                                 ManageProductsWindow.InstructionLabel.Text = "Please select a genre"
                             End If
                         Else
-                            ManageProductsWindow.InstructionLabel.Text = "The author must be between 2 and 20 characters"
+                            ManageProductsWindow.InstructionLabel.Text = "The author must be between 2 and 40 characters"
 
                         End If
 
                     Else
-                        ManageProductsWindow.InstructionLabel.Text = "The title must be between 2 and 20 characters"
+                        ManageProductsWindow.InstructionLabel.Text = "The title must be between 2 and 40 characters"
                     End If
 
                 Else

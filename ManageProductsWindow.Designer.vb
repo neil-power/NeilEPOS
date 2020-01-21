@@ -237,7 +237,7 @@ Partial Class ManageProductsWindow
         '
         Me.TitleTextBox.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TitleTextBox.Location = New System.Drawing.Point(198, 234)
-        Me.TitleTextBox.Mask = "AAaaaaaaaaaaaaaaaaaa"
+        Me.TitleTextBox.Mask = "&&CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"
         Me.TitleTextBox.Name = "TitleTextBox"
         Me.TitleTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
         Me.TitleTextBox.Size = New System.Drawing.Size(422, 43)
@@ -249,7 +249,7 @@ Partial Class ManageProductsWindow
         '
         Me.AuthorTextBox.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.AuthorTextBox.Location = New System.Drawing.Point(198, 294)
-        Me.AuthorTextBox.Mask = "LL??????????????????"
+        Me.AuthorTextBox.Mask = "LL??????????????????????????????????????"
         Me.AuthorTextBox.Name = "AuthorTextBox"
         Me.AuthorTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
         Me.AuthorTextBox.Size = New System.Drawing.Size(422, 43)

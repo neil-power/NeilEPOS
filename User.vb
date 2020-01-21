@@ -30,25 +30,25 @@
                                 End If
 
                             Else
-                                ManageUsersWindow.InstructionLabel.Text = "Password must contain at least one capital letter"
+                                ManageUsersWindow.InstructionLabel.Text = "Password must contain at least one capital letter."
                             End If
 
                         Else
-                            ManageUsersWindow.InstructionLabel.Text = "Password must contain at least one number"
+                            ManageUsersWindow.InstructionLabel.Text = "Password must contain at least one number."
                         End If
 
                     Else
-                        ManageUsersWindow.InstructionLabel.Text = "Password must not contain spaces. Leading and trailing spaces will be removed"
+                        ManageUsersWindow.InstructionLabel.Text = "Password must not contain spaces."
                     End If
 
                 Else
                     ManageUsersWindow.InstructionLabel.Text = "Password must be at least 8 characters long."
                 End If
             Else
-                ManageUsersWindow.InstructionLabel.Text = "Username must not contain spaces. Leading and trailing spaces will be removed"
+                ManageUsersWindow.InstructionLabel.Text = "Username must not contain spaces."
             End If
         Else
-            ManageUsersWindow.InstructionLabel.Text = "Username must be between 2 and 20 characters long "
+            ManageUsersWindow.InstructionLabel.Text = "Username must be between 2 and 20 characters long."
         End If
 
         Return False

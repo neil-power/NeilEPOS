@@ -30,6 +30,7 @@
             ElseIf TypeOf Ctl Is DataGridView Then 'If control is data grid
                 Dim CurrentDataGrid As DataGridView = TryCast(Ctl, DataGridView)
                 CurrentDataGrid.ForeColor = Color.Black
+                CurrentDataGrid.BackgroundColor = StartupWindow.BackgroundColour
             End If
         Next Ctl
 
@@ -73,7 +74,7 @@
         If SalesDataGrid.RowCount > 0 Then 'If data grid is not empty
             Dim LastTransactionNumber As String = SalesDataGrid.Rows.GetLastRow(0) 'Gets last transaction id from file 
             Dim ItemsSold As Integer = 0
-            Dim DailySales As Double = 0
+            Dim DailySales As Decimal = 0
 
             For Each Line As DataGridViewRow In SalesDataGrid.Rows 'Iterates through every row in the data grid
                 If Line.Cells.Count >= 7 Then 'If more than 7 cells (last line in transaction with summaries)
@@ -82,7 +83,7 @@
                 End If
             Next
 
-            CalculationLabel.Text = "Total number of transactions: " & LastTransactionNumber & Environment.NewLine & "Total number of items sold: " & ItemsSold & Environment.NewLine & "Total value of items sold: " & DailySales & Environment.NewLine & "Average cost of item: " & Math.Round(DailySales / ItemsSold, 2)
+            CalculationLabel.Text = "Total number of transactions: " & LastTransactionNumber & Environment.NewLine & "Total number of items sold: " & ItemsSold & Environment.NewLine & "Total value of items sold: " & DailySales.ToString("C") & Environment.NewLine & "Average cost of item: " & Math.Round(DailySales / ItemsSold, 2).ToString("C")
         Else 'If there are no rows in the data grid
             CalculationLabel.Text = "No data found"
         End If
@@ -95,14 +96,14 @@
 
         If SalesDataGrid.RowCount > 0 Then 'If data grid is not empty
             Dim ItemsSoldTotal As Integer = 0
-            Dim WeeklySales As Double = 0
+            Dim WeeklySales As Decimal = 0
 
             For Each Line As DataGridViewRow In SalesDataGrid.Rows 'Iterates through every row in the data grid
                 ItemsSoldTotal += Line.Cells(2).Value 'Add sales quantity to running total
                 WeeklySales += Line.Cells(1).Value 'Add sales value to running total
             Next
 
-            CalculationLabel.Text = "Total number of items sold: " & ItemsSoldTotal & Environment.NewLine & "Total value of items sold: " & WeeklySales
+            CalculationLabel.Text = "Total number of items sold: " & ItemsSoldTotal & Environment.NewLine & "Total value of items sold: " & WeeklySales.ToString("C")
         Else 'If there are no rows in the data grid
             CalculationLabel.Text = "No data found"
         End If

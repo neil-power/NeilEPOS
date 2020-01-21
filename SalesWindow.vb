@@ -5,12 +5,12 @@
 
     Private InputMode As Mode 'Sets which box for the keypad to write to
     Public Shared CurrentSale As List(Of Item) 'Creates a list of items in the current sale
-    Public Shared SaleTotal As Double ' Creates a variable for the total for the current sale
+    Public Shared SaleTotal As Decimal ' Creates a variable for the total for the current sale
 
 
     Public Structure Item 'Creates an item structure
         Dim ISBN As String
-        Dim Price As Double
+        Dim Price As Decimal
         Dim Quantity As String
     End Structure
 
@@ -25,7 +25,7 @@
         'The startup location is set in the form properties to 1024, 768 to prevent visual issue
         LoadTheme()
 
-        MainWindowClearAll() 'Resets all variables and textboxes
+        ClearSalesWindow() 'Resets all variables and textboxes
 
     End Sub
 
@@ -54,8 +54,21 @@
                 Dim CurrentLabel As Label = TryCast(Ctl, Label)
                 CurrentLabel.Font = StartupWindow.LabelFont
                 CurrentLabel.ForeColor = StartupWindow.ForegroundColor
+            ElseIf TypeOf Ctl Is DataGridView Then 'If control is data grid
+                Dim CurrentDataGrid As DataGridView = TryCast(Ctl, DataGridView)
+                CurrentDataGrid.ForeColor = Color.Black
+                CurrentDataGrid.BackgroundColor = StartupWindow.BackgroundColour
+                CurrentDataGrid.Font = StartupWindow.LabelFont
             End If
         Next Ctl
+
+        SalesDataGrid.Columns.Add("ISBN", "ISBN")
+        SalesDataGrid.Columns.Add("PRICE", "PRICE")
+        SalesDataGrid.Columns.Add("QTY", "QTY")
+        SalesDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells 'Sets resize mode
+        SalesDataGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells 'Sets resize mode
+        SalesDataGrid.AutoResizeColumns() 'Resize columns to fit contents
+        SalesDataGrid.AutoResizeRows() 'Resize columns to fit contents
 
     End Sub
 
@@ -159,15 +172,15 @@
     End Sub
 
     Private Sub AbandonSale_Click(sender As Object, e As EventArgs) Handles AbandonSale.Click ' Clears all if sale is abandoned
-        MainWindowClearAll() ' Resets all variables and textboxes to default
+        ClearSalesWindow() ' Resets all variables and textboxes to default
     End Sub
 
-    Public Sub MainWindowClearAll() 'Resets all items in main window to default
+    Public Sub ClearSalesWindow() 'Resets all items in sales window to default
 
         ISBNTextBox.Clear() 'Sets the textboxes to their default values
         PriceTextBox.Text = "0000"
         QuantityTextBox.Text = "01"
-        ItemsSoldListBox.Items.Clear()
+        SalesDataGrid.Rows.Clear()
 
         SaleTotal = 0.00 'Sets global variables to their default values
 
@@ -175,29 +188,40 @@
 
         InputMode = Mode.ISBN 'Selects ISBN text box
         ISBNTextBox.Select()
-
+        InstructionLabel.Text = "Current Sale:"
     End Sub
 
     ' **************************************************TRANSACTION PROCESSING**************************************************
 
     Private Sub AddItemButton_Click(sender As Object, e As EventArgs) Handles AddItemButton.Click 'Adds the data in the fields to the listbox, and current sale list
 
-        If Trim(ISBNTextBox.Text).Length >= 10 And Trim(PriceTextBox.Text).Length > 0 And Trim(QuantityTextBox.Text).Length > 0 Then 'If all textboxes have data and isbn is >= 10
+        If Trim(ISBNTextBox.Text).Length >= 10 Then 'If ISBN is 10 or more characters long
+            If Trim(QuantityTextBox.Text).Length > 0 Then 'If quantity is not blank
+                If Trim(QuantityTextBox.Text) <> 0 Then
 
-            Dim TidiedPrice As Double = PriceTextBox.Text / 100 'Converts data in textbox to a decimal and divides by 100
+                    Dim TidiedPrice As Decimal = PriceTextBox.Text / 100 'Converts data in textbox to a decimal and divides by 100
 
-            Dim Divider As String = " | " 'Creates a divider to separate data in listbox
+                    CurrentSale.Add(New Item With {.ISBN = ISBNTextBox.Text, .Price = TidiedPrice, .Quantity = QuantityTextBox.Text}) 'Adds the current item to the current sale list
+                    Dim LineToDisplay As String() = {ISBNTextBox.Text, TidiedPrice.ToString("C"), QuantityTextBox.Text} 'Converts to currency
+                    SalesDataGrid.Rows.Add(LineToDisplay) 'Displays the current item in the data grid
 
-            CurrentSale.Add(New Item With {.ISBN = ISBNTextBox.Text, .Price = TidiedPrice, .Quantity = QuantityTextBox.Text}) 'Adds the current item to the current sale list
-            ItemsSoldListBox.Items.Add(LSet(ISBNTextBox.Text, 13) & Divider & LSet(TidiedPrice, 5) & Divider & LSet(QuantityTextBox.Text, 2)) 'Displays the current item in the listbox
+                    ISBNTextBox.Clear() 'Resets textboxes to default values
+                    PriceTextBox.Text = "0000"
+                    QuantityTextBox.Text = "01"
 
-            ISBNTextBox.Clear() 'Resets textboxes to default values
-            PriceTextBox.Text = "0000"
-            QuantityTextBox.Text = "01"
+                    InputMode = Mode.ISBN 'Selects ISBN text box
+                    ISBNTextBox.Select()
+                    InstructionLabel.Text = "Current Sale:"
+                Else
+                    InstructionLabel.Text = "Quantity cannot be zero."
+                End If
 
-            InputMode = Mode.ISBN 'Selects ISBN text box
-            ISBNTextBox.Select()
+            Else
+                InstructionLabel.Text = "Quantity cannot be blank."
+            End If
 
+        Else
+            InstructionLabel.Text = "ISBN should be 10-13 characters."
         End If
 
     End Sub
@@ -225,16 +249,25 @@
     ' **************************************************PRICE LOOKUP**************************************************
 
     Private Sub PriceLookupButton_Click(sender As Object, e As EventArgs) Handles PriceLookupButton.Click 'When lookup button clicked, search local database and then Bertrams website
-        Dim FoundProduct As String = Product.GetProductFromID(ISBNTextBox.Text) 'Attempt to search local database
-        If FoundProduct <> Nothing Then 'If product is in local database
-            ShowPrice(Product.FromLine(FoundProduct).RRP)
-        Else
-            If Trim(ISBNTextBox.Text).Length = 13 Then 'Checks if data in textbox is the right ISBN length
-                If Product.ValidateISBN(ISBNTextBox.Text) Then 'Checks if ISBN is valid
-                    WebCrawler.Navigate("https://www.bertrams.com/BertWeb/public/itemLookup.do?method=list&ITEM=" & ISBNTextBox.Text) 'Navigates to the bertrams webpage for the book
+        If Trim(ISBNTextBox.Text).Length <> 0 Then 'Checks if data in textbox is the right ISBN length
+            Dim FoundProduct As String = Product.GetProductFromID(ISBNTextBox.Text) 'Attempt to search local database
+            If FoundProduct <> Nothing Then 'If product is in local database
+                ShowPrice(Product.FromLine(FoundProduct).RRP)
+            Else
+                If Trim(ISBNTextBox.Text).Length = 13 Then 'Checks if data in textbox is the right ISBN length
+                    If Product.ValidateISBN(ISBNTextBox.Text) Then 'Checks if ISBN is valid
+                        WebCrawler.Navigate("https://www.bertrams.com/BertWeb/public/itemLookup.do?method=list&ITEM=" & ISBNTextBox.Text) 'Navigates to the bertrams webpage for the book
+                    Else
+                        InstructionLabel.Text = "Invalid ISBN. Please enter a valid ISBN."
+                    End If
+                Else
+                    InstructionLabel.Text = "ISBN must be 13 characters for online lookup."
                 End If
             End If
+        Else
+            InstructionLabel.Text = "ISBN cannot be blank."
         End If
+
     End Sub
 
     Private Sub WebCrawler_DocumentCompleted(sender As Object, e As WebBrowserDocumentCompletedEventArgs) Handles WebCrawler.DocumentCompleted ' Runs when webpage is loaded
@@ -254,7 +287,7 @@
                 ShowPrice(FoundPrice)
 
             Else
-                MessageBox.Show("Item not found") 'Gives error if the book is not found
+                InstructionLabel.Text = ("Item not found online.") 'Gives error if the book is not found
             End If
 
         End If
@@ -262,7 +295,7 @@
     End Sub
 
     Private Sub ShowPrice(Price As String)
-        If Double.TryParse(Price, New Double) Then ' Checks to see if the price is a decimal
+        If Decimal.TryParse(Price, New Decimal) Then ' Checks to see if the price is a decimal
 
             If Price.Length = 4 Then 'Checks if price is 4 digits (0.00) 
                 PriceTextBox.Text = "0" & Price 'Updates price textbox with price

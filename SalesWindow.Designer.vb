@@ -38,17 +38,18 @@ Partial Class SalesWindow
         Me.ClearButton = New System.Windows.Forms.Button()
         Me.NumButton0 = New System.Windows.Forms.Button()
         Me.DelButton = New System.Windows.Forms.Button()
-        Me.ItemsSoldListBox = New System.Windows.Forms.ListBox()
         Me.TakePaymentButton = New System.Windows.Forms.Button()
         Me.AddItemButton = New System.Windows.Forms.Button()
         Me.AbandonSale = New System.Windows.Forms.Button()
-        Me.HeadingsLabel = New System.Windows.Forms.Label()
         Me.PriceTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.ISBNTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.QuantityTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.PriceLookupButton = New System.Windows.Forms.Button()
         Me.CloseButton = New System.Windows.Forms.Button()
         Me.WebCrawler = New System.Windows.Forms.WebBrowser()
+        Me.SalesDataGrid = New System.Windows.Forms.DataGridView()
+        Me.InstructionLabel = New System.Windows.Forms.Label()
+        CType(Me.SalesDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ISBNLabel
@@ -237,22 +238,11 @@ Partial Class SalesWindow
         Me.DelButton.Text = "DEL"
         Me.DelButton.UseVisualStyleBackColor = True
         '
-        'ItemsSoldListBox
-        '
-        Me.ItemsSoldListBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ItemsSoldListBox.FormattingEnabled = True
-        Me.ItemsSoldListBox.ItemHeight = 24
-        Me.ItemsSoldListBox.Location = New System.Drawing.Point(365, 67)
-        Me.ItemsSoldListBox.Name = "ItemsSoldListBox"
-        Me.ItemsSoldListBox.Size = New System.Drawing.Size(450, 292)
-        Me.ItemsSoldListBox.TabIndex = 3
-        Me.ItemsSoldListBox.TabStop = False
-        '
         'TakePaymentButton
         '
         Me.TakePaymentButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.TakePaymentButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TakePaymentButton.Location = New System.Drawing.Point(365, 472)
+        Me.TakePaymentButton.Location = New System.Drawing.Point(365, 515)
         Me.TakePaymentButton.Margin = New System.Windows.Forms.Padding(0)
         Me.TakePaymentButton.Name = "TakePaymentButton"
         Me.TakePaymentButton.Size = New System.Drawing.Size(150, 100)
@@ -264,7 +254,7 @@ Partial Class SalesWindow
         '
         Me.AddItemButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.AddItemButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.AddItemButton.Location = New System.Drawing.Point(365, 372)
+        Me.AddItemButton.Location = New System.Drawing.Point(365, 415)
         Me.AddItemButton.Margin = New System.Windows.Forms.Padding(0)
         Me.AddItemButton.Name = "AddItemButton"
         Me.AddItemButton.Size = New System.Drawing.Size(150, 100)
@@ -276,24 +266,13 @@ Partial Class SalesWindow
         '
         Me.AbandonSale.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.AbandonSale.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.AbandonSale.Location = New System.Drawing.Point(665, 372)
+        Me.AbandonSale.Location = New System.Drawing.Point(665, 415)
         Me.AbandonSale.Margin = New System.Windows.Forms.Padding(0)
         Me.AbandonSale.Name = "AbandonSale"
         Me.AbandonSale.Size = New System.Drawing.Size(150, 100)
         Me.AbandonSale.TabIndex = 6
         Me.AbandonSale.Text = "Abandon Sale"
         Me.AbandonSale.UseVisualStyleBackColor = True
-        '
-        'HeadingsLabel
-        '
-        Me.HeadingsLabel.AutoSize = True
-        Me.HeadingsLabel.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.HeadingsLabel.Location = New System.Drawing.Point(358, 20)
-        Me.HeadingsLabel.Name = "HeadingsLabel"
-        Me.HeadingsLabel.Size = New System.Drawing.Size(352, 37)
-        Me.HeadingsLabel.TabIndex = 5
-        Me.HeadingsLabel.Tag = ""
-        Me.HeadingsLabel.Text = "ISBN                   | £        | QTY"
         '
         'PriceTextBox
         '
@@ -312,12 +291,13 @@ Partial Class SalesWindow
         'ISBNTextBox
         '
         Me.ISBNTextBox.Font = New System.Drawing.Font("Segoe UI", 20.0!)
-        Me.ISBNTextBox.Location = New System.Drawing.Point(106, 14)
+        Me.ISBNTextBox.Location = New System.Drawing.Point(106, 9)
         Me.ISBNTextBox.Mask = "0000000000999"
         Me.ISBNTextBox.Name = "ISBNTextBox"
         Me.ISBNTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
         Me.ISBNTextBox.Size = New System.Drawing.Size(226, 43)
         Me.ISBNTextBox.TabIndex = 1
+        Me.ISBNTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         '
         'QuantityTextBox
         '
@@ -328,12 +308,13 @@ Partial Class SalesWindow
         Me.QuantityTextBox.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
         Me.QuantityTextBox.Size = New System.Drawing.Size(180, 43)
         Me.QuantityTextBox.TabIndex = 3
+        Me.QuantityTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         '
         'PriceLookupButton
         '
         Me.PriceLookupButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.PriceLookupButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.PriceLookupButton.Location = New System.Drawing.Point(515, 372)
+        Me.PriceLookupButton.Location = New System.Drawing.Point(515, 415)
         Me.PriceLookupButton.Margin = New System.Windows.Forms.Padding(0)
         Me.PriceLookupButton.Name = "PriceLookupButton"
         Me.PriceLookupButton.Size = New System.Drawing.Size(150, 100)
@@ -345,7 +326,7 @@ Partial Class SalesWindow
         '
         Me.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CloseButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CloseButton.Location = New System.Drawing.Point(515, 472)
+        Me.CloseButton.Location = New System.Drawing.Point(515, 515)
         Me.CloseButton.Margin = New System.Windows.Forms.Padding(0)
         Me.CloseButton.Name = "CloseButton"
         Me.CloseButton.Size = New System.Drawing.Size(150, 100)
@@ -362,22 +343,43 @@ Partial Class SalesWindow
         Me.WebCrawler.TabIndex = 56
         Me.WebCrawler.Visible = False
         '
+        'SalesDataGrid
+        '
+        Me.SalesDataGrid.AllowUserToAddRows = False
+        Me.SalesDataGrid.AllowUserToDeleteRows = False
+        Me.SalesDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.SalesDataGrid.Location = New System.Drawing.Point(365, 57)
+        Me.SalesDataGrid.Name = "SalesDataGrid"
+        Me.SalesDataGrid.ReadOnly = True
+        Me.SalesDataGrid.RowHeadersVisible = False
+        Me.SalesDataGrid.Size = New System.Drawing.Size(450, 338)
+        Me.SalesDataGrid.TabIndex = 57
+        '
+        'InstructionLabel
+        '
+        Me.InstructionLabel.AutoSize = True
+        Me.InstructionLabel.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.InstructionLabel.Location = New System.Drawing.Point(358, 9)
+        Me.InstructionLabel.Name = "InstructionLabel"
+        Me.InstructionLabel.Size = New System.Drawing.Size(158, 37)
+        Me.InstructionLabel.TabIndex = 0
+        Me.InstructionLabel.Text = "[Instruction]"
+        '
         'SalesWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(850, 650)
+        Me.Controls.Add(Me.SalesDataGrid)
         Me.Controls.Add(Me.WebCrawler)
         Me.Controls.Add(Me.QuantityTextBox)
         Me.Controls.Add(Me.ISBNTextBox)
         Me.Controls.Add(Me.PriceTextBox)
-        Me.Controls.Add(Me.HeadingsLabel)
         Me.Controls.Add(Me.PriceLookupButton)
         Me.Controls.Add(Me.AddItemButton)
         Me.Controls.Add(Me.AbandonSale)
         Me.Controls.Add(Me.CloseButton)
         Me.Controls.Add(Me.TakePaymentButton)
-        Me.Controls.Add(Me.ItemsSoldListBox)
         Me.Controls.Add(Me.DelButton)
         Me.Controls.Add(Me.NumButton6)
         Me.Controls.Add(Me.NumButton0)
@@ -392,6 +394,7 @@ Partial Class SalesWindow
         Me.Controls.Add(Me.NumButton7)
         Me.Controls.Add(Me.QuantityLabel)
         Me.Controls.Add(Me.PriceLabel)
+        Me.Controls.Add(Me.InstructionLabel)
         Me.Controls.Add(Me.ISBNLabel)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -399,6 +402,7 @@ Partial Class SalesWindow
         Me.Name = "SalesWindow"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "NeilEPOS"
+        CType(Me.SalesDataGrid, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -419,15 +423,15 @@ Partial Class SalesWindow
     Friend WithEvents ClearButton As Button
     Friend WithEvents NumButton0 As Button
     Friend WithEvents DelButton As Button
-    Friend WithEvents ItemsSoldListBox As ListBox
     Friend WithEvents TakePaymentButton As Button
     Friend WithEvents AddItemButton As Button
     Friend WithEvents AbandonSale As Button
-    Friend WithEvents HeadingsLabel As Label
     Friend WithEvents PriceTextBox As MaskedTextBox
     Friend WithEvents ISBNTextBox As MaskedTextBox
     Friend WithEvents QuantityTextBox As MaskedTextBox
     Friend WithEvents PriceLookupButton As Button
     Friend WithEvents CloseButton As Button
     Friend WithEvents WebCrawler As WebBrowser
+    Friend WithEvents SalesDataGrid As DataGridView
+    Friend WithEvents InstructionLabel As Label
 End Class

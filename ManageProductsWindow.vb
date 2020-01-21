@@ -159,7 +159,7 @@
         ProductIDTextBox.Text = ProductToEdit.ISBN
         TitleTextBox.Text = ProductToEdit.Title
         AuthorTextBox.Text = ProductToEdit.Author
-        RRPTextBox.Text = ProductToEdit.RRP
+        RRPTextBox.Text = ProductToEdit.RRP.ToString("00.00")
         GenreComboBox.Text = ProductToEdit.Genre
         AllowTextboxExit()
     End Sub
@@ -201,7 +201,7 @@
             For Each Element As HtmlElement In ListOfDivs 'Runs through all the divs to find the price and author divs
                 'AUTHOR
                 If Element.GetAttribute("classname").ToString = "contributorInfo col-12" Then 'Checks if the class of the element is the author
-                    FoundProduct.Author = Element.InnerText.Substring(12) 'Gets the inner text of the author div, without the first 12 characters ("By author: ")
+                    FoundProduct.Author = Element.InnerText.Substring(9) 'Gets the inner text of the author div, without the first 8 characters ("Author: ")
                 End If
                 'RRP
                 If Element.GetAttribute("classname").ToString = "col-7 priceInfo" Then 'Checks if the class of the element is the price info

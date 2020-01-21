@@ -8,7 +8,7 @@
         'The startup location is set in the form properties to 1024, 768 to prevent visual issue
         LoadTheme()
 
-        TotalLabel.Text = SalesWindow.SaleTotal 'Sets total to the sale total
+        TotalLabel.Text = SalesWindow.SaleTotal.ToString("C") 'Sets total to the sale total
 
         ChangeLabel.Text = "" 'Resets label to default value
         AmountPaidTextBox.Text = "0000" ''Resets textbox to default value
@@ -104,9 +104,9 @@
 
     Private Sub AmountPaidTextBox_TextChanged(sender As Object, e As EventArgs) Handles AmountPaidTextBox.TextChanged ' Updates the change to give box
 
-        If Double.TryParse(AmountPaidTextBox.Text, New Double) Then ' Checks if the amount paid text box text can be converted to a decimal
-            Dim Change As Double = (CDbl(AmountPaidTextBox.Text) / 100) - SalesWindow.SaleTotal ' Converts the amount paid to a decimal
-            ChangeLabel.Text = Change.ToString("0.00") 'Updates the change label to show the change to be given
+        If Decimal.TryParse(AmountPaidTextBox.Text, New Decimal) Then ' Checks if the amount paid text box text can be converted to a decimal
+            Dim Change As Decimal = (CDec(AmountPaidTextBox.Text) / 100) - SalesWindow.SaleTotal ' Converts the amount paid to a decimal
+            ChangeLabel.Text = Change.ToString("C") 'Converts to currency 'Updates the change label to show the change to be given
 
             If Change <= 0 Then 'If the change is less than 0, then not enough has been paid
                 ChangeToGiveLabel.Text = "Amount to pay:" 'Updates change label
@@ -146,8 +146,8 @@
         For Each Item As SalesWindow.Item In SalesWindow.CurrentSale 'Iterate through every item in current transaction
             ' Write Transaction ID, Date, Time, Item, Item Cost, Item Quantity,Sales Total,Sales Quantity,Change Given, User
             If SalesWindow.CurrentSale.IndexOf(Item) = SalesWindow.CurrentSale.Count - 1 Then 'If item is last item in current sale, write sales totals
-                Dim LineToWrite As String = TransactionID & CSV.Comma & Date.Today & CSV.Comma & Date.Now.ToShortTimeString() & CSV.Comma & Item.ISBN & CSV.Comma & Item.Price & CSV.Comma & Item.Quantity & CSV.Comma & SalesWindow.SaleTotal & CSV.Comma & NoOfItems & CSV.Comma & ChangeLabel.Text & CSV.Comma & LoginWindow.CurrentUser.UserName
-                CSV.Append(Product.DailySalesFilePath, LineToWrite) 'Writes line to file
+                Dim LineToWrite As String = TransactionID & CSV.Comma & Date.Today & CSV.Comma & Date.Now.ToShortTimeString() & CSV.Comma & Item.ISBN & CSV.Comma & Item.Price & CSV.Comma & Item.Quantity & CSV.Comma & SalesWindow.SaleTotal & CSV.Comma & NoOfItems & CSV.Comma & ChangeLabel.Text.Replace("£", "") & CSV.Comma & LoginWindow.CurrentUser.UserName
+                CSV.Append(Product.DailySalesFilePath, LineToWrite) 'Writes line to file. Pound sign is removed from change label
             Else 'Don't write sales totals
                 Dim LineToWrite As String = TransactionID & CSV.Comma & Date.Today & CSV.Comma & Date.Now.ToShortTimeString() & CSV.Comma & Item.ISBN & CSV.Comma & Item.Price & CSV.Comma & Item.Quantity
                 CSV.Append(Product.DailySalesFilePath, LineToWrite) 'Writes line to file
@@ -169,7 +169,7 @@
                 End If
 
             ElseIf Day(0) = Date.Today Then 'If date matches with current date
-                Dim NewSalesTotal As Double = SalesWindow.SaleTotal + Day(1) 'Adds current sale total to the total in the file
+                Dim NewSalesTotal As Decimal = SalesWindow.SaleTotal + Day(1) 'Adds current sale total to the total in the file
                 Dim NewNoOfItems As Integer = NoOfItems + Day(2) 'Adds current no of items to the no of items in the file
 
                 WeeklySaleFileContents(i) = (Date.Today & CSV.Comma & NewSalesTotal & CSV.Comma & NewNoOfItems) 'Replace line with updated day
@@ -198,7 +198,7 @@
         TotalLabel.Text = "" 'Resets label to default
         ChangeLabel.Text = "" 'Resets label to default
         AmountPaidTextBox.Text = "0000" 'Resets textbox to default
-        SalesWindow.MainWindowClearAll() 'Clears all mainwindow variables
+        SalesWindow.ClearSalesWindow() 'Clears all mainwindow variables
         Close() 'Closes payment window
     End Sub
 

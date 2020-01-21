@@ -45,7 +45,7 @@
         FoundAuthorLabel.Text = ""
         FoundPriceLabel.Text = ""
         FoundGenreLabel.Text = ""
-        InstructionLabel.Text = "Please enter Product ISBN or EAN"
+        InstructionLabel.Text = "Please enter Product ISBN or EAN:"
     End Sub
 
     ' **************************************************UTILITY BUTTONS**************************************************
@@ -66,10 +66,10 @@
     Private Sub SearchForProduct() 'Searches for product based on ID
         Dim FoundProduct As String = Product.GetProductFromID(ISBNMaskedTextBox.Text.Trim()) 'Gets product based on ID from master file
         If FoundProduct <> Nothing Then 'Product lookup will return not found
-            InstructionLabel.Text = "Product found" 'Change instruction label
+            InstructionLabel.Text = "Product found." 'Change instruction label
             ShowProduct(Product.FromLine(FoundProduct)) 'Display product on form
         Else
-            InstructionLabel.Text = "Item not found" 'Notifies user that product was not found
+            InstructionLabel.Text = "Item not found." 'Notifies user that product was not found
         End If
     End Sub
 
@@ -79,7 +79,7 @@
         ISBNMaskedTextBox.ReadOnly = True
         FoundTitleLabel.Text = ProductToShow.Title
         FoundAuthorLabel.Text = ProductToShow.Author
-        FoundPriceLabel.Text = ProductToShow.RRP
+        FoundPriceLabel.Text = ProductToShow.RRP.ToString("C") 'Converts to currency
         FoundGenreLabel.Text = ProductToShow.Genre
     End Sub
 
@@ -93,7 +93,11 @@
         If Trim(ISBNMaskedTextBox.Text).Length = 13 Then 'Checks if data in textbox is the right ISBN length
             If Product.ValidateISBN(ISBNMaskedTextBox.Text) Then 'Checks if ISBN is valid
                 WebCrawler.Navigate("https://www.bertrams.com/BertWeb/public/itemLookup.do?method=list&ITEM=" & ISBNMaskedTextBox.Text) 'Navigates to the bertrams webpage for the book
+            Else
+                InstructionLabel.Text = "The ISBN is invalid. Please enter a valid ISBN."
             End If
+        Else
+            InstructionLabel.Text = "The ISBN must be 13 characters for online lookup."
         End If
 
     End Sub
@@ -117,7 +121,7 @@
             For Each Element As HtmlElement In ListOfDivs 'Runs through all the divs to find the price and author divs
                 'AUTHOR
                 If Element.GetAttribute("classname").ToString = "contributorInfo col-12" Then 'Checks if the class of the element is the author
-                    FoundProduct.Author = Element.InnerText.Substring(12) 'Gets the inner text of the author div, without the first 12 characters ("By author: ")
+                    FoundProduct.Author = Element.InnerText.Substring(9) 'Gets the inner text of the author div, without the first 8 characters ("Author: ")
                 End If
                 'RRP
                 If Element.GetAttribute("classname").ToString = "col-7 priceInfo" Then 'Checks if the class of the element is the price info
