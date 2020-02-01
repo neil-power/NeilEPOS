@@ -70,7 +70,7 @@
     End Sub
 
     ' **************************************************UTILITY BUTTONS**************************************************
-    Private Sub ProductButton_Click(sender As Object, e As EventArgs) Handles SearchButton.Click, SaveProductButton.Click, OnlineLookupButton.Click, NewProductButton.Click, EditProductButton.Click, DeleteProductButton.Click, CloseButton.Click  'Handles clicks of utility buttons
+    Private Sub ProductButton_Click(sender As Object, e As EventArgs) Handles SearchButton.Click, SaveProductButton.Click, OnlineLookupButton.Click, NewProductButton.Click, EditProductButton.Click, DeleteProductButton.Click, CloseButton.Click, ClearButton.Click  'Handles clicks of utility buttons
         Select Case sender.Name 'Selects button pressed
             Case NewProductButton.Name 'If new product, create a new product
                 ResetProductsWindow()
@@ -88,6 +88,8 @@
                 SaveProduct()
             Case SearchButton.Name
                 SearchForProduct()
+            Case ClearButton.Name
+                ResetProductsWindow()
             Case CloseButton.Name 'If close, return to manager window
                 Close() 'Close current window
             Case Else
@@ -95,7 +97,7 @@
         End Select
     End Sub
 
-    ' **************************************************NEW USERS**************************************************
+    ' **************************************************NEW PRODUCTS**************************************************
 
     Private Sub AllowTextboxExit() 'Allows user to type in all text boxes
         TitleTextBox.Enabled = True
@@ -113,10 +115,17 @@
             If Mode = ProductMode.EditProduct Then 'If a product is being edited, the new details need to be inserted
                 Product.EditProduct(Product.FromLine(ProductToSave))
             ElseIf Mode = ProductMode.NewProduct Then 'If a new product is being made, they can be added at the end of the file
-                Product.AddNewProduct(Product.FromLine(ProductToSave))
+                Dim FoundProduct As String = Product.GetProductFromID(ProductIDTextBox.Text) 'Attempt to read product from file
+                If FoundProduct = Nothing Then 'If an existing product is not found
+                    Product.AddNewProduct(Product.FromLine(ProductToSave))
+                Else
+                    Dim ConflictDisplay As New DialogBox("Product already exists", "A product with ID " & ProductIDTextBox.Text & " already exists." & Environment.NewLine & "Use the Edit Product button to change its details," & Environment.NewLine & "or the Delete Product button to remove it.", "OK")
+                    ConflictDisplay.ShowDialog()
+                End If
+
             End If
 
-            ResetProductsWindow() 'Prevents user from entering text
+                ResetProductsWindow() 'Prevents user from entering text
         End If
     End Sub
 
@@ -134,19 +143,27 @@
 
 
     Private Sub SearchForProduct()
-        Dim FoundProduct As String = Product.GetProductFromID(ProductIDTextBox.Text) 'Attempt to read product from file
-        If FoundProduct <> Nothing Then 'If read subroutine does not return "not found"
+        If ProductIDTextBox.Text.Trim.Length >= 10 Then 'If the ID is 10 or more characters
+            If Not ProductIDTextBox.Text.Trim.Contains(" ") Then 'If the ID does not contain spaces
+                Dim FoundProduct As String = Product.GetProductFromID(ProductIDTextBox.Text) 'Attempt to read product from file
+                If FoundProduct <> Nothing Then 'If read subroutine does not return "not found"
 
-            If Mode = ProductMode.EditProduct Then 'If a product is being edited, the new details need to be inserted
-                EditProduct(Product.FromLine(FoundProduct)) 'Sends product to edit to the edit subroutine
+                    If Mode = ProductMode.EditProduct Then 'If a product is being edited, the new details need to be inserted
+                        EditProduct(Product.FromLine(FoundProduct)) 'Sends product to edit to the edit subroutine
 
-            ElseIf Mode = ProductMode.DeleteProduct Then 'If a product is being deleted, they need to be removed
-                Product.RemoveProduct(Product.FromLine(FoundProduct)) 'Sends product to delete to the edit subroutine
-                ResetProductsWindow()
+                    ElseIf Mode = ProductMode.DeleteProduct Then 'If a product is being deleted, they need to be removed
+                        Product.RemoveProduct(Product.FromLine(FoundProduct)) 'Sends product to delete to the edit subroutine
+                        ResetProductsWindow()
+                    End If
+
+                Else
+                    InstructionLabel.Text = "No products were found."
+                End If
+            Else
+                InstructionLabel.Text = "Product ID must not contain spaces."
             End If
-
         Else
-            InstructionLabel.Text = "No products were found."
+            InstructionLabel.Text = "Product ID must be between 10 and 13 characters long."
         End If
     End Sub
 
@@ -176,10 +193,18 @@
 
     Private Sub OnlineLookupButton_Click(sender As Object, e As EventArgs) Handles OnlineLookupButton.Click
         If Trim(ProductIDTextBox.Text).Length = 13 Then 'Checks if data in textbox is the right ISBN length
-            If Product.ValidateISBN(ProductIDTextBox.Text) Then 'Checks if ISBN is valid
-                WebCrawler.Navigate("https://www.bertrams.com/BertWeb/public/itemLookup.do?method=list&ITEM=" & ProductIDTextBox.Text) 'Navigates to the bertrams webpage for the book
+            If Not Trim(ProductIDTextBox.Text).Contains(" ") Then 'If the ID does not contain spaces
+                If ProductIDTextBox.Text.Substring(0, 3) = "978" And Product.ValidateISBN(ProductIDTextBox.Text) Then 'Checks if ISBN is valid
+                    WebCrawler.Navigate("https://www.bertrams.com/BertWeb/public/itemLookup.do?method=list&ITEM=" & ProductIDTextBox.Text) 'Navigates to the bertrams webpage for the book
+                Else
+                    InstructionLabel.Text = "The ISBN is invalid. Please enter a valid ISBN."
+                    End If
+                Else
+                    InstructionLabel.Text = "Product ID must not contain spaces."
+                End If
+            Else
+                InstructionLabel.Text = "The ISBN must be 13 characters for online lookup."
             End If
-        End If
     End Sub
 
 
@@ -201,7 +226,7 @@
             For Each Element As HtmlElement In ListOfDivs 'Runs through all the divs to find the price and author divs
                 'AUTHOR
                 If Element.GetAttribute("classname").ToString = "contributorInfo col-12" Then 'Checks if the class of the element is the author
-                    FoundProduct.Author = Element.InnerText.Substring(9) 'Gets the inner text of the author div, without the first 8 characters ("Author: ")
+                    FoundProduct.Author = Trim(Element.InnerText.Substring(11)) 'Gets the inner text of the author div, without the first 11 characters ("By author: ")
                 End If
                 'RRP
                 If Element.GetAttribute("classname").ToString = "col-7 priceInfo" Then 'Checks if the class of the element is the price info
@@ -213,7 +238,7 @@
             If FoundProduct.RRP <> Nothing And FoundProduct.Author <> Nothing And FoundProduct.Title <> Nothing Then 'Checks if a product was found
                 EditProduct(FoundProduct) 'Displays the found product
             Else
-                MessageBox.Show("Unable to find product")
+                InstructionLabel.Text = "Unable to find product"
             End If
 
         End If

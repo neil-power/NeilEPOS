@@ -35,7 +35,7 @@
     End Sub
 
     Private Sub ActionButton_Click(sender As Object, e As EventArgs) Handles SalesButton.Click, ProductLookupButton.Click, ManageProductsButton.Click, SalesSummaryButton.Click, ManageUsersButton.Click, LogoutButton.Click 'When a button is clicked, opens the correct window
-        CloseAllMDIWindows()
+        HideAllMDIWindows()
         Select Case sender.Name 'Gets and selects the name of the button pressed
             Case SalesButton.Name 'If it is the make sales button, open window
                 SalesWindow.MdiParent = Me 'Sets manager form as MDI parent of sales form
@@ -63,12 +63,22 @@
 
     End Sub
 
-    Private Sub CloseAllMDIWindows() 'Closes all currently open MDI windows. May not be necessary for multiple window use
+    Private Sub CloseAllMDIWindows() 'Closes all currently open MDI windows
         SalesWindow.Close()
         ProductLookupWindow.Close()
         ManageProductsWindow.Close()
         SalesSummaryWindow.Close()
         ManageUsersWindow.Close()
+        PaymentWindow.Close()
+    End Sub
+
+    Private Sub HideAllMDIWindows() 'Hides all currently open MDI windows to allow multiple simultaneous windows
+        SalesWindow.Hide()
+        ProductLookupWindow.Hide()
+        ManageProductsWindow.Hide()
+        SalesSummaryWindow.Hide()
+        ManageUsersWindow.Hide()
+        PaymentWindow.Hide()
     End Sub
 
     Private Sub ManagerWindow_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing

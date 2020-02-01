@@ -39,6 +39,7 @@
 
     Private Sub ResetProductLookupWindow() 'Resets all values to default
         SearchButton.Show()
+        OnlineLookupButton.Show()
         ISBNMaskedTextBox.Clear() 'Clear all text boxes and labels
         ISBNMaskedTextBox.ReadOnly = False
         FoundTitleLabel.Text = ""
@@ -64,17 +65,26 @@
     ' **************************************************VIEW PRODUCTS**************************************************
 
     Private Sub SearchForProduct() 'Searches for product based on ID
-        Dim FoundProduct As String = Product.GetProductFromID(ISBNMaskedTextBox.Text.Trim()) 'Gets product based on ID from master file
-        If FoundProduct <> Nothing Then 'Product lookup will return not found
-            InstructionLabel.Text = "Product found." 'Change instruction label
-            ShowProduct(Product.FromLine(FoundProduct)) 'Display product on form
+        If Trim(ISBNMaskedTextBox.Text).Length >= 10 Then 'If the ID is 10 or more characters
+            If Not Trim(ISBNMaskedTextBox.Text).Contains(" ") Then 'If the ID does not contain spaces
+                Dim FoundProduct As String = Product.GetProductFromID(ISBNMaskedTextBox.Text.Trim()) 'Gets product based on ID from master file
+                If FoundProduct <> Nothing Then 'Product lookup will return not found
+                    InstructionLabel.Text = "Product found." 'Change instruction label
+                    ShowProduct(Product.FromLine(FoundProduct)) 'Display product on form
+                Else
+                    InstructionLabel.Text = "Item not found." 'Notifies user that product was not found
+                End If
+            Else
+                InstructionLabel.Text = "Product ID must not contain spaces."
+            End If
         Else
-            InstructionLabel.Text = "Item not found." 'Notifies user that product was not found
+            InstructionLabel.Text = "Product ID must be between 10 and 13 characters long."
         End If
     End Sub
 
     Private Sub ShowProduct(ProductToShow As Product) 'Displays all product details on the form
         SearchButton.Hide()
+        OnlineLookupButton.Hide()
         ISBNMaskedTextBox.Text = ProductToShow.ISBN
         ISBNMaskedTextBox.ReadOnly = True
         FoundTitleLabel.Text = ProductToShow.Title
@@ -91,13 +101,17 @@
 
     Private Sub OnlineLookupButton_Click(sender As Object, e As EventArgs) Handles OnlineLookupButton.Click
         If Trim(ISBNMaskedTextBox.Text).Length = 13 Then 'Checks if data in textbox is the right ISBN length
-            If Product.ValidateISBN(ISBNMaskedTextBox.Text) Then 'Checks if ISBN is valid
-                WebCrawler.Navigate("https://www.bertrams.com/BertWeb/public/itemLookup.do?method=list&ITEM=" & ISBNMaskedTextBox.Text) 'Navigates to the bertrams webpage for the book
+            If Not Trim(ISBNMaskedTextBox.Text).Contains(" ") Then 'If the ID does not contain spaces
+                If ISBNMaskedTextBox.Text.Substring(0, 3) = "978" And Product.ValidateISBN(ISBNMaskedTextBox.Text) Then 'Checks if ISBN is valid
+                    WebCrawler.Navigate("https://www.bertrams.com/BertWeb/public/itemLookup.do?method=list&ITEM=" & ISBNMaskedTextBox.Text) 'Navigates to the bertrams webpage for the book
+                Else
+                    InstructionLabel.Text = "The ISBN is invalid. Please enter a valid ISBN."
+                End If
             Else
-                InstructionLabel.Text = "The ISBN is invalid. Please enter a valid ISBN."
+                InstructionLabel.Text = "Product ID must not contain spaces."
             End If
         Else
-            InstructionLabel.Text = "The ISBN must be 13 characters for online lookup."
+                InstructionLabel.Text = "The ISBN must be 13 characters for online lookup."
         End If
 
     End Sub
@@ -121,7 +135,7 @@
             For Each Element As HtmlElement In ListOfDivs 'Runs through all the divs to find the price and author divs
                 'AUTHOR
                 If Element.GetAttribute("classname").ToString = "contributorInfo col-12" Then 'Checks if the class of the element is the author
-                    FoundProduct.Author = Element.InnerText.Substring(9) 'Gets the inner text of the author div, without the first 8 characters ("Author: ")
+                    FoundProduct.Author = Trim(Element.InnerText.Substring(11)) 'Gets the inner text of the author div, without the first 11 characters ("By author: ")
                 End If
                 'RRP
                 If Element.GetAttribute("classname").ToString = "col-7 priceInfo" Then 'Checks if the class of the element is the price info
@@ -133,7 +147,7 @@
             If FoundProduct.RRP <> Nothing And FoundProduct.Author <> Nothing And FoundProduct.Title <> Nothing Then 'Checks if a product was found
                 ShowProduct(FoundProduct) 'Displays the found product
             Else
-                MessageBox.Show("Unable to find product")
+                InstructionLabel.Text = "Unable to find product."
             End If
 
         End If

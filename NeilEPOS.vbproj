@@ -93,6 +93,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CSV.vb" />
+    <Compile Include="DialogBox.Designer.vb">
+      <DependentUpon>DialogBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DialogBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ErrorHandling.vb" />
     <Compile Include="LoginWindow.Designer.vb">
       <DependentUpon>LoginWindow.vb</DependentUpon>
@@ -175,6 +181,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="DialogBox.resx">
+      <DependentUpon>DialogBox.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginWindow.resx">
       <DependentUpon>LoginWindow.vb</DependentUpon>
     </EmbeddedResource>

@@ -9,7 +9,6 @@
 ''' 
 ''' POTENTIAL NEW THINGS TO ADD
 ''' Sale total for sales window datagrid
-''' Ability to delete items from current sale
 ''' Allow user to customise file paths - My.Settings file
 ''' Allow recording of payment type in payment window 
 ''' Cleanup method - copy all records mentioned in index file to new master file.
@@ -17,7 +16,6 @@
 '''
 ''' KNOWN BUGS/ISSUES
 ''' Can't enter a price higher than 99.99 into price input boxes
-''' Prevent the only manager setting self to user
 '''
 ''' INFO
 ''' Standard window size - 1024 x 768 4:3
@@ -44,7 +42,7 @@ Public Class StartupWindow
     Public Shared MainFont As String = "Franklin Gothic"
     Public Shared LabelFont As New Font(MainFont, 20, GraphicsUnit.Point)
     Public Shared BusinessName As String = "Penarth Books"
-    Public Shared ReadOnly Version As String = "0.28"
+    Public Shared ReadOnly Version As String = "0.29"
 
     Private ReadOnly NoOfChecks As Integer = 9
     Private ChecksCompleted As Integer = 0

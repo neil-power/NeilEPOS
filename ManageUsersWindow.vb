@@ -43,8 +43,13 @@
                 Dim CurrentDataGrid As DataGridView = TryCast(Ctl, DataGridView)
                 CurrentDataGrid.ForeColor = Color.Black
                 CurrentDataGrid.BackgroundColor = StartupWindow.BackgroundColour
+                CurrentDataGrid.Font = New Font(StartupWindow.MainFont, 12, GraphicsUnit.Point)
             End If
         Next Ctl
+
+        UsersDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells 'Sets resize mode
+        UsersDataGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells 'Sets resize mode
+        UsersDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect 'Selects whole row on click
 
     End Sub
 
@@ -80,7 +85,7 @@
     End Sub
 
     ' **************************************************UTILITY BUTTONS**************************************************
-    Private Sub UserButton_Click(sender As Object, e As EventArgs) Handles NewUserButton.Click, EditUserButton.Click, DeleteUserButton.Click, SaveUserButton.Click, CloseButton.Click, SearchButton.Click 'Handles clicks of utility buttons
+    Private Sub UserButton_Click(sender As Object, e As EventArgs) Handles NewUserButton.Click, EditUserButton.Click, DeleteUserButton.Click, SaveUserButton.Click, CloseButton.Click, SearchButton.Click, ClearButton.Click 'Handles clicks of utility buttons
         Select Case sender.Name 'Selects button pressed
             Case NewUserButton.Name 'If new user, create a new user
                 ResetUsersWindow()
@@ -97,6 +102,8 @@
                 SaveUser()
             Case SearchButton.Name
                 SearchForUser()
+            Case ClearButton.Name()
+                ResetUsersWindow()
             Case CloseButton.Name 'If close, return to manager window
                 Close() 'Close current window
             Case Else
@@ -198,7 +205,7 @@
     ' **************************************************EDIT/DELETE USERS**************************************************
 
     Private Sub EditUser(UserToEdit As User)
-        InstructionLabel.Text = "Edit the user's details and click save"
+        InstructionLabel.Text = "Edit the user's details and click save."
         SearchButton.Hide()
         UsersDataGrid.Hide()
         UserIDTextBox.Text = UserToEdit.UserID.ToString("00000")
@@ -208,7 +215,14 @@
         UserNameTextBox.Text = UserToEdit.UserName
         UserPassword = UserToEdit.Password 'Sets password to variable, so if unchanged can be written back to file.
         PasswordTextBox.Text = Placeholder 'Placeholder in password box
-        AccessLevelComboBox.Text = GetUserAccessFromFile(UserToEdit.AccessLevel) 'Converts from file to dropdown
+        If UserToEdit.UserID = LoginWindow.CurrentUser.UserID Then 'If user to edit is current user
+            AccessLevelComboBox.Text = GetUserAccessFromFile(UserToEdit.AccessLevel) 'Converts from file to dropdown
+            AccessLevelComboBox.Enabled = False 'Prevent changing own access level
+        Else
+            AccessLevelComboBox.Enabled = True 'Allow changing own access level
+            AccessLevelComboBox.Text = GetUserAccessFromFile(UserToEdit.AccessLevel) 'Converts from file to dropdown
+        End If
+
         SaveUserButton.Show()
     End Sub
 
@@ -218,14 +232,15 @@
             For i = 0 To UBound(UserFileContents) 'Runs through each line
                 Dim UserFound As User = User.FromLine(UserFileContents(i)) 'Converts to user
                 If UserFound.UserID = UserToEdit.UserID Then 'If ID matches with edited user
-                    If InputBox("Please type 'YES' to confirm deletion of user " & UserFound.UserID & " " & UserFound.UserName) = "YES" Then 'Confirms user deletion
+                    Dim ConfirmDelete As New DialogBox("Do you want to delete the selected user?", "User ID: " & UserFound.UserID & Environment.NewLine & "Username: " & UserFound.UserName & Environment.NewLine & "Access Level: " & GetUserAccessFromFile(UserToEdit.AccessLevel), "Yes", "No")
+                    If ConfirmDelete.ShowDialog() = DialogResult.Yes Then 'Confirms user deletion
                         CSV.ArrayOverwrite(User.UserFilePath, CSV.RemoveFromArray(UserFileContents, i)) 'Overwrites file with new list of users
                     End If
                 End If
             Next
             ResetUsersWindow()
         Else
-            InstructionLabel.Text = "You cannot delete the current user"
+            InstructionLabel.Text = "You cannot delete the current user."
         End If
     End Sub
 

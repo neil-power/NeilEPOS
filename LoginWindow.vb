@@ -75,26 +75,35 @@
     End Sub
 
     Private Sub LoginUser() 'Logs in user
-        CurrentUser = VerifyUserLogin(UserIDTextBox.Text, PasswordTextBox.Text) 'Verifies ID and Password
+        If UserIDTextBox.Text <> "" Then
+            If PasswordTextBox.Text <> "" Then
+                CurrentUser = VerifyUserLogin(UserIDTextBox.Text, PasswordTextBox.Text) 'Verifies ID and Password
 
-        If CurrentUser.AccessLevel <> User.UserAccessLevel.None Then 'If returned user access level is not none, open correct window
-            Select Case CurrentUser.AccessLevel 'Select access level
-                Case User.UserAccessLevel.Manager 'If manager, open manager window
-                    ClearFields() 'Clear ID and password fields
-                    Hide() 'Hides login window as variables still in use
-                    ManagerWindow.Show() 'Open manager window
-                Case User.UserAccessLevel.User
-                    ClearFields() 'Clear ID and password fields
-                    Hide() 'Hides login window as variables still in use
-                    UserWindow.Show() 'Open user window
-                Case User.UserAccessLevel.None
-                    LoginPromptLabel.Text = "You do not have access rights to log in to this system."
-                Case Else
-                    Exit Select
-            End Select
-        Else 'If user does not exist
-            LoginPromptLabel.Text = "The User ID or Password is incorrect" 'Alerts user to incorrect password
+                If CurrentUser.AccessLevel <> User.UserAccessLevel.None Then 'If returned user access level is not none, open correct window
+                    Select Case CurrentUser.AccessLevel 'Select access level
+                        Case User.UserAccessLevel.Manager 'If manager, open manager window
+                            ClearFields() 'Clear ID and password fields
+                            Hide() 'Hides login window as variables still in use
+                            ManagerWindow.Show() 'Open manager window
+                        Case User.UserAccessLevel.User
+                            ClearFields() 'Clear ID and password fields
+                            Hide() 'Hides login window as variables still in use
+                            UserWindow.Show() 'Open user window
+                        Case User.UserAccessLevel.None
+                            LoginPromptLabel.Text = "You do not have access rights to log in to this system."
+                        Case Else
+                            Exit Select
+                    End Select
+                Else 'If user does not exist
+                    LoginPromptLabel.Text = "The User ID or Password is incorrect" 'Alerts user to incorrect password
+                End If
+            Else
+                LoginPromptLabel.Text = "Please enter a password." 'Alerts user to blank password
+            End If
+        Else
+            LoginPromptLabel.Text = "Please enter your User ID." 'Alerts user to blank ID
         End If
+
 
     End Sub
 

@@ -69,6 +69,7 @@
         SalesDataGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells 'Sets resize mode
         SalesDataGrid.AutoResizeColumns() 'Resize columns to fit contents
         SalesDataGrid.AutoResizeRows() 'Resize columns to fit contents
+        SalesDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect 'Selects whole row on click
 
     End Sub
 
@@ -196,34 +197,109 @@
     Private Sub AddItemButton_Click(sender As Object, e As EventArgs) Handles AddItemButton.Click 'Adds the data in the fields to the listbox, and current sale list
 
         If Trim(ISBNTextBox.Text).Length >= 10 Then 'If ISBN is 10 or more characters long
-            If Trim(QuantityTextBox.Text).Length > 0 Then 'If quantity is not blank
-                If Trim(QuantityTextBox.Text) <> 0 Then
+            If Not Trim(ISBNTextBox.Text).Contains(" ") Then 'If the ID does not contain spaces
+                If Trim(QuantityTextBox.Text).Length > 0 Then 'If quantity is not blank
+                    If Not QuantityTextBox.Text.Contains(" ") Then 'If the quantity does not contain spaces
+                        If Trim(QuantityTextBox.Text) <> 0 Then
 
-                    Dim TidiedPrice As Decimal = PriceTextBox.Text / 100 'Converts data in textbox to a decimal and divides by 100
+                            Dim TidiedPrice As Decimal = PriceTextBox.Text / 100 'Converts data in textbox to a decimal and divides by 100
 
-                    CurrentSale.Add(New Item With {.ISBN = ISBNTextBox.Text, .Price = TidiedPrice, .Quantity = QuantityTextBox.Text}) 'Adds the current item to the current sale list
-                    Dim LineToDisplay As String() = {ISBNTextBox.Text, TidiedPrice.ToString("C"), QuantityTextBox.Text} 'Converts to currency
-                    SalesDataGrid.Rows.Add(LineToDisplay) 'Displays the current item in the data grid
+                            CurrentSale.Add(New Item With {.ISBN = ISBNTextBox.Text, .Price = TidiedPrice, .Quantity = QuantityTextBox.Text}) 'Adds the current item to the current sale list
+                            Dim LineToDisplay As String() = {ISBNTextBox.Text, TidiedPrice.ToString("C"), QuantityTextBox.Text} 'Converts to currency
 
-                    ISBNTextBox.Clear() 'Resets textboxes to default values
-                    PriceTextBox.Text = "0000"
-                    QuantityTextBox.Text = "01"
+                            If SalesDataGrid.Rows.Count = 0 Then 'If there are no items in the datagrid
+                                SalesDataGrid.Rows.Add(LineToDisplay) 'Displays the current item in the data grid
+                                Dim TotalLine As String() = {"Total:", TidiedPrice.ToString("C"), QuantityTextBox.Text} 'Adds total line with item details (one item)
+                                SalesDataGrid.Rows.Add(TotalLine)
+                            Else 'If there are items in the datagrid
+                                CalculateTotalRow(LineToDisplay)
+                            End If
 
-                    InputMode = Mode.ISBN 'Selects ISBN text box
-                    ISBNTextBox.Select()
-                    InstructionLabel.Text = "Current Sale:"
+
+                            SalesDataGrid.ClearSelection() 'Clears all selected items
+                            SalesDataGrid.Rows(SalesDataGrid.Rows.Count - 1).Selected = True 'Selects the last item to be added
+                            ISBNTextBox.Clear() 'Resets textboxes to default values
+                            PriceTextBox.Text = "0000"
+                            QuantityTextBox.Text = "01"
+
+                            InputMode = Mode.ISBN 'Selects ISBN text box
+                            ISBNTextBox.Select()
+                            InstructionLabel.Text = "Current Sale:"
+                        Else
+                            InstructionLabel.Text = "Quantity cannot be zero."
+                        End If
+                    Else
+                        InstructionLabel.Text = "Quantity must not contain spaces."
+                    End If
                 Else
-                    InstructionLabel.Text = "Quantity cannot be zero."
+                    InstructionLabel.Text = "Quantity cannot be blank."
                 End If
-
             Else
-                InstructionLabel.Text = "Quantity cannot be blank."
+                InstructionLabel.Text = "ISBN must not contain spaces."
             End If
 
         Else
             InstructionLabel.Text = "ISBN should be 10-13 characters."
         End If
 
+    End Sub
+
+    Private Sub CalculateTotalRow(LineToDisplay As String())
+        SalesDataGrid.Rows.RemoveAt(SalesDataGrid.Rows.Count - 1) 'Remove previous total
+        Dim TotalPrice As Decimal = 0 'Variable to store sale total
+        Dim TotalQuantity As Integer = 0 'Variable to store total quantity of items
+
+        For Each SalesItem As Item In CurrentSale
+            TotalPrice += SalesItem.Price * SalesItem.Quantity 'Add price = qty * RRP
+            TotalQuantity += SalesItem.Quantity 'Increase quantity
+        Next
+
+        SalesDataGrid.Rows.Add(LineToDisplay) 'Displays the current item in the data grid
+        Dim TotalLine As String() = {"Total:", TotalPrice.ToString("C"), TotalQuantity.ToString("00")} 'Adds total line with item details
+        SalesDataGrid.Rows.Add(TotalLine)
+    End Sub
+
+    Private Sub RemoveItemButton_Click(sender As Object, e As EventArgs) Handles RemoveItemButton.Click
+
+        If SalesDataGrid.GetCellCount(DataGridViewElementStates.Selected) > 0 Then 'If one or more cells are selected
+            If SalesDataGrid.SelectedCells(0).Value.ToString <> "Total:" Then 'If selected row is not total
+                If SalesDataGrid.Rows.Count <= 2 Then 'If there is only one item, and total, then clear sale
+                    SalesDataGrid.Rows.Clear()
+                    CurrentSale.Clear()
+                Else
+
+                    Dim NewCurrentSale As New List(Of Item) 'Removes item from current sale list
+                    For Each SaleItem As Item In CurrentSale
+                        Dim SelectedISBN As String = SalesDataGrid.SelectedCells(0).Value.ToString
+                        Dim SelectedQuantity As String = SalesDataGrid.SelectedCells(2).Value.ToString
+                        Dim ActualQty As String = QuantityTextBox.Text
+                        If (SelectedISBN = SaleItem.ISBN And SelectedQuantity = SaleItem.Quantity) = False Then 'If ISBN and quantity match, remove
+
+                            NewCurrentSale.Add(SaleItem)
+                        End If
+                    Next
+                    CurrentSale = NewCurrentSale
+                    SalesDataGrid.Rows.Clear()
+
+                    For Each SaleItem As Item In CurrentSale 'Adds current sale to 
+                        Dim LineToDisplay As String() = {SaleItem.ISBN, SaleItem.Price.ToString("C"), SaleItem.Quantity}
+                        If CurrentSale.IndexOf(SaleItem) = 0 Then 'If first item
+                            SalesDataGrid.Rows.Add(LineToDisplay) 'Displays the current item in the data grid
+                            Dim TotalLine As String() = {"Total:", SaleItem.Price.ToString("C"), SaleItem.Quantity} 'Adds total line with item details (one item)
+                            SalesDataGrid.Rows.Add(TotalLine)
+                        Else 'If not first item
+                            CalculateTotalRow(LineToDisplay)
+                        End If
+
+                    Next
+
+                End If
+            Else
+                InstructionLabel.Text = "Cannot remove sales total row."
+            End If
+        Else
+            InstructionLabel.Text = "No row selected."
+        End If
     End Sub
 
     Private Sub TakePaymentButton_Click(sender As Object, e As EventArgs) Handles TakePaymentButton.Click ' Calculates the total and opens payment window
@@ -249,23 +325,27 @@
     ' **************************************************PRICE LOOKUP**************************************************
 
     Private Sub PriceLookupButton_Click(sender As Object, e As EventArgs) Handles PriceLookupButton.Click 'When lookup button clicked, search local database and then Bertrams website
-        If Trim(ISBNTextBox.Text).Length <> 0 Then 'Checks if data in textbox is the right ISBN length
-            Dim FoundProduct As String = Product.GetProductFromID(ISBNTextBox.Text) 'Attempt to search local database
-            If FoundProduct <> Nothing Then 'If product is in local database
-                ShowPrice(Product.FromLine(FoundProduct).RRP)
-            Else
-                If Trim(ISBNTextBox.Text).Length = 13 Then 'Checks if data in textbox is the right ISBN length
-                    If Product.ValidateISBN(ISBNTextBox.Text) Then 'Checks if ISBN is valid
-                        WebCrawler.Navigate("https://www.bertrams.com/BertWeb/public/itemLookup.do?method=list&ITEM=" & ISBNTextBox.Text) 'Navigates to the bertrams webpage for the book
-                    Else
-                        InstructionLabel.Text = "Invalid ISBN. Please enter a valid ISBN."
-                    End If
+        If Trim(ISBNTextBox.Text).Length >= 10 Then 'If the ID is 10 or more characters
+            If Not Trim(ISBNTextBox.Text).Contains(" ") Then 'If the ID does not contain spaces
+                Dim FoundProduct As String = Product.GetProductFromID(ISBNTextBox.Text) 'Attempt to search local database
+                If FoundProduct <> Nothing Then 'If product is in local database
+                    ShowPrice(Product.FromLine(FoundProduct).RRP)
                 Else
-                    InstructionLabel.Text = "ISBN must be 13 characters for online lookup."
+                    If Trim(ISBNTextBox.Text).Length = 13 Then 'Checks if data in textbox is the right ISBN length
+                        If ISBNTextBox.Text.Substring(0, 3) = "978" And Product.ValidateISBN(ISBNTextBox.Text) Then 'Checks if ISBN is valid
+                            WebCrawler.Navigate("https://www.bertrams.com/BertWeb/public/itemLookup.do?method=list&ITEM=" & ISBNTextBox.Text) 'Navigates to the bertrams webpage for the book
+                        Else
+                            InstructionLabel.Text = "Invalid ISBN. Please enter a valid ISBN."
+                        End If
+                    Else
+                        InstructionLabel.Text = "ISBN must be 13 characters for online lookup."
+                    End If
                 End If
+            Else
+                InstructionLabel.Text = "ISBN must not contain spaces."
             End If
         Else
-            InstructionLabel.Text = "ISBN cannot be blank."
+            InstructionLabel.Text = "ISBN must be 10-13 characters long."
         End If
 
     End Sub
@@ -305,5 +385,6 @@
 
         End If
     End Sub
+
 
 End Class

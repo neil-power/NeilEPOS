@@ -35,7 +35,6 @@
                             ManageProductsWindow.InstructionLabel.Text = "The author must be between 2 and 40 characters"
 
                         End If
-
                     Else
                         ManageProductsWindow.InstructionLabel.Text = "The title must be between 2 and 40 characters"
                     End If
@@ -95,6 +94,9 @@
     End Sub
 
     Public Shared Sub RemoveProduct(ProductToEdit As Product)
-        RandomFile.Delete(ProductToEdit.ISBN, ProductsIndexPath, True)
+        Dim ConfirmDelete As New DialogBox("Do you want to delete the selected product?", "Product ID: " & ProductToEdit.ISBN & Environment.NewLine & "Title: " & ProductToEdit.Title & Environment.NewLine & "Author: " & ProductToEdit.Author, "Yes", "No")
+        If ConfirmDelete.ShowDialog() = DialogResult.Yes Then 'Confirms product deletion
+            RandomFile.Delete(ProductToEdit.ISBN, ProductsIndexPath)
+        End If
     End Sub
 End Class

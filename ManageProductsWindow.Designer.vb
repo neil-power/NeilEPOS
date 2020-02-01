@@ -42,6 +42,7 @@ Partial Class ManageProductsWindow
         Me.RRPTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.TitleTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.AuthorTextBox = New System.Windows.Forms.MaskedTextBox()
+        Me.ClearButton = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'InstructionLabel
@@ -69,11 +70,11 @@ Partial Class ManageProductsWindow
         '
         Me.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CloseButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CloseButton.Location = New System.Drawing.Point(470, 500)
+        Me.CloseButton.Location = New System.Drawing.Point(620, 500)
         Me.CloseButton.Margin = New System.Windows.Forms.Padding(0)
         Me.CloseButton.Name = "CloseButton"
         Me.CloseButton.Size = New System.Drawing.Size(150, 100)
-        Me.CloseButton.TabIndex = 12
+        Me.CloseButton.TabIndex = 13
         Me.CloseButton.Text = "Close"
         Me.CloseButton.UseVisualStyleBackColor = True
         '
@@ -213,7 +214,7 @@ Partial Class ManageProductsWindow
         '
         'WebCrawler
         '
-        Me.WebCrawler.Location = New System.Drawing.Point(752, 529)
+        Me.WebCrawler.Location = New System.Drawing.Point(787, 553)
         Me.WebCrawler.MinimumSize = New System.Drawing.Size(20, 20)
         Me.WebCrawler.Name = "WebCrawler"
         Me.WebCrawler.Size = New System.Drawing.Size(20, 20)
@@ -257,6 +258,18 @@ Partial Class ManageProductsWindow
         Me.AuthorTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         Me.AuthorTextBox.ValidatingType = GetType(Integer)
         '
+        'ClearButton
+        '
+        Me.ClearButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ClearButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ClearButton.Location = New System.Drawing.Point(470, 500)
+        Me.ClearButton.Margin = New System.Windows.Forms.Padding(0)
+        Me.ClearButton.Name = "ClearButton"
+        Me.ClearButton.Size = New System.Drawing.Size(150, 100)
+        Me.ClearButton.TabIndex = 12
+        Me.ClearButton.Text = "Clear"
+        Me.ClearButton.UseVisualStyleBackColor = True
+        '
         'ManageProductsWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -265,6 +278,7 @@ Partial Class ManageProductsWindow
         Me.Controls.Add(Me.WebCrawler)
         Me.Controls.Add(Me.InstructionLabel)
         Me.Controls.Add(Me.GenreComboBox)
+        Me.Controls.Add(Me.ClearButton)
         Me.Controls.Add(Me.CloseButton)
         Me.Controls.Add(Me.SearchButton)
         Me.Controls.Add(Me.OnlineLookupButton)
@@ -311,4 +325,5 @@ Partial Class ManageProductsWindow
     Friend WithEvents RRPTextBox As MaskedTextBox
     Friend WithEvents TitleTextBox As MaskedTextBox
     Friend WithEvents AuthorTextBox As MaskedTextBox
+    Friend WithEvents ClearButton As Button
 End Class

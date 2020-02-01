@@ -10,9 +10,11 @@
 
         TotalLabel.Text = SalesWindow.SaleTotal.ToString("C") 'Sets total to the sale total
 
+        FinishSaleButton.Hide() 'Hides finish sale button until enough has been paid
+
         ChangeLabel.Text = "" 'Resets label to default value
         AmountPaidTextBox.Text = "0000" ''Resets textbox to default value
-        ChangeToGiveLabel.Text = "Amount to pay:" 'Resets label to default value
+        ChangeToGiveLabel.Text = "Amount to Pay:" 'Resets label to default value
 
         TransactionID = ReadTransactionIDFromFile()
 
@@ -106,12 +108,14 @@
 
         If Decimal.TryParse(AmountPaidTextBox.Text, New Decimal) Then ' Checks if the amount paid text box text can be converted to a decimal
             Dim Change As Decimal = (CDec(AmountPaidTextBox.Text) / 100) - SalesWindow.SaleTotal ' Converts the amount paid to a decimal
-            ChangeLabel.Text = Change.ToString("C") 'Converts to currency 'Updates the change label to show the change to be given
+            ChangeLabel.Text = Math.Abs(Change).ToString("C")  'Updates the change label to show the change to be given in positive currency format
 
-            If Change <= 0 Then 'If the change is less than 0, then not enough has been paid
-                ChangeToGiveLabel.Text = "Amount to pay:" 'Updates change label
+            If Change < 0 Then 'If the change is less than 0, then not enough has been paid
+                ChangeToGiveLabel.Text = "Amount to Pay:" 'Updates change label
+                FinishSaleButton.Hide()
             ElseIf Change >= 0 Then 'If the change is more than 0, then enough has been paid
                 ChangeToGiveLabel.Text = "Change:" 'Updates change label
+                FinishSaleButton.Show()
             End If
 
         End If
@@ -185,7 +189,7 @@
 
     End Sub
 
-    Private Sub FinishSale_Click(sender As Object, e As EventArgs) Handles FinishSale.Click ' Writes the information to the sales file
+    Private Sub FinishSale_Click(sender As Object, e As EventArgs) Handles FinishSaleButton.Click ' Writes the information to the sales file
         TransactionID += 1 'Increments transaction ID by 1
         Dim NoOfItems As Integer = 0
         For Each ItemBought As SalesWindow.Item In SalesWindow.CurrentSale 'Interates through every item in the current sale

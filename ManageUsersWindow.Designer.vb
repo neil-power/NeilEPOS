@@ -39,6 +39,7 @@ Partial Class ManageUsersWindow
         Me.PasswordTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.UserNameTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.UsersDataGrid = New System.Windows.Forms.DataGridView()
+        Me.ClearButton = New System.Windows.Forms.Button()
         CType(Me.UsersDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -157,7 +158,7 @@ Partial Class ManageUsersWindow
         '
         Me.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CloseButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CloseButton.Location = New System.Drawing.Point(320, 420)
+        Me.CloseButton.Location = New System.Drawing.Point(470, 420)
         Me.CloseButton.Margin = New System.Windows.Forms.Padding(0)
         Me.CloseButton.Name = "CloseButton"
         Me.CloseButton.Size = New System.Drawing.Size(150, 100)
@@ -228,6 +229,18 @@ Partial Class ManageUsersWindow
         Me.UsersDataGrid.TabIndex = 26
         Me.UsersDataGrid.TabStop = False
         '
+        'ClearButton
+        '
+        Me.ClearButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ClearButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ClearButton.Location = New System.Drawing.Point(320, 420)
+        Me.ClearButton.Margin = New System.Windows.Forms.Padding(0)
+        Me.ClearButton.Name = "ClearButton"
+        Me.ClearButton.Size = New System.Drawing.Size(150, 100)
+        Me.ClearButton.TabIndex = 10
+        Me.ClearButton.Text = "Clear"
+        Me.ClearButton.UseVisualStyleBackColor = True
+        '
         'ManageUsersWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -237,6 +250,7 @@ Partial Class ManageUsersWindow
         Me.Controls.Add(Me.PasswordTextBox)
         Me.Controls.Add(Me.InstructionLabel)
         Me.Controls.Add(Me.AccessLevelComboBox)
+        Me.Controls.Add(Me.ClearButton)
         Me.Controls.Add(Me.CloseButton)
         Me.Controls.Add(Me.SearchButton)
         Me.Controls.Add(Me.SaveUserButton)
@@ -276,4 +290,5 @@ Partial Class ManageUsersWindow
     Friend WithEvents PasswordTextBox As MaskedTextBox
     Friend WithEvents UserNameTextBox As MaskedTextBox
     Friend WithEvents UsersDataGrid As DataGridView
+    Friend WithEvents ClearButton As Button
 End Class

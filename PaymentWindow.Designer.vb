@@ -40,7 +40,7 @@ Partial Class PaymentWindow
         Me.AmountPaidLabel = New System.Windows.Forms.Label()
         Me.ChangeToGiveLabel = New System.Windows.Forms.Label()
         Me.ChangeLabel = New System.Windows.Forms.Label()
-        Me.FinishSale = New System.Windows.Forms.Button()
+        Me.FinishSaleButton = New System.Windows.Forms.Button()
         Me.ContinueSaleButton = New System.Windows.Forms.Button()
         Me.AmountPaidTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.SuspendLayout()
@@ -251,17 +251,17 @@ Partial Class PaymentWindow
         Me.ChangeLabel.TabIndex = 16
         Me.ChangeLabel.Text = "[Change]"
         '
-        'FinishSale
+        'FinishSaleButton
         '
-        Me.FinishSale.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.FinishSale.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.FinishSale.Location = New System.Drawing.Point(420, 300)
-        Me.FinishSale.Margin = New System.Windows.Forms.Padding(0)
-        Me.FinishSale.Name = "FinishSale"
-        Me.FinishSale.Size = New System.Drawing.Size(150, 100)
-        Me.FinishSale.TabIndex = 2
-        Me.FinishSale.Text = "Finish Sale"
-        Me.FinishSale.UseVisualStyleBackColor = True
+        Me.FinishSaleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.FinishSaleButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.FinishSaleButton.Location = New System.Drawing.Point(420, 300)
+        Me.FinishSaleButton.Margin = New System.Windows.Forms.Padding(0)
+        Me.FinishSaleButton.Name = "FinishSaleButton"
+        Me.FinishSaleButton.Size = New System.Drawing.Size(150, 100)
+        Me.FinishSaleButton.TabIndex = 2
+        Me.FinishSaleButton.Text = "Finish Sale"
+        Me.FinishSaleButton.UseVisualStyleBackColor = True
         '
         'ContinueSaleButton
         '
@@ -296,7 +296,7 @@ Partial Class PaymentWindow
         Me.ClientSize = New System.Drawing.Size(834, 611)
         Me.Controls.Add(Me.AmountPaidTextBox)
         Me.Controls.Add(Me.ContinueSaleButton)
-        Me.Controls.Add(Me.FinishSale)
+        Me.Controls.Add(Me.FinishSaleButton)
         Me.Controls.Add(Me.ChangeLabel)
         Me.Controls.Add(Me.TotalLabel)
         Me.Controls.Add(Me.ChangeToGiveLabel)
@@ -341,7 +341,7 @@ Partial Class PaymentWindow
     Friend WithEvents AmountPaidLabel As Label
     Friend WithEvents ChangeToGiveLabel As Label
     Friend WithEvents ChangeLabel As Label
-    Friend WithEvents FinishSale As Button
+    Friend WithEvents FinishSaleButton As Button
     Friend WithEvents ContinueSaleButton As Button
     Friend WithEvents AmountPaidTextBox As MaskedTextBox
 End Class

@@ -49,6 +49,7 @@ Partial Class SalesWindow
         Me.WebCrawler = New System.Windows.Forms.WebBrowser()
         Me.SalesDataGrid = New System.Windows.Forms.DataGridView()
         Me.InstructionLabel = New System.Windows.Forms.Label()
+        Me.RemoveItemButton = New System.Windows.Forms.Button()
         CType(Me.SalesDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -242,11 +243,11 @@ Partial Class SalesWindow
         '
         Me.TakePaymentButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.TakePaymentButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TakePaymentButton.Location = New System.Drawing.Point(365, 515)
+        Me.TakePaymentButton.Location = New System.Drawing.Point(665, 415)
         Me.TakePaymentButton.Margin = New System.Windows.Forms.Padding(0)
         Me.TakePaymentButton.Name = "TakePaymentButton"
         Me.TakePaymentButton.Size = New System.Drawing.Size(150, 100)
-        Me.TakePaymentButton.TabIndex = 7
+        Me.TakePaymentButton.TabIndex = 6
         Me.TakePaymentButton.Text = "Take Payment"
         Me.TakePaymentButton.UseVisualStyleBackColor = True
         '
@@ -266,11 +267,11 @@ Partial Class SalesWindow
         '
         Me.AbandonSale.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.AbandonSale.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.AbandonSale.Location = New System.Drawing.Point(665, 415)
+        Me.AbandonSale.Location = New System.Drawing.Point(515, 515)
         Me.AbandonSale.Margin = New System.Windows.Forms.Padding(0)
         Me.AbandonSale.Name = "AbandonSale"
         Me.AbandonSale.Size = New System.Drawing.Size(150, 100)
-        Me.AbandonSale.TabIndex = 6
+        Me.AbandonSale.TabIndex = 8
         Me.AbandonSale.Text = "Abandon Sale"
         Me.AbandonSale.UseVisualStyleBackColor = True
         '
@@ -326,11 +327,11 @@ Partial Class SalesWindow
         '
         Me.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CloseButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CloseButton.Location = New System.Drawing.Point(515, 515)
+        Me.CloseButton.Location = New System.Drawing.Point(665, 515)
         Me.CloseButton.Margin = New System.Windows.Forms.Padding(0)
         Me.CloseButton.Name = "CloseButton"
         Me.CloseButton.Size = New System.Drawing.Size(150, 100)
-        Me.CloseButton.TabIndex = 8
+        Me.CloseButton.TabIndex = 9
         Me.CloseButton.Text = "Close"
         Me.CloseButton.UseVisualStyleBackColor = True
         '
@@ -365,6 +366,18 @@ Partial Class SalesWindow
         Me.InstructionLabel.TabIndex = 0
         Me.InstructionLabel.Text = "[Instruction]"
         '
+        'RemoveItemButton
+        '
+        Me.RemoveItemButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.RemoveItemButton.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RemoveItemButton.Location = New System.Drawing.Point(365, 515)
+        Me.RemoveItemButton.Margin = New System.Windows.Forms.Padding(0)
+        Me.RemoveItemButton.Name = "RemoveItemButton"
+        Me.RemoveItemButton.Size = New System.Drawing.Size(150, 100)
+        Me.RemoveItemButton.TabIndex = 7
+        Me.RemoveItemButton.Text = "Remove Item"
+        Me.RemoveItemButton.UseVisualStyleBackColor = True
+        '
         'SalesWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -376,6 +389,7 @@ Partial Class SalesWindow
         Me.Controls.Add(Me.ISBNTextBox)
         Me.Controls.Add(Me.PriceTextBox)
         Me.Controls.Add(Me.PriceLookupButton)
+        Me.Controls.Add(Me.RemoveItemButton)
         Me.Controls.Add(Me.AddItemButton)
         Me.Controls.Add(Me.AbandonSale)
         Me.Controls.Add(Me.CloseButton)
@@ -434,4 +448,5 @@ Partial Class SalesWindow
     Friend WithEvents WebCrawler As WebBrowser
     Friend WithEvents SalesDataGrid As DataGridView
     Friend WithEvents InstructionLabel As Label
+    Friend WithEvents RemoveItemButton As Button
 End Class
